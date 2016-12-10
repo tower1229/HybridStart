@@ -17,3 +17,6 @@
 - [dialogBox](http://docs.apicloud.com/Client-API/UI-Layout/dialogBox)用于各种弹出框
 - [push](http://docs.apicloud.com/Client-API/Cloud-Service/push)系统插件，做推送必备
 - [mam](http://docs.apicloud.com/Client-API/Cloud-Service/mam)系统插件，版本管理和热更新必备
+
+## 快速开始 
+在apicloud平台创建一个项目，将代码检出到本地，备份`config.xml`并其他文件清空，然后将本项目所有文件拷贝进来，改一下`config.xml`里的appid之类的关键配置就ok啦
