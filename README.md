@@ -22,5 +22,5 @@
 在apicloud平台创建一个项目，将代码检出到本地，备份`config.xml`并其他文件清空，然后将本项目所有文件拷贝进来，改一下`config.xml`里的appid之类的关键配置就ok啦
 
 ## 预览安装包 
-[apk](http://downloadpkg.apicloud.com/app/download?path=http://7xm7pq.com1.z0.glb.clouddn.com/bb64cbb52ff820fedc31473455f7daad_d)
+[apk](http://downloadpkg.apicloud.com/app/download?path=http://7xm7pq.com1.z0.glb.clouddn.com/15f3cea8b3c8977394c0a03909fcf76b_d)
 
