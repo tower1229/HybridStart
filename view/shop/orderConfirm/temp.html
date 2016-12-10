@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <link href="../../../sdk/ui.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+        
+    </head>
+    <body class="flex-col">
+        <div class="head myhead">
+            <div class="btn" id="goBack">
+                <i class="ion">&#xe7b7;</i>
+            </div>
+            <div class="title" id="headTitle">确认订单</div>
+        </div>
+        <div class="flex-1 scroll_cont" id="mainCont">
+            <div class="list" id="addr">
+                <div class="item item-icon-left item-icon-right" id="changeAddr">
+                    <i class="ion">&#xe834;</i>
+                    <p id="linkMan">没有默认收货地址，请添加地址</p>
+                    <p id="address"></p>
+                    <i class="ion">&#xe7b9;</i>
+                </div>
+            </div>
+            <div class="list cartList orderList" id="orderList">
+                <textarea class="hide" id="orderListTemp">
+                <!-- for: ${data} as ${store} -->
+                <div class="item item-divider">发货方：${store.eshop_name}【${store.time}】</div>
+                <div class="item item-divider eshop hide">电话：<a href="tel:${store.telephone}">${store.telephone}</a><i class="ion">&#xe833;</i></div>
+                <div class="item item-divider eshop hide">地址：${store.address}</div>
+                <!-- for: ${store.datas} as ${order} -->
+                <div class="item item-thumbnail-left item-content-right">
+                    <img data-src="../../../res/img/prog.gif" data-remote="${order.tmp_img|source}">
+                    <h2>${order.tmp_name}</h2>
+                    <div class="item-content flex-col">
+                        <div class="pro_price">
+                            <!-- if: ${order.tmp_market_price} != ''&&${order.tmp_market_price}!=' '&&${order.tmp_market_price}!='0' -->
+                            <div>￥<strong><s>${order.tmp_market_price|decimal(2)}</s></strong></div>
+                            <!-- else -->
+                            <div>￥<strong>${order.tmp_price|decimal(2)}</strong></div>
+                            <!-- /if -->
+                            <!--<div class="_tag">促销价</div>-->
+                        </div>
+                        <div class="pro_count_show">
+                            X<span class="_countShow">${order.amount}</span>
+                        </div>
+                    </div>
+                    <div class="_cont">
+                        <p>图号:${order.no};</p>
+                        <div class="_chooseColor">
+                            <p>最小包装数:${order.min_buy_count}   计量单位:${order.unit} </p>
+                            <!-- if: ${order.bz} -->
+                            <!-- for: ${order.bz} as ${bz} -->
+                            <p>备注信息：<span class="_colorShow">${bz.value}</span></p>
+                            <!-- /for -->
+                            <!-- /if -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /for -->
+                <!-- /for -->
+                </textarea>
+            </div>
+            <form class="list orderFoot" id="orderConfirmForm" >
+                <div class="item item-checkbox item-checkbox-right">
+                    <label class="checkbox checkbox-danger">
+                        <input type="checkbox" id="kaifapiao">
+                    </label>
+                    是否开具发票
+                </div>
+                <div id="fapiaoInp" style="display:none">
+                    <p class="item bg-danger" style="font-size:.86em">
+                        注：普通发票只需填写姓名一项，增值税发票需全部填写
+                    </p>
+                    <label class="item item-input">
+                        <input type="text" id="tax_name" name="tax_name" datatype="*" placeholder="名称(必填)" nullmsg="请填写发票名称！">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" id="tax_num" name="tax_num" datatype="*" placeholder="纳税人识别号" nullmsg="请填写纳税人识别号">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" id="tax_address" name="tax_address" datatype="*" placeholder="地址" nullmsg="请填写地址">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" id="tax_tel" name="tax_tel" datatype="m" placeholder="电话" nullmsg="请填写电话">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" id="tax_no" name="tax_no" datatype="*" placeholder="账号" nullmsg="请填写账号">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" id="tax_bank" name="tax_bank" datatype="*" placeholder="开户行" nullmsg="请输入开户行">
+                    </label>
+                </div>
+            </form>
+              <div class="list">
+                <div class="item item-divider">运费
+                <strong class="text-danger">￥<span id="carriage">0.00</span></strong>
+                </div>
+                <div id="shipList">
+                    <textarea class="hide" id="shipListTemp">
+                    <!-- for: ${data} as ${ship} -->
+                    <label class="item item-radio" data-id="${ship.id}">
+                        <input type="radio" name="type" <!-- if: ${ship.id} == 1 -->checked<!-- /if -->
+                         value="${ship.id}">
+                        <div class="item-content">${ship.name}</div>
+                        <i class="ion radio-icon">&#xe6bf;</i>
+                    </label>
+                    <!-- /for -->
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="foot flex-row">
+            <div class="flex-2">
+                <div class="item _order_count" id="totalCount">
+                    共0件
+                </div>
+            </div>
+            <div class="flex-3 total align-center">合计：<span class="_pri">￥<strong id="totalPri">0.00</strong></span></div>
+            <button class="btn btn-danger disabled" id="confirm">确认订单</button>
+        </div>
+    </body>
+    <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+    <script>
+    seajs.use('./script')
+    </script>
+</html>

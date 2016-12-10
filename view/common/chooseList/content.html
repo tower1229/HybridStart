@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <link href="../../../sdk/ui.css" rel="stylesheet">
+        <link href="content.css" rel="stylesheet">
+        
+    </head>
+    <body>
+        <div class="list" id="storeList">
+        <textarea class="hide" id="storeListTemp">
+        <!-- for: ${data} as ${store} -->
+        <!-- if: ${store.hasSub} != 1 -->
+            <!-- if: ${store.multi} -->
+            <label class="item item-radio chooseListHookMulti" data-id="${store.id}">
+                <div class="item-content">
+                   ${store.name}
+                </div>
+                <i class="radio-icon ion">&#xe6bf;</i>
+            </label>
+            <!-- else -->
+            <div class="item chooseListHook" data-id="${store.id}">
+            ${store.name}
+            <!-- if: ${store.note} -->
+            <div class="item-note">${store.note}</div>
+            <!-- /if -->
+            </div>
+            <!-- /if -->
+        <!-- else -->
+        <label class="item item-icon-right" data-id="${store.id}">
+            <div class="item-content">
+               ${store.name}
+            </div>
+            <i class="ion">&#xe7b9;</i>
+        </label>
+        <!-- /if -->
+        <!-- /for -->
+        </textarea>
+    </div>
+</body>
+<script src="../../../config.js"></script>
+<script src="../../../sdk/core.js" id="seajsnode" ></script>
+<script>
+seajs.use('./content');
+</script>
+</html>

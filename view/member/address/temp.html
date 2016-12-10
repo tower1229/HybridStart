@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <link href="../../../sdk/ui.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body class="flex-col">
+        <div class="head myhead">
+            <div class="btn" id="goBack">
+                <i class="ion">&#xe7b7;</i>
+            </div>
+            <div class="title" id="headTitle">收货地址</div>
+            <div class="btn" id="addAddr">
+                添加
+            </div>
+        </div>
+        <div class="flex-1 scroll_cont" >
+            <div class="addrlist" id="listview">
+                <textarea class="hide" id="addrTemp">
+                <!-- for: ${data} as ${addr} -->
+                <div class="list" data-id="${addr.id}"><div class="item">
+                    <h2><span class="_name">${addr.name}</span> <span class="_mobile">${addr.mobile}</span></h2>
+                    <div class="item-body addrcont">收货地址：${addr.province}${addr.city}${addr.area}${addr.address}</div>
+                    <div class="item-body actions">
+                        <label class="toggle toggle-danger">
+                            <input type="checkbox"
+                            <!-- if: ${addr.isDefault}==1 --> checked<!-- /if -->
+                            >
+                            <div class="track"><div class="handle"></div></div>
+                        </label>
+                        <button type="button" class="btn btn-ghost _edit">编辑</button>
+                        <button type="button" class="btn btn-ghost btn-danger _delete">删除</button>
+                    </div>
+                </div></div>
+                <!-- /for -->
+                </textarea>
+            </div>
+        </div>
+    </body>
+    <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+    <script>
+    seajs.use('./script')
+    </script>
+</html>

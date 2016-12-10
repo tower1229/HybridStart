@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    
+  </head>
+  <body class="flex-col">
+    <div class="head myhead">
+        <div class="btn" id="goBack">
+            <i class="ion">&#xe7b7;</i>
+        </div>
+        <div class="title" id="headTitle">交易完成</div>
+    </div>
+    <div class="flex-1 scroll_cont" id="View">
+      <div class="confirmPack">
+        <h2>交易成功！</h2>
+        <p>感谢您选择中国重汽产品配件~</p>
+        <div class="_actions">
+          <button class="btn" data-action="confirm">查真伪</button>
+          <button class="btn btn-danger" data-action="eval">评价送积分</button>
+        </div>
+      </div>
+      <div class="guessHead">
+        <span>推荐商品</span>
+      </div>
+      <div class="list partsList" id="guessList">
+        <textarea class="hide" id="guessTemp">
+          <!-- for: ${data} as ${part} -->
+          <div class="_item flex-row" data-id="${part.id}">
+              <div class="_pic">
+                  <div class="rect-75">
+                      <div class="_full loading-place" data-remote="${part.sImg|source}"></div>
+                  </div>
+              </div>
+              <div class="flex-1">
+                  <div class="_cont">
+                      <h3>${part.name}</h3>
+                      <p>图号：${part.no}</p>
+                      <!-- if: ${part.oeNo} == '' -->
+                      <strong class="_price">￥${part.price|decimal(2)}</strong>
+                      <!-- /if -->
+                      <!-- if: ${part.oeNo}&&${part.oeNo}!=''&&${part.oeNo}!=' ' -->
+                      <p class="text-danger" style="margin-top:.5em">该配件已被替换</p>
+                      <!-- else -->
+                      <div class="btn btn-ghost btn-danger addToCart" data-id="${part.id}" data-name="${part.name}" data-stand="${part.extendInfo.ext.stand_remark}" data-need="${part.extendInfo.ext.need_remark}" data-remark="${part.extendInfo.ext.remark}">
+                          <i class="ion">&#xe690;</i>添加到购物车
+                      </div>
+                      <!-- /if -->
+                  </div>
+              </div>
+          </div>
+          <!-- /for -->
+        </textarea>
+      </div>
+    </div>
+  </body>
+  <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+  <script>
+  seajs.use('./script')
+  </script>
+</html>

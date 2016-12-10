@@ -1,0 +1,17 @@
+.cartList h2{color:#000;font-size:1em;}
+.cartList ._cont p{margin:0;font-size:.8em; line-height: 1.7em; white-space: normal;}
+.cartList ._chooseColor select{font-size:.8em;padding-left: 0;}
+.pro_price{color: #ff4f12; margin: .8em 0;}
+.pro_price strong{font-size:1.2em;}
+.pro_price ._tag{display: inline-block;padding:0 .5em;border:1px solid;font-size:.8em;}
+.orderList .item-thumbnail-left{padding-left: 6em;padding-right: 6em;}
+.orderTotal{text-align: right;border-bottom: 0;padding:.8em;}
+.orderTotal p{font-size:.9em;margin-bottom: .3em;}
+.orderTotal ._actions{padding-top: .8em;}
+.orderPrice{font-size:1.2em;color:#e70014;}
+.orderRecord{margin-bottom: .8em;}
+.orderRecord .item-note{font-size: .9em; }
+.orderGoodsIntro{cursor: pointer;}
+.btn-pay,.btn-confirmPack{background: #e70014;color:#fff;}
+.btn-pay:hover,.btn-confirmPack:hover{background: #de2d3d;}
+.item-lite{padding:.8em;}

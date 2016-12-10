@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <link href="../../../sdk/ui.css" rel="stylesheet">
+        <link href="content.css" rel="stylesheet">
+        
+    </head>
+    <body>
+        <div class="list partsList" id="partsList"></div>
+        <textarea class="hide" id="partListTemp">
+        <!-- for: ${data} as ${part} -->
+        <div class="item flex-row" data-id="${part.id}">
+            <div class="_pic">
+                <div class="rect-90">
+                    <div class="_full loading-place" data-remote="${part.img|source}"></div>
+                </div>
+            </div>
+            <div class="flex-1 _cont">
+                <h3>${part.name}</h3>
+                <p>图号：${part.no}</p>
+                <strong class="_price">￥${part.price|decimal(2)}</strong>
+                <div class="btn btn-ghost btn-sm btn-danger addToCart" data-id="${part.id}" data-name="${part.name}" data-stand="${part.extendInfo.ext.stand_remark}" data-need="${part.extendInfo.ext.need_remark}" data-remark="${part.extendInfo.ext.remark}" data-min="${part.minBuyCount}">
+                    <i class="ion">&#xe690;</i> 添加到购物车
+                </div>
+                <!-- /if -->
+            </div>
+        </div>
+        <!-- /for -->
+        </textarea>
+    </body>
+    <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+    <script>
+    seajs.use('./content');
+    </script>
+</html>

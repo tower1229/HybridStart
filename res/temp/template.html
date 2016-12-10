@@ -1,0 +1,23 @@
+<!-- //commonTemplate v0.0.1 build -->
+
+<!-- target: listPlaceholder -->
+<div class="listPlaceholder">
+	<div class="_container">
+		<div class="_icon">
+			<i class="ion">
+			<!-- if: ${icon} -->
+			${icon|raw}
+			<!-- else -->
+			&#xe823;
+			<!-- /if -->
+			</i>
+		</div>
+		<p class="_text">
+		<!-- if: ${text} -->
+		${text}
+		<!-- else -->
+		没有相关数据
+		<!-- /if -->
+		</p>
+	</div>
+</div>

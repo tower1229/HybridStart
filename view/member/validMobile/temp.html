@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    
+  </head>
+  <body class="flex-col">
+    <div class="head myhead">
+      <div class="btn" id="goBack"> <i class="ion">&#xe7b7;</i> </div>
+      <div class="title" id="headTitle">身份验证</div>
+    </div>
+    <form class="flex-1 scroll_cont" id="validMobileForm">
+      <div class="list card padding form">
+        <div class="item item-input item-icon-left get-yzm">
+          <i class="ion">&#xe701;</i>
+          <input type="number" name="usern" datatype="m" id="mobile" placeholder="请输入手机号">
+          <span class="bg-primary _btn" id="getCode">获取短信验证码</span>
+        </div>
+        <label class="item item-input item-icon-left">
+          <i class="ion">&#xe7e8;</i>
+          <input type="number" name="param" datatype="n4-4" null-msg="输入验证码" placeholder="输入验证码">
+        </label>
+      </div>
+      <div class="form-btn">
+        <button type="submit" class="btn btn-block btn-primary disabled" id="goNext">下一步</button>
+      </div>
+    </form>
+  </body>
+  <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+  <script>
+  seajs.use('./script')
+  </script>
+</html>

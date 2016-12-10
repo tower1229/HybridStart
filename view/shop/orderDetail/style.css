@@ -1,0 +1,22 @@
+body { background:#f3f3f3;}
+.list{margin-bottom: .8em;}
+.orderDetail .item-icon-left >.ion:first-child{color:#e70014;}
+.cartList .item-thumbnail-left{padding-left: 10em;}
+.cartList .item-thumbnail-left img:first-child{left:2em;height: auto;}
+
+.cartList .input-label{font-size:inherit;}
+
+.cartList h2{font-size:1em; color:#000; }
+.cartList ._cont p{margin:0;font-size:.8em;height: 1.7em;line-height: 1.7em;}
+.cartList ._chooseColor select{font-size:.8em;padding-left: 0;}
+.pro_price{color: #ff4f12; margin: .4em 0;}
+.pro_price strong{font-size:1.2em;}
+.pro_price ._tag{display: inline-block;padding:0 .5em;border:1px solid;font-size:.8em;}
+.orderList .item-thumbnail-left{padding-left: 6.5em;padding-right: 6em;}
+.orderList .item-thumbnail-left img:first-child{left:.8em;}
+.orderTotal p{ margin-bottom: .3em;}
+.orderPrice{font-size:1.2em;color:#e70014;}
+.orderGoodsIntro{cursor: pointer;}
+.actions{text-align: right;}
+.btn-pay,.btn-confirmPack{background: #e70014 !important;color:#fff;}
+.btn-pay:hover,.btn-confirmPack:hover{background: #de2d3d;}

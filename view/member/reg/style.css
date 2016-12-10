@@ -1,0 +1,17 @@
+.loginWrap{height:100%;background:#232323;padding-top: .8rem;}
+.wLogo{width:1.65rem;height:1.8rem;margin:0 auto .2rem;background: url(../logo.png) no-repeat;
+background-size: 100% auto;}
+.loginForm{padding:.32rem;}
+.loginForm input{color:#fff;}
+.loginForm .item{background:none; border-top:0;border-left: 0;border-right: 0;color:#fff;padding-top:.2rem;padding-bottom: .2rem;}
+.loginForm .input-label{width:2em;color:#fff;}
+.loginForm .input-label .ion{margin:0;}
+.loginForm input[type="radio"]{ width:.2rem;height:.2rem;border-radius: .2rem;margin:0 .3em;
+ padding:0;border:.02rem solid #fff;box-sizing:content-box;}
+.loginForm input[type="radio"]:checked{border-color:#e60012; background:#fff;}
+.loginForm .btn{color:inherit;position: relative;z-index: 4;}
+.loginForm ._sub{color:#fff;}
+.reg_agree{font-size:.24rem;padding-left: .8rem;border-bottom: 0;}
+.toLog{color: #fff !important;}
+.getCode{width:8em;text-align: center;box-sizing:border-box;padding-left:0;padding-right: 0; }
+.getCode.unable{background:#ccc !important;}

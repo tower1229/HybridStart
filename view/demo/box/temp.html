@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link href="../../../sdk/ui.css" rel="stylesheet">
+		<link href="style.css" rel="stylesheet">
+		
+	</head>
+	<body class="flex-col">
+		<div class="head">
+			<div class="btn" id="goBack">
+                <i class="ion">&#xe7b7;</i>
+            </div>
+	        <div class="title">消息框演示</div>
+	    </div>
+		<div class="flex-1 flex-col scroll_cont">
+			<div class="list">
+				<div class="item">
+					<p class="box-html">弹出自定义片段(box)</p>
+				</div>
+				<div class="item">
+					<p class="box-alert">警告(alert)</p>
+				</div>
+				<div class="item">
+					<p class="box-confirm">确认(confirm)</p>
+				</div>
+				<div class="item">
+					<p class="box-msg">提示(msg)</p>
+				</div>
+				<div class="item">
+					<p class="box-amount">计数器(amount)</p>
+				</div>
+				<div class="item">
+					<p class="box-input">输入框(input)</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+	<script>
+		seajs.use('./script')
+	</script>
+</html>

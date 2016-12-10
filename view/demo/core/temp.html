@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    
+</head>
+
+<body class="flex-col">
+    <div class="head">
+        <div class="btn" id="goBack">
+            <i class="ion">&#xe7b7;</i>
+        </div>
+        <div class="title">core对象</div>
+    </div>
+    <div class="flex-1 flex-col scroll_cont">
+        <div class="list">
+            <div class="item">
+                <code>app.getUID()</code>
+                <div class="item-note">
+                    返回一个递增数字
+                </div>
+            </div>
+            <div class="item">
+                <code>app.getUUID([number])</code>
+                <div class="item-note">
+                    返回一个6位随机字符串
+                </div>
+            </div>
+            <div class="item">
+                <code>app.ready([function])</code>
+                <div class="item-note">
+                    将在api对象就绪后执行回调函数
+                </div>
+            </div>
+            <div class="item">
+                <code>app.pause([function])</code>
+                <div class="item-note">
+                    应用退到后台将触发回调
+                </div>
+            </div>
+            <div class="item">
+                <code>app.resume([function])</code>
+                <div class="item-note">
+                    应用回到前台将触发回调
+                </div>
+            </div>
+            <div class="item">
+                <code>app.monitorKey([id],[function])</code>
+                <div class="item-note">
+                    监听按键，id为0代表返回键，id为1代表菜单键
+                </div>
+            </div>
+            <div class="item">
+                <code>app.exit()</code>
+                <div class="item-note">
+                    关闭应用
+                </div>
+            </div>
+            <div class="item">
+                <code>app.log([string])</code>
+                <div class="item-note">
+                    向"fs://appcloudlog.txt"写入日志信息
+                </div>
+            </div>
+            <div class="item">
+                <code>app.loading.show([string])</code>
+                <div class="item-note">
+                   显示loading动画，可修改提示文字
+                </div>
+            </div>
+            <div class="item">
+                <code>app.loading.hide()</code>
+                <div class="item-note">
+                   关闭loading动画
+                </div>
+            </div>
+            <div class="item">
+                <code>app.toload([object])</code>
+                <div class="item-note">
+                   分页加载，参数同ajax，发送参数会额外添加“page_index”和“page_size”
+                </div>
+            </div>
+            <div class="item">
+                <code>app.getScript(road, callback, option)</code>
+                <div class="item-note">
+                   用于获取包内的非模块化js
+                </div>
+            </div>
+            <div class="item">
+                <code>app.openView(param, leval1, [leval2])</code>
+                <div class="item-note">
+                   用于打开新窗口，leval1和leval1对应view目录下的文件夹名称
+                </div>
+            </div>
+            <div class="item">
+                <code>app.push.init(callback)</code>
+                <div class="item-note">
+                   在当前frame启用下拉刷新，callback用于触发下拉后的回调
+                </div>
+            </div>
+            <div class="item">
+                <code>app.push.stop()</code>
+                <div class="item-note">
+                   用于停止下拉刷新，通常在push.init回调中，数据获取成功后调用
+                </div>
+            </div>
+            <div class="item">
+                <code>app.render(template[string], data[object], dom[jquery selecter], reload[boolean], cb[function])</code>
+                <div class="item-note">
+                   封装数据渲染方法，template为etpl模板，data是对应的数据，dom是用于展示的元素，reload可选，默认true，将替换dom中的内容，否则将向dom中追加内容；cb可选，将接收渲染后的html为参数；详见功能示例（数据渲染）
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+<script src="../../../config.js"></script>
+<script src="../../../sdk/core.js" id="seajsnode"></script>
+<script>
+seajs.use('./script');
+</script>
+
+</html>

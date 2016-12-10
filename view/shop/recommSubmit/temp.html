@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    
+  </head>
+  <body>
+    <form style="height:100%" class="flex-col" id="recommForm">
+      <div class="head myhead">
+        <div class="btn" id="goBack">
+          <i class="ion">&#xe7b7;</i>
+        </div>
+        <div class="title" id="headTitle">订单评价</div>
+      </div>
+      <div class="flex-1 scroll_cont">
+        <div class="list" id="view">
+          <script type="text/template" id="storeTemp">
+            <div class="item">${store.name}<div class="item-note text-danger">${store.sub_status_name}</div></div>
+           <!-- for: ${store.subOrderDetailDatas} as ${goods} -->
+           <div class="item item-thumbnail-left item-content-right orderGoodsIntro">
+              <img data-src="../../../res/img/prog.gif" data-remote="${goods.img|source}">
+              <h2>${goods.name}</h2>
+              <div class="item-content flex-col">
+                 <div class="pro_price">
+                    <div>￥<strong>${goods.price|decimal(2)}</strong></div>
+                    <!-- <div class="_tag">促销价</div> -->
+                 </div>
+                 <div class="pro_count_show">
+                    X<span class="_countShow">${goods.amount}</span>
+                 </div>
+              </div>
+              <div class="_cont">
+                 <p>图号:${goods.product_no};</p>
+                 <p>计量单位:${goods.unit};</p>
+                 <div class="_chooseColor">
+                    <p>最小包装数:${goods.min_buy_count};
+                    <!-- for: ${part.remark} as ${remark} -->
+                       <!-- if: ${remark.value} -->
+                       <span class="_colorShow">${remark.value}</span>
+                       <!-- /if -->
+                    <!-- /for -->
+                    </p>
+                 </div>
+              </div>
+           </div>
+           <div class="list recomStars" id="goods${goods.goods_id}">
+            <div class="item">
+              <div class="item-note stars"></div>
+              配件真伪（真）
+              <input type="hidden" name="true" datatype="*" nullmsg="请评价配件真伪">
+            </div>
+            <div class="item">
+              <div class="item-note stars"></div>
+              价格合理（实）
+              <input type="hidden" name="charge" datatype="*" nullmsg="请评价价格合理">
+            </div>
+            <div class="item">
+              <div class="item-note stars"></div>
+              物流及时（快）
+              <input type="hidden" name="timely" datatype="*" nullmsg="请评价物流计时">
+            </div>
+            <div class="item">
+              <div class="item-note stars"></div>
+              配件准确（准）
+              <input type="hidden" name="exact" datatype="*" nullmsg="请评价配件准确">
+            </div>
+            <div class="item item-input">
+              <textarea name="content" placeholder="请输入您的评价" datatype="*" nullmsg="请输入您的评价"></textarea>
+            </div>
+          </div>
+           <!-- /for -->
+          </script>
+        </div>
+        
+      </div>
+      <div class="foot">
+        <button type="submit" class="btn btn-block btn-lg btn-danger" id="submitRecomm">发表评价</button>
+      </div>
+    </form>
+  </body>
+  <script src="../../config.js"></script><script src="../../sdk/core.js" id="seajsnode" ></script>
+  <script>
+  seajs.use('./script')
+  </script>
+</html>

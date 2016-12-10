@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+      <meta name="format-detection" content="telephone=no">
+      <link href="../../../sdk/ui.css" rel="stylesheet">
+      <link href="style.css" rel="stylesheet">
+      
+   </head>
+   <body class="flex-col">
+      <div class="head myhead">
+         <div class="btn" id="goBack"> <i class="ion">&#xe7b7;</i> </div>
+         <div class="title" id="headTitle">订单详情</div>
+      </div>
+      <div class="flex-1 scroll_cont" id="orderDetail">
+         <textarea class="hide" id="orderDetailTemp">
+            <div class="list orderDetail" data-no="${data.no}">
+               <div class="item item-icon-left">
+                  <i class="ion">&#xe820;</i>
+                  订单号：${data.no}
+               </div>
+               <div class="item item-icon-left">
+                  <i class="ion">&#xe834;</i>
+                  <p>收货人：${data.shipName}   ${data.shipMobile}</p>
+                  <p>${data.province}${data.city}${data.area}${data.shipAddr}</p>
+               </div>
+               <!-- if: ${data.isTax} == '1'-->
+               <div class="item item-divider">发票信息</div>
+               <div class="item">
+                  <table class="table">
+                     <tr>
+                        <td>名称：</td>
+                        <td>${data.taxData.tax_name}</td>
+                        <td>纳税人识别号：</td>
+                        <td>${data.taxData.tax_num}</td>
+                     </tr>
+                     <tr>
+                        <td>地址：</td>
+                        <td>${data.taxData.tax_address}</td>
+                        <td>电话：</td>
+                        <td>${data.taxData.tax_tel}</td>
+                     </tr>
+                     <tr>
+                        <td>账号：</td>
+                        <td>${data.taxData.tax_no}</td>
+                        <td>开户行：</td>
+                        <td>${data.taxData.tax_bank}</td>
+                     </tr>
+                  </table>
+                  
+               </div>
+               <!-- /if -->
+            </div>
+            <div class="list cartList orderList orderRecord" data-id="${data.id}">
+               <!-- for: ${data.subOrderDatas} as ${store} -->
+               <div class="item">${store.name}<div class="item-note text-danger">${store.sub_status_name}</div></div>
+               <!-- for: ${store.subOrderDetailDatas} as ${goods} -->
+               <div class="item item-thumbnail-left item-content-right orderGoodsIntro">
+                  <img data-src="../../../res/img/prog.gif" data-remote="${goods.img|source}">
+                  <h2>${goods.name}</h2>
+                  <div class="item-content flex-col">
+                     <div class="pro_price">
+                        <!-- if: ${goods.market_price} != ''&&${goods.market_price}!=' '&&${goods.market_price}!='0' -->
+                        <div>￥<strong><s>${goods.market_price|decimal(2)}</s></strong></div>
+                        <!-- else -->
+                        <div>￥<strong>${goods.price|decimal(2)}</strong></div>
+                        <!-- /if -->
+                        <!-- <div class="_tag">促销价</div> -->
+                     </div>
+                     <div class="pro_count_show">
+                        X<span class="_countShow">${goods.amount}</span>
+                     </div>
+                  </div>
+                  <div class="_cont">
+                     <p>图号:${goods.product_no}</p>
+                     <p>最小单元包装数:${goods.min_buy_count} ;
+                        计量单位:${goods.unit}</p>
+                     <!-- if: ${goods.remark} -->
+                     <!-- for: ${goods.remark} as ${remark} -->
+                        <p>备注信息：<span class="_colorShow">${remark.value}</span></p>
+                        <!-- /for -->
+                     <!-- /if -->
+                  </div>
+               </div>
+               <div class="item item-lite">
+                  <div class="actions goodsActions" data-value="${goods.value}" data-pid="${goods.product_id}">
+                  <!-- for: ${goods.goodsControls} as ${btn} -->
+                     <button type="button" class="btn btn-sm btn-ghost btn-${btn.class}" data-action="${btn.class}">${btn.text}</button>
+                  <!-- /for -->
+                  </div>
+               </div>
+               <!-- /for -->
+               <!-- if: ${store.partControls} -->
+               <div class="item storeActions tr" data-no="${store.no}">
+                  <!-- for: ${store.partControls} as ${storeBtn} -->
+                  <button type="button" class="btn btn-ghost btn-${storeBtn.class}" data-action="${storeBtn.class}">${storeBtn.text}</button>
+                  <!-- /for -->
+               </div>
+               <!-- /if -->
+               <!-- /for -->
+               <div class="item orderTotal">
+                  <p>共${data.itemNum}件   合计：<span class="orderPrice">￥${data.finalAmount|decimal(2)}</span>
+                  <!-- if: ${data.deliveryId}=='1' -->
+                   （含运费￥${data.costShip|decimal(2)}）
+                   <!-- else -->
+                   (自提)
+                   <!-- /if -->
+                   </p>
+               </div>
+            </div>
+            <div class="list">
+               <div class="item item-lite">订单创建时间：<div class="item-note">${data.addDate|date}</div></div>
+               <!-- if: ${data.payDate} && ${data.payDate}!=" " -->
+               <div class="item item-lite">订单付款时间：<div class="item-note">${data.payDate|date}</div></div>
+               <!-- /if -->
+               <!-- if: ${data.last_ship_date} && ${data.last_ship_date}!=" " -->
+               <div class="item item-lite">订单发货时间：<div class="item-note">${data.last_ship_date|date}</div></div>
+               <!-- /if -->
+               <!-- if: ${data.last_receipt_date} && ${data.last_receipt_date}!=" " -->
+               <div class="item item-lite">订单收货时间：<div class="item-note">${data.last_receipt_date|date}</div></div>
+               <!-- /if -->
+            </div>
+         </textarea>
+      </div>
+      <div class="item item-lite tr" id="orderControlBar">
+         <button class="btn btn-ghost">订单操作...</button>
+      </div>
+   </body>
+   <script src="../../../config.js"></script>
+   <script src="../../../sdk/core.js" id="seajsnode" ></script>
+   <script>
+   seajs.use('./script')
+   </script>
+</html>

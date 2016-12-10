@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body class="flex-col">
+    <div class="head myhead">
+      <div class="btn" id="goBack"> <i class="ion">&#xe7b7;</i> </div>
+      <div class="title" id="headTitle">更改密码</div>
+    </div>
+    <div class="flex-1 scroll_cont">
+      <div class="list card form">
+        <div class="change_tab flex-row ">
+          <div class="flex-1 cur"><i class="_num">1</i>身份验证</div>
+          <div class="flex-1"><i class="_num">2</i>修改登录密码</div>
+        </div>
+        <div class="item">
+          <span id="secMobile"></span>
+          <div class="item-note">
+            <button class="btn btn-primary" id="getCode">获取短信验证码</button>
+          </div>
+        </div>
+          <div class="item">
+            <div class="item-body">
+              若该手机号无法接收验证短信，请拨打客服电话 <a href="tel:4001888666" class="text-primary">4001-888-666</a> 申诉更改验证手机
+            </div>
+          </div>
+        <label class="item item-input get-short">
+          <span class="input-label">请填写短信校验码:</span>
+          <input type="number" id="inputCode">
+        </label>
+      </div>
+      <div class="margin">
+        <button type="submit" class="btn btn-block btn-primary btn-lg" id="goChangePw2">下一步</button>
+      </div>
+    </div>
+  </body>
+  <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+  <script>
+  seajs.use('./script')
+  </script>
+</html>

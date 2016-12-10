@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body class="flex-col">
+    <div class="head myhead">
+      <div class="btn" id="goBack">
+        <i class="ion">&#xe7b7;</i>
+      </div>
+      <div class="title" id="headTitle">支付方式</div>
+    </div>
+    <div class="padding flex-1 flex-col pr" id="View">
+      <div class="item payment">
+        请选择支付方式
+        <div class="item-note text-danger" id="payNum"></div>
+      </div>
+      <div class="flex-1 scroll_cont">
+        <ul class="list payList" id="payList">
+          <li class="item item-avatar item-icon-right" data-payment="zhifubao">
+            <img data-src="zhifubao.jpg" alt="支付宝支付">
+            <h2>支付宝支付</h2>
+            <p>大额支付推荐使用支付宝</p>
+            <i class="ion">&#xe7b9;</i>
+          </li>
+          <li class="item item-avatar item-icon-right" data-payment="yinlian">
+            <img data-src="yinlian.jpg" alt="银联支付">
+            <h2>银联支付</h2>
+            <p>由银联在线支付提供安全支付服务</p>
+            <i class="ion">&#xe7b9;</i>
+          </li>
+          <li class="item item-avatar item-icon-right" data-payment="weixin">
+            <img data-src="weixin.jpg" alt="微信支付">
+            <h2>微信支付</h2>
+            <p>微信安全支付</p>
+            <i class="ion">&#xe7b9;</i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+  <script>
+  seajs.use('./script');
+  </script>
+</html>

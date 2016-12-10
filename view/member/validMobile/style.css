@@ -1,0 +1,14 @@
+body { background:#f3f3f3;}
+.form { padding-top:0.2rem!important; padding-bottom:0.2rem!important;}
+.form .item { padding:0.2rem 0.2rem 0.2rem 0.1rem;}
+.form .item,.form .input-label { font-size:0.24rem;}
+.form .input-label { width:1rem; text-align:right; padding-right:0.1rem; display:inline-table;}
+.form .item input { padding-right:0!important; font-size:0.24rem;}
+
+.form .item-icon-left { padding-left:0.7rem;}
+
+.form .get-yzm { padding-right:1.5rem;}
+.form .get-yzm ._btn { width:2rem; height:0.48rem; line-height:0.48rem; position:absolute; 
+	right:0; top:50%; margin-top:-0.24rem; 	text-align:center;}
+
+.form-btn { margin:0 0.2rem;}

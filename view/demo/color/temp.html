@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link href="../../../sdk/ui.css" rel="stylesheet">
+		<link href="style.css" rel="stylesheet">
+		
+	</head>
+	<body class="flex-col">
+		<div class="head">
+			<div class="btn" id="goBack">
+                <i class="ion">&#xe7b7;</i>
+            </div>
+	        <div class="title">情景色演示</div>
+	    </div>
+		<div class="flex-1 flex-col scroll_cont">
+			<!-- UI展示 -->
+			<div class="list">
+				<div class="item item-divider">文字颜色</div>
+				<div class="item">
+					<p class="text-primary">主色</p>
+				</div>
+				<div class="item">
+					<p class="text-success">操作成功</p>
+				</div>
+				<div class="item">
+					<p class="text-info">提示信息</p>
+				</div>
+				<div class="item">
+					<p class="text-warning">警告提示</p>
+				</div>
+				<div class="item">
+					<p class="text-danger">危险操作！</p>
+				</div>
+				<div class="item item-divider">按钮颜色</div>
+				<div class="item">
+					<button type="button" class="btn btn-block btn-default">（默认样式）Default</button>
+				</div>
+				<div class="item">
+					<button type="button" class="btn btn-block btn-primary">（主色）Primary</button>
+				</div>
+				<div class="item">
+					<button type="button" class="btn btn-block btn-success">（成功）Success</button>
+				</div>
+				<div class="item">
+					<button type="button" class="btn btn-block btn-info">（一般信息）Info</button>
+				</div>
+				<div class="item">
+					<button type="button" class="btn btn-block btn-warning">（警告）Warning</button>
+				</div>
+				<div class="item">
+					<button type="button" class="btn btn-block btn-danger">（危险）Danger</button>
+				</div>
+				<div class="item">
+					<button type="button" class="btn btn-block btn-link">（链接）Link</button>
+				</div>
+				<div class="item item-divider">背景颜色</div>
+				<div class="item bg-primary">
+					bg-primary
+				</div>
+				<div class="item bg-success">
+					bg-success
+				</div>
+				<div class="item bg-info">
+					bg-info
+				</div>
+				<div class="item bg-warning">
+					bg-warning
+				</div>
+				<div class="item bg-danger">
+					bg-danger
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+	<script>
+		seajs.use('./script')
+	</script>
+</html>

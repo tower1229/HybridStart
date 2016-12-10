@@ -1,0 +1,11 @@
+body { background:#f3f3f3;}
+
+.change_tab { border-bottom:#757575 1px solid; text-align:center; height:2em; line-height:1.8em; 
+	color:#7c7c7c; margin-bottom:1em;font-size:1.1em;padding-top:1em; }
+.change_tab ._num { display:inline-block; width:1.5em; height:1.5em;line-height: 1.5em; 
+	background:#b5b5b5; color:#fff; border-radius:50%; margin-right:0.4em;}
+.change_tab .cur { color:#e70014;}
+.change_tab .cur ._num { background-color:#e70014;}
+
+.form .item { border:0;padding-top: 0;}
+.form .get-short input { border:#cacaca 1px solid;}

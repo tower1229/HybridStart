@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <link href="../../../sdk/ui.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+        
+    </head>
+    <body class="flex-col">
+        <div class="head myhead">
+            <div class="btn" id="goBack">
+                <i class="ion">&#xe7b7;</i>
+            </div>
+            <div class="title" id="headTitle">查看物流</div>
+        </div>
+        <div class="flex-1 scroll_cont" id="mainCont" >
+            <textarea class="hide" id="artDetailTemp">
+            <div class="list">
+                <div class="item item-avatar">
+                    <!-- if: ${logi.info.id}==2 -->
+                        <img data-src="shunfeng.jpg">
+                    <!-- elif: ${logi.info.id}==3 -->
+                        <img data-src="debang.jpg">
+                    <!-- /if -->
+                    <h2>物流公司：${logi.info.name}</h2>
+                    <p>物流编号：${logi.info.logi_no}</p>
+                    <!-- <p>收件人：${logi.info.d_name} ${logi.info.d_mobile}  </p>
+                    <p>收货地址：${logi.info.d_address}  </p>
+                    <p>发件人${logi.info.j_name} ${logi.info.j_mobile}  </p>
+                    <p>发货地址：${logi.info.j_address} </p> -->
+                </div>
+            </div>
+            <div class="list transList">
+                <!-- for: ${logi.routes} as ${route}, ${index} -->
+                <div class="item
+                <!-- if: ${index}==0 -->curItem<!-- /if -->">
+                    <p>${route.accept_time|date(true)}</p>
+                    <div class="item-body">${route.remark|xss}</div>
+                </div>
+                <!-- /for -->
+            </div>
+            </textarea>
+        </div>
+    </body>
+    <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+    <script>
+    seajs.use('./script')
+    </script>
+</html>

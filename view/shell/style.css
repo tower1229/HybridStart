@@ -1,0 +1,7 @@
+.loading-bar{position: absolute;left:0;bottom:0;height: 4px;width:100%;}
+.loading-progress{float: left;height: 100%;width:0%; opacity: 1;}
+.loading-bar.status3 .loading-progress{width:100%;opacity: 0;}
+
+.closeBtn{visibility: hidden;}
+.closeBtn.show{visibility: visible;}
+.myhead{background:#333 !important;}

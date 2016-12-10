@@ -1,0 +1,9 @@
+body { background:#f3f3f3;}
+
+.jifen_hd { height:10em; background:url(jifenbg.jpg) center top no-repeat; text-align:center; 
+	color:#fff;background-size:cover;}
+.jifen_hd img { width:1.64rem; height:0.85rem; display:block; margin:0.56rem auto 0.3rem;}
+.jifen_hd strong { color:#e70014;text-align:center;}
+
+.jifen { padding:0 0.2rem!important;}
+.jifen .item > .ion:first-child { color:#e70015;}

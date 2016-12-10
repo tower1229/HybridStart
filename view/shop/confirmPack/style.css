@@ -1,0 +1,16 @@
+.confirmPack{font-size:.28rem;color:#e70014;background: url(img.png) 96% 0 no-repeat;
+background-size: 30% auto;margin:1rem .3rem;line-height: 2;}
+.confirmPack h2{font-size:.40rem;}
+.confirmPack ._actions{margin-top: 1em;color:#333;}
+.confirmPack ._actions .btn{margin-right: 1em;}
+.guessHead{position: relative;background:#f4f4f4;padding:2.5em 0 1em;font-size: .32rem;margin:1em 0;}
+.guessHead:after{content: "";position: absolute;left:4%;width:92%;height:.02rem;background:#ccc;
+bottom: 1.5em;z-index: 1;}
+.guessHead span{position: absolute;width:6em;left:50%;margin-left: -3em;height:2em;line-height: 2em;
+bottom:.5em;text-align: center;background:#f4f4f4;z-index: 2;}
+/*list*/
+.partsList ._item{border-bottom:1px solid #e0e0e0;}
+.partsList ._pic{width:40%;}
+.partsList ._cont{padding:.5em;}
+.partsList ._cont .btn{padding:.1em .7em;}
+.partsList ._price{display: block;font-size:.36rem;color:#e70014; }

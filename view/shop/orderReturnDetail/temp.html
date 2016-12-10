@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+      <meta name="format-detection" content="telephone=no">
+      <link href="../../../sdk/ui.css" rel="stylesheet">
+      <link href="style.css" rel="stylesheet">
+      
+   </head>
+   <body class="flex-col">
+      <div class="head myhead">
+         <div class="btn" id="goBack"> <i class="ion">&#xe7b7;</i> </div>
+         <div class="title" id="headTitle">退货详情</div>
+      </div>
+      <div class="flex-1 scroll_cont">
+         <div class="list" id="mainCont">
+            <textarea class="hide" id="detailTemp">
+               <div class="item">
+                  状态
+                  <div class="item-note">${status}</div>
+               </div>
+               <div class="item">
+                  退货原因
+                  <div class="item-note">${reasonType}</div>
+               </div>
+               <div class="item">
+                  退货说明
+                  <div class="item-note">${reason}</div>
+               </div>
+               <div class="item">
+                  平台回复
+                  <div class="item-note">${repley}</div>
+               </div>
+            </textarea>
+            
+         </div>
+      </div>
+   </body>
+   <script src="../../../config.js"></script>
+   <script src="../../../sdk/core.js" id="seajsnode" ></script>
+   <script>
+   seajs.use('./script')
+   </script>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget id="A6997660453388" version="0.1.0"> 
+  <name>apicloud start</name>  
+  <description/>  
+  <author email="tower1229@gmail.com" href="https://github.com/tower1229">tower1229</author>  
+  <content src="view/root/temp.html"/>  
+  <preference name="pageBounce" value="false"/>  
+  <preference name="appBackground" value="rgba(0,0,0,0.0)"/>  
+  <preference name="windowBackground" value="rgb(255,255,255)"/>  
+  <preference name="frameBackgroundColor" value="rgba(0,0,0,0.0)"/>  
+  <preference name="hScrollBarEnabled" value="true"/>  
+  <preference name="vScrollBarEnabled" value="false"/>  
+  <preference name="autoLaunch" value="true"/>  
+  <preference name="fullScreen" value="false"/>  
+  <preference name="autoUpdate" value="true"/>  
+  <preference name="smartUpdate" value="true"/>  
+  <preference name="debug" value="true"/>  
+  <preference name="softInputMode" value="auto"/>  
+  <preference name="statusBarAppearance" value="true"/>  
+  <permission name="readPhoneState"/>  
+  <permission name="camera"/>  
+  <permission name="record"/>  
+  <permission name="location"/>  
+  <permission name="fileSystem"/>  
+  <permission name="internet"/>  
+  <permission name="bootCompleted"/>  
+  <permission name="hardware"/>  
+  <access origin="*"/>  
+  <feature name="bMap"> 
+    <param name="android_api_key" value="yTHKTQDYu0BMkLjlZG70LQkbARMmHT4q"/>  
+    <param name="ios_api_key" value="3m35LRAiDh3HpkRXqRLI0cxroP2HY5eb"/> 
+  </feature>  
+  <feature name="ajpush"> 
+    <param name="app_key" value="b6d16a3ea25c6b8c98896a44"/>  
+    <param name="channel" value="your channel"/> 
+  </feature> 
+</widget>

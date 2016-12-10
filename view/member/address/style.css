@@ -1,0 +1,6 @@
+body { background: #f3f3f3;}
+.addrlist .toggle {margin: 6px 0 0; vertical-align: middle;}
+.addrlist .addrcont { border-bottom: 1px solid #ccc;padding-bottom: 1em;color:#666;font-size:.24rem;}
+.addrlist .actions{text-align: right;}
+.chooselist .actions{display: none;}
+.chooselist .addrcont{border-bottom: 0;}

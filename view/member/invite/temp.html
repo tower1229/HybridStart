@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body class="flex-col">
+    <div class="head myhead">
+        <div class="btn" id="goBack">
+            <i class="ion">&#xe7b7;</i>
+        </div>
+        <div class="title" id="headTitle">邀请好友</div>
+    </div>
+    <div class="flex-1 scroll_cont" id="View">
+      <div class="margin tc inviteHead">
+        <h2>邀请好友</h2>
+        <p>邀请好友下载注册智慧重汽APP，注册成功后您将获得积分奖励。</p>
+        <div class="_tip">点击复制您的邀请码：</div>
+        <strong class="text-danger" id="yaoqingma"></strong>
+      </div>
+      <div class="margin">
+        <div class="tc">
+          <img data-src="download.png" align="下载智慧重汽APP" style="width:80%">
+          <p>分享到朋友圈，长按识别二维码</p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+  <script>
+  seajs.use('./script')
+  </script>
+</html>

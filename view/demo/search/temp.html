@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    
+  </head>
+  <body class="flex-col">
+    <div class="head myhead">
+        <div class="btn" id="goBack">
+            <i class="ion">&#xe7b7;</i>
+        </div>
+        <div class="title" id="headTitle">配件搜索</div>
+    </div>
+    <div class="flex-1 scroll_cont">
+      <div class="list">
+        <div class="item">请输入以下任意一项或几项查询</div>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">配件名称</span>
+          <input type="text" name="keywords" id="keywords" placeholder="请输入配件名称">
+        </label>
+        <div class="item item-input item-stacked-label item-icon-right actived">
+          <span class="input-label _handle">VIN码(后8位)</span>
+          <div class="item-note _handle">
+            <i class="ion">&#xe7b5;</i>
+          </div>
+          <input type="text" name="vin" id="vin" placeholder="请输入VIN码(后8位)">
+          <div class="search_tip">亲，输入VIN码后8位搜索，有惊喜</div>
+          </div>
+        </div>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label _handle">配件图号</span>
+          <input type="text" name="no" id="no" placeholder="请输入配件图号">
+        </label>
+        <div class="item item-input item-stacked-label item-icon-right">
+          <span class="input-label _handle">配件分类：<span class="text-primary _show" id="catshow">所有分类</span></span>
+          <div class="item-note _handle">
+            <i class="ion">&#xe7b5;</i>
+          </div>
+          <input type="hidden" name="cat" id="cat">
+          <div class="item-body">
+            <div class="row catList" id="catList">
+            <textarea class="hide" id="catListTemp">
+              <button class="span-4 btn partcat bg-primary" data-val="">所有分类</button>
+              <!-- for: ${data} as ${cat} -->
+                <button class="span-4 btn partcat" data-val="${cat.id}">${cat.name}</button>
+              <!-- /for -->
+            </textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="padding">
+        <button class="btn btn-lg btn-primary btn-block" id="doSearch">搜索</button>
+      </div>
+      <div class="item item-input item-stacked-label item-icon-right clean-div" id="cleanCondition">
+        <span class="input-label _handle clean-btn">清除所有筛选条件</span>
+      </div>
+    </div> 
+  </body>
+  <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+  <script>
+  seajs.use('./script');
+  </script>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <link href="../../../sdk/ui.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+        
+    </head>
+    <body class="flex-col">
+        <div class="head myhead">
+            <div class="btn" id="goBack">
+                <i class="ion">&#xe7b7;</i>
+            </div>
+            <div class="title" id="headTitle">购物车</div>
+            <div class="btn" id="edit">
+                <i class="ion">&#xe63c;</i>
+                <i class="ion hide">&#xe640;</i>
+            </div>
+        </div>
+        <div class="flex-1 scroll_cont cartList" id="cartList">
+            <textarea class="hide" id="cartTemp">
+            <!-- for: ${data} as ${goods} -->
+            <div class="list" data-goodsid="${goods.goodsId}" data-wid="${goods.wid}" data-proid="${goods.proId}" data-id="${goods.id}" data-need="${goods.bz.need}" data-name="${goods.bz.name}" data-pname="${goods.name}" data-type="${goods.bz.type}" data-value="${goods.bz.value}" data-data="${goods.bz.data}">
+                <div class="item item-thumbnail-left item-content-right">
+                    <img data-src="../../../res/img/prog.gif" data-remote="${goods.img|source}">
+                    <h2>${goods.name}</h2>
+                    <div class="item-content flex-col">
+                        <div class="pro_price">
+                            <div>￥<strong>${goods.price|decimal(2)}</strong></div>
+                            <!-- <div class="_tag">促销价</div> -->
+                        </div>
+                        <div class="pro_count_show">
+                            X<span class="_countShow">${goods.amount}</span>
+                        </div>
+                        <button class="btn btn-primary _delete">删除</button>
+                    </div>
+                    <label class="checkbox checkbox-primary">
+                        <input type="checkbox" class="_shopCheckbox" data-wid="${goods.wid}" data-goodsid="${goods.goodsId}" data-proid="${goods.proId}" data-id="${goods.id}" data-value="${goods.bz.value}" data-pri="${goods.price}" data-num="${goods.amount}" data-no="${goods.no}" data-unit="${goods.unit}" data-img="${goods.img}" data-min="${goods.minBuyCount}" data-name="${goods.bz.name}" data-pname="${goods.name}" >
+                    </label>
+                    <div class="_cont">
+                        <p>图号:${goods.no}</p>
+                        <p>最小单元包装数:${goods.minBuyCount} ;
+                            计量单位:${goods.unit}</p>
+                        <div class="_chooseColor">
+                            <!-- if: ${goods.bz.need} -->
+                            <p>备注信息：
+                            <span class="_colorShow">${goods.bz.value}</span></p>
+                            <!-- /if -->
+                        </div>
+                    </div>
+                    <div class="_editcont">
+                        <div class="pro_counter flex-row">
+                            <button class="btn btn-default pro_counter_reduce" data-minbuycount="${goods.minBuyCount}">-</button>
+                            <input type="text" value="${goods.amount}" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"  class="pro_counter_val">
+                            <button class="btn btn-default pro_counter_add" data-minbuycount="${goods.minBuyCount}">+</button>
+                        </div>
+                        <!-- if: ${goods.bz.type} == "1" -->
+                        <div class="item-select">
+                            <div class="input-label">
+                                请选择：
+                            </div>
+                            <select class="_bz">
+                                <!-- for: ${goods.bz.data} as ${opts} -->
+                                <option<!-- if: ${opts} == ${goods.bz.value} --> selected<!-- /if -->>${opts}</option>
+                               <!-- /for -->
+                            </select>
+                        </div>
+                        <!-- elif: ${goods.bz.type} == "0" -->
+                        <label class="item-input">
+                            ${goods.bz.name}：
+                            <input type="text" value="${goods.bz.value}" class="_bz">
+                        </label>
+                        <!-- /if -->
+                    </div>
+                </div>
+            </div>
+            <!-- /for -->
+            </textarea>
+        </div>
+        <div class="foot cartBar flex-row">
+            <div class="item item-checkbox">
+                    <label class="checkbox checkbox-primary" id="selectAll">
+                        <input type="checkbox">
+                    </label>
+                    全选
+                </div>
+            <div class="flex-1 total" >合计:<span class="_pri">￥<strong id="totalPri">0</strong></span><div class="_tip">不含运费</div></div>
+            <button class="btn btn-primary disabled" id="pay">结算</button>
+        </div>
+        <div class="foot">
+            <ul class="flex-row tabs tabs-ion-top">
+                <li class="flex-1 tab-item" id="home"><i class="ion">&#xe67b;</i>首页</li>
+                <li class="flex-1 tab-item" id="newsfeed"><i class="ion">&#xe69c;</i>动态</li>
+                <li class="flex-1 tab-item" id="parts"><i class="ion">&#xe83b;</i>产品</li>
+                <li class="flex-1 tab-item cur" id="cart"><i class="ion">&#xe690;</i>购物车</li>
+                <li class="flex-1 tab-item" id="member"><i class="ion">&#xe867;</i>我的</li>
+            </ul>
+        </div>
+    </body>
+    <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+    <script>
+    seajs.use('./script')
+    </script>
+</html>

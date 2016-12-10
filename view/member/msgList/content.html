@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="content.css" rel="stylesheet">
+  </head>
+  <body id="View" class="msgList">
+    <textarea class="hide" id="msgTemp">
+    <!-- for: ${data} as ${msg} -->
+    <p class="msg_time tc">${msg.date}</p>
+    <div class="card padding<!-- if: !${msg.extras.type}--> noticeMsg<!-- /if --><!-- if: ${msg.isRead}==0 --> unRead<!-- /if -->" data-id="${msg.msgId}">
+      <!-- if: ${msg.img} -->
+      <div class="item-image rect-5625"><img src="${msg.img}" class="_full"> </div>
+      <!-- /if -->
+      <h3 class="_hd<!-- if: ${msg.isRead}==0 --> reddot<!-- /if -->"><!-- if: ${msg.type} == '3' -->
+        <img src="serv.png">
+        <!-- elif: ${msg.type} == '4' -->
+        <img src="order.png">
+        <!-- elif: ${msg.type} == '1' -->
+        <img src="msg.png">
+        <!-- elif: ${msg.type} == '2' -->
+        <img src="cuxiao.png">
+        <!-- elif: ${msg.type} == '5' -->
+        <img src="msg.png">
+        <!-- elif: ${msg.type} == '6' -->
+        <img src="msg.png">
+        <!-- /if -->${msg.title}</h3>
+      <div class="item-body">
+        <p>${msg.content|richMedia}</p>
+      </div>
+      <!-- if: ${msg.extras.type}-->
+      <div class="_ft">
+        <div class="item-note type_msg ${msg.extras.type}" data-id="${msg.extras.id}" data-msgid="${msg.msgId}">查看详情<i class="ion">&#xe7b9;</i></div>
+      </div>
+      <!-- /if -->
+    </div>
+    <!-- /for -->
+    </textarea>
+  </body>
+  <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+  <script>
+  seajs.use('./content');
+  </script>
+</html>

@@ -1,0 +1,18 @@
+body { background:#f3f3f3;}
+.filter { background-color:#fff; text-align:center; clear:both; margin-bottom:0.8em;}
+.filter [class*="flex-"] { display:block; height:2em; line-height:2em; position:relative; padding:0.8em 0;}
+.filter [class*="flex-"]:after { content:""; display:block; width:0; height:0.64em; overflow:hidden; border-right:#929292 1px solid; position:absolute; right:0; top:50%; margin-top:-0.3em;}
+.filter [class*="flex-"]:last-child:after { display:none;}
+.filter .cur:before { content:""; display:block; width:100%; height:0; overflow:hidden; border-bottom:#e70014 .16em solid; position:absolute; left:0; bottom:0;}
+.ratesList ._item { background-color:#fff; padding:0.8em 1em; margin-bottom:0.8em; position:relative;}
+.ratesList ._img { width:6.4em; height:4.8em; position:absolute; left:1em; top:0.8em;}
+.ratesList ._info { margin-left:7em; min-height:5em;}
+.ratesList ._info > div { padding:0.16em;}
+.ratesList ._num strong { font-weight:normal; color:#e70014;}
+.ratesList ._raty { clear:both; overflow:hidden; padding:0.4em 0;}
+.ratesList ._raty li { width:50%; float:left; padding:0.2em 0; font-size: 0.9em;}
+.ratesList ._raty ._stars { margin-right:0.2em;}
+.ratesList ._raty ._stars img{width:.8em;vertical-align: middle;}
+.ratesList ._text { color:#666; line-height:1.8;}
+
+

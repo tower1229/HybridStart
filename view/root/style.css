@@ -1,0 +1,10 @@
+/*slider*/
+.slider-wrap{position: absolute;left:0;top:0;width:100%;height:100%;z-index: 2;}
+.slider-wrap li{text-align: center;background:#fff;}
+.slider-wrap li img{width:auto !important;height:100% !important;}
+.islider-dot-wrap{height:6% !important;}
+.islider-dot{background:#ff9900;}
+.islider-dot.active{background-color:#e70014 !important;}
+
+.jumpBtn{position: absolute;z-index: 3;right:1em;top:1em;background:rgba(0,0,0,.6);color:#fff;
+padding:0 1em;border-radius: .2em;height: 2em;line-height: 2em;}
