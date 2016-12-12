@@ -7,7 +7,7 @@ define(function(require) {
 	var startApp = function() {
 		app.openView({
 			anim: 'none'
-		}, 'demo');
+		}, 'demo', 'index');
 	};
 
 	app.ready(function() {

@@ -552,10 +552,10 @@ color:#888;box-sizing:border-box;padding:.5em 0;}
 .tabs .cur{opacity: 1; color:#f08300;}
 .tabs-ion-top .cur { border-top: 2px solid;}
 .tabs .cur-bg{background:#3f8fff;color:#fff;}
-.tabs .ion { font-size: 1.8em;}
+.tabs .ion { font-size: 1.8em;height: 1.5em;line-height: 1.5em;}
 .tabs .ion img{height:1em;}
 .tabs ._super img{height:1.5em;}
-.tabs-ion-top .ion {  display: block; margin:.1em 0;}
+.tabs-ion-top .ion {  display: block;}
 .tabs-ion-top .cur{border-top:0;}
 .tabs-ion-top .tab-item{padding:0;}
 .tabs-ion-top ._static{position: absolute;left: 0;bottom: 0;text-align: center;width:100%;

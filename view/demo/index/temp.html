@@ -6,24 +6,22 @@
 		<meta name="format-detection" content="telephone=no">
 		<link href="../../../sdk/ui.css" rel="stylesheet">
 		<link href="style.css" rel="stylesheet">
-		
 	</head>
 	<body class="flex-col">
 		<div class="head">
-			<div class="btn" id="goBack">
-                <i class="ion">&#xe7b7;</i>
-            </div>
-	        <div class="title">日期选择演示</div>
+	        <div class="title">HelloApp</div>
 	    </div>
-		<div class="flex-1 flex-col scroll_cont">
-			<div class="list">
-				<div class="item item-input">
-					日期：
-		         	<input type="text" name="date" id="picker">
-		        </div>
-		        
-			</div>
+		<div class="flex-1 flex-col scroll_cont" id="view">
+			
 		</div>
+		<div class="foot">
+	        <ul class="flex-row tabs tabs-ion-top">
+                <li class="flex-1 tab-item cur"><i class="ion">&#xe67b;</i>首页</li>
+                <li class="flex-1 tab-item"><i class="ion">&#xe69c;</i>动态</li>
+                <li class="flex-1 tab-item"><i class="ion">&#xe83b;</i>产品</li>
+                <li class="flex-1 tab-item"><i class="ion">&#xe867;</i>我的</li>
+            </ul>
+	    </div>
 	</body>
 	<script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
 	<script>

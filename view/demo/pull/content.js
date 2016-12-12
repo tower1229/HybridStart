@@ -9,7 +9,7 @@ define(function(require) {
 	var $cache = $('body').html();
 
 	app.ready(function() {
-		require.async('scrollLoad', function() {
+		require.async('scrollload', function() {
 			$('body').scrollLoad(function($wrap, $loading) {
 				app.toload({
 					url: 'http://7xnt8z.com1.z0.glb.clouddn.com/render-data-mock.json',
