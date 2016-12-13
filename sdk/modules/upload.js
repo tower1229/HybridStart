@@ -1,10 +1,10 @@
 /*
- * name: uploadimg.js
+ * name: upload.js
  * version: v0.4.0
  * update: url必传
  * date: 2016-04-14
  */
-define('uploadimg', function(require, exports, module) {
+define('upload', function(require, exports, module) {
 	var def = {
 		url: '',
 		onCreate:function(opCode){
