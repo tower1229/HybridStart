@@ -324,7 +324,6 @@ define(function(require, exports, module) {
 			app.ajax({
 				url: appcfg.host.control + '/member/modifyUserInfo.jsp',
 				data: {
-					"sid": appcfg.project.sid,
 					"member_id": userData.id,
 					"province": location.province,
 					"city": location.city,
@@ -381,7 +380,6 @@ define(function(require, exports, module) {
 				if (hasChange && $.isPlainObject(userData)) {
 					app.ls.val('DeviceInfo', JSON.stringify(extraParam));
 					var data = $.extend({
-						sid: appcfg.project.sid,
 						member_id: userData.id
 					}, extraParam);
 					app.ajax({
@@ -449,7 +447,6 @@ define(function(require, exports, module) {
 		key: 'websiteConfig',
 		url: appcfg.host.control + '/core/websiteConfig.jsp',
 		data: {
-			sid: appcfg.project.sid
 		}
 	});
 	//预取产品类别
@@ -457,7 +454,6 @@ define(function(require, exports, module) {
 		key: 'partcat',
 		url: appcfg.host.control + '/core/getpartcat.jsp',
 		data: {
-			sid: appcfg.project.sid
 		}
 	});
 	//预取数据

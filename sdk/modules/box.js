@@ -38,7 +38,7 @@ define('box', function(require, exports, module) {
 						size: 14
 					}
 				},
-				tapClose: !!opt['bgclose']
+				tapClose: opt.bgclose
 			}, function(ret) {
 				if (ret.eventType == 'left') {
 					dialogBox.close({
@@ -81,7 +81,7 @@ define('box', function(require, exports, module) {
 							color: opt.btncolor
 						}
 					},
-					tapClose: !!opt['bgclose']
+					tapClose: opt.bgclose
 				}, function(ret) {
 					if (ret.eventType == 'left') {
 						dialogBox.close({
@@ -132,7 +132,7 @@ define('box', function(require, exports, module) {
 							color: opt.btncolor
 						}
 					},
-					tapClose: !!opt['bgclose']
+					tapClose: opt.bgclose
 				}, function(ret) {
 					if (ret.eventType == 'left') {
 						dialogBox.close({
@@ -204,7 +204,7 @@ define('box', function(require, exports, module) {
 							color: opt.btncolor
 						}
 					},
-					tapClose: !!opt['bgclose']
+					tapClose: opt.bgclose
 				}, function(ret) {
 					if (ret.eventType == 'left') {
 						dialogBox.close({
@@ -233,15 +233,15 @@ define('box', function(require, exports, module) {
 						bg: opt.bg,
 						corner: opt.corner,
 						w: opt.width,
-						h: 200,
+						h: 180,
 						title: {
-							h: 60,
+							h: 40,
 							alignment: 'center',
 							size: 14,
 							color: '#000'
 						},
 						input: {
-							h: 60,
+							h: 40,
 							textSize: 14,
 							textColor: '#000'
 						},
@@ -251,12 +251,12 @@ define('box', function(require, exports, module) {
 						},
 						left: {
 							bg: opt.btnbg,
-							h: opt.btnHeight,
+							h: 50,
 							color: opt.btncolor
 						},
 						right: {
 							bg: opt.btnbg,
-							h: opt.btnHeight,
+							h: 50,
 							color: opt.btncolor
 						}
 					}

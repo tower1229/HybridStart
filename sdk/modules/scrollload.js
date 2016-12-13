@@ -4,7 +4,7 @@
  * update: build
  * date: 2015-11-26
  */
-define('scrollload', function(require, exports, module) {
+define('scrollLoad', function(require, exports, module) {
 	//滚动加载
 
 	$.fn.scrollLoad = function(callback, force) {

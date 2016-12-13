@@ -17,7 +17,7 @@ padding:.4em;width:100%;margin-top: .5em;color:#fff;}
 .partItem .isTop:after{content: "HOT";color:#fff;position: absolute;right:-.5em;top:-.5em;
 font-size:.7em;font-weight: 700;line-height: 1em;background:#d43f3a;border-radius: 2px;padding:.2em;}
 /*头部*/
-.openSearch{background: #fff;position: absolute;left: 14%;bottom: .6em;width: 80%;box-sizing: border-box;
+.openSearch{background: #fff;position: absolute;left: 14%;bottom: .4em;width: 80%;box-sizing: border-box;
 height: 2.2em;line-height: 2.2em; border-radius: .3em;}
 .openSearch ._label{color:#777;font-size:.8em;padding:0 1em;}
 .openSearch .btn{height: 2.2em;line-height: 2.5em;color:#337ab7;}

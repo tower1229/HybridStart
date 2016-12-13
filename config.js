@@ -4,12 +4,12 @@
  * 
  * 2016-04-08
  */
+var product = false;
 window.appcfg = {
-	product: false,
 	host: {
-		control: appcfg.product ? '' : 'http://rap.taobao.org/mockjsdata/1201',
-		source: appcfg.product ? '' : 'http://app.xxx.com',
-		upload: appcfg.product ? '' : 'http://upload.xxx.com'
+		control: product ? '' : 'http://rap.taobao.org/mockjsdata/1201',
+		source: product ? '' : 'http://app.xxx.com',
+		upload: product ? '' : 'http://upload.xxx.com'
 	},
 	set: {
 		version: "0.0.1",
@@ -24,7 +24,7 @@ window.appcfg = {
 			enable: false,
 			secret: "acloudjereiacloudjerei1234",
 			key: "abc123",
-			url: appcfg.host.control + "/core/service/app/api.jsp"
+			url: ""
 		}
 	},
 	log: {
@@ -55,6 +55,9 @@ window.appcfg = {
 			key: "D1DX6yGc5HGh28jtaAwNzcBi",
 			zoomLeval: 18
 		}
+	},
+	project: {
+		sid: 1
 	}
 };
 //catchError
@@ -74,7 +77,7 @@ window.onerror = function(msg, url, lineNo, columnNo, error) {
 			'Column: ' + columnNo,
 			'Error object: ' + JSON.stringify(error)
 		].join(' - ');
-		if (!appcfg.product) {
+		if (!product) {
 			alert(message);
 		}
 	}
