@@ -4,7 +4,7 @@
  * update: 支持按钮icon定义
  * date: 2015-11-26
  * param:
- var actData = {
+   {
 	titleText: 'Modify your album',
 	buttons: ['拍摄','选择图片'],
 	destructiveText: '删除',
@@ -15,31 +15,31 @@
 }
  */
 define('actionSheet', function(require, exports, module) {
-
+	var actData = {
+		titleText: '',
+		buttons: [],
+		destructiveText: '',
+		cancelText: '',
+		buttonClicked: function(index) {}
+	};
 	var actionSheet = function(data) {
-		if(!$.isPlainObject(data) || !$.isArray(data.buttons) || !data.buttons.length){
+		if (!$.isPlainObject(data) || !$.isArray(data.buttons) || !data.buttons.length) {
 			return console.warn('actionSheet参数错误');
 		};
-		var actData = {
-			titleText: '',
-			buttons: [],
-			destructiveText: '',
-			cancelText: '',
-			buttonClicked: function(index) {}
-		};
-		var opt = $.extend(actData,data);
+
+		var opt = $.extend(actData, data);
 		api.actionSheet({
-		    title: opt.titleText,
-		    buttons: opt.buttons,
-		    cancelTitle: opt.cancelText,
-		    destructiveTitle: opt.destructiveText,
-		    style:{
-		    	layerColor:'rgba(0,0,0,0.6)'
-		    }
+			title: opt.titleText,
+			buttons: opt.buttons,
+			cancelTitle: opt.cancelText,
+			destructiveTitle: opt.destructiveText,
+			style: {
+				layerColor: 'rgba(0,0,0,0.6)'
+			}
 		}, function(ret, err) {
-		    opt.buttonClicked(ret.buttonIndex);
+			opt.buttonClicked(ret.buttonIndex);
 		});
-		
+
 	};
 	module.exports = actionSheet;
 });

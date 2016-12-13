@@ -1,32 +1,31 @@
 /*
  * name: box.js
- * version: v4.0.1
- * update: 按钮线条颜色
- * date: 2016-01-29
+ * version: v4.0.2
+ * update: 整理
+ * date: 2016-12-13
  */
 define('box', function(require, exports, module) {
+	var def = {
+		bg: '#fff',
+		title: '提示',
+		oktext: '确认',
+		canceltext: '取消',
+		bgclose: true,
+		width: 300,
+		delay: 2000,
+		toastPosi: 'middle',
+		btnbg: '#fff',
+		corner: 4,
+		btncolor: '#000',
+		btnWidth: 130,
+		btnHeight: 40,
+		onshow: function() {},
+		onclose: function() {}
+	};
 	app.ready(function() {
 		var dialogBox = api.require('dialogBox');
-		var def = {
-			bg: '#fff',
-			title: '提示',
-			oktext: '确认',
-			canceltext: '取消',
-			bgclose: true,
-			width: 300,
-			delay: 2000,
-			toastPosi: 'middle',
-			btnbg: '#fff',
-			corner: 4,
-			btncolor: '#000',
-			btnWidth: 130,
-			btnHeight: 40,
-			onshow: function() {},
-			onclose: function() {}
-		};
-
-		$.box = function(msg, opt) {
-			var opt = $.extend(def, opt);
+		$.box = function(msg, config) {
+			var opt = $.extend(def, config || {});
 			dialogBox.alert({
 				texts: {
 					content: msg,
@@ -48,12 +47,12 @@ define('box', function(require, exports, module) {
 					typeof sure === 'function' && sure()
 				}
 			});
-			return 'alert'
+			return 'alert';
 		};
 
 		$.extend($.box, {
-			alert: function(msg, sure, opt) {
-				var opt = $.extend(def, opt);
+			alert: function(msg, sure, config) {
+				var opt = $.extend(def, config || {});
 				dialogBox.alert({
 					texts: {
 						title: opt['title'],
@@ -91,10 +90,10 @@ define('box', function(require, exports, module) {
 						typeof sure === 'function' && sure()
 					}
 				});
-				return 'alert'
+				return 'alert';
 			},
-			confirm: function(msg, sure, cancel, opt) {
-				var opt = $.extend(def, opt);
+			confirm: function(msg, sure, cancel, config) {
+				var opt = $.extend(def, config || {});
 				dialogBox.alert({
 					texts: {
 						title: opt['title'],
@@ -147,20 +146,20 @@ define('box', function(require, exports, module) {
 						typeof sure === 'function' && cancel()
 					}
 				});
-				return 'confirm'
+				return 'confirm';
 			},
-			msg: function(msg, opt) {
-				var opt = $.extend(def, opt);
+			msg: function(msg, config) {
+				var opt = $.extend(def, config || {});
 				app.window.openToast(msg, opt['delay'], opt['position']);
-				if(typeof(opt['onclose']) === 'function'){
-					setTimeout(function(){
+				if (typeof(opt['onclose']) === 'function') {
+					setTimeout(function() {
 						opt['onclose']()
-					},opt['delay']);
+					}, opt['delay']);
 				}
-				return 'msg'
+				return 'msg';
 			},
-			amount: function(num, cb, opt) {
-				var opt = $.extend(def, opt);
+			amount: function(num, cb, config) {
+				var opt = $.extend(def, config || {});
 				dialogBox.amount({
 					texts: {
 						title: '选择数量',
@@ -218,10 +217,10 @@ define('box', function(require, exports, module) {
 						});
 					}
 				});
-				return 'amount'
+				return 'amount';
 			},
-			input: function(placeholder, cb, opt) {
-				var opt = $.extend(def, opt);
+			input: function(placeholder, cb, config) {
+				var opt = $.extend(def, config || {});
 				dialogBox.input({
 					keyboardType: 'default',
 					texts: {
@@ -273,14 +272,13 @@ define('box', function(require, exports, module) {
 						});
 					}
 				});
-				return 'input'
+				return 'input';
 			},
 			hide: function(name) {
 				dialogBox.close({
 					dialogName: name || 'alert'
 				});
 			}
-
-		})
-	})
+		});
+	});
 });

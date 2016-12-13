@@ -2,7 +2,7 @@ seajs.root = '/HybridStart';
 seajs.config({
 	base: "http://static-zt.oss-cn-qingdao.aliyuncs.com/modules",
 	paths: {
-		"lib": seajs.root + "/docs/lib"
+		"lib": seajs.root + "/lib"
 	},
 	alias: {
 		"audio"		     : "audio/audio",
