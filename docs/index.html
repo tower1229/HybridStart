@@ -26,7 +26,7 @@
         <h4>目录结构</h4>
         <pre>
           <code class="javascript"> 
-  |-- docs/                 //文档
+  |-- docs/                 //文档(不需要上传打包平台)
   |-- error/                //app错误页
   |-- res/                  //app静态资源(图片、模板、前端插件)
   |-- sdk/                  //框架文件
@@ -43,14 +43,14 @@
         </pre>
         <h3 id="code-manage">代码组织</h3>
         <p>HybridStart 项目的代码整体被分成SDK+View两部分。</p>
-        <p>SDK包含UI、js核心库、常用功能封装、公用代码。js核心库<code>core.js</code>集成<code>seajs</code>、<code>jQuery2</code>、<code>etpl</code>(模板引擎)、<code>xss</code>(xss防御)，以及<code>app对象</code>(对混合应用引擎的封装)，除了seajs和app对象以外都是非必须；<code>modules/</code>存放seajs模块文件，封装了上传、下载、弹窗等常用功能；<code>server.js</code>和<code>common.js</code>都是业务代码中提取的共用方法或代码。</p>
-        <p>View包含所有的app页面，每个页面都体现为一个文件夹，其中至少包含<code>temp.html</code>、<code>style.css</code>、<code>script.js</code>三个文件，都放在<code>view/</code>目录中，每个页面都引用SDK提供ui和方法来简化开发，公共方法也便于管理。</p>
+        <p>SDK包含UI、js核心库、常用功能封装、公用代码。js核心库<code>core.js</code>集成<code>seajs</code>、<code>jQuery2</code>、<code>etpl</code>(模板引擎)、<code>xss</code>(xss防御)，以及<code>app对象</code>(对混合应用引擎的封装)，除了seajs和app对象以外都是非必须；<code>modules/</code>内是常用功能模块，包括上传、下载、提示框等；<code>server.js</code>和<code>common.js</code>都是业务代码中提取的共用方法或代码。</p>
+        <p>View包含所有的app页面，每个页面都体现为一个文件夹，其中至少包含<code>temp.html</code>、<code>style.css</code>、<code>script.js</code>三个文件，页面文件夹都放在<code>view/</code>中，每个页面都引用SDK提供ui和方法来简化开发，公共方法也便于管理。</p>
         <h3 id="dev-manage">开发模式</h3>
         <h4>openView</h4>
         <p>多webView切换机制，解决了混合应用页面切换不流畅的老大难问题，使app开发可以像web开发一样通过“链接”跳转“页面”，但这种机制在app开发中存在一些先天缺陷，比如状态维护、参数传递；也带来了新的问题，比如多页面内存占用，使刚接触的人无从下手。</p>
         <p>HybridStart 基于引擎功能封装了<code>openView</code>方法，可以方便的跳转到指定页面，并解决传参、关闭后台等一系列问题。</p>
         <h4>生命周期</h4>
-        <p>app的生命周期为 <code>root -> index <--> page | 返回-> index -> exit</code>，启动页(root)通常没有任何展示内容，只执行状态检测、插件初始化、监听、数据预取等初始化操作，完成后直接跳转到首页(index)，首页与展示页之间任意跳转返回，但是在首页拦截返回键，使得无法继续返回着陆页，而是退出app，整个生命周期内启动页(root)都在后台运行。</p>
+        <p>app的生命周期为 <code>root -> index <--> page | 返回-> index -> exit</code>，启动页(view/root)通常没有任何展示内容，只执行状态检测、插件初始化、监听、数据预取等初始化操作，完成后直接跳转到首页(index)，首页与展示页之间任意跳转返回，但是在首页拦截返回键，使得无法继续返回启动页，而是退出app，整个生命周期内启动页都在后台运行。</p>
         <h4>交互约定</h4>
         <p>约定前后端交互数据基本格式如下：</p>
         <pre>
@@ -513,8 +513,8 @@
                   <tr>
                     <td>param</td>
                     <td>
-                      <p>openView方法给新页面传值的方式是打开之前先将数据存在本地存储中的<code>crossParam</code>键中，新页面打开后可以通过app.ls.crossParam获取。</p>
-                      <p>必填项，当param为非object类型时，将直接被存入<code>crossParam</code>，若为object类型可以传入更多配置，若不需要传值，可以传入<code>null</code>，此时将清空之前的<code>crossParam</code></p>
+                      <p>[object/string]openView方法给新页面传值的方式是先将数据存在本地存储中的<code>crossParam</code>键中，新页面打开后可以通过<code>app.ls.val("crossParam")</code>获取。</p>
+                      <p>当param为非object类型时，将直接被存入<code>crossParam</code>，若为object类型可以传入更多配置，其中<code>param.param</code>为新页面参数，若不需要传参数和修改任何配置，则要传入<code>null</code>，此时将清空之前的<code>crossParam</code>值，避免页面参数混淆</p>
                     </td>
                   </tr>
                   <tr>
@@ -538,33 +538,33 @@
                   <tr>
                     <td>param.fullPath</td>
                     <td>
-                      <p>若为ture，将参数leval1作为页面完整地址访问</p>
+                      <p>默认false，若为ture，将参数leval1作为页面完整地址访问，并忽略leval2的值</p>
                     </td>
                   </tr>
                   <tr>
                     <td>param.pop</td>
                     <td>
                       <p>是否以弹层形式在当前窗口打开，默认false</p>
-                      <p>若为true，还可以传<code>param.top</code>和<code>param.height</code>，指示弹层的顶部位置和高度，默认都是0</p>
+                      <p>默认false，若为true，还可以传<code>param.top</code>和<code>param.height</code>，指示弹层的顶部位置和高度，默认都是0</p>
                     </td>
                   </tr>
                   <tr>
                     <td>param.bar</td>
                     <td>
                       <p>是否以带标题栏的方式打开，默认false</p>
-                      <p>若为true，还可以传<code>param.title</code>作为标题栏内容</p>
+                      <p>默认false，若为true，还可以传<code>param.title</code>作为标题栏内容</p>
                     </td>
                   </tr>
                   <tr>
                     <td>param.closeself</td>
                     <td>
-                      <p>跳转到新页面后是否关闭当前页面，默认false</p>
+                      <p>默认false，跳转到新页面后是否关闭当前页面</p>
                     </td>
                   </tr>
                   <tr>
                     <td>param.closeback</td>
                     <td>
-                      <p>跳转到新页面后是否关闭所有后台页面，默认false</p>
+                      <p>默认false，跳转到新页面后是否关闭所有后台页面</p>
                     </td>
                   </tr>
                   <tr>
@@ -577,7 +577,7 @@
 app.openView(null,'news');
                         </code>
                       </pre>
-                      <p>leval1也可以是url，用于打开web网页，此时leval2将被忽略</p>
+                      <p>leval1也可以是url，用于打开web页面，此时leval2将被忽略</p>
                     </td>
                   </tr>
                   <tr>
