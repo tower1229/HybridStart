@@ -439,7 +439,7 @@ define(function(require, exports, module) {
 			if (ret) {
 				var result = ret.result;
 				if (result.update === true && result.closed === false) {
-					var uploadbox = box.confirm(res.updateTip, function() {
+					var uploadbox = box.confirm(ret.updateTip, function() {
 						box.hide(uploadbox);
 						if (platform == 'ios') {
 							api.installApp({
@@ -451,7 +451,7 @@ define(function(require, exports, module) {
 								report: true
 							}, function(ret, err) {
 								if (ret && 0 === ret.state) { /* 下载进度 */
-									app.window.openToast("正在下载:" + ret.percent + "%");
+									app.window.openToast("正在下载:" + ret.percent + "%", 1000);
 								}
 								if (ret && 1 === ret.state) { /* 下载完成 */
 									var savePath = ret.savePath;
@@ -463,7 +463,7 @@ define(function(require, exports, module) {
 						}
 					}, null, {
 						bar: true,
-						title: '升级到 V' + res.version
+						title: '升级到 V' + result.version
 					});
 				} else if(!silence){
 					box.alert("暂无更新");
