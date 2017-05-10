@@ -25,5 +25,5 @@
 http://refined-x.com/HybridStart/ （未完成）
 
 ## 预览安装包 
-[apk](http://downloadpkg.apicloud.com/app/download?path=http://7xm7pq.com1.z0.glb.clouddn.com/a5decc1345084a89590eb9c1ddd96bb9_d)
+[apk](http://downloadpkg.apicloud.com/app/download?path=http://7xm7pq.com1.z0.glb.clouddn.com/b35b84f11f576b785f1736e50a2416b1_d)
 
