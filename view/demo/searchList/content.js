@@ -4,8 +4,9 @@
 define(function(require) {
 	var comm = require('sdk/server');
 	require('sdk/common');
-	require('box');
-	require('scrollLoad');
+	var box = require('box');
+	require('scroll-load');
+	var pageLoad = require('paging-load');
 
 	var otherParam = app.ls.val('partsFilter');
 	if (otherParam && otherParam.split) {
@@ -41,7 +42,7 @@ define(function(require) {
 			method: "getSearchList",
 			sid: appcfg.project.sid
 		}, otherParam);
-		app.toload({
+		var pageLoadObj = pageLoad({
 			url: appcfg.host.control + '/goods/search.jsp',
 			data: finalParam,
 			size: 5,
@@ -57,23 +58,9 @@ define(function(require) {
 				}
 			}
 		});
+		pageLoadObj.load();
 	};
-	//列表事件
-	$('body').on('click', '.item', function(e) {
-		e.preventDefault();
-		var $target = $(e.target);
-		//配件详细
-		var id = $target.parents('.item').data('id'),
-			title = $target.parents('.item').find('h3').text();
-		if (id) {
-			app.openView({
-				param: {
-					id: id,
-					title: title
-				}
-			}, 'parts', 'detail');
-		}
-	});
+	
 	//更新
 	window.change = function() {
 		$('body').addClass('h100');
@@ -83,7 +70,7 @@ define(function(require) {
 	};
 
 	app.ready(function() {
-		app.push.init(function(){
+		app.push.init(function() {
 			getData(true);
 		});
 

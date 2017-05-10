@@ -7,7 +7,6 @@
 
 define(function(require, exports, module) {
 	"use strict";
-
 	//头部按钮
 	$('#goBack').on('click', function() {
 		app.window.close();
@@ -24,7 +23,7 @@ define(function(require, exports, module) {
 	}).on('touchend', '[openView]', function(e) {
 		var $this = $(this),
 			v = $this.attr('openView'),
-			_anim = ['none', 'push', 'push', 'push', 'push'];
+			_anim = ['none', 'push', 'movein', 'fade', 'reveal'];
 		if ($this.data('touch')) {
 			$this.data('touch', false);
 			$this.removeClass('active');
@@ -51,9 +50,9 @@ define(function(require, exports, module) {
 				}
 			}, 'common', 'shell');
 		}
-	}).on('click', 'img.ableOpenImg', function() {
+	}).on('click', 'img.photoBrowserEnable', function() {
 		//看大图
-		var imgs = $('body').find('img.ableOpenImg'),
+		var imgs = $('body').find('img.photoBrowserEnable'),
 			src = $(this).attr('src'),
 			index,
 			imgsArr = [];
@@ -67,6 +66,9 @@ define(function(require, exports, module) {
 		});
 		app.ready(function() {
 			var photoBrowser = api.require('photoBrowser');
+			if(!photoBrowser){
+				return console.warn('photoBrowser模块未就绪');
+			}
 			photoBrowser.open({
 				images: imgsArr,
 				activeIndex: index,
@@ -85,6 +87,46 @@ define(function(require, exports, module) {
 	}).on('blur', 'input', function() {
 		$('body').removeClass('onKeyboard');
 		$('.keyboardHide').show();
+	});
+	
+	//封装select样式
+	var optionsData = [],
+		selectDom,
+		com = require('sdk/server');
+	
+	$('body').on('touchstart', 'select', function(e) {
+		e.preventDefault();
+		selectDom = $(this);
+		if(selectDom.prop('disabled')){
+			selectDom.data('selectDisabled', true);
+		}else{
+			selectDom.prop('disabled',true);
+		}
+		optionsData = [];
+		$.each(selectDom.find('option'), function(i, e) {
+			optionsData.push({
+				val: $(e).val(),
+				text: $(e).text(),
+				status: 'normal'
+			});
+		});
+		com.openSelector(optionsData, function(theitem){
+			selectDom.find('option').each(function(i, e) {
+				if ($(e).text() === theitem.text) {
+					selectDom.val(theitem.val);
+				}
+			});
+		});
+	}).on('touchend', 'select', function(){
+		setTimeout(function(){
+			if(!$(this).data('selectDisabled')){
+				selectDom.prop('disabled',false);
+			}
+		},300);
+	}).on('touchcancel', 'select', function(){
+		if(!$(this).data('selectDisabled')){
+			selectDom.prop('disabled',false);
+		}
 	});
 
 	app.ready(function() {
@@ -112,97 +154,7 @@ define(function(require, exports, module) {
 				});
 			}
 		}
-		//封装select样式
-		var optionsData = [],
-			selectDom;
-		var UIMultiSelector = api.require('UIMultiSelector');
-		var openSelector = function(items) {
-			UIMultiSelector.open({
-				rect: {
-					h: 179
-				},
-				text: {
-					leftBtn: '取消',
-					rightBtn: '完成'
-				},
-				singleSelection: true,
-				styles: {
-					mask: 'rgba(0,0,0,0)',
-					leftButton: {
-						bg: '#f08300',
-						w: 80,
-						h: 32,
-						marginT: 5,
-						marginL: 8,
-						color: '#ffffff',
-						size: 14
-					},
-					rightButton: {
-						bg: '#f08300',
-						w: 80,
-						h: 32,
-						marginT: 5,
-						marginR: 8,
-						color: '#ffffff',
-						size: 14
-					},
-					title: {
-						bg: '#eee',
-						h: 44
-					},
-					item: {
-						bgActive: '#ddd',
-						lineColor: '#ccc',
-						h: 44
-					}
-				},
-				animation: false,
-				items: items
-			}, function(ret, err) {
-				if (ret) {
-					switch (ret.eventType) {
-						case 'clickLeft':
-							UIMultiSelector.close();
-							break;
-						case 'clickRight':
-							UIMultiSelector.close();
-							break;
-						case 'clickItem':
-							var _theitem = ret.items[0];
-							selectDom.find('option').each(function(i, e) {
-								if ($(e).text() === _theitem.text) {
-									selectDom.val(_theitem.val);
-								}
-							});
-							UIMultiSelector.close();
-							break;
-						default:
 
-					}
-				} else {
-					alert(JSON.stringify(err));
-				}
-			});
-		};
-		$('select').prop('disabled', false);
-		$('body').on('touchstart', 'select', function(e) {
-			e.preventDefault();
-			selectDom = $(this);
-			selectDom.prop('disabled', true);
-			optionsData = [];
-			$.each(selectDom.find('option'), function(i, e) {
-				optionsData.push({
-					val: $(e).val(),
-					text: $(e).text(),
-					status: 'normal'
-				});
-			});
-			openSelector(optionsData);
-		}).on('touchend', 'select', function(){
-			selectDom.prop('disabled', false);
-		}).on('touchcancel', 'select', function(){
-			selectDom.prop('disabled', false);
-		});
 
 
 	});

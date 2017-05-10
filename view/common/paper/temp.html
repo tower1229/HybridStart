@@ -6,22 +6,11 @@
     <meta name="format-detection" content="telephone=no">
     <link href="../../../sdk/ui.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    <script>
-    //Android适配rem
-    if (/Android (\d+\.\d+)/.test(navigator.userAgent)) {
-    var version = parseFloat(RegExp.$1);
-    if (version /*< 4.4*/) {
-    var phoneScale = window.screen.availWidth / 640;
-    var rootSize = parseInt(phoneScale * 100) + 'px';
-    document.documentElement.style.fontSize = rootSize;
-    }
-    }
-    </script>
   </head>
   <body class="flex-col">
     <div class="head myhead">
       <div class="btn" id="goBack">
-        <i class="ion">&#xe6ac;</i>
+        <i class="ion">&#xe62d;</i>
       </div>
       <div class="title" id="headTitle">问卷调查</div>
     </div>
@@ -43,7 +32,7 @@
           <label class="item item-radio">
             <input type="radio" name="jr-${item.question_type}-${item.id}" value="${radio.id}"<!-- if: ${index}==0 -->checked<!-- /if --> >
             <div class="item-content">${radio.name}</div>
-            <i class="radio-icon ion">&#xe6bf;</i>
+            <i class="radio-icon ion">&#xe693;</i>
           </label>
           <!-- /for -->
           <!-- elif: ${item.question_class}=='checkbox' -->

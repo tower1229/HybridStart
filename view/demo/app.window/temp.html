@@ -13,7 +13,7 @@
 <body class="flex-col">
     <div class="head">
         <div class="btn" id="goBack">
-            <i class="ion">&#xe6ac;</i>
+            <i class="ion">&#xe62d;</i>
         </div>
         <div class="title">app.window对象</div>
     </div>
@@ -32,15 +32,9 @@
                 </div>
             </div>
             <div class="item">
-                <code>app.window.resume(calback)</code>
+                <code>app.window.on(type, calback)</code>
                 <div class="item-note">
-                    当前window回到前台时回调
-                </div>
-            </div>
-            <div class="item">
-                <code>app.window.pause(calback)</code>
-                <div class="item-note">
-                    当前window压入后台时回调
+                    window事件，支持："pause","resume","scrolldown","scrollup","swipleft","swipright"
                 </div>
             </div>
             <div class="item">

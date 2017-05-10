@@ -52,7 +52,7 @@ define(function(require) {
                 } else {
                 	app.loading.hide();
                     $('#storeList').empty();
-                    $.box.msg(res.msg, {
+                    box.msg(res.msg, {
                         color: 'danger',
                         delay: 2000
                     });

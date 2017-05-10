@@ -5,7 +5,7 @@ define(function(require) {
 	var comm = require('sdk/server');
 
 	var param = app.ls.val('crossParam');
-	require('box');
+	var box = require('box');
 	if (param && param.split) {
 		param = JSON.parse(param);
 	}

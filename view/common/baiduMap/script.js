@@ -4,6 +4,7 @@
 define(function(require) {
 	var comm = require('sdk/server');
 	require('sdk/common');
+	var base = require('base');
 	var bdMapData = JSON.parse(app.ls.val('bdMapData'));
 
 	if (!bdMapData || !bdMapData['lng'] || !bdMapData['lat']) {
@@ -18,7 +19,7 @@ define(function(require) {
 		var map = api.require('bMap'),
 			userMark = [];
 		var addMark = function() {
-			var _uid = app.getUID();
+			var _uid = base.getUID();
 			userMark.push(_uid);
 			map.addAnnotations({
 				annotations: [{

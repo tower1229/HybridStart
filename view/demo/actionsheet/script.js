@@ -4,7 +4,7 @@
 define(function(require) {
 	var comm = require('sdk/server');
 	require('sdk/common');
-	require('box');
+	var box = require('box');
 
 	$('#picControl').on('click', '._adder', function() {
 		require.async('actionSheet', function(actionSheet) {
@@ -13,7 +13,7 @@ define(function(require) {
 				buttons: ['拍摄','选择图片'],
 				cancelText: '取消',
 				buttonClicked: function(index) {
-					$.box.msg('选择了第'+index+'项');
+					box.msg('选择了第'+index+'项');
 					switch (index) {
 						case 1:
 							

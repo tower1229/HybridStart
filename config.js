@@ -13,10 +13,10 @@ window.appcfg = {
 	},
 	set: {
 		version: "0.0.1",
-		outime: 15000,
-		longtime: 25000,
+		outime: 10000,
+		longtime: 20000,
 		windowAnimate: "push",
-		animateDuration: 300, //ms
+		animateDuration: 210, //ms
 		safeStorage: "user,appInit,rights"
 	},
 	ajax: {
@@ -32,9 +32,9 @@ window.appcfg = {
 	},
 	defaultTheme: {
 		body_bg: '#f0f0f0',
-		primary: '#f08300',
-		sub_primary: '#fda100',
-		heav_primary: '#ff9800',
+		primary: '#38adff',
+		sub_primary: '#52b7fd',
+		heav_primary: '#3399cc',
 		success: '#29b6f6',
 		sub_success: '#43afe0',
 		heav_success: '#269ed4',
@@ -48,7 +48,7 @@ window.appcfg = {
 		sub_danger: '#d0524f',
 		heav_danger: '#c9302c',
 		reverse: '#fff',
-		radius: '2px'
+		radius: '4px'
 	},
 	plugin: {
 		bdmap: { //web地图
@@ -60,26 +60,15 @@ window.appcfg = {
 		sid: 1
 	}
 };
-//catchError
-window.onerror = function(msg, url, lineNo, columnNo, error) {
-	if (!msg.split) {
-		return alert(JSON.stringify(msg));
-	}
-	var string = msg.toLowerCase();
-	var substring = "script error";
-	if (string.indexOf(substring) > -1) {
-		alert('Script Error: See Browser Console for Detail');
-	} else {
-		var message = [
-			'Message: ' + msg,
-			'URL: ' + url,
-			'Line: ' + lineNo,
-			'Column: ' + columnNo,
-			'Error object: ' + JSON.stringify(error)
-		].join(' - ');
-		if (!product) {
-			alert(message);
-		}
-	}
-	return false;
+//应用接口
+window.appcfg.api = {
+	login: appcfg.host.control + '/member/login.jsp',
+	getPack: appcfg.host.control + '/package/get/',
+	sendPack: appcfg.host.control + '/package/send/',
+	donePack: appcfg.host.control + '/package/done/',
+	gotPack: 'http://rapapi.org/mockjsdata/9195/common/getYes/',
+	confirmSend: 'http://rapapi.org/mockjsdata/9195/common/getYes/',
+	uploadifyLocation: appcfg.host.control + '/member/modifyUserInfo.jsp',
+	loginLog: appcfg.host.control + '/member/loginLog.jsp',
+	websiteConfig: appcfg.host.control + '/core/websiteConfig.jsp'
 };

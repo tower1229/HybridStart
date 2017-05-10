@@ -1,8 +1,8 @@
 /*
  * name: optionList
- * version: v1.0.0
- * update: 参数格式调整
- * date: 2016-02-20
+ * version: v1.0.1
+ * update: 样式微调
+ * date: 2017-05-10
 
 //demo
  var demo = optionList({
@@ -34,11 +34,13 @@
 })
  */
 define('optionList', function(require, exports, module) {
+    'use strict';
     seajs.importStyle('.item-right-options{padding:0}\
-.item-content{position:relative;z-index:2;padding:16px;border:none;background-color:#fff}\
+.item-content{position:relative;z-index:2;padding:16px;border:none;background-color:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2)}\
 .item-options{position:absolute;z-index:1;top:0;right:0;height:100%}\
 .item-options .btn{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-flex;display:-ms-inline-flexbox;display:inline-flex;box-sizing:border-box;height:100%;border:none;border-radius:0;-webkit-box-align:center;-ms-flex-align:center;-webkit-align-items:center;-moz-align-items:center;align-items:center}'
         , module.uri);
+    var base = require('base');
     var item_temp = '<li class="item item-right-options scrollSelectItem ${className}">\
             <div class="item-content scrollSelectContent"> ${item|raw} </div>\
         </li>',
@@ -54,7 +56,7 @@ define('optionList', function(require, exports, module) {
             multiShow: false,
             duration: "300ms",
             touchClass: "activated",
-            id: app.getUID()
+            id: base.getUID()
         }, option, true);
         self.ele = $(self.option.selector);
         //method
@@ -264,6 +266,6 @@ define('optionList', function(require, exports, module) {
         }
     };
     module.exports = function(option){
-        return new OptionListView(option)
+        return new OptionListView(option);
     };
 });

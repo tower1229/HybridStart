@@ -1,8 +1,8 @@
 /*
  * name: server
- * version: 0.3.0
- * update: 百度地址反查支持静默
- * date: 2015-12-16
+ * version: 0.5.0
+ * update: bug fix/ add openSelecter
+ * date: 2017-04-28
  */
 
 define(function(require, exports, module) {
@@ -30,10 +30,12 @@ define(function(require, exports, module) {
 			source = new Date();
 		}
 		logfunction && logfunction(source);
-		if (!source.split) {
+		if (source.split) {
+			source = source.replace(/\-/g, '/');
+		} else if (isNaN(parseInt(source))) {
 			source = source.toString().replace(/\-/g, '/');
 		} else {
-			source = source.replace(/\-/g, '/');
+			source = new Date(source);
 		}
 		logfunction && logfunction(source);
 		if (new Date(source) && (new Date(source)).getDate) {
@@ -151,18 +153,8 @@ define(function(require, exports, module) {
 		return _;
 	};
 
-	//加密手机号
-	var _secMobile = function(m) {
-		if (m) {
-			m = String(m);
-		}
-		if (m.length == 11) {
-			return m.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
-		}
-	};
 	//退出登录
 	var _logout = function() {
-		//app.ls.remove('appInit');
 		app.ls.remove('user');
 		//注销推送
 		var ajpush = api.require('ajpush');
@@ -176,67 +168,14 @@ define(function(require, exports, module) {
 		});
 		app.openView({
 			closeback: true
-		}, 'root');
-	};
-	//发短信
-	var sendMsgWaitTime,
-		sendMsgTimer;
-	var _sendMsg = function(m, logSendMsg, callback) {
-		sendMsgWaitTime = 60;
-		if (sendMsgTimer) {
-			clearInterval(sendMsgTimer);
-		}
-		if (!m) {
-			return null;
-		}
-		if ($('#getCode').hasClass('unable')) {
-			return null;
-		}
-		$('#getCode').addClass('unable');
-		app.loading.show('正在发送验证码');
-		app.ajax({
-			type: 'get',
-			url: appcfg.host.control + '/app/sms/' + logSendMsg,
-			data: {
-				mobile: m
-			},
-			timeout: appcfg.set.outime / 1000,
-			cache: false,
-			success: function(res) {
-				app.loading.hide();
-				if (res.status === 'Y') {
-					var ot = $('#getCode').text();
-					sendMsgTimer = setInterval(function() {
-						sendMsgWaitTime--;
-						$('#getCode').text(sendMsgWaitTime + 's后再次发送');
-						if (!sendMsgWaitTime) {
-							$('#getCode').removeClass('unable').text(ot);
-							clearInterval(sendMsgTimer);
-						}
-					}, 1000);
-				} else if (res.msg) {
-					$('#getCode').removeClass('unable');
-					$.box.msg(res.msg, {
-						delay: 2000
-					});
-				}
-				if (typeof(callback) === 'function') {
-					callback(res);
-				}
-			},
-			error: function() {
-				$('#getCode').removeClass('unable');
-				app.loading.hide();
-				clearInterval(sendMsgTimer);
-				app.window.openToast('获取失败请重试！', 2000);
-			}
-		});
+		}, 'member', 'login');
+
 	};
 
 	//存储用户信息
 	var _initUser = function(userData) {
 		if (!userData) {
-			return $.box.msg('初始化用户信息失败');
+			return box.msg('初始化用户信息失败');
 		}
 		if (userData.photo && ($.trim(userData.photo) === '')) {
 			userData.photo = '';
@@ -253,15 +192,45 @@ define(function(require, exports, module) {
 		//app初始化
 		app.ls.val('appInit', 1);
 		//注册推送
-		var ajpush = api.require('ajpush');
-		ajpush.bindAliasAndTags({
-			alias: "user_" + userData.id,
-			tags: userData.tag.split(',')
-		}, function(ret) {
-			if (ret.statusCode) {
-				console.log("user_" + userData.id + "成功注册推送");
+		if (userData.tag) {
+			var ajpush = api.require('ajpush');
+			ajpush.bindAliasAndTags({
+				alias: "user_" + userData.id,
+				tags: userData.tag.split(',')
+			}, function(ret) {
+				if (ret.statusCode) {
+					console.log("user_" + userData.id + "成功注册推送");
+				}
+			});
+		}
+
+	};
+	//推送开关
+	var _push = {
+		open: function(cb) {
+			var ajpush = api.require('ajpush');
+			if (ajpush) {
+				ajpush.resumePush(function(ret) {
+					if (typeof cb === 'function') {
+						cb(ret && ret.status);
+					}
+				});
+			} else {
+				console.log('ajpush插件未就绪');
 			}
-		});
+		},
+		close: function(cb) {
+			var ajpush = api.require('ajpush');
+			if (ajpush) {
+				ajpush.stopPush(function(ret) {
+					if (typeof cb === 'function') {
+						cb(ret && ret.status);
+					}
+				});
+			} else {
+				console.log('ajpush插件未就绪');
+			}
+		}
 	};
 	//获取用户信息
 	var _getUser = function(hold) {
@@ -270,7 +239,7 @@ define(function(require, exports, module) {
 			_user = JSON.parse(_user);
 		} else if (!hold) {
 			app.ready(function() {
-				$.box.alert('请先登录！', function() {
+				box.alert('请先登录！', function() {
 					app.openView(null, 'member', 'login');
 				}, {
 					bgclose: false
@@ -322,7 +291,7 @@ define(function(require, exports, module) {
 		var userData = _getUser();
 		var updateUser = function(location) {
 			app.ajax({
-				url: appcfg.host.control + '/member/modifyUserInfo.jsp',
+				url: appcfg.api.uploadifyLocation,
 				data: {
 					"member_id": userData.id,
 					"province": location.province,
@@ -383,7 +352,7 @@ define(function(require, exports, module) {
 						member_id: userData.id
 					}, extraParam);
 					app.ajax({
-						url: appcfg.host.control + '/member/loginLog.jsp',
+						url: appcfg.api.loginLog,
 						data: data,
 						success: function(res) {
 
@@ -445,17 +414,10 @@ define(function(require, exports, module) {
 	//预取配置信息
 	_preGet.prototype.preGetList.push({
 		key: 'websiteConfig',
-		url: appcfg.host.control + '/core/websiteConfig.jsp',
-		data: {
-		}
+		url: appcfg.api.websiteConfig,
+		data: {}
 	});
-	//预取产品类别
-	_preGet.prototype.preGetList.push({
-		key: 'partcat',
-		url: appcfg.host.control + '/core/getpartcat.jsp',
-		data: {
-		}
-	});
+
 	//预取数据
 	var _checkPreget = function() {
 		var preGetList = _preGet.prototype.preGetList,
@@ -471,44 +433,43 @@ define(function(require, exports, module) {
 	};
 	//检查升级
 	var _checkUpdate = function(platform, silence) {
-		var appVersion = appcfg.set.version;
-		if (!appVersion) {
-			appVersion = 0;
-		}
-		$.ajax({
-			url: appcfg.host.control + '/core/checkUpdate.jsp',
-			dataType: 'json',
-			cache: false,
-			success: function(res) {
-				app.loading.hide('puload');
-				if (res.version > appVersion) {
-					if (silence && res.forceUpdate != '1') {
-						app.window.publish('newVersion', res.version);
-					} else {
-						var uploadbox = $.box.confirm(res.description, function() {
-							$.box.hide(uploadbox);
-							if (platform == 'ios') {
-								window.location = res.iosPath;
-							} else if (platform == 'android') {
-								window.location = res.androidPath;
-							}
-						}, null, {
-							bar: true,
-							title: '升级到 V' + res.version
-						});
-					}
-				} else {
-					if (!silence) {
-						app.window.openToast('已是最新版本。', 1000);
-					}
-
+		var mam = api.require('mam');
+		var box = require('box');
+		mam.checkUpdate(function(ret, err) {
+			if (ret) {
+				var result = ret.result;
+				if (result.update === true && result.closed === false) {
+					var uploadbox = box.confirm(res.updateTip, function() {
+						box.hide(uploadbox);
+						if (platform == 'ios') {
+							api.installApp({
+								appUri: result.source
+							});
+						} else if (platform == 'android') {
+							api.download({
+								url: result.source,
+								report: true
+							}, function(ret, err) {
+								if (ret && 0 === ret.state) { /* 下载进度 */
+									app.window.openToast("正在下载:" + ret.percent + "%");
+								}
+								if (ret && 1 === ret.state) { /* 下载完成 */
+									var savePath = ret.savePath;
+									api.installApp({
+										appUri: savePath
+									});
+								}
+							});
+						}
+					}, null, {
+						bar: true,
+						title: '升级到 V' + res.version
+					});
+				} else if(!silence){
+					box.alert("暂无更新");
 				}
-			},
-			error: function() {
-				if (!silence) {
-					app.loading.hide('puload');
-					app.window.openToast('网络错误，暂时无法检测更新！', 1000);
-				}
+			} else if(!silence){
+				box.alert(err.msg);
 			}
 		});
 	};
@@ -553,7 +514,7 @@ define(function(require, exports, module) {
 			}
 		});
 	};
-	//指定DOM打开地图 TODO
+	//指定DOM打开地图
 	var _openBaiduMap = function(dom, data, refresh) {
 		if (!$.isPlainObject(data) || !data.longitude || !data.latitude) {
 			return app.window.openToast('参数缺失，无法打开地图');
@@ -619,13 +580,87 @@ define(function(require, exports, module) {
 		} catch (e) {}
 		return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
 	}
+	//封装选择器
+	var openSelector = function(items, onSelect) {
+		app.ready(function() {
+			var UIMultiSelector = api.require('UIMultiSelector');
+			UIMultiSelector.open({
+				rect: {
+					h: Math.min(items.length * 51 + 2, 300)
+				},
+				text: {
+					leftBtn: '', //取消
+					rightBtn: '' //完成
+				},
+				singleSelection: true,
+				styles: {
+					mask: 'rgba(0,0,0,0)',
+					leftButton: {
+						bg: '#f08300',
+						w: 80,
+						h: 32,
+						marginT: 5,
+						marginL: 8,
+						color: '#ffffff',
+						size: 14
+					},
+					rightButton: {
+						bg: '#f08300',
+						w: 80,
+						h: 32,
+						marginT: 5,
+						marginR: 8,
+						color: '#ffffff',
+						size: 14
+					},
+					title: {
+						h: 2,
+						bg: "#38adff"
+					},
+					item: {
+						active: "38adff",
+						bgActive: '#ddd',
+						lineColor: '#ccc',
+						bgHighlight: '#eee',
+						h: 50,
+						size: 16,
+						color: "#555"
+					}
+				},
+				animation: false,
+				items: items
+			}, function(ret, err) {
+				if (ret) {
+					switch (ret.eventType) {
+						case 'clickLeft':
+							UIMultiSelector.close();
+							break;
+						case 'clickRight':
+							UIMultiSelector.close();
+							break;
+						case 'clickItem':
+							var _theitem = ret.items[0];
+							if (typeof onSelect === 'function') {
+								onSelect(_theitem);
+							}
+
+							UIMultiSelector.close();
+							break;
+						default:
+
+					}
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+		});
+	};
 
 	module.exports = {
-		sendMsg: _sendMsg,
 		logout: _logout,
-		secMobile: _secMobile,
 		initUser: _initUser,
 		getUser: _getUser,
+		push: _push,
 		preGet: _preGet,
 		checkPreget: _checkPreget,
 		source: _source,
@@ -639,6 +674,7 @@ define(function(require, exports, module) {
 		getAddrByLoc: _getAddrByLoc,
 		getLocation: _getLocation,
 		collection: _collection,
-		accMul: _accMul
+		accMul: _accMul,
+		openSelector: openSelector
 	};
 });

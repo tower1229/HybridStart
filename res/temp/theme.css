@@ -63,6 +63,7 @@ a.bg-danger:hover { background-color: ${danger};}
 <!-- // ui set -->
 .btn{border-radius:${radius}}
 .app-theme .head{background:${primary};color:${reverse};}
+.tabs .cur{color: ${primary}}
 .tabs .cur-bg{background:${primary}}
 .checkbox-primary input:checked:before, .checkbox-primary input:checked +.checkbox-icon:before{
 	border-color: ${primary};  background: ${primary};

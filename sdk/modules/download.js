@@ -5,7 +5,7 @@
  * date: 2015-10-22
  */
 define('download', function(require, exports, module) {
-	//var $ = require('jquery');
+	'use strict';
 	var def = {
 		path: "widget://myspace/down/",
 		name: "",

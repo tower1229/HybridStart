@@ -4,7 +4,7 @@
 define(function(require) {
 	var comm = require('sdk/server');
 	require('sdk/common');
-	require('box');
+	var box = require('box');
 
 	var getData = function() {
 		app.loading.show();
@@ -19,7 +19,7 @@ define(function(require) {
 						console.log(html);
 					});
 				} else if (res.msg) {
-					$.box.msg(res.msg);
+					box.msg(res.msg);
 				}
 			}
 		});

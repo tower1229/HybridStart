@@ -2,19 +2,19 @@
  * layout
  */
 define(function(require) {
-	var comm = require('sdk/server');
-	require('sdk/common');
+    var comm = require('sdk/server');
+    require('sdk/common');
 
-	//上传图片
+    //上传图片
     var maxPicLen = 5;
     var uploadingImg = false;
     $('#picStor').text(maxPicLen);
     var gotPicter = function(avatsrc) {
-        if(!avatsrc){
+        if (!avatsrc) {
             return null;
         }
         var adder = $('#picControl').find('._adder');
-        var newImg = $('<div class="_pic"><div class="_del"><i class="ion">&#xe632;</i></div><img src="' + avatsrc + '" class="ableOpenImg"></div>');
+        var newImg = $('<div class="_pic"><div class="_del"><i class="ion">&#xe647;</i></div><img src="' + avatsrc + '" class="photoBrowserEnable"></div>');
         $('#picControl').append(newImg);
         adder.appendTo($('#picControl'));
         var has = $('#picControl ._pic').length;
@@ -24,9 +24,8 @@ define(function(require) {
         }
         uploadingImg = true;
 
-        require.async('uploadimg', function(uploadImg) {
-
-            uploadImg(avatsrc, {
+        require.async('upload', function(uploader) {
+            uploader(avatsrc, {
                 url: appcfg.host.control + "/app/upload/",
                 onCreate: function(upId) {
                     newImg.data('upid', upId).append('<div class="_state"></div>');
@@ -129,8 +128,8 @@ define(function(require) {
     });
 
 
-	app.ready(function() {
+    app.ready(function() {
 
 
-	});
+    });
 });

@@ -4,7 +4,7 @@
 define(function(require) {
 	var comm = require('sdk/server');
 	require('sdk/common');
-	require('box');
+	var box = require('box');
 	//重新定义html字号
 	if (/Android (\d+\.\d+)/.test(navigator.userAgent)) {
       var version = parseFloat(RegExp.$1);
@@ -75,7 +75,7 @@ define(function(require) {
 				});
 			}
 		} else {
-			$.box.alert('地址无效，请重新选择！');
+			box.alert('地址无效，请重新选择！');
 		}
 		inuts = emptyInp = valCache = null;
 	};

@@ -6,9 +6,9 @@ define(function(require) {
 	var paperId = app.ls.val('crossParam');;
 	var userData = comm.getUser();
 	require('validform');
-	require('box');
+	var box = require('box');
 	if(!paperId){
-		return $.box.alert('问卷参数错误！');
+		return box.alert('问卷参数错误！');
 	}
 	var getData = function(id){
 		app.loading.show('正在获取问卷',{
@@ -26,7 +26,7 @@ define(function(require) {
 					dataRender(res);
 				}else if(res.status==='N'){
 					app.loading.hide();
-					$.box.msg(res.message,{
+					box.msg(res.msg,{
 						color:'danger',
 						delay:1000
 					});
@@ -64,21 +64,21 @@ define(function(require) {
 			dataType:'html',
 			callback:function(res){
 				if($.trim(res)=='ok'){
-					$.box.msg('问卷已提交，谢谢',{
+					box.msg('问卷已提交，谢谢',{
 						delay:1000,
 						onclose:function(){
 							app.window.close();
 						}
 					});
 				}else if($.trim(res)=='repeat'){
-					$.box.msg('请不要重复提交',{
+					box.msg('请不要重复提交',{
 						delay:1000,
 						onclose:function(){
 							app.window.close();
 						}
 					});
 				}else{
-					$.box.msg('提交失败，请稍后再试',{
+					box.msg('提交失败，请稍后再试',{
 						delay:1000
 					});
 				}

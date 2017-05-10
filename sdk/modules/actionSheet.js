@@ -15,6 +15,7 @@
 }
  */
 define('actionSheet', function(require, exports, module) {
+	'use strict';
 	var actData = {
 		titleText: '',
 		buttons: [],

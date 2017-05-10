@@ -11,8 +11,8 @@ padding:.4em;width:100%;margin-top: .5em;color:#fff;}
 /*配件类别*/
 .partItem{padding:.8em .8em .3em;border-bottom:1px solid #ccc;}
 .partItem li{background:#f3f2f2;line-height: 1.9em; text-align: center;margin-bottom: .5em;
-	color:#666;border: 1px solid #cacccd;border-radius: 2px; box-sizing: border-box;overflow: visible;}
-.partItem .cur{color:#fff;background:#d33835;}
+	color:#666;border: 1px solid #cacccd;border-radius: 4px; box-sizing: border-box;overflow: visible;}
+.partItem .cur{color:#fff;background:#d33835;border-color: #d33835;}
 .partItem .isTop{position: relative;}
 .partItem .isTop:after{content: "HOT";color:#fff;position: absolute;right:-.5em;top:-.5em;
 font-size:.7em;font-weight: 700;line-height: 1em;background:#d43f3a;border-radius: 2px;padding:.2em;}
@@ -20,6 +20,6 @@ font-size:.7em;font-weight: 700;line-height: 1em;background:#d43f3a;border-radiu
 .openSearch{background: #fff;position: absolute;left: 14%;bottom: .4em;width: 80%;box-sizing: border-box;
 height: 2.2em;line-height: 2.2em; border-radius: .3em;}
 .openSearch ._label{color:#777;font-size:.8em;padding:0 1em;}
-.openSearch .btn{height: 2.2em;line-height: 2.5em;color:#337ab7;}
-.openSearch .btn .ion{margin:0;}
+.openSearch .btn{height: 100%;color:#337ab7;}
+.openSearch .btn .ion{vertical-align: top;}
 .openSearch.active ._label{color:#e70014;}

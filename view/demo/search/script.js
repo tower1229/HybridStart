@@ -113,7 +113,7 @@ define(function(require) {
 			$('#keywords').val(key);
 		});
 		//返回同步状态
-		app.window.resume(function() {
+		app.window.on('resume', function() {
 			syncStatus();
 		});
 

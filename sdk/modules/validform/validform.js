@@ -6,10 +6,11 @@
 */
 
 define('validform',function(require, exports, module) {
+	'use strict';
 	seajs.importStyle('.Validform_right{color:#71b83d}.Validform_wrong{color:red;white-space:nowrap}.Validform_loading{padding-left:20px}.Validform_error{background-color:#ffe7e7}.passwordStrength{display:block;height:18px;line-height:16px;clear:both;overflow:hidden;margin-bottom:5px}.passwordStrength b{font-weight:normal}.passwordStrength b,.passwordStrength span{display:inline-block;vertical-align:middle;line-height:16px;line-height:18px\9;height:16px}.passwordStrength span{width:63px;text-align:center;background-color:#d0d0d0;border-right:1px solid #fff}.passwordStrength .last{border-right:0;width:61px}.passwordStrength .bgStrength{color:#fff;background-color:#71b83d}'
 		,module.uri);
 	//require('jquery');
-	require('box');
+	var box = require('box');
 	var win = window;
 	var undef = void 0;
 	var errorobj = null,
@@ -390,7 +391,7 @@ define('validform',function(require, exports, module) {
 				return;
 			}
 			if (type == 1) {
-				$.box.msg(msg, {
+				box.msg(msg, {
 					delay: 2000,
 					color: 'warning'
 				})
@@ -522,7 +523,7 @@ define('validform',function(require, exports, module) {
 					}
 				}
 				ajaxsetup = $.extend({}, localconfig, ajaxsetup);
-				_this[0].validform_ajax = $.ajax(ajaxsetup);
+				_this[0].validform_ajax = window.api ? app.ajax(ajaxsetup) : $.ajax(ajaxsetup);
 				return "ajax"
 			} else if (ajaxurl && Validform.util.isEmpty.call($(this), inputval)) {
 				Validform.util.abort.call(_this[0]);
@@ -690,7 +691,7 @@ define('validform',function(require, exports, module) {
 						}
 					}
 					ajaxsetup = $.extend({}, localconfig, ajaxsetup);
-					curform[0].validform_ajax = window.api ? app.ajax(ajaxsetup) : $.ajax(ajaxsetup)
+					curform[0].validform_ajax = window.api ? app.ajax(ajaxsetup) : $.ajax(ajaxsetup);
 				} else {
 					if (!settings.postonce) {
 						curform[0].validform_status = "normal"
