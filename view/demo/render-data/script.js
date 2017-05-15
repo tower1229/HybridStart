@@ -9,7 +9,7 @@ define(function(require) {
 	var getData = function() {
 		app.loading.show();
 		app.ajax({
-			url: 'http://7xnt8z.com1.z0.glb.clouddn.com/render-data-mock.json',
+			url: 'http://rapapi.org/mockjsdata/1201/other/render-data-mock/',
 			type: 'get',
 			data: {},
 			success: function(res) {
