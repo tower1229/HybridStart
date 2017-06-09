@@ -6,7 +6,7 @@
 - 清晰的开发模式，像做网站一样做app
 - 熟悉的js模块化体验
 
-## 默认包含插件
+## 默认依赖插件
 - [UIMultiSelector](http://docs.apicloud.com/Client-API/UI-Layout/UIMultiSelector)用于美化`select`标签效果
 - [UIActionSelector](http://docs.apicloud.com/Client-API/UI-Layout/UIActionSelector)用于做城市选择器
 - [ajpush](http://docs.apicloud.com/Client-API/Open-SDK/ajpush)推送
@@ -27,4 +27,5 @@
 ## 预览安装包 
 [Apk Download](http://downloadpkg.apicloud.com/app/download?path=http://7xm7pq.com1.z0.glb.clouddn.com/b35b84f11f576b785f1736e50a2416b1_d)
 
+## 更多
 > [前端路上](http://refined-x.com)
