@@ -22,8 +22,7 @@
 在apicloud平台创建一个项目，将代码检出到本地，备份`config.xml`并其他文件清空，然后将本项目所有文件拷贝进来，改一下`config.xml`里的appid之类的关键配置就ok啦
 
 ## 文档 
-http://refined-x.com/HybridStart/ （未完成）
+[HybridStart Documention-Preview](http://refined-x.com/HybridStart/docs/)
 
 ## 预览安装包 
 [apk](http://downloadpkg.apicloud.com/app/download?path=http://7xm7pq.com1.z0.glb.clouddn.com/b35b84f11f576b785f1736e50a2416b1_d)
-

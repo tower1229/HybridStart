@@ -1,4 +1,4 @@
-seajs.root = '/HybridStart';
+seajs.root = '/HybridStart/doc';
 seajs.config({
 	base: "http://static-zt.oss-cn-qingdao.aliyuncs.com/modules",
 	paths: {
