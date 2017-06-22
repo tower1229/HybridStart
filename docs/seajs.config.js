@@ -1,4 +1,4 @@
-seajs.root = '/HybridStart/doc';
+seajs.root = '/HybridStart/docs';
 seajs.config({
 	base: "http://static-zt.oss-cn-qingdao.aliyuncs.com/modules",
 	paths: {
@@ -17,7 +17,6 @@ seajs.config({
 		"makethumb"      : "upload/makethumb",
 		"localResizeIMG" : "upload/localResizeIMG",
 		"video"		     : "video/video",
-		"webuploader"    : "webuploader/webuploader",
 		// localstorage缓存
 		"seajs-localcache" : "seajs/seajs-localcache",
 		// debug
