@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HybridStart Documentation</title>
+    <title>混合应用开发框架-HybridStart Documentation</title>
     <meta content="HybridStart,APICloud,混合应用框架" name="Keywords">
     <meta content="HybridStart 是一套基于APICloud平台的混合应用开发框架，致力于打造最优秀的混合应用开发体验。" name="Description">
     <meta name="renderer" content="webkit">
@@ -34,18 +34,17 @@
 
 <body class="hasNav scrollbar">
     <header class="wrap">
-        <h1>HybridStart Documentation <small>(未完成)</small></h1>
+        <h1>HybridStart Documentation <small>(混合应用开发框架-持续更新中)</small></h1>
     </header>
     <nav class="wrap nav scrollbar" id="nav">导航生成中...</nav>
     <section class="wrap" id="overall">
-        <h2>关于</h2>
-        <h3 id="overall-intro">概述</h3>
-        <p>HybridStart 是一套混合应用开发框架，提供丰富的UI组件、清晰的代码管理、简明开发模式，底层基于<a href="http://www.apicloud.com/" target="_blank">APICloud</a>。</p>
-
-        <h3 id="code-manage">代码组织</h3>
-        <p>HybridStart 项目将APP代码整体分成<strong>SDK</strong> + <strong>View</strong>两部分。</p>
-        <p>SDK包含JS核心类库、插件封装、公用代码、UI。其中JS核心<code>core.js</code>集成<code>seajs</code>、<code>jQuery2</code>、<code>etpl</code>(模板引擎)、<code>xss</code>(xss防御)，以及<code>app对象</code>(对混合应用引擎的封装)；插件<code>modules/</code>内包含常用插件功能，如上传、下载、提示框等；<code>server.js</code>和<code>common.js</code>都是业务代码中提取的公用代码。<code>ui.css</code>提供一套移动端组件UI，开发中酌情修改。</p>
-        <p>View包含所有的APP页面，每个页面都体现为一个文件夹，其中至少包含<code>temp.html</code>、<code>style.css</code>、<code>script.js</code>三个文件，页面将引用SDK提供的UI和方法来简化开发，页面在<code>view/</code>中最多嵌套两层文件夹。</p>
+        <h2>概述</h2>
+        <h3 id="overall-intro">关于</h3>
+        <p>HybridStart 是一款混合应用开发框架，提供丰富的UI组件、清晰的代码管理、简明开发模式，底层基于<a href="http://www.apicloud.com/" target="_blank">APICloud</a>，致力于打造更快、更好的混合应用开发体验。</p>
+        <h4>下载</h4>
+        Github：<a href="https://github.com/tower1229/HybridStart">HybridStart</a>
+        <h4>示例</h4>
+        Android：<a href="http://downloadpkg.apicloud.com/app/download?path=http://7xm7pq.com1.z0.glb.clouddn.com/cc4a606d357f094cb300308e6c0c71ce_d">APK下载</a>
         <h4>目录结构</h4>
         <pre>
           <code class="javascript"> 
@@ -64,11 +63,13 @@
   `-- config.xml            //APICloud配置
             </code>
         </pre>
-        <h3 id="dev-manage">开发模式</h3>
-        <h4>多webView机制</h4>
+        <h4>代码组织</h4>
+        <p>HybridStart 项目将APP代码整体分成<strong>SDK</strong> + <strong>View</strong>两部分。</p>
+        <p>SDK包含JS核心类库、插件封装、公用代码、UI。其中JS核心<code>core.js</code>集成<code>seajs</code>、<code>jQuery2</code>、<code>etpl</code>(模板引擎)、<code>xss</code>(xss防御)，以及<code>app对象</code>(对混合应用引擎的封装)；插件<code>modules/</code>内包含常用插件功能，如上传、下载、提示框等；<code>server.js</code>和<code>common.js</code>都是业务代码中提取的公用代码。<code>ui.css</code>提供一套移动端组件UI，开发中酌情修改。</p>
+        <p>View包含所有的APP页面，每个页面都体现为一个文件夹，其中至少包含<code>temp.html</code>、<code>style.css</code>、<code>script.js</code>三个文件，页面将引用SDK提供的UI和方法来简化开发，页面在<code>view/</code>中最多嵌套两层文件夹。</p>
+        <h4>开发模式</h4>
         <p>多webView机制解决了混合应用页面切换不流畅的老大难问题，使APP开发可以像web开发一样通过“链接”跳转“页面”，但这种机制在APP开发中存在一些先天缺陷，比如状态维护、参数传递；也带来了新的问题，比如多页面的内存占用，使新人往往无从下手。</p>
         <p>HybridStart 基于引擎功能封装了<code>openView</code>方法，可以方便的跳转到指定页面，并解决传参、关闭后台等一系列问题。</p>
-        <h4>生命周期</h4>
         <p>HybridStart 约定APP的生命周期为 <code>`root -> index(exit) <=> page <=> page ...`</code>，启动页(view/root/temp.html)通常没有任何展示内容，只执行状态检测、插件调用、监听、数据预取等初始化操作，完成后直接跳转到首页(index)，首页与展示页之间任意跳转返回，但需要在首页拦截返回键，使APP无法返回启动页，而是退出APP，整个生命周期内启动页都在后台运行。</p>
         <h4>交互约定</h4>
         <p>约定前后端交互数据基本格式如下：</p>
@@ -82,6 +83,7 @@
 }
           </code>
         </pre>
+
         <h3 id="getStart">快速开始</h3>
         <ol>
             <li>在APICloud平台创建一个项目，添加以下模块：UIMultiSelector, UIActionSelector, ajpush, bMap, photoBrowser, dialogBox, push, mam</li>
@@ -208,6 +210,7 @@
                 </td>
             </tr>
         </table>
+        
     </section>
     <section class="wrap" id="SDK">
         <h2>SDK</h2>
@@ -1186,6 +1189,10 @@ require.async('actionSheet', function(actionSheet) {
                 待补充
             </dd>
         </dl>
+        <h3 id="sdk-server">Server</h3>
+        <p>待整理</p>
+        <h3 id="sdk-common">Common</h3>
+        <p>待整理</p>
         <h3 id="sdk-ui">UI</h3>
         <p>待整理</p>
     </section>
