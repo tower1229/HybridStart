@@ -29,11 +29,12 @@
 - [push](http://docs.apicloud.com/Client-API/Cloud-Service/push)系统插件，做推送必备
 - [mam](http://docs.apicloud.com/Client-API/Cloud-Service/mam)系统插件，版本管理和热更新必备
 
-## 预览安装包 
-[Apk Download](http://downloadpkg.apicloud.com/app/download?path=http://7xm7pq.com1.z0.glb.clouddn.com/b35b84f11f576b785f1736e50a2416b1_d)
+## 资源
+[Apk 安装包](http://downloadpkg.apicloud.com/app/download?path=http://7xm7pq.com1.z0.glb.clouddn.com/cc4a606d357f094cb300308e6c0c71ce_d)
 
-## 源码
 [Github](https://github.com/tower1229/HybridStart)
+
+[Download](https://github.com/tower1229/HybridStart/archive/master.zip)
 
 ## 更多
 > [前端路上](http://refined-x.com)

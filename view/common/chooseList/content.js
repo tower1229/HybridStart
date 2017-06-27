@@ -59,7 +59,7 @@ define(function(require) {
                 }
             },
             error:function(){
-                app.window.openToast('网络异常，请重试');
+                app.openToast('网络异常，请重试');
                 app.window.evaluateScript('','app.loading.hide()');
             }
         });

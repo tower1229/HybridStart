@@ -40,7 +40,7 @@ define(function(require) {
 			}
 		});
 		if(emptyInp){
-			return app.window.openToast('请选择或填写详细地址！',1000);
+			return app.openToast('请选择或填写详细地址！',1000);
 		}
 		//重新获取location数据
 		location.province = $('#addrProv').text();
@@ -69,7 +69,7 @@ define(function(require) {
 							location.lat = _loca.lat;
 							saveDataAndClose();
 						}else{
-							app.window.openToast('baiduMap API错误,code:'+res.status,2000);
+							app.openToast('baiduMap API错误,code:'+res.status,2000);
 						}
 					}
 				});

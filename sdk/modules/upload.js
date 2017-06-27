@@ -10,22 +10,22 @@ define('upload', function(require, exports, module) {
 	var def = {
 		url: '',
 		onCreate: function(opCode) {
-			app.window.openToast('正在上传...', '1000');
+			app.openToast('正在上传...', appcfg.set.longtime);
 		},
 		onCreateError: function() {
-			app.window.openToast('创建上传失败', '2000');
+			app.openToast('创建上传失败', '2000');
 		},
 		onStatus: function(percent) {
-			app.window.openToast('正在上传:' + percent + '%', '2000');
+			app.openToast('正在上传:' + percent + '%', '2000');
 		},
 		success: function(remoteUrl) {
 
 		},
 		cancel: function(cancel) {
-			app.window.openToast('取消上传', '2000');
+			app.openToast('取消上传', '2000');
 		},
 		error: function() {
-			app.window.openToast('上传失败', '2000');
+			app.openToast('上传失败', '2000');
 		}
 	};
 	var Upload = function(localImgPath, option) {
@@ -65,7 +65,7 @@ define('upload', function(require, exports, module) {
 						break;
 					case 1:
 						try {
-							opt.success(ret.body.data[0].path);
+							opt.success(ret.body.path);
 						} catch (e) {
 							console.log(JSON.stringify(ret.body));
 						}

@@ -26,7 +26,7 @@ define(function(require) {
 
         require.async('upload', function(uploader) {
             uploader(avatsrc, {
-                url: appcfg.host.control + "/app/upload/",
+                url: "http://host.refined-x.com/test/fileupload.php",
                 onCreate: function(upId) {
                     newImg.data('upid', upId).append('<div class="_state"></div>');
                 },

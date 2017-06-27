@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
 	'use strict';
-   var a = require('jquery');
+	var a = window.$ || require('jquery');
 	a.fn.passwordStrength = function(b) {
 		b = a.extend({}, a.fn.passwordStrength.defaults, b);
 		this.each(function() {

@@ -33,7 +33,7 @@
     }
 })
  */
-define('optionList', function(require, exports, module) {
+define('option-list', function(require, exports, module) {
     'use strict';
     seajs.importStyle('.item-right-options{padding:0}\
 .item-content{position:relative;z-index:2;padding:16px;border:none;background-color:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2)}\

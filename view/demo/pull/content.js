@@ -9,7 +9,7 @@ define(function(require) {
 	var scrollLoadHandle;
 
 	var pageLoadObj = pageLoad({
-		url: 'http://7xnt8z.com1.z0.glb.clouddn.com/render-data-mock.json',
+		url: 'http://rapapi.org/mockjsdata/1201/other/render-data-mock/',
 		data: {},
 		success: function(res) {
 			//此处简化数据渲染操作

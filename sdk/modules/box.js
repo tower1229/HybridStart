@@ -142,7 +142,7 @@ define('box', function(require, exports, module) {
 			app.ready(function() {
 				var dialogBox = api.require('dialogBox');
 				var opt = $.extend({}, def, config || {});
-				app.window.openToast(msg, opt.delay, opt.position);
+				app.openToast(msg, opt.delay, opt.position);
 				if (typeof(opt.onclose) === 'function') {
 					setTimeout(function() {
 						opt.onclose();

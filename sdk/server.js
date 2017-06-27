@@ -259,10 +259,10 @@ define(function(require, exports, module) {
 		var map = api.require('bMap');
 		var getTimeout = setTimeout(function() {
 			app.loading.hide();
-			app.window.openToast('检索超时，请重试', 2000);
+			app.openToast('检索超时，请重试', 2000);
 		}, appcfg.set.longtime);
 		if (!lat || !lng) {
-			return app.window.openToast('检索错误');
+			return app.openToast('检索错误');
 		}
 		if (!opt.silent) {
 			app.loading.show('正在检索地址...');
@@ -281,7 +281,7 @@ define(function(require, exports, module) {
 			if (ret.status) {
 				opt.callback(ret);
 			} else {
-				app.window.openToast('百度地图API错误', 2000);
+				app.openToast('百度地图API错误', 2000);
 			}
 		});
 	};
@@ -451,7 +451,7 @@ define(function(require, exports, module) {
 								report: true
 							}, function(ret, err) {
 								if (ret && 0 === ret.state) { /* 下载进度 */
-									app.window.openToast("正在下载:" + ret.percent + "%", 1000);
+									app.openToast("正在下载:" + ret.percent + "%", 1000);
 								}
 								if (ret && 1 === ret.state) { /* 下载完成 */
 									var savePath = ret.savePath;
@@ -488,7 +488,7 @@ define(function(require, exports, module) {
 				if (errcb && typeof(errcb) === 'function') {
 					errcb();
 				} else {
-					app.window.openToast('GPS定位超时！', 1000);
+					app.openToast('GPS定位超时！', 1000);
 				}
 			}
 		}, appcfg.set.outime);
@@ -517,7 +517,7 @@ define(function(require, exports, module) {
 	//指定DOM打开地图
 	var _openBaiduMap = function(dom, data, refresh) {
 		if (!$.isPlainObject(data) || !data.longitude || !data.latitude) {
-			return app.window.openToast('参数缺失，无法打开地图');
+			return app.openToast('参数缺失，无法打开地图');
 		}
 		var bdMapParam = {
 			lat: data.latitude,

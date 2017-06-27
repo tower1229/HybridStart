@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+</head>
+
+<body class="flex-col">
+    <div class="head">
+        <div class="btn" id="goBack">
+            <i class="ion">&#xe62d;</i>
+        </div>
+        <div class="title">表单验证演示</div>
+    </div>
+    <div class="flex-1 flex-col scroll_cont">
+
+        <form class="list" id="reg_form">
+            <label class="item item-input">
+                <label>用户名：</label>
+                <input type="text" class="inp" name="username" datatype="/^[A-Za-z0-9\u9fa5@\u9fa5.]{2,20}$/" sucmsg="用户名验证通过！" nullmsg="请输入用户名！" errormsg="用户名非法!">
+            </label>
+            <label class="item item-input">
+                <label>密 码：</label>
+                <input type="password" class="inp" name="userpassword" datatype="*6-15" errormsg="密码范围在6~15位之间！">
+            </label>
+            <label class="item item-input">
+                <label>确认密码：</label>
+                <input type="password" name="userpassword2" datatype="*" recheck="userpassword" errormsg="您两次输入的密码不一致！">
+            </label>
+            <label class="item item-input">
+                <label>邮箱：</label>
+                <input type="text" class="inp" name="email" datatype="e" errormsg="请输入正确的邮箱!" ignore="ignore">
+            </label>
+            <label class="item item-input">
+                <label>验证码：</label>
+                <input type="text" class="inp" name="validnum" datatype="*" ajaxurl="http://host.refined-x.com/test/validRand.php" sucmsg="验证码正确！" nullmsg="请输入验证码！" errormsg="验证码错误!">
+                <img src="http://temp.im/80x20/?text=8888" id="rand">看不清？<a href="###" id="">换一张</a>
+            </label>
+            <div class="padding">
+                <button type="submit" class="btn">注册</button>
+            </div>
+        </form>
+
+
+    </div>
+</body>
+<script src="../../../config.js"></script>
+<script src="../../../sdk/core.js" id="seajsnode"></script>
+<script>
+    seajs.use('./script');
+</script>
+
+</html>

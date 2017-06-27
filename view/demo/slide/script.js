@@ -6,11 +6,11 @@ define(function(require) {
 	require('sdk/common');
 
 	var dataImg = [{
-			content: 'https://o14ufxb92.qnssl.com/view0.jpg'
+			content: 'http://7xnt8z.com1.z0.glb.clouddn.com/view0.jpg'
 		}, {
-			content: 'https://o14ufxb92.qnssl.com/view1.jpg'
+			content: 'http://7xnt8z.com1.z0.glb.clouddn.com/view1.jpg'
 		}, {
-			content: 'https://o14ufxb92.qnssl.com/view2.jpg'
+			content: 'http://7xnt8z.com1.z0.glb.clouddn.com/view2.jpg'
 		}];
 
 	app.ready(function() {

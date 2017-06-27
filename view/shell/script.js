@@ -10,7 +10,7 @@ define(function(require) {
 		param = JSON.parse(param);
 	}
 	if (!param || !param.url) {
-		return app.window.openToast('参数缺失:(view/shell)', 2000);
+		return app.openToast('参数缺失:(view/shell)', 2000);
 	}
 	$('#headTitle').text(param.title || param.url);
 	//进度条

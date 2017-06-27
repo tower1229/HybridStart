@@ -286,6 +286,33 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>app.openToast(config)</td>
+                        <td>
+                            <p>打开一个气泡提示</p>
+                            <table class="table bordered">
+                                <tr>
+                                    <td>config.msg</td>
+                                    <td>
+                                        <p>提示内容</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>config.duration</td>
+                                    <td>
+                                        <p>显示时长，默认2000，单位ms</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>config.position</td>
+                                    <td>
+                                        <p>显示位置，默认"bottom"，可选参数见引擎文档</p>
+                                    </td>
+                                </tr>
+                            </table>
+                            <p></p>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>app.log(msg)</td>
                         <td>
                             向指定文件输出调试信息
@@ -473,6 +500,97 @@
                             <p></p>
                         </td>
                     </tr>
+                    <tr>
+                        <td>app.openView(param, leval1, [leval2])</td>
+                        <td>
+                            <p>跳转页面方法，leval1和leval2分别代表页面文件在<code>view/</code>内的文件夹路径，openView方法将打开指定路径中的<code>temp.html</code>页面，因此<code>view/</code>内最多支持两级目录。详细参数：</p>
+                            <table class="table bordered">
+                                <tr>
+                                    <td>param</td>
+                                    <td>
+                                        <p>[object/string] </p>
+                                        <p>当param为非object类型时，将作为新页面参数直接被存入<code>crossParam</code>；若为object类型可以传入更多配置，详见下文；若不需要传参数和修改任何配置，则要传入<code>null/undefined</code>。</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>param.param</td>
+                                    <td>
+                                        <p>作为页面参数存入本地存储<code>crossParam</code>中，如果是Object类型将同时使用官方传参方法，新页面中也可以通过<code>api.pageParam</code>获取。</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>param.duration</td>
+                                    <td>
+                                        <p>页面切换动画时长，默认appcfg.set.animateDuration</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>param.anim</td>
+                                    <td>
+                                        <p>页面切换动画类型，默认appcfg.set.windowAnimate</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>param.fullPath</td>
+                                    <td>
+                                        <p>默认<code>false</code>，是否将参数leval1的值作为页面完整地址访问，将忽略leval2的值。用于访问<code>view/</code>之外的页面。</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>param.pop</td>
+                                    <td>
+                                        <p>默认<code>false</code>，是否以弹层形式在当前窗口打开。</p>
+                                        <p>若为<code>true</code>，还可以传<code>param.top</code>和<code>param.height</code>，指示弹层的顶部位置和高度，默认都是0</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>param.bar</td>
+                                    <td>
+                                        <p>默认<code>false</code>，是否以带标题栏的方式打开。</p>
+                                        <p>若为<code>true</code>，还可以传<code>param.title</code>作为标题内容</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>param.closeself</td>
+                                    <td>
+                                        <p>默认<code>false</code>，是否跳转到新页面后关闭当前页面</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>param.closeback</td>
+                                    <td>
+                                        <p>默认<code>false</code>，是否跳转到新页面后关闭所有后台页面</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>leval1</td>
+                                    <td>
+                                        <p>目标页面在<code>view/</code>内的一级目录，如：</p>
+                                        <pre>
+                                    <code>
+            //将打开 "view/news/temp.html"
+            app.openView(null,'news');
+                                    </code>
+                                  </pre>
+                                        <p>当leval1是url时，将以web页面形式打开，此时将忽略leval2</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>leval2</td>
+                                    <td>
+                                        <p>目标页面在<code>view/</code>内的二级目录，如：</p>
+                                        <pre>
+                                    <code>
+            //将打开 "view/news/detail/temp.html"
+            app.openView(null,'news','detail');
+                                    </code>
+                                  </pre>
+                                    </td>
+                                </tr>
+                            </table>
+                            <p></p>
+                        </td>
+                    </tr>
                 </table>
                 <p></p>
             </dd>
@@ -532,95 +650,7 @@
                 </table>
                 <p></p>
             </dd>
-            <dt id="app.openView(跳转方法)">app.openView(param, leval1, [leval2])</dt>
-            <dd>
-                <p>跳转页面方法，leval1和leval2分别代表页面文件在<code>view/</code>内的文件夹路径，openView方法将打开指定路径中的<code>temp.html</code>页面，因此<code>view/</code>内最多支持两级目录。详细参数：</p>
-                <table class="table bordered">
-                    <tr>
-                        <td>param</td>
-                        <td>
-                            <p>[object/string] </p>
-                            <p>当param为非object类型时，将作为新页面参数直接被存入<code>crossParam</code>；若为object类型可以传入更多配置，详见下文；若不需要传参数和修改任何配置，则要传入<code>null/undefined</code>。</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>param.param</td>
-                        <td>
-                            <p>作为页面参数存入本地存储<code>crossParam</code>中，如果是Object类型将同时使用官方传参方法，新页面中也可以通过<code>api.pageParam</code>获取。</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>param.duration</td>
-                        <td>
-                            <p>页面切换动画时长，默认appcfg.set.animateDuration</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>param.anim</td>
-                        <td>
-                            <p>页面切换动画类型，默认appcfg.set.windowAnimate</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>param.fullPath</td>
-                        <td>
-                            <p>默认<code>false</code>，是否将参数leval1的值作为页面完整地址访问，将忽略leval2的值。用于访问<code>view/</code>之外的页面。</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>param.pop</td>
-                        <td>
-                            <p>默认<code>false</code>，是否以弹层形式在当前窗口打开。</p>
-                            <p>若为<code>true</code>，还可以传<code>param.top</code>和<code>param.height</code>，指示弹层的顶部位置和高度，默认都是0</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>param.bar</td>
-                        <td>
-                            <p>默认<code>false</code>，是否以带标题栏的方式打开。</p>
-                            <p>若为<code>true</code>，还可以传<code>param.title</code>作为标题内容</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>param.closeself</td>
-                        <td>
-                            <p>默认<code>false</code>，是否跳转到新页面后关闭当前页面</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>param.closeback</td>
-                        <td>
-                            <p>默认<code>false</code>，是否跳转到新页面后关闭所有后台页面</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>leval1</td>
-                        <td>
-                            <p>目标页面在<code>view/</code>内的一级目录，如：</p>
-                            <pre>
-                        <code>
-//将打开 "view/news/temp.html"
-app.openView(null,'news');
-                        </code>
-                      </pre>
-                            <p>当leval1是url时，将以web页面形式打开，此时将忽略leval2</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>leval2</td>
-                        <td>
-                            <p>目标页面在<code>view/</code>内的二级目录，如：</p>
-                            <pre>
-                        <code>
-//将打开 "view/news/detail/temp.html"
-app.openView(null,'news','detail');
-                        </code>
-                      </pre>
-                        </td>
-                    </tr>
-                </table>
-                <p></p>
-            </dd>
+            
             <dt id="app.window(窗口相关)">app.window</dt>
             <dd>
                 <p>窗口相关方法</p>
@@ -643,7 +673,7 @@ app.openView(null,'news','detail');
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>option.data</td>
+                                    <td>option.param</td>
                                     <td>
                                         <p>新页面的pageParam</p>
                                     </td>
@@ -681,33 +711,6 @@ app.openView(null,'news','detail');
                         <td>app.window.pause(fn)</td>
                         <td>
                             <p>窗口退到后台回调</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.window.openToast(config)</td>
-                        <td>
-                            <p>打开一个气泡提示</p>
-                            <table class="table bordered">
-                                <tr>
-                                    <td>config.msg</td>
-                                    <td>
-                                        <p>提示内容</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.duration</td>
-                                    <td>
-                                        <p>显示时长，默认2000，单位ms</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.position</td>
-                                    <td>
-                                        <p>显示位置，默认"bottom"，可选参数见引擎文档</p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <p></p>
                         </td>
                     </tr>
                     <tr>
@@ -929,7 +932,7 @@ app.openView(null,'news','detail');
             </dd>
             <dt id="extend(扩展方法)">extend</dt>
             <dd>
-                <p>扩展方法，如下：</p>
+                <p>扩展方法/属性</p>
                 <table class="table bordered">
                     <tr>
                         <td>window.platform</td>
@@ -1202,7 +1205,7 @@ require.async('actionSheet', function(actionSheet) {
             <a href="#" title="返回顶部" class="dib foot_logo gotop">
                 <figure></figure>
             </a>
-            <p class="dib"> © 2016 - 3016&emsp;<a href="http://refined-x.com" title="前端路上">前端路上</a>&emsp;<a href="mailto:tower1229@gmail.com" title="mailto:雅X共赏">雅X共赏</a></p>
+            <p class="dib"> © 2016 - 3016&emsp;<a href="http://refined-x.com" title="雅X共赏的前端技术博客">前端路上</a>&emsp;<a href="mailto:tower1229@gmail.com" title="mailto:雅X共赏">雅X共赏</a></p>
         </div>
     </footer>
 </body>
