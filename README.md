@@ -17,7 +17,7 @@
 - 同步代码，打包运行
 
 ## 文档 
-[HybridStart Documention Preview](http://refined-x.com/HybridStart/docs/)
+[HybridStart Documention](http://refined-x.com/HybridStart/docs/)
 
 ## 默认依赖插件
 - [UIMultiSelector](http://docs.apicloud.com/Client-API/UI-Layout/UIMultiSelector)用于美化`select`标签效果
