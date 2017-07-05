@@ -4,6 +4,8 @@
 
 基于[apicloud](http://www.apicloud.com/)的混合应用开发框架，可能是开发这一类混合应用的最佳实践。
 
+1.0版本正在紧锣密鼓开发中，从这里看[进展](https://github.com/tower1229/HybridStart/projects)。
+
 ## 提供
 - 一套说得过去的UI，反正又不是不能改
 - 清晰的开发模式，做APP从未这么简单
