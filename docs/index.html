@@ -284,6 +284,18 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>app.subscribe(eventName, callback)</td>
+                        <td>
+                            <p>接收名称为eventName的事件，并执行回调callback</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>app.publish(eventName, msg)</td>
+                        <td>
+                            <p>发布名称为eventName的事件，附带消息msg，将在接收事件回调中接收</p>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>app.exit(silent)</td>
                         <td>
                             app退出，silent可选，若为真值将无提示直接退出
@@ -328,9 +340,35 @@
                             <p>模态loading提示</p>
                             <table class="table bordered">
                                 <tr>
-                                    <td>app.loading.show([msg])</td>
+                                    <td>app.loading.show([msg], [opt])</td>
                                     <td>
-                                        显示loading，默认提示文字'努力加载中.'
+                                        <p>显示loading，默认提示文字'努力加载中.'</p>
+                                        <table class="table">
+                                            <tr>
+                                                <td>opt.msg</td>
+                                                <td>
+                                                    <p></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>opt.title</td>
+                                                <td>
+                                                    <p></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>opt.anim</td>
+                                                <td>
+                                                    <p></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>opt.delay</td>
+                                                <td>
+                                                    <p></p>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
                                 </tr>
                                 <tr>
@@ -445,59 +483,20 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>app.push</td>
+                        <td>app.pull</td>
                         <td>
                             <p>下拉刷新方法</p>
                             <table class="table bordered">
                                 <tr>
-                                    <td>app.push.init(fn)</td>
+                                    <td>app.pull.init(fn)</td>
                                     <td>
                                         <p>初始化下拉刷新功能，fn是触发回调，必填</p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>app.push.stop()</td>
+                                    <td>app.pull.stop()</td>
                                     <td>
                                         <p>停止下拉刷新效果，恢复到正常状态</p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <p></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.render(template, data, dom, reload, cb)</td>
-                        <td>
-                            <p>etpl模板渲染方法，参数：</p>
-                            <table class="table bordered">
-                                <tr>
-                                    <td>template</td>
-                                    <td>
-                                        <p>etpl模板字符串</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>data</td>
-                                    <td>
-                                        <p>模板数据</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>dom</td>
-                                    <td>
-                                        <p>渲染结果注入元素</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>reload</td>
-                                    <td>
-                                        <p>布尔类型，代表注入方式，true填充/false插入</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>cb</td>
-                                    <td>
-                                        <p>注入后的回调，接收渲染结果为参数</p>
                                     </td>
                                 </tr>
                             </table>
@@ -593,6 +592,12 @@
                                 </tr>
                             </table>
                             <p></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>app.getParam()</td>
+                        <td>
+                            <p>获取<code>app.openView()</code>方法传递的参数，支持Object格式。</p>
                         </td>
                     </tr>
                 </table>
@@ -747,7 +752,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>config.data</td>
+                                    <td>config.param</td>
                                     <td>
                                         传给浮动窗口的参数，默认{}
                                     </td>
@@ -859,27 +864,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>app.window.subscribe(eventName, callback)</td>
-                        <td>
-                            <p>接收名称为eventName的订阅事件，并执行回调callback</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.window.publish(eventName, msg)</td>
-                        <td>
-                            <p>发布名称为eventName的订阅事件，附带消息msg，将在接收事件回调中作为参数</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.window.evaluateScript(name, scriptContent)</td>
+                        <td>app.window.evaluate(name, [frameName], scriptContent)</td>
                         <td>
                             <p>在名称为name的窗口中执行脚本scriptContent</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.window.evaluatePopoverScript(name, popName, scriptContent)</td>
-                        <td>
-                            <p>在name窗口中的popName浮动窗口，执行脚本scriptContent</p>
                         </td>
                     </tr>
                 </table>
