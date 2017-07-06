@@ -1,31 +1,32 @@
 /*
  * name: upload.js
- * version: v0.4.0
- * update: url必传
- * date: 2016-04-14
+ * version: v0.4.1
+ * update: add headers config
+ * date: 2017-07-04
  */
 define('upload', function(require, exports, module) {
 	'use strict';
-	var base = require('base');
+	var $ = app.util,
+		base = require('base');
 	var def = {
 		url: '',
 		onCreate: function(opCode) {
-			app.openToast('正在上传...', appcfg.set.longtime);
+			app.toast('正在上传...', appcfg.set.longtime);
 		},
 		onCreateError: function() {
-			app.openToast('创建上传失败', '2000');
+			app.toast('创建上传失败', '2000');
 		},
 		onStatus: function(percent) {
-			app.openToast('正在上传:' + percent + '%', '2000');
+			app.toast('正在上传:' + percent + '%', '2000');
 		},
 		success: function(remoteUrl) {
 
 		},
 		cancel: function(cancel) {
-			app.openToast('取消上传', '2000');
+			app.toast('取消上传', '2000');
 		},
 		error: function() {
-			app.openToast('上传失败', '2000');
+			app.toast('上传失败', '2000');
 		}
 	};
 	var Upload = function(localImgPath, option) {
@@ -36,15 +37,7 @@ define('upload', function(require, exports, module) {
 			return null;
 		}
 		opt.onCreate(randOpId);
-		//注入header
-		var header = {};
-		if (app.ls.val('user')) {
-			var _user = JSON.parse(app.ls.val('user'));
-			header = {
-				id: _user.id,
-				password: _user.password
-			};
-		}
+
 		api.ajax({
 			tag: randOpId,
 			url: uploadHost,
@@ -56,7 +49,7 @@ define('upload', function(require, exports, module) {
 				}
 			},
 			report: true,
-			headers: header
+			headers: $.extend({}, option.headers || {})
 		}, function(ret, err) {
 			if (ret) {
 				switch (ret.status) {

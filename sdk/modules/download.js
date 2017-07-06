@@ -6,41 +6,45 @@
  */
 define('download', function(require, exports, module) {
 	'use strict';
-	var def = {
-		path: "fs://Download/",
-		name: "",
-		onCreate: function() {
-			app.openToast('正在下载', appcfg.set.longtime);
-		},
-		onCreateError: function(err) {
-			app.openToast('创建下载失败：' + err.msg, '2000');
-		},
-		onStatus: function(percent) {
-			app.openToast('正在下载:' + percent + '%', '2000');
-		},
-		success: function(savePath, fileSize) {
+	var $ = app.util,
+		def = {
+			path: "fs://Download/",
+			name: "",
+			onCreate: function() {
+				app.toast('正在下载', appcfg.set.longtime);
+			},
+			onCreateError: function(err) {
+				app.toast('创建下载失败：' + err.msg, '2000');
+			},
+			onStatus: function(percent) {
+				app.toast('正在下载:' + percent + '%', '2000');
+			},
+			success: function(savePath, fileSize) {
 
-		},
-		error: function(status) {
-			if(status===2){
-				app.openToast('下载失败', '2000');
-			}else{
-				app.openToast('下载异常，status:' + status, '2000');
+			},
+			error: function(status) {
+				if (status === 2) {
+					app.toast('下载失败', '2000');
+				} else {
+					app.toast('下载异常，status:' + status, '2000');
+				}
 			}
-		}
-	};
+		};
 
 	var download = function(remotePath, option) {
 		var randOpId = Math.floor(Math.random() * (1000 + 1)),
 			opt = $.extend(def, option || {}),
 			filePath,
-			timer = setTimeout(function(){
+			cancel = function(){
 				api.cancelDownload({
-				    url: remotePath
+					url: remotePath
 				});
-				app.openToast('下载超时', '2000');
+			},
+			timer = setTimeout(function() {
+				cancel();
+				app.toast('下载超时', '2000');
 			}, opt.outime || appcfg.set.longtime);
-		if(!remotePath || !remotePath.split){
+		if (!remotePath || !remotePath.split) {
 			return;
 		}
 		if (!opt.name) {
@@ -79,11 +83,9 @@ define('download', function(require, exports, module) {
 			}
 		});
 		return {
-			abort: function(){
+			abort: function() {
+				cancel();
 				clearTimeout(timer);
-				api.cancelDownload({
-				    url: remotePath
-				});
 			}
 		};
 	};

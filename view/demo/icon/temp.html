@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+</head>
+
+<body class="flex-col">
+    <div class="head">
+        <div class="btn" id="goBack">
+            <i class="ion">&#xe651;</i>
+        </div>
+        <div class="title">内置图标</div>
+    </div>
+    <div class="flex-1 flex-col scroll_cont">
+        <ul id="icons" class="demo fix light">
+            <li data-tags="check" title="check" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe645;" style="display: none;"> </li>
+            <li data-tags="close" title="close" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe647;" style="display: none;"> </li>
+            <li data-tags="edit" title="edit" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe649;" style="display: none;"> </li>
+            <li data-tags="comment" title="comment" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe66b;" style="display: none;"> </li>
+            <li data-tags="like_fill" title="like_fill" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe66d;" style="display: none;"> </li>
+            <li data-tags="settings" title="settings" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe68a;" style="display: none;"> </li>
+            <li data-tags="question" title="question" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe691;" style="display: none;"> </li>
+            <li data-tags="pic" title="pic" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe69d;" style="display: none;"> </li>
+            <li data-tags="message" title="message" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6be;" style="display: none;"> </li>
+            <li data-tags="lock" title="lock" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6c0;" style="display: none;"> </li>
+            <li data-tags="unlock" title="unlock" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6c2;" style="display: none;"> </li>
+            <li data-tags="friend" title="friend" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6cc;" style="display: none;"> </li>
+            <li data-tags="箭头" title="箭头" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe62d;" style="display: none;"> </li>
+            <li data-tags="mobile" title="mobile" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe704;" style="display: none;"> </li>
+            <li data-tags="mobile_fill" title="mobile_fill" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe705;" style="display: none;"> </li>
+            <li data-tags="send" title="send" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe63b;" style="display: none;"> </li>
+            <li data-tags="people" title="people" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe736;" style="display: none;"> </li>
+            <li data-tags="android-add" title="android-add" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe60b;" style="display: none;"> </li>
+            <li data-tags="android-add-circle" title="android-add-circle" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe60c;" style="display: none;"> </li>
+            <li data-tags="android-alert" title="android-alert" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe60d;" style="display: none;"> </li>
+            <li data-tags="android-apps" title="android-apps" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe60e;" style="display: none;"> </li>
+            <li data-tags="android-arrow-dropdown" title="android-arrow-dropdown" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe612;" style="display: none;"> </li>
+            <li data-tags="android-arrow-dropleft" title="android-arrow-dropleft" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe614;" style="display: none;"> </li>
+            <li data-tags="android-arrow-dropright" title="android-arrow-dropright" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe616;" style="display: none;"> </li>
+            <li data-tags="android-arrow-dropup" title="android-arrow-dropup" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe618;" style="display: none;"> </li>
+            <li data-tags="android-attach" title="android-attach" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe61c;" style="display: none;"> </li>
+            <li data-tags="android-bookmark" title="android-bookmark" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe61d;" style="display: none;"> </li>
+            <li data-tags="android-call" title="android-call" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe621;" style="display: none;"> </li>
+            <li data-tags="android-camera" title="android-camera" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe622;" style="display: none;"> </li>
+            <li data-tags="android-cancel" title="android-cancel" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe623;" style="display: none;"> </li>
+            <li data-tags="android-clipboard" title="android-clipboard" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe62c;" style="display: none;"> </li>
+            <li data-tags="android-cloud" title="android-cloud" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe62e;" style="display: none;"> </li>
+            <li data-tags="android-cloud-outline" title="android-cloud-outline" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe631;" style="display: none;"> </li>
+            <li data-tags="android-contact" title="android-contact" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe634;" style="display: none;"> </li>
+            <li data-tags="android-contacts" title="android-contacts" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe635;" style="display: none;"> </li>
+            <li data-tags="android-create" title="android-create" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe637;" style="display: none;"> </li>
+            <li data-tags="android-delete" title="android-delete" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe638;" style="display: none;"> </li>
+            <li data-tags="android-exit" title="android-exit" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe63f;" style="display: none;"> </li>
+            <li data-tags="android-favorite" title="android-favorite" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe641;" style="display: none;"> </li>
+            <li data-tags="android-favorite-outline" title="android-favorite-outline" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe642;" style="display: none;"> </li>
+            <li data-tags="android-globe" title="android-globe" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe646;" style="display: none;"> </li>
+            <li data-tags="android-home" title="android-home" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe64a;" style="display: none;"> </li>
+            <li data-tags="android-options" title="android-options" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe64d;" style="display: none;"> </li>
+            <li data-tags="android-navigate" title="android-navigate" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe64e;" style="display: none;"> </li>
+            <li data-tags="android-notifications-none" title="android-notifications-none" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe64f;" style="display: none;"> </li>
+            <li data-tags="android-lock" title="android-lock" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe650;" style="display: none;"> </li>
+            <li data-tags="android-more-horizontal" title="android-more-horizontal" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe654;" style="display: none;"> </li>
+            <li data-tags="android-more-vertical" title="android-more-vertical" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe655;" style="display: none;"> </li>
+            <li data-tags="android-map" title="android-map" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe658;" style="display: none;"> </li>
+            <li data-tags="android-menu" title="android-menu" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe659;" style="display: none;"> </li>
+            <li data-tags="android-refresh" title="android-refresh" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe65d;" style="display: none;"> </li>
+            <li data-tags="android-remove-circle" title="android-remove-circle" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe65e;" style="display: none;"> </li>
+            <li data-tags="android-pin" title="android-pin" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe65f;" style="display: none;"> </li>
+            <li data-tags="android-plane" title="android-plane" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe660;" style="display: none;"> </li>
+            <li data-tags="android-settings" title="android-settings" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe667;" style="display: none;"> </li>
+            <li data-tags="android-share" title="android-share" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe668;" style="display: none;"> </li>
+            <li data-tags="android-star" title="android-star" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe66a;" style="display: none;"> </li>
+            <li data-tags="android-star-outline" title="android-star-outline" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe66c;" style="display: none;"> </li>
+            <li data-tags="android-sync" title="android-sync" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe670;" style="display: none;"> </li>
+            <li data-tags="android-unlock" title="android-unlock" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe673;" style="display: none;"> </li>
+            <li data-tags="android-warning" title="android-warning" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe675;" style="display: none;"> </li>
+            <li data-tags="at" title="at" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe685;" style="display: none;"> </li>
+            <li data-tags="calculator" title="calculator" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe69f;" style="display: none;"> </li>
+            <li data-tags="calendar" title="calendar" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6a0;" style="display: none;"> </li>
+            <li data-tags="camera" title="camera" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6a1;" style="display: none;"> </li>
+            <li data-tags="chatbox" title="chatbox" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6a4;" style="display: none;"> </li>
+            <li data-tags="chatboxes" title="chatboxes" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6a5;" style="display: none;"> </li>
+            <li data-tags="chatbox-working" title="chatbox-working" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6a6;" style="display: none;"> </li>
+            <li data-tags="chatbubble" title="chatbubble" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6a7;" style="display: none;"> </li>
+            <li data-tags="chatbubbles" title="chatbubbles" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6a8;" style="display: none;"> </li>
+            <li data-tags="chatbubble-working" title="chatbubble-working" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6af;" style="display: none;"> </li>
+            <li data-tags="code" title="code" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6b5;" style="display: none;"> </li>
+            <li data-tags="code-working" title="code-working" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6b7;" style="display: none;"> </li>
+            <li data-tags="cube" title="cube" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6bb;" style="display: none;"> </li>
+            <li data-tags="document" title="document" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6bd;" style="display: none;"> </li>
+            <li data-tags="email" title="email" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe694;" style="display: none;"> </li>
+            <li data-tags="email-unread" title="email-unread" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe695;" style="display: none;"> </li>
+            <li data-tags="key" title="key" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe696;" style="display: none;"> </li>
+            <li data-tags="locked" title="locked" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe698;" style="display: none;"> </li>
+            <li data-tags="filter" title="filter" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xeabf;" style="display: none;"> </li>
+            <li data-tags="text" title="text" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe791;" style="display: none;"> </li>
+            <li data-tags="箭头" title="箭头" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe610;" style="display: none;"> </li>
+            <li data-tags="loading" title="loading" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe67c;" style="display: none;"> </li>
+            <li data-tags="loading" title="loading" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6df;" style="display: none;"> </li>
+            <li data-tags="loading" title="loading" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe66e;" style="display: none;"> </li>
+            <li data-tags="箭头" title="箭头" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe609;" style="display: none;"> </li>
+            <li data-tags="日历" title="日历" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe74f;" style="display: none;"> </li>
+            <li data-tags="mail" title="mail" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe7bd;" style="display: none;"> </li>
+            <li data-tags="返回" title="返回" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe651;" style="display: none;"> </li>
+            <li data-tags="购物车" title="购物车" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe6a9;" style="display: none;"> </li>
+            <li data-tags="监控" title="监控" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe620;" style="display: none;"> </li>
+            <li data-tags="筛选" title="筛选" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe626;" style="display: none;"> </li>
+            <li data-tags="删除" title="删除" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe627;" style="display: none;"> </li>
+            <li data-tags="名片" title="名片" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe628;" style="display: none;"> </li>
+            <li data-tags="列表" title="列表" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe62f;" style="display: none;"> </li>
+            <li data-tags="文件" title="文件" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe632;" style="display: none;"> </li>
+            <li data-tags="home_light" title="home_light" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe7d4;" style="display: none;"> </li>
+            <li data-tags="home_fill_light" title="home_fill_light" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe7d8;" style="display: none;"> </li>
+            <li data-tags="my_fill_light" title="my_fill_light" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe7d9;" style="display: none;"> </li>
+            <li data-tags="search_light" title="search_light" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe7da;" style="display: none;"> </li>
+            <li data-tags="scan_light" title="scan_light" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe7db;" style="display: none;"> </li>
+            <li data-tags="close_light" title="close_light" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe7de;" style="display: none;"> </li>
+            <li data-tags="add_light" title="add_light" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe7dc;" style="display: none;"> </li>
+            <li data-tags="refresh_light" title="refresh_light" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe7e0;" style="display: none;"> </li>
+            <li data-tags="ic_done" title="ic_done" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe924;" style="display: none;"> </li>
+            <li data-tags="菜单" title="菜单" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe600;" style="display: none;"> </li>
+            <li data-tags="日历" title="日历" active> <i class="ion"></i> <input class="_code" type="text" data-code="&amp;#xe65c;" style="display: none;"> </li>
+        </ul>
+    </div>
+</body>
+<script src="../../../config.js"></script>
+<script src="../../../sdk/core.js" id="seajsnode"></script>
+<script>
+    seajs.use('./script')
+</script>
+
+</html>

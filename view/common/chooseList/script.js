@@ -7,18 +7,19 @@
 define(function(require) {
 	var comm = require('sdk/server');
     require('sdk/common');
-    var extParam = JSON.parse(app.ls.val('crossParam'));
+    var $ = app.util;
+    var extParam = app.getParam();
 
     if(extParam && extParam.multi){
-        $('#ok').show();
+        $('#ok')[0].style.display = 'block';
     }
     var submitChoose = function(){
-        var choosenItem = app.ls.val('choosenItem');
+        var choosenItem = app.storage.val('choosenItem');
         setTimeout(function(){
             if(!choosenItem){
                 return null;
             }
-            app.window.publish('choosenItem',choosenItem);
+            app.publish('choosenItem',choosenItem);
             app.window.close();
         },0);
     };

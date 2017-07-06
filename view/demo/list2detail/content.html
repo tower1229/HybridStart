@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="content.css" rel="stylesheet">
+</head>
+
+<body class="flex-col scroll_cont list">
+    <div class="banner" id="banner">
+        <div class="rect-50">
+            <img class="_full block-holder" src="../../../res/img/placeholder.jpg" />
+            <textarea template style="display: none">
+                <img class="_full" src="${banner.cover}" />
+                <h2 class="banner_title">${banner.title}</h2>
+            </textarea>
+        </div>
+    </div>
+
+    <ul class="list" id="list">
+        <li class="item item-avatar">
+            <img src="../../../res/img/placeholder.jpg" class="block-holder">
+            <h2 class="block-holder">holder</h2>
+            <p class="block-holder">holder</p>
+        </li>
+        <li class="item item-avatar">
+            <img src="../../../res/img/placeholder.jpg" class="block-holder">
+            <h2 class="block-holder">holder</h2>
+            <p class="block-holder">holder</p>
+        </li>
+        <li class="item item-avatar">
+            <img src="../../../res/img/placeholder.jpg" class="block-holder">
+            <h2 class="block-holder">holder</h2>
+            <p class="block-holder">holder</p>
+        </li>
+        <textarea template style="display: none">
+        <!-- for: ${data} as ${item} -->
+        <li class="item item-avatar" data-guid="${item.guid}">
+            <img src="${item.cover}">
+            <h2 class="title">${item.title}</h2>
+            <p>作者：<span class="author">${item.author}</span> </p>
+        </li>
+        <!-- /for -->
+        </textarea>
+    </ul>
+</body>
+<script src="../../../config.js"></script>
+<script src="../../../sdk/core.js" id="seajsnode"></script>
+<script>
+    seajs.use('./content');
+</script>
+
+</html>

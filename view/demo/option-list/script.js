@@ -2,8 +2,8 @@
  * layout
  */
 define(function(require) {
-	var comm = require('sdk/server');
 	require('sdk/common');
+	var $ = app.util;
 
 	//侧滑操作列表
 	require.async('option-list', function(optionList) {
@@ -22,14 +22,14 @@ define(function(require) {
 				text: '删除'
 			}],
 			onClick: function(button, itemIndex, itemLength) {
-				var optionIndex = $(button).index();
+				var optionIndex = $(button).data('index');
 				if (optionIndex == 0) {
 					console.log('编辑')
 				} else if (optionIndex == 1) {
-					demo.delete(itemIndex)
+					demo.delete(itemIndex);
 				}
 			}
-		})
+		});
 	});
 
 	app.ready(function() {

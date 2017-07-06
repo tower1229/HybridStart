@@ -4,11 +4,13 @@
 define(function(require) {
     var comm = require('sdk/server');
     require('sdk/common');
+    var $ = require('jquery');
 
     //上传图片
     var maxPicLen = 5;
     var uploadingImg = false;
-    $('#picStor').text(maxPicLen);
+    var $picStore = $('picStor');
+    $picStore.text(maxPicLen);
     var gotPicter = function(avatsrc) {
         if (!avatsrc) {
             return null;
@@ -18,7 +20,7 @@ define(function(require) {
         $('#picControl').append(newImg);
         adder.appendTo($('#picControl'));
         var has = $('#picControl ._pic').length;
-        $('#picStor').text(maxPicLen - has);
+        $picStore.text(maxPicLen - has);
         if (has >= maxPicLen) {
             $('#picControl').find('._adder').hide();
         }
@@ -58,7 +60,7 @@ define(function(require) {
                         msg: "上传失败"
                     });
                     var has = $('#picControl ._pic').length;
-                    $('#picStor').text(maxPicLen - has);
+                    $picStore.text(maxPicLen - has);
                     if (has < maxPicLen) {
                         $('#picControl').find('._adder').show();
                     }
@@ -78,54 +80,51 @@ define(function(require) {
         theNode.remove();
         //更新图片数据
         var has = $('#picControl ._pic').length;
-        $('#picStor').text(maxPicLen - has);
+        $picStore.text(maxPicLen - has);
         if (has < maxPicLen) {
             $('#picControl').find('._adder').show();
         }
     });
     //获取图片
     $('body').on('click', '#picControl ._adder', function() {
-        require.async('actionSheet', function(actionSheet) {
-            actionSheet({
-                titleText: '选择图片',
-                buttons: ['拍摄', '选择图片'],
-                cancelText: '取消',
-                buttonClicked: function(index) {
-                    var sourceType;
-                    switch (index) {
-                        case 1:
-                            sourceType = 'camera';
-                            break;
-                        case 2:
-                            sourceType = 'album';
-                            break;
-                        default:
+        app.actionSheet({
+            title: '选择图片',
+            buttons: ['拍摄', '选择图片']
+        }, function(index) {
+            var sourceType;
+            switch (index) {
+                case 1:
+                    sourceType = 'camera';
+                    break;
+                case 2:
+                    sourceType = 'album';
+                    break;
+                default:
 
-                            break;
-                    }
-                    if (!sourceType) {
-                        return null;
-                    }
-                    api.getPicture({
-                        sourceType: sourceType,
-                        encodingType: 'jpg',
-                        mediaValue: 'pic',
-                        destinationType: 'url',
-                        allowEdit: true,
-                        quality: 70,
-                        targetWidth: 640,
-                        saveToPhotoAlbum: false
-                    }, function(ret, err) {
-                        if (ret) {
-                            gotPicter(ret.data);
-                        } else {
-                            console.log(err);
-                        }
-                    });
+                    break;
+            }
+            if (!sourceType) {
+                return null;
+            }
+            api.getPicture({
+                sourceType: sourceType,
+                encodingType: 'jpg',
+                mediaValue: 'pic',
+                destinationType: 'url',
+                allowEdit: true,
+                quality: 70,
+                targetWidth: 640,
+                saveToPhotoAlbum: false
+            }, function(ret, err) {
+                if (ret) {
+                    gotPicter(ret.data);
+                } else {
+                    console.log(err);
                 }
             });
-        });
+        })
     });
+
 
 
     app.ready(function() {

@@ -2,26 +2,23 @@
  * 
  */
 define(function(require) {
-	var comm = require('sdk/server');
-
-	var param = app.ls.val('crossParam');
-	var box = require('box');
-	if (param && param.split) {
-		param = JSON.parse(param);
-	}
+	var $ = app.util;
+	var param = app.getParam();
+	
+	
 	if (!param || !param.url) {
-		return app.openToast('参数缺失:(view/shell)', 2000);
+		return app.toast('参数缺失:(view/shell)', 2000);
 	}
-	$('#headTitle').text(param.title || param.url);
+	$('#headTitle')[0].innerText = (param.title || param.url);
 	//进度条
-	var loadingBar = $('#loadingBar');
+	var loadingBar = $('#loadingBar')[0];
 	var outTimeSet;
 
 	var startLoad = function(progress) {
 		if(param.show){
-			return app.ls.remove('crossParam');
+			return app.storage.remove('crossParam');
 		}
-		loadingBar.find('.loading-progress').get(0).style.width = progress + '%';
+		loadingBar.querySelector('.loading-progress').style.width = progress + '%';
 		outTimeSet = setTimeout(function() {
 			loadDone();
 		}, appcfg.set.longtime);
@@ -31,11 +28,11 @@ define(function(require) {
 		if(outTimeSet){
 			clearTimeout(outTimeSet);
 		}
-		loadingBar.find('.loading-progress').get(0).style.transitionDuration = 600 + 'ms';
-		loadingBar.find('.loading-progress').get(0).style.width = '100%';
+		loadingBar.querySelector('.loading-progress').style.transitionDuration = 600 + 'ms';
+		loadingBar.querySelector('.loading-progress').style.width = '100%';
 		setTimeout(function() {
-			loadingBar.find('.loading-progress').get(0).style.transitionDuration = '';
-			loadingBar.find('.loading-progress').get(0).style.width = '0%';
+			loadingBar.querySelector('.loading-progress').style.transitionDuration = '';
+			loadingBar.querySelector('.loading-progress').style.width = '0%';
 		}, 700);
 	};
 	//关闭按钮显隐
@@ -43,22 +40,24 @@ define(function(require) {
 		goBack = $('#goBack'),
 		closeShell = function(){
 			if(param.shellIsPop){
-				app.window.evaluateScript("","api.closeFrame({name: 'pageView'});api.closeFrame({name: 'shell'})");
+				app.window.evaluate({
+					script: "api.closeFrame({name: 'pageView'});api.closeFrame({name: 'shell'})"
+				});
 			}else{
 				app.window.close();
 			}
 		};
-	closeBtn.on('click', function() {
+	closeBtn.on('touchstart', function() {
 		closeShell();
 	});
-	goBack.on('click', function() {
+	goBack.on('touchstart', function() {
 		var lastUrl;
 		pageViewQueue.pop();
 		lastUrl = pageViewQueue[pageViewQueue.length-1];
 		if (pageViewQueue.length) {
-			app.window.evaluatePopoverScript("", "pageView", "window.location.href='"+lastUrl+"'");
+			app.window.evaluate("", "pageView", "window.location.href='"+lastUrl+"'");
 			if(pageViewQueue.length===1){
-				closeBtn.removeClass('show');
+				closeBtn[0].classList.remove('show');
 			}
 		} else {
 			closeShell();
@@ -71,7 +70,7 @@ define(function(require) {
 		if (url && url.split) {
 			var i = 0,
 				routeLength = pageViewQueue.length,
-				View = $('#View');
+				View = $('#View')[0];
 			for (; i < routeLength; i++) {
 				if (pageViewQueue[i] == url) {
 					pageViewQueue.splice(i, 1);
@@ -80,14 +79,13 @@ define(function(require) {
 			}
 			pageViewQueue.push(url);
 			if (pageViewQueue.length > 1) {
-				closeBtn.addClass('show');
+				closeBtn[0].classList.add('show');
 			}
-			app.window.resizePopover({
+			app.window.setPopover({
 				name: 'pageView',
-				left: 0,
-				top: View.offset().top,
-				width: parseInt(View.width()),
-				height: parseInt(View.height())
+				rect: {
+					x: 0
+				}
 			});
 		}
 	};
@@ -106,21 +104,21 @@ define(function(require) {
 			frameName: 'pageView'
 		}, function(ret, err) {
 			if(err){
-				return console.log(JSON.stringify(err));
+				return console.log('shell:Error ' + JSON.stringify(err));
 			}
 			switch (ret.state) {
 				case 0:
-					console.log('开始加载');
+					//console.log('开始加载');
 					break;
 				case 1:
 					startLoad(ret.progress);
 					break;
 				case 2:
 					loadDone();
-					app.window.publish('pageViewDone', 1);
+					app.publish('pageViewDone', 1);
 					break;
 				case 3:
-					$('#headTitle').text(ret.title);
+					$('#headTitle')[0].innerText = ret.title;
 					break;
 				case 4:
 					catchUrl(ret.url);
@@ -131,8 +129,8 @@ define(function(require) {
 		});
 
 		//安卓返回拦截
-		app.monitorKey(0, function() {
-			goBack.trigger('click');
+		app.key('keyback', function() {
+			goBack.trigger('touchstart');
 		});
 		
 

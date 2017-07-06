@@ -2,14 +2,15 @@
  * layout
  */
 define(function(require) {
-	var comm = require('sdk/server');
 	require('sdk/common');
+	var $ = app.util;
 
 	app.ready(function() {
 		app.window.popoverElement({
-			id:'view',
-			url:'./content.html',
-			bounce:true
+			id: 'view',
+			url: './content.html',
+			name: 'listWin',
+			bounces: true
 		});
 
 	});

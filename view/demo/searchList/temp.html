@@ -11,7 +11,7 @@
     <body class="flex-col">
         <div class="head myhead">
             <div class="btn" id="goBack">
-                <i class="ion">&#xe62d;</i>
+                <i class="ion">&#xe651;</i>
             </div>
             <div class="openSearch" id="openSearch">
                 <div class="_label">配件名称/类别/图号</div>
@@ -22,7 +22,7 @@
         </div>
         <div class="partItem">
             <ul class="row" id="catList">
-                <textarea class="hide" id="catListTemp">
+                <textarea class="hide" template>
                 <li class="span-3 el" data-val="">所有分类</li>
                 <!-- for: ${data} as ${cat} -->
                 <li class="span-3 el<!-- if: ${cat.isTop}=='1' --> isTop<!-- /if -->" data-val="${cat.id}">${cat.name}</li>

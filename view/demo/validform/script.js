@@ -2,16 +2,15 @@
  * layout
  */
 define(function(require) {
-	var comm = require('sdk/server');
 	require('sdk/common');
-
+	var $ = require('jquery');
 	//js
-	require('validform');
-	var loginForm = $('#reg_form').Validform({
+	var Validform = require('validform');
+	var loginForm = Validform($('#reg_form'), {
 		ajaxPost: true,
 		url: 'http://host.refined-x.com/test/ajax.php',
 		callback: function(res) {
-			app.openToast(res);
+			app.toast(res);
 		}
 	});
 

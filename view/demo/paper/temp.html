@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body class="flex-col">
+    <div class="head myhead">
+      <div class="btn" id="goBack">
+        <i class="ion">&#xe651;</i>
+      </div>
+      <div class="title" id="headTitle">问卷调查</div>
+    </div>
+    <div class="flex-1 scroll_cont" id="View">
+      <div class="list">
+        <div class="item item-body">
+          <h2 class="tc" id="paperName"></h2>
+          <div id="paperDescription"></div>
+        </div>
+      </div>
+
+      <form id="paperForm">
+      <script type="text/template" template>
+        <!-- for: ${questions} as ${item} -->
+        <div class="card">
+          <div class="item item-divider item-text-wrap">${item.name}</div>
+          <!-- if: ${item.question_class}=='radio' -->
+          <!-- for: ${item.items} as ${radio}, ${index} -->
+          <label class="item item-radio radio-primary">
+            <input type="radio" name="${item.question_type}-${item.id}" value="${radio.id}"<!-- if: ${index}==0 -->checked<!-- /if --> >
+            ${radio.name}
+          </label>
+          <!-- /for -->
+          <!-- elif: ${item.question_class}=='checkbox' -->
+          <!-- for: ${item.items} as ${checkbox}, ${index} -->
+          <div class="item item-checkbox">
+            <label class="checkbox checkbox-primary">
+                <input type="checkbox" name="${item.question_type}-${item.id}" value="${checkbox.id}">
+            </label>
+            ${checkbox.name}
+          </div>
+          <!-- /for -->
+          <!-- elif: ${item.question_class}=='textarea' -->
+          <label class="item item-input">
+            <textarea name="${item.question_type}-${item.id}" rows="8"></textarea>
+          </label>
+          <!-- /if -->
+        </div>
+        <!-- /for -->
+        <!-- <div class="item item-divider">请填写您的个人信息</div>
+        <label class="item item-input">
+          <span class="input-label">姓名</span>
+          <input type="text" name="real_name" datatype="s2-8" nullmsg="请填写姓名">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">手机</span>
+          <input type="text" name="tel" datatype="m" nullmsg="请填写手机">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">公司</span>
+          <input type="text" name="company_name">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">地址</span>
+          <input type="text" name="address">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">邮箱</span>
+          <input type="text" name="email">
+        </label> -->
+
+        <div class="p">
+          <button class="btn btn-block btn-lg btn-danger">提交</button>
+        </div>
+        </script>
+      </form>
+      
+    </div>
+  </body>
+  <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+  <script>
+  seajs.use('./script')
+  </script>
+</html>

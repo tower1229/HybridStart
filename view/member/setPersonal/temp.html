@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <link href="../../../sdk/ui.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+        
+    </head>
+    <body class="flex-col">
+        <div class="head myhead">
+            <div class="btn" id="goBack">
+                <i class="ion">&#xe651;</i>
+            </div>
+            <div class="title" id="headTitle">个人中心</div>
+            <div class="btn" id="save">
+                保存
+            </div>
+        </div>
+        <form class="flex-1 scroll_cont" id="setPersForm">
+            <ul class="list">
+                <li class="item item-avatar-right" id="editAvat">
+                    头像
+                    <span class="item-image">
+                        <img id="avat">
+                    </span>
+                    <input type="hidden" name="obj.head_img" id="avatImg">
+                </li>
+                <li class="item">
+                    昵称
+                    <input type="text" class="item-note" datatype="s2-12" id="nickName" name="obj.nick_name" ignore="ignore" />
+                </li>
+                <li class="item">
+                    姓名
+                    <input type="text" class="item-note" datatype="s2-12" id="realName" name="obj.real_name" ignore="ignore" />
+                </li>
+            </ul>
+            <ul class="list">
+                <li class="item openView" data-view="2,member,changeMobile">
+                    手机号
+                    <span class="item-note" id="mobile"></span>
+                </li>
+            </ul>
+        </form>
+    </body>
+    <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
+    <script>
+    seajs.use('./script')
+    </script>
+</html>

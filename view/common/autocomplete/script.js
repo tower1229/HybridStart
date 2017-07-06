@@ -4,7 +4,8 @@
 define(function(require) {
 	var comm = require('sdk/server');
 	require('sdk/common');
-	var autocompleteHistory = app.ls.val('autocompleteHistory') || [];
+	var $ = require('jquery');
+	var autocompleteHistory = app.storage.val('autocompleteHistory') || [];
 
 	var renderHistroy = function() {
 		var html = '';
@@ -43,24 +44,24 @@ define(function(require) {
 	};
 	//发布
 	var sendAutocomplate = function(val) {
-			var cachehistroy = app.ls.val('autocompleteHistory') || [];
-			if (cachehistroy.split) {
-				cachehistroy = JSON.parse(cachehistroy);
-			}
-			if (val && $.isArray(cachehistroy)) {
-				$.each(cachehistroy, function(i, e) {
-					if (e == val) {
-						cachehistroy.splice(i, 1);
-						return;
-					}
-				});
-				cachehistroy.unshift(val);
-				app.ls.val('autocompleteHistory', JSON.stringify(cachehistroy));
-			}
-			app.window.publish('autocomplete', val);
-			app.window.close();
-		};
-		//监听输入
+		var cachehistroy = app.storage.val('autocompleteHistory') || [];
+		if (cachehistroy.split) {
+			cachehistroy = JSON.parse(cachehistroy);
+		}
+		if (val && $.isArray(cachehistroy)) {
+			$.each(cachehistroy, function(i, e) {
+				if (e == val) {
+					cachehistroy.splice(i, 1);
+					return;
+				}
+			});
+			cachehistroy.unshift(val);
+			app.storage.val('autocompleteHistory', JSON.stringify(cachehistroy));
+		}
+		app.publish('autocomplete', val);
+		app.window.close();
+	};
+	//监听输入
 	$('#autoInp').on('keyup', function() {
 		var t = $(this).val();
 		if (t == "" || searchLock) {
@@ -75,10 +76,10 @@ define(function(require) {
 		var that = this,
 			val = $(that).text();
 		searchLock = true;
-		$(that).addClass('active');
+		$(that)[0].classList.add('active');
 		$('#autoInp').val(val);
 		setTimeout(function() {
-			$(that).removeClass('active');
+			$(that)[0].classList.remove('active');
 			searchLock = false;
 			that = val = null;
 			$('#keyForm').submit();
@@ -95,9 +96,9 @@ define(function(require) {
 	$('#searchHistory').on('click', '.label', function() {
 		var that = $(this),
 			text = that.text();
-		that.addClass('active');
+		that[0].classList.add('active');
 		setTimeout(function() {
-			that.removeClass('active');
+			that[0].classList.remove('active');
 			sendAutocomplate(text);
 			that = text = null;
 		}, 100);

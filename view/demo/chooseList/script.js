@@ -2,6 +2,7 @@
  */
 define(function(require) {
 	require('sdk/common');
+	var $ = app.util;
 
 	var data = [{
 		"id": "1",

@@ -1,4 +1,4 @@
-<!-- //commonTemplate v0.0.1 build -->
+<!-- //commonTemplate v0.0.2 -->
 
 <!-- target: listPlaceholder -->
 <div class="listPlaceholder">
@@ -19,5 +19,29 @@
 		没有相关数据
 		<!-- /if -->
 		</p>
+	</div>
+</div>
+<!-- target: errorPage -->
+<div class="listPlaceholder">
+	<div class="_container">
+		<div class="_icon">
+			<i class="ion">
+			<!-- if: ${icon} -->
+			${icon|raw}
+			<!-- else -->
+			&#xe691;
+			<!-- /if -->
+			</i>
+		</div>
+		<p class="_text">
+		<!-- if: ${text} -->
+		${text}
+		<!-- else -->
+		没有相关数据
+		<!-- /if -->
+		</p>
+		<div class="btn btn-block" id="goBack">
+            点此返回
+        </div>
 	</div>
 </div>

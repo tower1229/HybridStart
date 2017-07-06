@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <widget id="A6997660453388" version="0.1.0"> 
   <name>apicloud start</name>  
   <description/>  
@@ -17,7 +16,7 @@
   <preference name="smartUpdate" value="false"/>  
   <preference name="debug" value="true"/>  
   <preference name="softInputMode" value="auto"/>  
-  <preference name="statusBarAppearance" value="true"/>  
+  <preference name="statusBarAppearance" value="false"/>  
   <permission name="readPhoneState"/>  
   <permission name="camera"/>  
   <permission name="record"/>  
@@ -25,7 +24,9 @@
   <permission name="fileSystem"/>  
   <permission name="internet"/>  
   <permission name="bootCompleted"/>  
-  <permission name="hardware"/>  
+  <permission name="hardware"/>
+  <preference name="customRefreshHeader" value="UIPullRefreshFlash"/>
+  <preference name="backgroundMode" value="location"/>
   <access origin="*"/>  
   <feature name="bMap"> 
     <param name="android_api_key" value="yTHKTQDYu0BMkLjlZG70LQkbARMmHT4q"/>  

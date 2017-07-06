@@ -10,15 +10,13 @@
     </head>
     <body>
         <div class="list" id="storeList">
-        <textarea class="hide" id="storeListTemp">
+        <textarea class="hide" template>
         <!-- for: ${data} as ${store} -->
         <!-- if: ${store.hasSub} != 1 -->
             <!-- if: ${store.multi} -->
-            <label class="item item-radio chooseListHookMulti" data-id="${store.id}">
-                <div class="item-content">
-                   ${store.name}
-                </div>
-                <i class="radio-icon ion">&#xe693;</i>
+            <label class="item item-radio radio-primary chooseListHookMulti" data-id="${store.id}">
+                <input type="radio">
+                ${store.name}
             </label>
             <!-- else -->
             <div class="item chooseListHook" data-id="${store.id}">

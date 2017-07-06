@@ -7,134 +7,90 @@
 
 define(function(require, exports, module) {
 	"use strict";
-	//头部按钮
-	$('#goBack').on('click', function() {
-		app.window.close();
-	});
+	var $ = app.util;
 
-	//批量绑定body事件
-	$('body').on('touchstart', '[openView]', function(e) {
-		//openView
-		$(this).addClass('active').data('touch', true);
-	}).on('touchcancel', '[openView]', function(e) {
-		$(this).removeClass('active').data('touch', false);
-	}).on('touchmove', '[openView]', function(e) {
-		$(this).removeClass('active').data('touch', false);
-	}).on('touchend', '[openView]', function(e) {
-		var $this = $(this),
-			v = $this.attr('openView'),
-			_anim = ['none', 'push', 'movein', 'fade', 'reveal'];
-		if ($this.data('touch')) {
-			$this.data('touch', false);
-			$this.removeClass('active');
-			$this.removeClass('reddot').find('.reddot').removeClass('reddot');
-			if (v) {
-				v = v.split(',');
+	var $body = $('body');
+	//页面关闭按钮
+	$body.on('touchstart', '#goBack', function(e) {
+		app.window.close();
+		//销毁百度地图实例
+		if(window.api){
+			var map = api.require('bMap');
+			map.close();
+		}
+	});
+	//按钮效果
+	$body.on('touchstart', '.btn', function(e) {
+		$(e.target)[0].classList.add('active');
+	}).on('touchcancel', '.btn', function(e) {
+		$(e.target)[0].classList.remove('active');
+	}).on('touchmove', '.btn', function(e) {
+		$(e.target)[0].classList.remove('active');
+	}).on('touchend', '.btn', function(e) {
+		$(e.target)[0].classList.remove('active');
+	});
+	//批量绑定active
+	$body.on('touchstart', '[active]', function(e) {
+		var target = e.target;
+		$(target)[0].classList.add('active');
+		target.setAttribute('data-touch', 1);
+	}).on('touchcancel', '[active]', function(e) {
+		var target = e.target;
+		$(target)[0].classList.remove('active');
+		target.removeAttribute('data-touch');
+	}).on('touchmove', '[active]', function(e) {
+		var target = e.target;
+		$(target)[0].classList.remove('active');
+		target.removeAttribute('data-touch');
+	}).on('touchend', '[active]', function(e) {
+		var target = e.target;
+		var v = target.getAttribute('active');
+		$(target)[0].classList.remove('active');
+		if (v) {
+			v = v.split(',');
+			if (target.getAttribute('data-touch')) {
+				target.removeAttribute('data-touch');
 				app.openView({
-					anim: _anim[v[0]]
+					anim: ['none', 'push', 'movein', 'fade', 'reveal'][v[0]]
 				}, v[1], v[2]);
-				$this = v = null;
+				target = v = null;
 			}
 		}
-	}).on('click', '[openShell]', function(e) {
-		//壳链接
-		e.preventDefault();
-		var $this = $(this),
-			isPop;
-		if ($this.attr('openShell')) {
-			app.openView({
-				param: {
-					url: $this.attr('openShell'),
-					title: $this.data('title') || '远程页面',
-					show: true
-				}
-			}, 'common', 'shell');
-		}
-	}).on('click', 'img.photoBrowserEnable', function() {
-		//看大图
-		var imgs = $('body').find('img.photoBrowserEnable'),
-			src = $(this).attr('src'),
-			index,
-			imgsArr = [];
-		$.each(imgs, function(i, e) {
-			if ($(e).attr('src')) {
-				if ($(e).attr('src') == src) {
-					index = i;
-				}
-				imgsArr.push($(e).attr('src'));
-			}
-		});
-		app.ready(function() {
-			var photoBrowser = api.require('photoBrowser');
-			if(!photoBrowser){
-				return console.warn('photoBrowser模块未就绪');
-			}
-			photoBrowser.open({
-				images: imgsArr,
-				activeIndex: index,
-				bgColor: '#000'
-			}, function(ret) {
-				if (ret.eventType === 'click') {
-					photoBrowser.close();
-				}
-			});
-		});
-		src = imgsArr = imgs = index = null;
-	}).on('focus', 'input', function() {
-		//输入状态
-		$('body').addClass('onKeyboard');
-		$('.keyboardHide').hide();
-	}).on('blur', 'input', function() {
-		$('body').removeClass('onKeyboard');
-		$('.keyboardHide').show();
 	});
 	
-	//封装select样式
-	var optionsData = [],
-		selectDom,
-		com = require('sdk/server');
-	
-	$('body').on('touchstart', 'select', function(e) {
-		e.preventDefault();
-		selectDom = $(this);
-		if(selectDom.prop('disabled')){
-			selectDom.data('selectDisabled', true);
-		}else{
-			selectDom.prop('disabled',true);
-		}
-		optionsData = [];
-		$.each(selectDom.find('option'), function(i, e) {
-			optionsData.push({
-				val: $(e).val(),
-				text: $(e).text(),
-				status: 'normal'
-			});
-		});
-		com.openSelector(optionsData, function(theitem){
-			selectDom.find('option').each(function(i, e) {
-				if ($(e).text() === theitem.text) {
-					selectDom.val(theitem.val);
-				}
-			});
-		});
-	}).on('touchend', 'select', function(){
-		setTimeout(function(){
-			if(!$(this).data('selectDisabled')){
-				selectDom.prop('disabled',false);
+	$.each($('input'), function(i, ele) {
+		ele.addEventListener('focus', function() {
+			//输入状态
+			$body.className = ($body.className + ' onKeyboard');
+			var kh = $('.keyboardHide');
+			if (kh.length) {
+				$.each(kh, function(i, ele) {
+					ele.setAttribute('displayName', ele.style.display);
+					ele.style.display = 'none';
+				});
 			}
-		},300);
-	}).on('touchcancel', 'select', function(){
-		if(!$(this).data('selectDisabled')){
-			selectDom.prop('disabled',false);
-		}
+
+		});
+		ele.addEventListener('blur', function() {
+			var cacheClass = $body.className;
+			$body.className = (cacheClass.replace(/\s*onKeyboard/g, ' '));
+			var kh = $('.keyboardHide');
+			if (kh.length) {
+				$.each(kh, function(i, ele) {
+					var displayName = ele.getAttribute('displayName') || 'block';
+					ele.style.display = displayName;
+				});
+			}
+		});
 	});
+	
 
 	app.ready(function() {
 		//系统兼容
 		if (platform === 'android') {
 			//item-radio强制重绘
 			if (parseFloat(version) < 4.3) {
-				$('body').on('click', '.item-radio', function() {
+				$body.on('click', '.item-radio', function() {
 					var $view = $(this).parent();
 					$view.css('visibility', 'hidden');
 					setTimeout(function() {
@@ -145,7 +101,7 @@ define(function(require, exports, module) {
 		}
 		if (platform === 'ios') {
 			if (parseFloat(version) >= 9) {
-				$('body').on('click', '.item-radio', function() {
+				$body.on('click', '.item-radio', function() {
 					var $view = $(this).parent();
 					$view.css('visibility', 'hidden');
 					setTimeout(function() {
@@ -154,7 +110,18 @@ define(function(require, exports, module) {
 				});
 			}
 		}
-
+		//自动加载data-src
+		app.window.on('resume', function(){
+			$.each($('[data-src]'), function(i, ele){
+				var url = $(ele).data('src');
+				if (ele.tagName.toLowerCase() === 'img') {
+					ele.setAttribute('src', url);
+				} else {
+					ele.style.backgroundImage = "url(" + url + ")";
+				}
+				ele.removeAttribute('data-remote');
+			});
+		});
 
 
 	});

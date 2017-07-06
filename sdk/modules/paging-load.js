@@ -6,7 +6,7 @@
  */
 define('paging-load', function(require, exports, module) {
 	"use strict";
-	var $ = window.$ || require('jquery'),
+	var $ = app.util,
 		def = {
 			url: null,
 			size: 6,
@@ -33,7 +33,13 @@ define('paging-load', function(require, exports, module) {
 			if (!opt.url) {
 				return console.warn('toload()参数缺少url');
 			}
-			trueUrl = opt.url + '?' + $.param(opt.data);
+			trueUrl = opt.url + '?' + (function(string){
+				var param = [];
+				$.each(string, function(i, e){
+					param.push(i + '=' + e);
+				});
+				return param.join('&');
+			})(opt.data);
 			var init = function() {
 				var i = 0,
 					n = loadProcess.length,
@@ -56,7 +62,7 @@ define('paging-load', function(require, exports, module) {
 
 			return {
 				load: function(cb) {
-					var Ajax = window.api ? app.ajax : $.ajax;
+					var Ajax = app.ajax;
 					sendParam.page_index = init()();
 					sendParam.page_size = opt.size;
 					Ajax({

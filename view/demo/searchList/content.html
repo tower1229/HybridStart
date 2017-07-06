@@ -9,8 +9,8 @@
         
     </head>
     <body>
-        <div class="list partsList" id="partsList"></div>
-        <textarea class="hide" id="partListTemp">
+        <div class="list partsList" id="partsList">
+        <textarea class="hide" template>
         <!-- for: ${data} as ${part} -->
         <div class="item flex-row" data-id="${part.id}">
             <div class="_pic">
@@ -30,6 +30,7 @@
         </div>
         <!-- /for -->
         </textarea>
+        </div>
     </body>
     <script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
     <script>

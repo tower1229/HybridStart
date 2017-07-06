@@ -2,11 +2,11 @@
  * 
  */
 define(function(require) {
-	var comm = require('sdk/server');
 	require('sdk/common');
+	var $ = require('jquery');
 
 	var syncStatus = function() {
-		var currentParam = JSON.parse(app.ls.val('partsFilter'));
+		var currentParam = app.storage.val('partsFilter');
 		if ($.isPlainObject(currentParam)) {
 			$('#keywords').val(currentParam['keywords'] || '');
 			$('#vin').val(currentParam['vin'] || '');
@@ -25,7 +25,7 @@ define(function(require) {
 		$('#catshow').text('所有分类');
 		$('#catList .partcat').each(function(i, e) {
 			if ($(e).data('val') == '') {
-				$(e).addClass('bg-danger').siblings().removeClass('bg-danger');
+				$(e)[0].classList.add('bg-danger').siblings()[0].classList.remove('bg-danger');
 			}
 		});
 	};
@@ -41,9 +41,9 @@ define(function(require) {
 	$('#catList').on('click', '.partcat', function() {
 		var val = $(this).data('val'),
 			txt = $(this).text();
-		$(this).addClass('bg-danger').siblings().removeClass('bg-danger');
-		$(this).parents('.item').find('input').val(val).end()
-			.find('._show').text(txt);
+		$(this)[0].classList.add('bg-danger').siblings()[0].classList.remove('bg-danger');
+		$(this).parents('.item').querySelector('input').val(val).end()
+			.querySelector('._show').text(txt);
 	});
 
 	//关键词自动补全
@@ -62,37 +62,36 @@ define(function(require) {
 			cat: $('#cat').val()
 		};
 		//console.log(param)
-		app.ls.val('partsFilter', JSON.stringify(param));
+		app.storage.val('partsFilter', JSON.stringify(param));
 		//跳转前把类别置空
 		setCatEmpty();
 		setTimeout(function() {
 			app.openView({
 				anim: 4
 			}, 'demo', 'searchList');
-			app.window.publish('partsearch', 1);
+			app.publish('partsearch', 1);
 			param = null;
 		}, 0);
 	});
 	//清除筛选条件
 	$('#cleanCondition').on('click', function() {
 		//删数据
-		app.ls.remove('partsFilter');
+		app.storage.remove('partsFilter');
 		//界面置空
 		setAllEmpty();
 		//类别置空
 		setCatEmpty();
 	});
-
-	var catRender = function() {
-		var partcat = app.ls.val('partcat');
-		var dataTemp = $('#catListTemp').val();
-		var render = etpl.compile(dataTemp);
-		var data = JSON.parse(partcat);
-		var html = render({
-			data: data
-		});
-		$('#catList').append(html);
-	};
+	//初始化
+	var partcat = app.storage.val('partcat');
+	var render = require('render');
+	var renderHandle = render({
+		el: '#catList',
+		data: {
+			data: partcat
+		}
+	});
+	
 	//vin自动转大写
 	var vinInput = $('#vin');
 	vinInput.on('keyup', function() {
@@ -102,13 +101,12 @@ define(function(require) {
 	});
 
 	app.ready(function() {
-		catRender();
 		//接收自动补全
-		app.window.subscribe('autocomplete', function(key) {
-			var currentParam = JSON.parse(app.ls.val('partsFilter'));
+		app.subscribe('autocomplete', function(key) {
+			var currentParam = app.storage.val('partsFilter');
 			if ($.isPlainObject(currentParam)) {
 				currentParam.keywords = key;
-				app.ls.val('partsFilter', JSON.stringify(currentParam));
+				app.storage.val('partsFilter', JSON.stringify(currentParam));
 			}
 			$('#keywords').val(key);
 		});

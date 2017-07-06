@@ -4,38 +4,32 @@
 define(function(require) {
 	var comm = require('sdk/server');
 	require('sdk/common');
-	var box = require('box');
-	require('scroll-load');
+	var $ = app.util;
+	
+	var scrollLoad = require('scroll-load');
 	var pageLoad = require('paging-load');
 
-	var otherParam = app.ls.val('partsFilter');
+	var otherParam = app.storage.val('partsFilter');
 	if (otherParam && otherParam.split) {
 		otherParam = JSON.parse(otherParam);
-	} else {
-		otherParam = {};
-	}
+	} 
 
 	//模板
-	var dataTemp = $('#partListTemp').val();
-	var dataRender = function(data, reload) {
-		var render = etpl.compile(dataTemp);
-		//console.log(data)
-		var html = render(data);
-		if (!$('#partsList').length) {
-			$('body').html('<div class="list partsList" id="partsList"></div>');
+	var render = require('render');
+	var rendHandle = render({
+		el: '#partsList',
+		callback: function($el){
+			comm.cacheImg($el);
+			scrollLoad({
+				el: $('body'),
+				callback: getData
+			});
+			app.loading.hide();
 		}
-		if (reload) {
-			$('#partsList').html(html).cacheImg();
-		} else {
-			$('#partsList').append(html).cacheImg();
-		}
-		$('body').removeClass('h100').scrollLoad(getData);
-		app.loading.hide();
-	};
-
+	});
+	
 	var getData = function(reload) {
 		if (reload) {
-			$('body').addClass('h100');
 			app.loading.show();
 		}
 		var finalParam = $.extend({
@@ -48,13 +42,15 @@ define(function(require) {
 			size: 5,
 			reload: reload,
 			success: function(res) {
-				api.refreshHeaderLoadDone();
+				app.pull.stop();
 				if (res.status === 'Y') {
-					dataRender(res, reload);
+					rendHandle.set({
+						reload: reload
+					}).data(res);
 				} else {
 					app.loading.hide();
 					var emptyhtml = comm.commonTemp('parts');
-					$('body').addClass('h100').html(emptyhtml);
+					$('body')[0].innerHTML = (emptyhtml);
 				}
 			}
 		});
@@ -63,14 +59,13 @@ define(function(require) {
 	
 	//更新
 	window.change = function() {
-		$('body').addClass('h100');
 		app.loading.show();
-		otherParam = JSON.parse(app.ls.val('partsFilter'));
+		otherParam = app.storage.val('partsFilter');
 		getData(true);
 	};
 
 	app.ready(function() {
-		app.push.init(function() {
+		app.pull.init(function() {
 			getData(true);
 		});
 

@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../../sdk/ui.css" rel="stylesheet">
+    <link href="detail.css" rel="stylesheet">
+</head>
+
+<body class="flex-col">
+    <div class="head">
+        <div class="btn" id="goBack-cus">
+            <i class="ion">&#xe651;</i>
+        </div>
+        <div class="title" id="title">详细页</div>
+    </div>
+    <div class="scroll_cont list">
+        <div id="meta">
+            <!--顶部banner图 开始-->
+            <div class="kr-article-banner block-holder">
+                <div id="kr-article-cover" class="kr-article-cover">
+                    <img src="${cover}">
+                </div>
+                <h2 class="kr-article-title block-holder">${title}</h2>
+            </div>
+            <!--顶部banner图 结束-->
+            <!-- 文章作者、发布时间等信息 -->
+            <div class="kr-article-meta">
+                <div class="kr-article-author block-holder">${author}</div>
+                <div class="kr-article-text block-holder">发表于</div>
+                <div class="kr-article-time block-holder">${time}</div>
+            </div>
+        </div>
+        <div class="kr-article-content">
+            <!--文章详细内容-->
+            <div id="article" class="kr-article-article block-holder">${content|raw}</div>
+        </div>
+    </div>
+</body>
+<script src="../../../config.js"></script>
+<script src="../../../sdk/core.js" id="seajsnode"></script>
+<script>
+    seajs.use('./detail');
+</script>
+
+</html>

@@ -2,30 +2,65 @@
  * layout
  */
 define(function(require) {
-	var comm = require('sdk/server');
 	require('sdk/common');
+	var $ = app.util;
+	var DateSelector = require('datepicker');
+
+	new DateSelector({
+        input: 'demo1',
+        container: 'targetContainer1',
+        type: 0,
+        param: [1, 1, 1, 0, 0],
+        beginTime: [2000,1,1],
+        endTime: [2020,2,5],
+        recentTime: [],
+        success: function (arr) {
+            $('#demo1')[0].value = arr.join(' ');
+        }
+    });
+
+    new DateSelector({
+        input: 'demo2',
+        container: 'targetContainer2',
+        type: 0,
+        param: [1, 1, 1, 1, 1],
+        beginTime: [],
+        endTime: [],
+        recentTime: [],
+        success: function (arr) {
+            $('#demo2')[0].value = arr.join(' ');
+        }
+    });
+
+    new DateSelector({
+        input: 'demo3',
+        container: 'targetContainer3',
+        type: 0,
+        param: [1, 1, 0, 0, 0],
+        beginTime: [2000,1],
+        endTime: [2020,2],
+        recentTime: [],
+        success: function (arr) {
+            $('#demo3')[0].value = arr.join(' ');
+        }
+    });
+
+    new DateSelector({
+        input: 'demo4',
+        container: 'targetContainer4',
+        type: 0,
+        param: [0, 0, 0, 1, 1],
+        beginTime: [],
+        endTime: [],
+        recentTime: [],
+        success: function (arr) {
+            $('#demo4')[0].value = arr.join(' ');
+        }
+    });
+
 
 	app.ready(function() {
-		$('#picker').on('click', function() {
-			api.openPicker({
-				type: 'date_time',
-				date: '2014-05-01 12:30',
-				title: '选择时间'
-			}, function(ret, err) {
-				if (ret) {
-					// {
-					// 	year: 2000, //年
-					// 	month: 1, //月
-					// 	day: 1, //日
-					// 	hour: 12, //时
-					// 	minute: 00 //分
-					// }
-					$('#picker').val([ret.year, ret.month, ret.day].join('-') + ' ' + [ret.hour, ret.minute].join(':'));
-				} else {
-					console.log(JSON.stringify(err));
-				}
-			});
-		});
+
 
 	});
 });

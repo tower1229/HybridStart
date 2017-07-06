@@ -1,0 +1,16 @@
+.loginWrap{height:100%; box-sizing:border-box;padding-top: 20%; background:#fff;}
+.wLogo{width:6.6em;height:7.2em;margin:0 auto 1em;background: #eee;
+background-size: 100% auto;}
+.loginForm{padding:0 1.2em; }
+.loginForm .item{ height: 4em; border:0;border-bottom: 1px solid #ccc;margin:0;}
+.loginForm .input-label{width:1.5em; }
+.loginForm .input-label .ion{margin:0;font-size:1.3em;}
+.loginForm input[type="radio"]{ width:.8em;height:.8em;border-radius: .8em;margin:0 .3em;
+ padding:0;border:1px solid #ccc;box-sizing:content-box;background:#ccc;}
+.loginForm input[type="radio"]:checked{border-color:#e60012; }
+
+.getCode{display: none; width:8em;text-align: center;box-sizing:border-box;padding-left:0;
+	padding-right: 0;}
+.getCode.unable{background:#ccc !important;}
+/*用于键盘弹出时背景图铺满屏幕，使用背景色可忽略*/
+.onKeyboard{ background:#fff;}

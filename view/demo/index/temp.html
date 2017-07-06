@@ -8,12 +8,38 @@
 		<link href="style.css" rel="stylesheet">
 	</head>
 	<body class="flex-col">
-		<div class="head">
-	        <div class="title">HybridStart 功能示例</div>
-	    </div>
+		<header class="head" id="head">
+			<div class="btn" id="offcanvas">
+	            <i class="ion">&#xe600;</i>
+	        </div>
+	        <div class="title" id="title">HybridStart 功能示例</div>
+	        <div class="btn member-set" id="systemSet">
+	            <i class="ion">&#xe667;</i>
+	        </div>
+	    </header>
 		<div class="flex-1 flex-col scroll_cont" id="view">
 			
 		</div>
+		<footer class="foot">
+			<div class="tabs tabs-ion-top">
+				<div active class="tab-item cur" id="home">
+					<i class="ion">&#xe64a;</i>
+					<p>目录</p>
+				</div>
+				<div active class="tab-item" id="product">
+					<i class="ion">&#xe6bb;</i>
+					<p>产品</p>
+				</div>
+				<div active class="tab-item" id="discover">
+					<i class="ion">&#xe66a;</i>
+					<p>发现</p>
+				</div>
+				<div active class="tab-item" id="member">
+					<i class="ion">&#xe634;</i>
+					<p>我的</p>
+				</div>
+			</div>
+		</footer>
 	</body>
 	<script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>
 	<script>

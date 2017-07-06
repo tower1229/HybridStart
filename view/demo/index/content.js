@@ -2,23 +2,20 @@
  * layout
  */
 define(function(require) {
-	var comm = require('sdk/server');
 	require('sdk/common');
-	
+	var $ = app.util;
+
 	//demo打开网页
-	$('#openWeb').on('click', function() {
+	$('#openWeb')[0].addEventListener('touchend', function(event) {
 		app.openView({
 			param: {
-				url: 'http://www.baidu.com/',
+				url: 'http://m.baidu.com/',
 				title: '打开网页'
 			}
 		}, 'shell');
 	});
 
-
 	app.ready(function() {
 		
-
-
 	});
 });

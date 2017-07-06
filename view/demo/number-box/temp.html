@@ -11,17 +11,22 @@
 	<body class="flex-col">
 		<div class="head">
 			<div class="btn" id="goBack">
-                <i class="ion">&#xe62d;</i>
+                <i class="ion">&#xe651;</i>
             </div>
-	        <div class="title">数字输入框演示</div>
+	        <div class="title">数字输入演示</div>
 	    </div>
 		<div class="flex-1 flex-col scroll_cont">
-			<div class="list">
-				<div class="item item-input">
-					<input type="number" value="1" class="pro_counter_val" data-max="9" readonly>
-				</div>
-				
-			</div>
+            <div class="list">
+            	<div class="item">
+            		<div style="float: right;width:10em">
+            			<input type="text" name="count" class="mytest">
+            		</div>
+            		<p>输入数字：</p>
+            	</div>
+            </div>         
+            <button type="button" id="act1" class="btn btn-default">切换实例1禁用状态</button>  
+                                    
+            <div class="p" id="log"></div>
 		</div>
 	</body>
 	<script src="../../../config.js"></script><script src="../../../sdk/core.js" id="seajsnode" ></script>

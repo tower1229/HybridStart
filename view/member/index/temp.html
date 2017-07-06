@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <link href="../../../sdk/ui.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body class="flex-col">
+        <div class="flex-1 scroll_cont">
+            <div class="memHead">
+                <div class="rect-5625">
+                    <div class="pac">
+                        <div class="avat align-center"><img id="avat"></div>
+                        <p id="usern"></p>
+                        <p>我的积分：<span id="score"></span>分</p>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="list">
+                <div active class="item item-icon-left item-icon-right">
+                    <i class="ion">&#xe694;</i>我的消息
+                    <i class="ion">&#xe610;</i>
+                </div>
+                <div active class="item item-icon-left item-icon-right">
+                    <i class="ion">&#xe641;</i>我的收藏
+                    <i class="ion">&#xe610;</i>
+                </div>
+            </div>
+            <div class="list">
+                <div active class="item item-icon-left item-icon-right">
+                    <i class="ion">&#xe791;</i>我的订单
+                    <div class="item-note">查看我的所有订单</div>
+                    <i class="ion">&#xe610;</i>
+                </div>
+                <div class="item item-lite">
+                    <ul class="flex-row tabs orderFlagList" id="orderFlagList">
+                        <li class="flex-1 tab-item" data-flag="1"><i class="ion">&#xe66a;</i>待付款<span class="badge"></span></li>
+                        <li class="flex-1 tab-item" data-flag="2"><i class="ion">&#xe66a;</i>待发货<span class="badge"></span></li>
+                        <li class="flex-1 tab-item" data-flag="3"><i class="ion">&#xe66a;</i>待收货<span class="badge"></span></li>
+                        <li class="flex-1 tab-item" data-flag="4"><i class="ion">&#xe66a;</i>待评价<span class="badge"></span></li>
+                    </ul>
+                </div>
+                <div active class="item item-icon-left item-icon-right">
+                    <i class="ion">&#xe649;</i>交易评价
+                    <i class="ion">&#xe610;</i>
+                </div>
+            </div>
+            <div class="list">
+                <div active class="item item-icon-left item-icon-right">
+                    <i class="ion">&#xe658;</i>收货地址
+                    <div class="item-note">收货地址管理</div>
+                    <i class="ion">&#xe610;</i>
+                </div>
+                <div active class="item item-icon-left item-icon-right">
+                    <i class="ion">&#xe634;</i>个人资料
+                    <div class="item-note">个人资料管理</div>
+                    <i class="ion">&#xe610;</i>
+                </div>
+                <div active class="item item-icon-left item-icon-right">
+                    <i class="ion">&#xe66a;</i>我的积分<i class="ion">&#xe610;</i>
+                </div>
+                <div active class="item item-icon-left item-icon-right">
+                    <i class="ion">&#xe650;</i>安全设置<i class="ion">&#xe610;</i>
+                </div>
+            </div>
+            <div class="list">
+                <div active class="item item-icon-left item-icon-right">
+                    <i class="ion">&#xe668;</i>邀请好友<i class="ion">&#xe610;</i>
+                </div>
+                <div active class="item item-icon-left item-icon-right">
+                   <i class="ion">&#xe6af;</i>关于我们<i class="ion">&#xe610;</i>
+                </div>
+                <div active class="item item-icon-left item-icon-right">
+                    <i class="ion">&#xe62c;</i>意见反馈<i class="ion">&#xe610;</i>
+                </div>
+             </div>
+        </div>
+        
+    </body>
+    <script src="../../../config.js"></script>
+    <script src="../../../sdk/core.js" id="seajsnode" ></script>
+    <script>
+    seajs.use('./script')
+    </script>
+</html>

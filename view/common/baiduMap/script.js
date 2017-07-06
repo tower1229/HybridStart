@@ -2,10 +2,11 @@
  * 
  */
 define(function(require) {
-	var comm = require('sdk/server');
 	require('sdk/common');
+	var $ = app.util;
 	var base = require('base');
-	var bdMapData = JSON.parse(app.ls.val('bdMapData'));
+	
+	var bdMapData = app.storage.val('bdMapData');
 
 	if (!bdMapData || !bdMapData['lng'] || !bdMapData['lat']) {
 		return alert('bdMap参数缺失');
@@ -36,7 +37,7 @@ define(function(require) {
 						}, function(ret) {
 						    if (ret) {
 						        //console.log(JSON.stringify(ret));
-						        app.window.publish('baiduMapDragPosition',ret);
+						        app.publish('baiduMapDragPosition',ret);
 						    }
 						});
 					}
@@ -68,7 +69,7 @@ define(function(require) {
 
 		var openMap = function(refresh) {
 			if (refresh) {
-				bdMapData = JSON.parse(app.ls.val('bdMapData'));
+				bdMapData = app.storage.val('bdMapData');
 				if (userMark.length) {
 					map.removeAnnotations({
 						ids: userMark

@@ -3,7 +3,8 @@
  */
 define(function(require) {
 	var comm = require('sdk/server');require('sdk/common');
-    var extParam = JSON.parse(app.ls.val('crossParam'));
+    var $ = app.util;
+    var extParam = app.getParam();
     if(!extParam){
         return console.log('参数错误');
     }
@@ -13,8 +14,15 @@ define(function(require) {
         mark = extParam.mark;
         choosenItem.mark = mark;
     }
+    // render
+    var render = require('render');
+    var doRend = render({
+        el: '#storeList',
+        callback: function(){
+            app.loading.hide()
+        }
+    });
 
-    var dataTemp = $('#storeListTemp').val();
     var dataRender = function(data, getMore) {
         $.each(data.data,function(i,e){
             if(e.sublist && e.sublist.length){
@@ -24,21 +32,7 @@ define(function(require) {
         });
         extParam = data;
         //console.log(JSON.stringify(extParam));
-        var render = etpl.compile(dataTemp);
-        var html = render(data);
-        if (getMore) {
-            $('#storeList').append(html);
-        } else {
-            $('#storeList').html(html);
-        }
-        $('.servState ._score').each(function(i, e) {
-            var score = parseFloat($(e).text());
-            $(e).parent().find('._stars').raty({
-                score: score,
-                readOnly: true
-            });
-        });
-        app.window.evaluateScript('','app.loading.hide()');
+        doRend.data(data);
     };
 
     var getData = function(getMore) {
@@ -51,16 +45,18 @@ define(function(require) {
                     dataRender(res, getMore);
                 } else {
                 	app.loading.hide();
-                    $('#storeList').empty();
-                    box.msg(res.msg, {
+                    $('#storeList')[0].innerHTML = '';
+                    app.toast(res.msg, {
                         color: 'danger',
                         delay: 2000
                     });
                 }
             },
             error:function(){
-                app.openToast('网络异常，请重试');
-                app.window.evaluateScript('','app.loading.hide()');
+                app.toast('网络异常，请重试');
+                app.window.evaluate({
+                    script: 'app.loading.hide()'
+                });
             }
         });
     };
@@ -99,8 +95,10 @@ define(function(require) {
         if($(this).data('acting')){
             var thisObj = getListById($(this).data('id'), extParam.data);
             $.extend(choosenItem, thisObj);
-            app.ls.val('choosenItem',JSON.stringify(choosenItem));
-            app.window.evaluateScript('','submitChoose()');
+            app.storage.val('choosenItem',JSON.stringify(choosenItem));
+            app.window.evaluate({
+                script: 'submitChoose()'
+            });
         }
     }).on('touchstart','.chooseListHookMulti',function(){
         //多选
@@ -111,9 +109,10 @@ define(function(require) {
         $(this).data('acting',false);
     }).on('touchend', '.chooseListHookMulti',function(){
         if($(this).data('acting')){
-            if($(this).hasClass('active')){
+            if(this.className.indexOf(' active')!==-1){
                 var _catchData = choosenItem.data, _catchId = $(this).data('id');
-                $(this).removeClass('active');
+                var cacheClass = this.className;
+                this.className = cacheClass.replace(/\s*active/g, '');
                 $.each(_catchData,function(i,e){
                     if(e.id==_catchId){
                         _catchData.splice(i,1);
@@ -121,7 +120,7 @@ define(function(require) {
                     }
                 });
             }else{
-                $(this).addClass('active');
+                this.className = (this.className + ' active');
                 choosenItem.data.push({
                     part_id:$(this).data('id'),
                     name:$(this).data('name'),
@@ -132,7 +131,7 @@ define(function(require) {
                     img:$(this).data('img')
                 });
             }
-            app.ls.val('choosenItem',JSON.stringify(choosenItem));
+            app.storage.val('choosenItem',JSON.stringify(choosenItem));
         }
     }).on('click','.item-icon-right',function(){
         //下级

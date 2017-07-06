@@ -13,24 +13,24 @@
 <body class="flex-col">
     <div class="head">
         <div class="btn" id="goBack">
-            <i class="ion">&#xe62d;</i>
+            <i class="ion">&#xe651;</i>
         </div>
         <div class="title">数据渲染示例</div>
     </div>
     <div class="flex-1 flex-col scroll_cont">
         <div class="list" id="view">
-        <textarea class="hide" id="template">
-<!--for: ${data} as ${el}-->        
+        <textarea class="hide" template>
+            <!--for: ${data} as ${el}-->        
             <div class="item">
                 ${el.name}
                 <div class="item-note">
                 ${el.number}
                 </div>
             </div>
-<!--/for-->
-    <div class="item">
-        update:${update}
-    </div>            
+            <!--/for-->
+            <div class="item">
+                update:${update}
+            </div>            
         </textarea>
         </div>
     </div>

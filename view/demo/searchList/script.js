@@ -4,17 +4,18 @@
 define(function(require) {
 	var comm = require('sdk/server');
 	require('sdk/common');
+	var $ = app.util;
 
 	//关闭搜索
 	$('#goBack').on('click', function() {
-		app.window.close('parts_search',0);
-		app.ls.remove('partsFilter');
+		app.window.close('demo_search', 'none');
+		app.storage.remove('partsFilter');
 	});
 	//存放排序和筛选
 	var otherParam = {};
-	var sendChange = function(){
-		app.ls.val('partsFilter',JSON.stringify(otherParam));
-		app.window.evaluatePopoverScript('','popView','change()');
+	var sendChange = function() {
+		app.storage.val('partsFilter', JSON.stringify(otherParam));
+		app.window.evaluate('', 'popView', 'change()');
 	};
 
 	//排序
@@ -22,97 +23,95 @@ define(function(require) {
 		if ($(this).hasClass('cur')) {
 			return null;
 		}
-		$(this).addClass('cur').siblings().removeClass('cur');
+		$(this)[0].classList.add('cur').siblings()[0].classList.remove('cur');
 		otherParam.order_by = $(this).data('code');
 		$('#partsList').empty();
 		sendChange();
 	});
-	
+
 	//筛选类别
-	$('#catList').on('touchend','li',function(){
+	$('#catList').on('touchend', 'li', function() {
 		var that = $(this),
 			catval = that.data('val') || '';
-		
+
 		syncStatus();
 
-		that.addClass('cur').siblings().removeClass('cur');
-		$('#openSearch').removeClass('active');
+		that[0].classList.add('cur').siblings()[0].classList.remove('cur');
+		$('#openSearch')[0].classList.remove('active');
 		otherParam.cat = catval;
-		otherParam.cattext=that.text();
+		otherParam.cattext = that.text();
 		sendChange();
 	});
-	
+
 	//搜索
-	$('#openSearch').on('click',function(){
+	$('#openSearch').on('click', function() {
 		app.openView({
-			anim:11
-		},'demo','search');
+			anim: 11
+		}, 'demo', 'search');
 	});
 	//渲染配件类别
-	var catRender = function(callback) {
-		var partcat = app.ls.val('partcat');
-		var dataTemp = $('#catListTemp').val();
-		var render = etpl.compile(dataTemp);
-		var handle = function(){
-			if(!partcat){
-				partcat = app.ls.val('partcat');
-			}
-			var data = JSON.parse(partcat);
-			var html = render({
-				data: data
-			});
-			$('#catList').append(html);
-			typeof(callback)==='function' && callback()
-		};
-		if(!partcat){
-			comm.preGet(handle);
-		}else{
-			handle();
-		}
-	};
-	//同步状态
-	var syncStatus = function(){
-		var param = app.ls.val('partsFilter');
-		if(param){
-			param = JSON.parse(param);
-		}else{
-			param = {};
-		}
-		otherParam = param;
-		//app.ls.remove('partsFilter');
-		$('#catList li').each(function(i,e){
-			if($(e).data('val')==param['cat']){
-				$(e).addClass('cur');
-			}else{
-				$(e).removeClass('cur');
-			}
-		});
-		//标识隐含条件
-		if(otherParam.keywords || otherParam.vin || otherParam.no){
-			$('#openSearch').addClass('active');
-		}else{
-			$('#openSearch').removeClass('active');
-		}
-	};
-		
-	app.ready(function() {
-
-		catRender(function(){
+	var render = require('render');
+	var catRender = render({
+		el: '#catList',
+		callback: function() {
 			syncStatus();
 			app.window.popoverElement({
 				id: 'mainCont',
 				name: 'popView',
 				url: 'content.html'
 			});
+		}
+	});
+	var doRend = function() {
+		var partcat = app.storage.val('partcat');
+		var handle = function() {
+			if (!partcat) {
+				partcat = app.storage.val('partcat');
+			}
+			catRender.data({
+				data: partcat
+			});
+		};
+		if (!partcat) {
+			comm.preGet(handle);
+		} else {
+			handle();
+		}
+	};
+	//同步状态
+	var syncStatus = function() {
+		var param = app.storage.val('partsFilter');
+		var $openSearch = $('#openSearch')[0];
+		if (!$.isPlainObject(param)) {
+			param = {};
+		} 
+		otherParam = param;
+		//app.storage.remove('partsFilter');
+		$.each($('#catList li'), function(i, e) {
+			if ($(e).data('val') == param['cat']) {
+				e.className = e.className + ' cur';
+			} else {
+				e.className = e.className.replace(/\s*cur\s*/g, ' ');
+			}
 		});
+		//标识隐含条件
+		if (otherParam.keywords || otherParam.vin || otherParam.no) {
+			$openSearch.className = ' active';
+		} else {
+			$openSearch.className = $openSearch.className.replace(/\s*active\s*/g, ' ');
+		}
+	};
+
+	app.ready(function() {
+		doRend();
 
 		//搜索回调
-		app.window.subscribe('partsearch', function(msg){
+		app.subscribe('partsearch', function(msg) {
 			if (msg) {
 				syncStatus();
 				sendChange();
 			}
-			
+
 		});
 
 	});

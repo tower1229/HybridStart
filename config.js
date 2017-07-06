@@ -1,8 +1,8 @@
 /*
  * app config
  * v1.0.3
- * 
- * 2016-04-08
+ * add appcfg.pull
+ * 2017-07-03
  */
 var product = false;
 window.appcfg = {
@@ -16,22 +16,60 @@ window.appcfg = {
 		outime: 10000,
 		longtime: 20000,
 		windowAnimate: "push",
-		animateDuration: 210, //ms
-		safeStorage: "user,appInit,rights"
+		animateSubType: 'from_right',
+		animateDuration: 300,
+		safeStorage: "user,appInit,rights",
+		temporary: "templateCache,gps"
 	},
 	ajax: {
+		type: 'get',
 		crypto: {
 			enable: false,
-			secret: "acloudjereiacloudjerei1234",
 			key: "abc123",
 			url: ""
 		}
 	},
-	log: {
-		path: "fs://appcloudlog.txt"
+	loading: {
+		text: "正在加载",
+		title: "",
+		anim: "fade"
 	},
-	defaultTheme: {
+	pull: {
+		bgColor: '#C0C0C0',
+		loadAnimInterval: 200,
+		isScale: true,
+		image: {
+			// pull: [
+			//     'widget://res/img/refresh/dropdown0.png',
+			//     'widget://res/img/refresh/dropdown1.png',
+			//     'widget://res/img/refresh/dropdown2.png',
+			//     'widget://res/img/refresh/dropdown3.png',
+			//     'widget://res/img/refresh/dropdown4.png',
+			//     'widget://res/img/refresh/dropdown5.png',
+			//     'widget://res/img/refresh/dropdown6.png'
+			// ],
+			// load: [
+			//     'widget://res/img/refresh/loading0.png',
+			//     'widget://res/img/refresh/loading1.png',
+			//     'widget://res/img/refresh/loading2.png',
+			//     'widget://res/img/refresh/loading3.png',
+			//     'widget://res/img/refresh/loading4.png'
+			// ]
+		}
+	},
+	theme: {
+		//基础色
+		black: '#000',
+		light: '#fff',
+		grayDarker: '#222',
+		grayDark: '#333',
+		gray: '#555',
+		grayLight: '#dbdbdb',
+		grayLighter: '#eee',
+		placeholder: '#aaa',
+		border: '#e8e9eb',
 		body_bg: '#f0f0f0',
+		//请景色
 		primary: '#38adff',
 		sub_primary: '#52b7fd',
 		heav_primary: '#3399cc',
@@ -60,7 +98,7 @@ window.appcfg = {
 		sid: 1
 	}
 };
-//应用接口
+//接口列表
 window.appcfg.api = {
 	login: appcfg.host.control + '/member/login.jsp',
 	getPack: appcfg.host.control + '/package/get/',

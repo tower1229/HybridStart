@@ -7,7 +7,8 @@
 
 define(function(require, exports, module) {
 	"use strict";
-	require('box');
+	var $ = app.util;
+	var etpl = require('etpl');
 	//资源路径处理
 	var _source = function(source, host) {
 		if (!$.trim(source)) {
@@ -49,10 +50,7 @@ define(function(require, exports, module) {
 			return source.slice(0, 16);
 		}
 	};
-	//xss过滤
-	etpl.addFilter('xss', function(source) {
-		return _xss(source);
-	});
+
 	//日期格式化
 	etpl.addFilter('date', function(source, ignore_minute) {
 		return _getDate(source, ignore_minute);
@@ -71,91 +69,9 @@ define(function(require, exports, module) {
 		return num.toFixed(i);
 	});
 
-	etpl.addFilter('richMedia', function(source, replace) {
-		return _richMedia(source, replace);
-	});
-	//xss过滤
-	var _xss = function(source) {
-		var ignoreStyle = ['text-align: center;', 'text-indent: 2em;'];
-		return filterXSS(source, {
-			onIgnoreTagAttr: function(tag, name, value, isWhiteAttr) {
-				var result = '';
-				if (tag == 'table' && name == 'class') {
-					result += ('class="' + value + ' table-bordered"');
-				}
-				if (name == 'style') {
-					var _styleStr = '';
-					$.each(ignoreStyle, function(i, e) {
-						if (value.indexOf(e) > -1) {
-							_styleStr += e;
-						}
-					});
-					if ($.trim(_styleStr)) {
-						result += (' style="' + _styleStr + '"');
-					}
-				}
-				return result;
-			}
-		});
-	};
-	//富媒体消息解析
-	var _richMedia = function(source, replace) {
-		var checkImg = function(source) {
-			var dom = $.parseHTML(source),
-				result = "";
-			$(dom).find('img').addClass('ableOpenImg');
-			$(dom).each(function(i, e) {
-				if ($.trim(e.innerHTML)) {
-					result += e.outerHTML;
-				}
-			});
-			//console.log(result)
-			return result;
-		};
-		var checkLink = function(source) {
-			var dom = $.parseHTML(source),
-				result = "";
-			$(dom).find('a[href]').each(function(i, e) {
-				var url = $(e).attr('href');
-				if (url.indexOf('http') === 0) {
-					$(e).removeAttr('href').addClass('openView').attr('data-view', '2,' + url);
-				}
-
-			});
-			$(dom).each(function(i, e) {
-				if ($.trim(e.innerHTML)) {
-					result += e.outerHTML;
-				}
-			});
-			//console.log(result)
-			return result;
-		};
-		var checkTel = function(source) {
-			if (replace) {
-				replace = '【电话】';
-			}
-			var img = /\[tel\](.*?)\[tel\]/,
-				res,
-				check = function() {
-					if (img.test(source)) {
-						res = img.exec(source);
-						source = source.replace(res[0], replace ? replace : '<a href="tel:' + res[1] + '" class="btn btn-link">' + res[1] + '</a>');
-						check(source);
-					}
-				};
-			check(source);
-			return source;
-		};
-		var _;
-		_ = checkImg(source);
-		_ = checkLink(_);
-		_ = checkTel(source);
-		return _;
-	};
-
 	//退出登录
 	var _logout = function() {
-		app.ls.remove('user');
+		app.storage.remove('user');
 		//注销推送
 		var ajpush = api.require('ajpush');
 		ajpush.bindAliasAndTags({
@@ -175,7 +91,7 @@ define(function(require, exports, module) {
 	//存储用户信息
 	var _initUser = function(userData) {
 		if (!userData) {
-			return box.msg('初始化用户信息失败');
+			return app.toast('初始化用户信息失败');
 		}
 		if (userData.photo && ($.trim(userData.photo) === '')) {
 			userData.photo = '';
@@ -188,9 +104,9 @@ define(function(require, exports, module) {
 		if ($.trim(userData.realName) === '') {
 			userData.realName = '';
 		}
-		app.ls.val('user', JSON.stringify(userData));
+		app.storage.val('user', JSON.stringify(userData));
 		//app初始化
-		app.ls.val('appInit', 1);
+		app.storage.val('appInit', 1);
 		//注册推送
 		if (userData.tag) {
 			var ajpush = api.require('ajpush');
@@ -234,12 +150,19 @@ define(function(require, exports, module) {
 	};
 	//获取用户信息
 	var _getUser = function(hold) {
-		var _user = app.ls.val('user');
-		if (_user) {
-			_user = JSON.parse(_user);
-		} else if (!hold) {
+		//测试数据
+		return {
+			id: "0001",
+			headImg: seajs.root + '/res/img/avat.jpg',
+			nickName: '珊珊',
+			realName: '伐木累',
+			nowScore: 99,
+			mobile: '15067589521'
+		};
+		var _user = app.storage.val('user');
+		if (!$.isPlainObject(_user)) {
 			app.ready(function() {
-				box.alert('请先登录！', function() {
+				app.alert('请先登录！', function() {
 					app.openView(null, 'member', 'login');
 				}, {
 					bgclose: false
@@ -259,10 +182,10 @@ define(function(require, exports, module) {
 		var map = api.require('bMap');
 		var getTimeout = setTimeout(function() {
 			app.loading.hide();
-			app.openToast('检索超时，请重试', 2000);
+			app.toast('检索超时，请重试', 2000);
 		}, appcfg.set.longtime);
 		if (!lat || !lng) {
-			return app.openToast('检索错误');
+			return app.toast('坐标反查参数错误');
 		}
 		if (!opt.silent) {
 			app.loading.show('正在检索地址...');
@@ -276,12 +199,12 @@ define(function(require, exports, module) {
 			clearTimeout(getTimeout);
 			if (err) {
 				var baiduerrmap = ['', '检索词有岐义', '检索地址有岐义', '没有找到检索结果', 'key错误', '网络连接错误', '网络连接超时', '还未完成鉴权，请在鉴权通过后重试'];
-				return app.log('百度坐标反查:' + baiduerrmap[err.code]);
+				return console.log('百度坐标反查:' + baiduerrmap[err.code]);
 			}
 			if (ret.status) {
 				opt.callback(ret);
 			} else {
-				app.openToast('百度地图API错误', 2000);
+				app.toast('百度地图API错误', 2000);
 			}
 		});
 	};
@@ -302,11 +225,11 @@ define(function(require, exports, module) {
 					if (res.status === 'Y') {
 
 					} else {
-						app.log('回传用户地理位置返回异常：' + res.msg);
+						console.log('回传用户地理位置返回异常：' + res.msg);
 					}
 				},
 				error: function(o) {
-					app.log('回传用户地理位置发生错误');
+					console.log('回传用户地理位置发生错误');
 				}
 			});
 		};
@@ -329,10 +252,10 @@ define(function(require, exports, module) {
 	};
 	//收集信息
 	var _collection = function() {
-		var oldInfo = JSON.parse(app.ls.val('DeviceInfo')) || {},
+		var oldInfo = app.storage.val('DeviceInfo') || {},
 			newInfo = {},
 			send = function(extraParam) {
-				var userData = JSON.parse(app.ls.val('user')),
+				var userData = app.storage.val('user'),
 					hasChange;
 				extraParam.saveDate = _getDate(false, true);
 				//日期过滤
@@ -347,7 +270,7 @@ define(function(require, exports, module) {
 					}
 				});
 				if (hasChange && $.isPlainObject(userData)) {
-					app.ls.val('DeviceInfo', JSON.stringify(extraParam));
+					app.storage.val('DeviceInfo', JSON.stringify(extraParam));
 					var data = $.extend({
 						member_id: userData.id
 					}, extraParam);
@@ -358,7 +281,7 @@ define(function(require, exports, module) {
 
 						},
 						error: function() {
-							app.log('回传设备信息时发生错误');
+							console.log('回传设备信息时发生错误');
 						}
 					});
 				}
@@ -403,7 +326,7 @@ define(function(require, exports, module) {
 						if (data.split) {
 							data = JSON.parse(data);
 						}
-						app.ls.val(e.key, JSON.stringify(data));
+						app.storage.val(e.key, JSON.stringify(data));
 					}
 				},
 				error: function() {}
@@ -423,7 +346,7 @@ define(function(require, exports, module) {
 		var preGetList = _preGet.prototype.preGetList,
 			isDone = true;
 		$.each(preGetList, function(i, e) {
-			if (!app.ls.val(e.key)) {
+			if (!app.storage.val(e.key)) {
 				_preGet();
 				isDone = false;
 				return false;
@@ -434,13 +357,12 @@ define(function(require, exports, module) {
 	//检查升级
 	var _checkUpdate = function(platform, silence) {
 		var mam = api.require('mam');
-		var box = require('box');
+		
 		mam.checkUpdate(function(ret, err) {
 			if (ret) {
 				var result = ret.result;
 				if (result.update === true && result.closed === false) {
-					var uploadbox = box.confirm(ret.updateTip, function() {
-						box.hide(uploadbox);
+					app.confirm(ret.updateTip, function() {
 						if (platform == 'ios') {
 							api.installApp({
 								appUri: result.source
@@ -451,7 +373,7 @@ define(function(require, exports, module) {
 								report: true
 							}, function(ret, err) {
 								if (ret && 0 === ret.state) { /* 下载进度 */
-									app.openToast("正在下载:" + ret.percent + "%", 1000);
+									app.toast("正在下载:" + ret.percent + "%", 1000);
 								}
 								if (ret && 1 === ret.state) { /* 下载完成 */
 									var savePath = ret.savePath;
@@ -465,11 +387,11 @@ define(function(require, exports, module) {
 						bar: true,
 						title: '升级到 V' + result.version
 					});
-				} else if(!silence){
-					box.alert("暂无更新");
+				} else if (!silence) {
+					app.alert("暂无更新");
 				}
-			} else if(!silence){
-				box.alert(err.msg);
+			} else if (!silence) {
+				app.alert(err.msg);
 			}
 		});
 	};
@@ -479,60 +401,69 @@ define(function(require, exports, module) {
 		var chaoshi = setTimeout(function() {
 			app.loading.hide();
 			bMap.stopLocation();
-			if (app.ls.val('gps')) {
-				var gpsCache = JSON.parse(app.ls.val('gps'));
+			if (app.storage.val('gps')) {
+				var gpsCache = app.storage.val('gps');
 				if (typeof(callback) === 'function') {
 					callback(gpsCache.lat, gpsCache.lng);
 				}
+				console.log('定位超时，使用缓存数据');
 			} else {
-				if (errcb && typeof(errcb) === 'function') {
+				if (typeof(errcb) === 'function') {
 					errcb();
 				} else {
-					app.openToast('GPS定位超时！', 1000);
+					app.toast('GPS定位超时！', 1000);
 				}
 			}
 		}, appcfg.set.outime);
 		bMap.getLocation({
-			accuracy: '100m',
+			accuracy: '10m',
 			autoStop: true,
 			filter: 1
 		}, function(ret, err) {
-			if (ret) {
-				clearTimeout(chaoshi);
-				chaoshi = null;
-				app.ls.val('gps', JSON.stringify({
-					lat: ret.lat,
-					lng: ret.lon
-				}));
-				app.loading.hide();
+			app.loading.hide();
+			if (ret && ret.status) {
+				chaoshi = clearTimeout(chaoshi);
+				if(ret.lat && ret.lon){
+					app.storage.val('gps', JSON.stringify({
+						lat: ret.lat,
+						lng: ret.lon
+					}));
+				}else{
+					console.log('bMap.getLocation定位异常');
+				}
 				bMap.stopLocation();
 				if (typeof(callback) === 'function') {
 					callback(ret.lat, ret.lon);
 				}
 			} else {
-				app.log('getLocation()定位失败');
+				if (typeof(errcb) === 'function') {
+					errcb();
+				} else {
+					app.toast('GPS定位失败：' + JSON.stringify(err) );
+				}
 			}
 		});
 	};
 	//指定DOM打开地图
 	var _openBaiduMap = function(dom, data, refresh) {
 		if (!$.isPlainObject(data) || !data.longitude || !data.latitude) {
-			return app.openToast('参数缺失，无法打开地图');
+			return app.toast('参数缺失，无法打开地图');
 		}
 		var bdMapParam = {
 			lat: data.latitude,
 			lng: data.longitude
 		};
-		app.ls.val('bdMapData', JSON.stringify(bdMapParam));
+		app.storage.val('bdMapData', JSON.stringify(bdMapParam));
 		if (refresh) {
-			app.window.evaluatePopoverScript('', 'bdMapView', 'refresh()');
+			app.window.evaluate('', 'bdMapView', 'refresh()');
 		} else {
 			setTimeout(function() {
+				var offset = $("#" + dom)[0].getBoundingClientRect();
 				app.window.popoverElement({
 					id: dom,
 					name: 'bdMapView',
 					url: seajs.root + '/view/common/baiduMap/temp.html',
-					top: parseInt(window.selfTop) + $("#" + dom).offset().top,
+					top: parseInt(window.selfTop) + offset.top,
 					bounce: false
 				});
 			}, 0);
@@ -540,122 +471,62 @@ define(function(require, exports, module) {
 	};
 	//公用模板
 	var _commonTemp = function(tempName, data) {
+		var templateCache = app.storage.val('templateCache') || {};
 		if (!data) {
 			data = {};
 		}
-		var etplEngine = new etpl.Engine();
-		var template = $.trim(app.ls.val('template'));
-		if (!template) {
-			template = api.readFile({
-				sync: true,
-				path: seajs.root + '/res/temp/template.html'
-			});
-			app.ls.val('template', template);
+		if(templateCache[tempName]){
+			return templateCache[tempName];
 		}
+		var etplEngine = new etpl.Engine();
+		var template = api.readFile({
+			sync: true,
+			path: seajs.root + '/res/temp/template.html'
+		});
 		etplEngine.compile(template);
 		var Render = etplEngine.getRenderer(tempName);
-		var Html = Render(data);
-		return Html;
+		if(Render){
+			var html = Render(data);
+			templateCache[tempName] = html;
+			app.storage.val('templateCache', templateCache);
+			return html;
+		} else {
+			console.log('找不到指定模板：' + tempName);
+		}
 	};
 
-	//日期天数计算:timeCalculator(new Date(),-15);
-	var timeCalculator = function(date, day) {
-		var nowms = Date.parse(date.toString());
-		var dayms = day * 1000 * 60 * 60 * 24;
-		var result = new Date(nowms + dayms);
-		//console.log(result)
-		return result;
-	};
-
-	//浮点数乘法
-	function _accMul(arg1, arg2) {
-		var m = 0,
-			s1 = arg1.toString(),
-			s2 = arg2.toString();
-		try {
-			m += s1.split(".")[1].length;
-		} catch (e) {}
-		try {
-			m += s2.split(".")[1].length;
-		} catch (e) {}
-		return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
-	}
-	//封装选择器
-	var openSelector = function(items, onSelect) {
+	var cacheImg = function(element, callback) {
+		var placeholderPic = seajs.root + '/res/img/placeholder.jpg';
+		var remoteEle;
+		if ($(element)[0].getAttribute('data-remote')) {
+			remoteEle = $(element);
+		} else {
+			remoteEle = $(element)[0].querySelectorAll('[data-remote]');
+		}
 		app.ready(function() {
-			var UIMultiSelector = api.require('UIMultiSelector');
-			UIMultiSelector.open({
-				rect: {
-					h: Math.min(items.length * 51 + 2, 300)
-				},
-				text: {
-					leftBtn: '', //取消
-					rightBtn: '' //完成
-				},
-				singleSelection: true,
-				styles: {
-					mask: 'rgba(0,0,0,0)',
-					leftButton: {
-						bg: '#f08300',
-						w: 80,
-						h: 32,
-						marginT: 5,
-						marginL: 8,
-						color: '#ffffff',
-						size: 14
-					},
-					rightButton: {
-						bg: '#f08300',
-						w: 80,
-						h: 32,
-						marginT: 5,
-						marginR: 8,
-						color: '#ffffff',
-						size: 14
-					},
-					title: {
-						h: 2,
-						bg: "#38adff"
-					},
-					item: {
-						active: "38adff",
-						bgActive: '#ddd',
-						lineColor: '#ccc',
-						bgHighlight: '#eee',
-						h: 50,
-						size: 16,
-						color: "#555"
+			var cacheCount = 0;
+			$.each(remoteEle, function(i, ele) {
+				var remote = ele.getAttribute('data-remote') || placeholderPic;
+				api.imageCache({
+					url: remote,
+					policy: "cache_else_network"
+				}, function(ret, err) {
+					var url = ret.url;
+					if (ele.tagName.toLowerCase() === 'img') {
+						ele.setAttribute('src', url);
+					} else {
+						ele.style.backgroundImage = "url(" + url + ")";
 					}
-				},
-				animation: false,
-				items: items
-			}, function(ret, err) {
-				if (ret) {
-					switch (ret.eventType) {
-						case 'clickLeft':
-							UIMultiSelector.close();
-							break;
-						case 'clickRight':
-							UIMultiSelector.close();
-							break;
-						case 'clickItem':
-							var _theitem = ret.items[0];
-							if (typeof onSelect === 'function') {
-								onSelect(_theitem);
-							}
-
-							UIMultiSelector.close();
-							break;
-						default:
-
+					ele.removeAttribute('data-remote');
+					cacheCount++;
+					if(cacheCount===remoteEle.length){
+						typeof callback === 'function' && callback();
 					}
-				} else {
-					alert(JSON.stringify(err));
-				}
+				});
 			});
 		});
+		return remoteEle;
 	};
-
 	module.exports = {
 		logout: _logout,
 		initUser: _initUser,
@@ -666,15 +537,12 @@ define(function(require, exports, module) {
 		source: _source,
 		getDate: _getDate,
 		checkUpdate: _checkUpdate,
-		richMedia: _richMedia,
-		xss: _xss,
 		uploadifyLocation: _uploadifyLocation,
 		openBaiduMap: _openBaiduMap,
 		commonTemp: _commonTemp,
 		getAddrByLoc: _getAddrByLoc,
 		getLocation: _getLocation,
 		collection: _collection,
-		accMul: _accMul,
-		openSelector: openSelector
+		cacheImg: cacheImg
 	};
 });

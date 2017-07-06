@@ -11,7 +11,7 @@
   <body class="flex-col">
     <div class="head myhead">
         <div class="btn" id="goBack">
-            <i class="ion">&#xe62d;</i>
+            <i class="ion">&#xe651;</i>
         </div>
         <div class="title" id="headTitle">配件搜索</div>
     </div>
@@ -43,7 +43,7 @@
           <input type="hidden" name="cat" id="cat">
           <div class="item-body">
             <div class="row catList" id="catList">
-            <textarea class="hide" id="catListTemp">
+            <textarea class="hide" template>
               <button class="span-4 btn partcat bg-primary" data-val="">所有分类</button>
               <!-- for: ${data} as ${cat} -->
                 <button class="span-4 btn partcat" data-val="${cat.id}">${cat.name}</button>
@@ -53,7 +53,7 @@
           </div>
         </div>
       </div>
-      <div class="padding">
+      <div class="p">
         <button class="btn btn-lg btn-primary btn-block" id="doSearch">搜索</button>
       </div>
       <div class="item item-input item-stacked-label item-icon-right clean-div" id="cleanCondition">

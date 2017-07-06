@@ -14,10 +14,10 @@ define(function(require) {
 		//推送
 		var ajpush = api.require('ajpush');
 		var pushable;
-		if (app.ls.val('pushable') === null) {
-			app.ls.val('pushable', '1');
+		if (app.storage.val('pushable') === null) {
+			app.storage.val('pushable', '1');
 		}
-		pushable = app.ls.val('pushable') === '1';
+		pushable = app.storage.val('pushable') === '1';
 		if (ajpush) {
 			var catchPush = function(json) {
 				alert(JSON.stringify(json));
@@ -70,13 +70,13 @@ define(function(require) {
 		comm.checkUpdate(api.systemType, true);
 
 		//app启动&恢复事件
-		app.resume(function() {
+		app.on('resume', function() {
 			ajpush.onResume();
 			comm.getLocation();
 			comm.collection();
 		});
 
-		app.pause(function() {
+		app.on('pause', function() {
 			ajpush.onPause();
 		});
 

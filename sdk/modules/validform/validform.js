@@ -2,14 +2,16 @@
 * name: validform.js
 * version: v2.5.3
 * update: 修复弹窗颜色bug
-* change: var ajaxRequest = app.ajax;
+* data: 2017-06-25
 */
 define('validform',function(require, exports, module) {
 	"use strict";
+	
 	seajs.importStyle('.Validform_right{color:#71b83d}.Validform_wrong{color:red;white-space:nowrap}.Validform_loading{padding-left:20px}.Validform_error{background-color:#ffe7e7}.passwordStrength{display:block;height:18px;line-height:16px;clear:both;overflow:hidden;margin-bottom:5px}.passwordStrength b{font-weight:normal}.passwordStrength b,.passwordStrength span{display:inline-block;vertical-align:middle;line-height:16px;line-height:18px\9;height:16px}.passwordStrength span{width:63px;text-align:center;background-color:#d0d0d0;border-right:1px solid #fff}.passwordStrength .last{border-right:0;width:61px}.passwordStrength .bgStrength{color:#fff;background-color:#71b83d}'
 		,module.uri);
+	var $ = require('jquery');
 	var ajaxRequest = app.ajax;
-	var box = require('box');
+	
 	var win = window;
 	var undef = void 0;
 	var errorobj = null,
@@ -48,6 +50,7 @@ define('validform',function(require, exports, module) {
 			checkTime: 100 //验证延时
 		};
 	var Validform = function(forms, settings, inited) {
+		forms = $(forms);
 		settings = $.extend({}, defaults, settings);
 		settings.datatype && $.extend(Validform.util.dataType, settings.datatype);
 		var brothers = this;
@@ -416,8 +419,7 @@ define('validform',function(require, exports, module) {
 				return;
 			}
 			if (type == 1) {
-				box.hide(Validform.util.boxHandle);
-				Validform.util.boxHandle = box.msg(msg, {
+				app.toast(msg, {
 					delay: 2e3,
 					color: color
 				});
@@ -726,12 +728,8 @@ define('validform',function(require, exports, module) {
 						dynamicAjaxData=settings.ajaxData||{};
 					}
 					$.extend(_sendData,  dynamicAjaxData);
-
 					var localconfig = {
-						type: "POST",
-						async: true,
 						data: _sendData, //$.extend(_sendData, settings.ajaxData || {}),
-						dataType: settings.dataType || 'json',
 						success: function(data) {
 							if (data) {
 								curform[0].validform_status = "posted";
@@ -906,5 +904,7 @@ define('validform',function(require, exports, module) {
 	$.fn.Validform = function(settings) {
 		return new Validform(this, settings);
 	};
-	module.exports = Validform;
+	module.exports = function(forms, settings, inited){
+		return new Validform(forms, settings, inited);
+	};
 });

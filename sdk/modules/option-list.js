@@ -38,14 +38,16 @@ define('option-list', function(require, exports, module) {
     seajs.importStyle('.item-right-options{padding:0}\
 .item-content{position:relative;z-index:2;padding:16px;border:none;background-color:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2)}\
 .item-options{position:absolute;z-index:1;top:0;right:0;height:100%}\
-.item-options .btn{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-flex;display:-ms-inline-flexbox;display:inline-flex;box-sizing:border-box;height:100%;border:none;border-radius:0;-webkit-box-align:center;-ms-flex-align:center;-webkit-align-items:center;-moz-align-items:center;align-items:center}'
-        , module.uri);
-    var base = require('base');
+.item-options .btn{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-flex;display:-ms-inline-flexbox;display:inline-flex;box-sizing:border-box;height:100%;border:none;border-radius:0;-webkit-box-align:center;-ms-flex-align:center;-webkit-align-items:center;-moz-align-items:center;align-items:center}', module.uri);
+    var $ = require('jquery'),
+        base = require('base'),
+        etpl = require('etpl');
+
     var item_temp = '<li class="item item-right-options scrollSelectItem ${className}">\
             <div class="item-content scrollSelectContent"> ${item|raw} </div>\
         </li>',
         button_temp = '<div class="item-options scrollSelectOptions">\
-            <!-- for: ${buttons} as ${btn}, ${index} --><div class="btn ${btn.className}"> ${btn.text} </div><!-- /for -->\
+            <!-- for: ${buttons} as ${btn}, ${index} --><div class="btn ${btn.className}" data-index="${index}"> ${btn.text} </div><!-- /for -->\
         </div>',
         item_render = etpl.compile(item_temp),
         button_render = etpl.compile(button_temp);
@@ -97,20 +99,20 @@ define('option-list', function(require, exports, module) {
             self.ele.get(0).addEventListener('touchstart', function(evt) {
                 var that = evt.target,
                     $btns;
-                if($(that).parents('.scrollSelectContent').length){
+                if ($(that).parents('.scrollSelectContent').length) {
                     that = $(that).parents('.scrollSelectContent').get(0);
                 };
                 $btns = $(that).siblings(".scrollSelectOptions");
-                if(!$btns.length){
+                if (!$btns.length) {
                     $btns = $(button_render(self.option));
                     $(that).parents('.scrollSelectItem').append($btns);
                 };
                 $(that).parents('.scrollSelectItem').addClass('showOption');
                 if ($(that).hasClass('scrollSelectContent')) {
                     $(that).addClass(self.option.touchClass);
-                    
+
                     if (!self.option.multiShow) {
-                        $(that).parents('.scrollSelectItem').siblings().find('.scrollSelectContent').each(function(i,e){
+                        $(that).parents('.scrollSelectItem').siblings().find('.scrollSelectContent').each(function(i, e) {
                             e.style.transitionDuration = "100ms";
                             e.style.left = "0px";
                         });
@@ -130,7 +132,7 @@ define('option-list', function(require, exports, module) {
             self.ele.get(0).addEventListener('touchmove', function(evt) {
                 var that = evt.target;
                 //滑动区域
-                if($(that).parents('.scrollSelectContent').length){
+                if ($(that).parents('.scrollSelectContent').length) {
                     that = $(that).parents('.scrollSelectContent').get(0);
                 }
                 if ($(that).hasClass('scrollSelectContent')) {
@@ -144,12 +146,12 @@ define('option-list', function(require, exports, module) {
                             startMarginLeft = 0;
                         }
                         var marginLeft = startMarginLeft + moveX - startX;
-                        marginLeft > 0 && (marginLeft = 0);//不能滑动到右边界外
-                        if(marginLeft<-delWidth){
+                        marginLeft > 0 && (marginLeft = 0); //不能滑动到右边界外
+                        if (marginLeft < -delWidth) {
                             //滑倒位置即刻停止
                             marginLeft = -delWidth;
                             $(that).removeClass(self.option.touchClass);
-                            
+
                         }
                         if (flag == 0) {
                             var startPoint = {
@@ -163,14 +165,14 @@ define('option-list', function(require, exports, module) {
                             var angles = angle(startPoint, movePoint);
                             flag = 1;
                             if (parseInt(angles) < -30 || parseInt(angles) > 30) {
-                                
+
                                 scrollEnable = false;
                             } else {
                                 if (parseInt($(that)[0].style.marginLeft) > 0) {
                                     return;
                                 }
                                 that.style.transitionDuration = "0ms";
-                                that.style.left = marginLeft+"px";
+                                that.style.left = marginLeft + "px";
                                 evt.preventDefault();
                             }
                         } else {
@@ -181,28 +183,28 @@ define('option-list', function(require, exports, module) {
                                 return;
                             }
                             that.style.transitionDuration = "0ms";
-                            that.style.left = marginLeft+"px";
+                            that.style.left = marginLeft + "px";
                         }
                     }
                 };
-                
+
             }, false);
             self.ele.get(0).addEventListener('touchend', function(evt) {
                 var that = evt.target,
                     _cont = $(that).parents('.scrollSelectItem').find('.scrollSelectContent');
-                if($(that).parents('.scrollSelectContent').length){
+                if ($(that).parents('.scrollSelectContent').length) {
                     that = $(that).parents('.scrollSelectContent').get(0);
                 }
                 if ($(that).hasClass('scrollSelectContent')) {
-                    
+
                     _cont.removeClass(self.option.touchClass);
 
-                    if (!scrollEnable){
+                    if (!scrollEnable) {
                         return;
                     }
                     _cont.get(0).style.transitionDuration = self.option.duration;
                     if ((startX - moveX) > delWidth / 2) {
-                        _cont.get(0).style.left = -delWidth+"px";
+                        _cont.get(0).style.left = -delWidth + "px";
                         $(that).parents('.scrollSelectItem').addClass('showOption');
                     } else {
                         _cont.get(0).style.left = "0px";
@@ -229,10 +231,10 @@ define('option-list', function(require, exports, module) {
             var data = self.data;
             var container = self.buildListview(newData);
 
-            if (dir){
+            if (dir) {
                 self.ele.append(container);
                 self.data = data.unshift(newData);
-            }else {
+            } else {
                 var first = self.ele.children().first();
                 first.prepend(container);
                 self.data = data.push(newData);
@@ -244,7 +246,7 @@ define('option-list', function(require, exports, module) {
             var setFunc = function() {
                 var container = self.buildListview(data);
                 self.ele.html(container);
-                self.data = $.extend(true,[],data);
+                self.data = $.extend(true, [], data);
                 return self.sort();
             }
             setFunc();
@@ -252,20 +254,21 @@ define('option-list', function(require, exports, module) {
         delete: function(itemIndex) {
             var self = this;
             var data = self.data;
-            self.ele.find(".scrollSelectItem").eq(itemIndex).remove();
-            data.splice(itemIndex,1);
+            var delnode = self.ele.find(".scrollSelectItem")[itemIndex];
+            delnode.parentNode.removeChild(delnode);
+            data.splice(itemIndex, 1);
             self.data = data;
             self.sort();
         },
-        sort: function(){
+        sort: function() {
             var self = this;
-            self.ele.find('.scrollSelectItem').each(function(i,e){
-                $(e).data('index',i);
+            self.ele.find('.scrollSelectItem').each(function(i, e) {
+                $(e).data('index', i);
             });
             return self;
         }
     };
-    module.exports = function(option){
+    module.exports = function(option) {
         return new OptionListView(option);
     };
 });

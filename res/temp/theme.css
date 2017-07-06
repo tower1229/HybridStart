@@ -1,7 +1,7 @@
-<!-- //themeTemplate v0.1.0 add body bg -->
+<!-- //themeTemplate v0.1.1 add text -->
 <!-- target: themeTemplate -->
 <!-- // visible -->
-body.app-theme{opacity:1;visibility:visible;background: ${body_bg}}
+body.app-theme{opacity:1;visibility:visible;background: ${body_bg};color:${gray}}
 <!-- // color set -->
 .text-primary { color: ${primary};}
 a.text-primary:hover { color: ${sub_primary};}
@@ -69,5 +69,5 @@ a.bg-danger:hover { background-color: ${danger};}
 	border-color: ${primary};  background: ${primary};
 }
 .item-icon-left .ion:first-child{color:${primary};}
-
-.loading-progress{background:${heav_primary}}
+//网页加载条
+.loading-progress{background: ${primary};}

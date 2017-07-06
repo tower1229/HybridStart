@@ -2,10 +2,10 @@
  * layout
  */
 define(function(require) {
-    var comm = require('sdk/server');
     require('sdk/common');
+    var $ = app.util;
     var echarts = require('echarts');
-    
+
     // 基于准备好的DOM，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
     var option = {

@@ -4,7 +4,14 @@
 define(function(require) {
 	var comm = require('sdk/server');
 	require('sdk/common');
-	var box = require('box');
+	var $ = app.util;
+	var render = require('render');
+	var myRender = render({
+		el: '#view',
+		callback: function(){
+			app.loading.hide();
+		}
+	});
 
 	var getData = function() {
 		app.loading.show();
@@ -15,11 +22,9 @@ define(function(require) {
 			success: function(res) {
 				if (res.status === 'Y') {
 					res.update = comm.getDate();
-					app.render($('#template').val(), res, '#view', true, function(html) {
-						console.log(html);
-					});
+					myRender.data(res);
 				} else if (res.msg) {
-					box.msg(res.msg);
+					app.toast(res.msg);
 				}
 			}
 		});

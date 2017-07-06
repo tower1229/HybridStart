@@ -53,9 +53,9 @@ define('scroll-load', function(require, exports, module) {
                 };
             }
             if ($wrap.find('#' + loadingId).length) {
-                $loading = $wrap.find('#' + loadingId).hide();
+                $loading = $wrap.find('#' + loadingId).css('display','none');
             } else if (opt.loadingTemplate && opt.loadingTemplate.split) {
-                $loading = $(opt.loadingTemplate).attr('id', loadingId).hide();
+                $loading = $(opt.loadingTemplate).attr('id', loadingId).css('display','none');
             }
             if (!opt.force) {
                 if (window.nomore) {
@@ -79,19 +79,18 @@ define('scroll-load', function(require, exports, module) {
                 }
                 var contentH = contHeight(),
                     scrollTop = $(this).scrollTop();
-
                 if (contentH - viewH() - scrollTop < opt.distance) {
                     running = true;
                     //插入加载提示
-                    if ($loading) {
-                        $wrap.append($loading.show()).scrollTop($wrap.scrollTop() + $loading.outerHeight(true) + opt.distance);
+                    if ($loading.length) {
+                        $wrap.append($loading.css('display','block')).scrollTop($wrap.scrollTop() + $loading.outerHeight(true) + opt.distance);
                     } else {
                         $wrap.scrollTop($wrap.height());
                     }
 
                     if (typeof(opt.callback) === 'function') {
                         opt.callback(function() {
-                            $loading && $loading.hide();
+                            $loading && $loading.css('display','none');
                             running = null;
                         });
                     }

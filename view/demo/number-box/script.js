@@ -2,22 +2,30 @@
  * layout
  */
 define(function(require) {
-	var comm = require('sdk/server');
 	require('sdk/common');
-	var box = require('box');
-	
-	$('.pro_counter_val').on('click',function(e){
-		var inp = $(this),
-			v = inp.val(),
-			max = inp.data('max');
-		inp.blur();
-		box.amount(v,function(num){
-			inp.val(Math.min(num,max));
-		});
+	var $ = app.util;
+
+	var inputNumber = require('input-number');
+	var mycount = inputNumber({
+		el: '.mytest',
+		min: 2,
+		max: 9,
+		val: 5,
+		style: 'inline',
+		onChange: function(val) {
+			$('#log')[0].innerHTML = ('<p>实例1的值：' + val + '</p>');
+		}
 	});
 
+	var disable = false;
+	$('#act1')[0].addEventListener('touchend', function() {
+		disable = !disable;
+		mycount.disabled(!disable);
+	});
+
+
 	app.ready(function() {
-		
+
 
 	});
 });
