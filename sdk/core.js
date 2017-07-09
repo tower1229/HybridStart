@@ -466,7 +466,8 @@ var apputil = (function(document, undefined) {
 			if(window.api){
 				return callback.apply(null, arguments);
 			}else{
-				console.warn('Device is not ready: ' + callback.toString());
+				var fname = callback.toString().match(/function\s*(\w+)\s*\(/);
+				console.warn('runtime is not ready for function ' + (fname ? fname[1] : "anonymous") + "().");
 			}
 		}
 	}
@@ -879,7 +880,7 @@ var apputil = (function(document, undefined) {
 			bgColor: appcfg.theme.body_bg,
 			bounces: !!argObj["bounce"]
 		});
-		return name;
+		return argObj["name"];
 	};
 
 	function animPopover(config) {
@@ -898,6 +899,7 @@ var apputil = (function(document, undefined) {
 		api.animation(opt, function(ret, err) {
 			typeof opt.callback === 'function' && opt.callback(ret, err);
 		});
+		return opt.name;
 	}
 
 	function setPopover(config) {
@@ -911,6 +913,7 @@ var apputil = (function(document, undefined) {
 			}
 		}, config || {});
 		api.setFrameAttr(opt);
+		return opt.name
 	};
 
 	function evaluate(name, frameName, script) {
@@ -1280,11 +1283,12 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 	}
 })(app);
 //浮动窗口扩展window.selfTop属性
-if (app.storage.val('popoverTopHash')) {
-	window.selfTop = app.storage.val('popoverTopHash');
+var popTopHash = app.storage.val('popoverTopHash');
+if (popTopHash) {
+	window.selfTop = popTopHash;
 	app.storage.remove('popoverTopHash');
 } else {
-	window.selfTop = 0;
+	delete window.selfTop;
 }
 
 app.ready(function() {
@@ -1296,9 +1300,6 @@ app.ready(function() {
 		window.isBack = false;
 	});
 
-	window.platform = api.systemType;
-	window.version = api.systemVersion;
-
 	//响应关闭指令
 	app.subscribe('closeback', function(msg) {
 		if (api.winName === 'root') return null;
@@ -1306,9 +1307,12 @@ app.ready(function() {
 			case "closeByNew":
 				if (window.closeByNew) {
 					setTimeout(function() {
-						console.log('closeByNew:' + api.winName);
+						//console.log('closeByNew:' + api.winName);
 						api.closeWin({
-							name: api.winName
+							name: api.winName,
+							animation:{
+								type:"none"
+							}
 						});
 					}, appcfg.set.animateDuration + 300)
 				}
@@ -1316,9 +1320,12 @@ app.ready(function() {
 			case "closeback": //关闭后台页面
 				setTimeout(function() {
 					if (!!window.isBack && platform === 'android') {
-						console.log('closeback:' + api.winName);
+						//console.log('closeback:' + api.winName);
 						api.closeWin({
-							name: api.winName
+							name: api.winName,
+							animation:{
+								type:"none"
+							}
 						});
 					}
 				}, appcfg.set.animateDuration + 300)
@@ -1328,8 +1335,9 @@ app.ready(function() {
 		}
 	});
 	//发布关闭指令
-	if (app.storage.val('winCloseCondition')) {
-		app.publish('closeback', app.storage.val('winCloseCondition'));
+	var currentWinCloseCondition = app.storage.val('winCloseCondition');
+	if (currentWinCloseCondition) {
+		app.publish('closeback', currentWinCloseCondition);
 		setTimeout(function() {
 			app.storage.remove('winCloseCondition');
 		}, 100)

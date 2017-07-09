@@ -86,6 +86,8 @@ define(function(require, exports, module) {
 	
 
 	app.ready(function() {
+		var platform = api.systemType;
+		var version = api.systemVersion;
 		//系统兼容
 		if (platform === 'android') {
 			//item-radio强制重绘

@@ -2,7 +2,6 @@
  * 
  */
 define(function(require) {
-	var comm = require('sdk/server');
 	require('sdk/common');
 	var $ = require('jquery');
 	var autocompleteHistory = app.storage.val('autocompleteHistory') || [];

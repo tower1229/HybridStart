@@ -3,66 +3,68 @@
 define(function(require) {
 	require('sdk/common');
 	var $ = app.util;
-
+	var wwid = window.innerWidth;
 	//导航事件
 	var $head = $('#head')[0];
 	var $title = $('#title')[0];
+	var channelSet = {
+		home: {
+			url: './content.html',
+			set: function(){
+				$title.innerText = 'HybridStart 功能示例';
+			}
+		},
+		product: {
+			url: '../../product/index/temp.html',
+			set: function(){
+				$title.innerText = '产品';
+				$head.classList.add('product-head');
+			}
+		},
+		discover: {
+			url: '../../discover/index/temp.html',
+			set: function(){
+				$title.innerText = '发现';
+				$head.classList.add('discover-head');
+			}
+		},
+		member: {
+			url: '../../member/index/temp.html',
+			set: function(){
+				$title.innerText = '会员中心';
+				$head.classList.add('member-head');
+			}
+		}
+	};
 	$('.foot').on('touchstart', '[active]', function(e) {
 		var target = e.target;
+		var tid = target.getAttribute('id');
 		if (target.className.indexOf('cur') !== -1) {
 			return null;
 		}
-		if(e.detail){
-			setTimeout(function(){
+		if (e.detail) {
+			setTimeout(function() {
 				$(target)[0].classList.remove('active');
-			},0);
+			}, 0);
 		}
 		//移除头部栏目类
 		$head.classList.remove('product-head', 'discover-head', 'member-head');
 		//移除导航当前状态
 		$('.foot .cur')[0].classList.remove('cur');
 		$(target)[0].classList.add('cur');
-		switch (target.getAttribute('id')) {
-			case 'home':
-				app.window.popoverElement({
-					id: 'view',
-					url: './content.html'
-				});
-				$title.innerText = 'HybridStart 功能示例';
-				break;
-			case 'product':
-				app.window.popoverElement({
-					id: 'view',
-					url: '../../product/index/temp.html'
-				});
-				$title.innerText = '产品';
-				$head.classList.add('product-head');
-				break;
-			case 'discover':
-				app.window.popoverElement({
-					id: 'view',
-					url: '../../discover/index/temp.html'
-				});
-				$title.innerText = '发现';
-				$head.classList.add('discover-head');
-				break;
-			case 'member':
-				app.window.popoverElement({
-					id: 'view',
-					url: '../../member/index/temp.html'
-				});
-				$title.innerText = '会员中心';
-				$head.classList.add('member-head');
-				break;
-			default:
-				console.log('底部菜单异常！');
-		}
+		//执行栏目设定
+		channelSet[tid].set();
+		//打开对应frame
+		app.window.popoverElement({
+			id: 'view',
+			url: channelSet[tid].url
+		});
 	});
 
 	//头部按钮
 	$('#head').on('touchstart', '.btn', function(e) {
 		var btn = e.target;
-		switch(btn.getAttribute('id')){
+		switch (btn.getAttribute('id')) {
 			case "offcanvas":
 				app.openView({
 					subType: 'from_left'
@@ -74,7 +76,7 @@ define(function(require) {
 			default:
 				console.warn('头部按钮点击异常');
 		}
-		
+
 	});
 
 
@@ -82,12 +84,21 @@ define(function(require) {
 		//返回拦截
 		app.key('keyback', function() {
 			if ($('#home')[0].className.indexOf('cur') === -1) {
-				return $('#home').trigger('touchstart', {from_back: true});
+				return $('#home').trigger('touchstart', {
+					from_back: true
+				});
 			}
-			app.storage.remove('referrer');
-			setTimeout(function() {
-				app.exit();
-			}, 0);
+			app.exit();
+		});
+		
+		//frame预加载
+		$.each(channelSet, function(name, obj) {
+			if (name !== 'home') {
+				app.window.popoverElement({
+					id: 'view',
+					url: obj.url
+				});
+			}
 		});
 		//打开首页
 		app.window.popoverElement({
