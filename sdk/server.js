@@ -104,7 +104,7 @@ define(function(require, exports, module) {
 		if ($.trim(userData.realName) === '') {
 			userData.realName = '';
 		}
-		app.storage.val('user', JSON.stringify(userData));
+		app.storage.val('user', userData);
 		//app初始化
 		app.storage.val('appInit', 1);
 		//注册推送
@@ -270,7 +270,7 @@ define(function(require, exports, module) {
 					}
 				});
 				if (hasChange && $.isPlainObject(userData)) {
-					app.storage.val('DeviceInfo', JSON.stringify(extraParam));
+					app.storage.val('DeviceInfo', extraParam);
 					var data = $.extend({
 						member_id: userData.id
 					}, extraParam);
@@ -326,7 +326,7 @@ define(function(require, exports, module) {
 						if (data.split) {
 							data = JSON.parse(data);
 						}
-						app.storage.val(e.key, JSON.stringify(data));
+						app.storage.val(e.key, data);
 					}
 				},
 				error: function() {}
@@ -424,10 +424,10 @@ define(function(require, exports, module) {
 			if (ret && ret.status) {
 				chaoshi = clearTimeout(chaoshi);
 				if(ret.lat && ret.lon){
-					app.storage.val('gps', JSON.stringify({
+					app.storage.val('gps', {
 						lat: ret.lat,
 						lng: ret.lon
-					}));
+					});
 				}else{
 					console.log('bMap.getLocation定位异常');
 				}
@@ -453,7 +453,7 @@ define(function(require, exports, module) {
 			lat: data.latitude,
 			lng: data.longitude
 		};
-		app.storage.val('bdMapData', JSON.stringify(bdMapParam));
+		app.storage.val('bdMapData', bdMapParam);
 		if (refresh) {
 			app.window.evaluate('', 'bdMapView', 'refresh()');
 		} else {
