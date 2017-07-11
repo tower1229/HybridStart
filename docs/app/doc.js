@@ -4,6 +4,17 @@
 define(function(require) {
 	var $ = require('jquery');
 	var base = require('base');
+	//示例app
+	$.ajax({
+		url: 'http://www.apicloud.com/getAllUnpack?appId=A6997660453388&startNum=0&num=5&type=1&_=1499659601646',
+		dataType: 'json',
+		success: function(res){
+			if(res.status){
+				var url = res.body.list[0].upkApkUrl;
+				$('#apidownload').src(url);
+			}
+		}
+	});
 	/*生成目录*/
 
 	var $nav = $('#nav'),
