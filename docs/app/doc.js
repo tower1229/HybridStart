@@ -7,12 +7,9 @@ define(function(require) {
 	//示例app
 	$.ajax({
 		type:'get',
-		url: 'http://www.apicloud.com/getAllUnpack',
+		url: 'http://host.refined-x.com/get.php',
 		data: {
-			appId: 'A6997660453388',
-			startNum: 0,
-			num: 5,
-			type: 1,
+			url: 'http%3A%2F%2Fwww.apicloud.com%2FgetAllUnpack%3FappId%3DA6997660453388%26startNum%3D0%26num%3D5%26type%3D1',
 			Referer: 'http://www.apicloud.com/package',
 			Host: 'www.apicloud.com'
 		},
