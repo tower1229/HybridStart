@@ -6,7 +6,16 @@ define(function(require) {
 	var base = require('base');
 	//示例app
 	$.ajax({
-		url: 'http://www.apicloud.com/getAllUnpack?appId=A6997660453388&startNum=0&num=5&type=1&_=1499659601646',
+		type:'get',
+		url: 'http://www.apicloud.com/getAllUnpack',
+		data: {
+			appId: 'A6997660453388',
+			startNum: 0,
+			num: 5,
+			type: 1,
+			Referer: 'http://www.apicloud.com/package',
+			Host: 'www.apicloud.com'
+		},
 		dataType: 'json',
 		success: function(res){
 			if(res.status){
