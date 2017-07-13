@@ -12,10 +12,10 @@ define(function(require) {
 	app.window.on('swipright', function(type){
 		$log.innerText = type + ':' + new Date().getTime();
 	});
-	app.window.on('scrollup', function(type){
+	app.window.on('swipup', function(type){
 		$log.innerText = type + ':' + new Date().getTime();
 	});
-	app.window.on('scrolldown', function(type){
+	app.window.on('swipdown', function(type){
 		$log.innerText = type + ':' + new Date().getTime();
 	});
 	

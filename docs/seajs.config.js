@@ -1,4 +1,4 @@
-seajs.root = '/HybridStart/docs';
+seajs.root = '/docs';//'/HybridStart/docs';
 seajs.config({
 	base: "http://static-zt.oss-cn-qingdao.aliyuncs.com/modules",
 	paths: {
@@ -11,7 +11,6 @@ seajs.config({
 		"hook"	 	     : "hook/hook",
 		"jquery" 	     : "jquery/1/jquery.js",
 		"validform"      : "validform/validform",
-		"My97DatePicker" : "My97DatePicker/WdatePicker",
 		"raty"		     : "raty/raty",
 		"upload"         : "upload/upload",
 		"makethumb"      : "upload/makethumb",
