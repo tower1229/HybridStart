@@ -214,7 +214,7 @@ define(function(require, exports, module) {
 		var userData = _getUser();
 		var updateUser = function(location) {
 			app.ajax({
-				url: appcfg.api.uploadifyLocation,
+				url: appcfg.host.control + '/uploadifyLocation',
 				data: {
 					"member_id": userData.id,
 					"province": location.province,
@@ -275,7 +275,7 @@ define(function(require, exports, module) {
 						member_id: userData.id
 					}, extraParam);
 					app.ajax({
-						url: appcfg.api.loginLog,
+						url: appcfg.host.control + '/loginLog',
 						data: data,
 						success: function(res) {
 
@@ -337,7 +337,7 @@ define(function(require, exports, module) {
 	//预取配置信息
 	_preGet.prototype.preGetList.push({
 		key: 'websiteConfig',
-		url: appcfg.api.websiteConfig,
+		url: appcfg.host.control + '/websiteConfig',
 		data: {}
 	});
 

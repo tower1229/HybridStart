@@ -11,22 +11,22 @@ define('download', function(require, exports, module) {
 			path: "fs://Download/",
 			name: "",
 			onCreate: function() {
-				app.toast('正在下载', appcfg.set.longtime);
+				app.toast('正在下载');
 			},
 			onCreateError: function(err) {
-				app.toast('创建下载失败：' + err.msg, '2000');
+				app.toast('创建下载失败：' + err.msg);
 			},
 			onStatus: function(percent) {
-				app.toast('正在下载:' + percent + '%', '2000');
+				app.toast('正在下载:' + percent + '%');
 			},
 			success: function(savePath, fileSize) {
 
 			},
 			error: function(status) {
 				if (status === 2) {
-					app.toast('下载失败', '2000');
+					app.toast('下载失败');
 				} else {
-					app.toast('下载异常，status:' + status, '2000');
+					app.toast('下载异常，status:' + status);
 				}
 			}
 		};
@@ -42,7 +42,7 @@ define('download', function(require, exports, module) {
 			},
 			timer = setTimeout(function() {
 				cancel();
-				app.toast('下载超时', '2000');
+				app.toast('下载超时');
 			}, opt.outime || appcfg.set.longtime);
 		if (!remotePath || !remotePath.split) {
 			return;

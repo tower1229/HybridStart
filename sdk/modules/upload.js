@@ -11,22 +11,19 @@ define('upload', function(require, exports, module) {
 	var def = {
 		url: '',
 		onCreate: function(opCode) {
-			app.toast('正在上传...', appcfg.set.longtime);
+			app.toast('正在上传...');
 		},
 		onCreateError: function() {
-			app.toast('创建上传失败', '2000');
+			app.toast('创建上传失败');
 		},
 		onStatus: function(percent) {
-			app.toast('正在上传:' + percent + '%', '2000');
+			app.toast('正在上传:' + percent + '%');
 		},
 		success: function(remoteUrl) {
 
 		},
-		cancel: function(cancel) {
-			app.toast('取消上传', '2000');
-		},
 		error: function() {
-			app.toast('上传失败', '2000');
+			app.toast('上传失败');
 		}
 	};
 	var Upload = function(localImgPath, option) {
@@ -106,6 +103,13 @@ define('upload', function(require, exports, module) {
 				}
 			}
 		});
+		return {
+			abort: function() {
+				api.cancelAjax({
+				    tag: randOpId
+				});
+			}
+		};
 	};
 
 	module.exports = Upload;

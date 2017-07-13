@@ -335,6 +335,7 @@ var apputil = (function(document, undefined) {
 		api.closeWidget({
 			silent: !!silent,
 			animation: {
+				type: appcfg.set.windowAnimate,
 				subType: 'from_bottom',
 				duration: appcfg.set.animateDuration
 			}
@@ -725,7 +726,7 @@ var apputil = (function(document, undefined) {
 		    }
 		});
 	};
-	var prompt = function(config, sure, cancel){
+	var prompt = function(sure, cancel, config){
 		return api.prompt($.extend({
 			    buttons: ['确定', '取消']
 			}, config || {}), function(ret, err) {
@@ -756,7 +757,6 @@ var apputil = (function(document, undefined) {
 		});
 	};
 	$.extend(app, {
-		util: $,
 		loading: loading,
 		openView: _openView,
 		getParam: getParam,
@@ -778,20 +778,21 @@ var apputil = (function(document, undefined) {
 	var currentOS = "";
 	var keyFuncMapper = {};
 	
-	function open(argObj) {
+	function open(config) {
 		//url必须
-		var param = argObj["param"],
-			anim = argObj["anim"] || appcfg.set.windowAnimate,
-			subType = argObj["subType"] || appcfg.set.animateSubType,
-			dura = argObj["dura"] || appcfg.set.animateDuration;
+		var param = config.param,
+			anim = config.anim || appcfg.set.windowAnimate,
+			subType = config.subType || appcfg.set.animateSubType,
+			dura = config.duration || appcfg.set.animateDuration;
 		if (!$.isPlainObject(param)) {
 			param = {};
 		}
-		if (!argObj.name) {
-			argObj.name = 'win-' + argObj.url;
+		if (!config.name) {
+			config.name = 'win-' + config.url;
 		}
 		if (window.api) {
-			api.openWin($.extend(argObj, {
+			app.storage.val('crossParam', param);
+			api.openWin($.extend(config, {
 				pageParam: param,
 				animation: {
 					type: anim,
@@ -802,25 +803,30 @@ var apputil = (function(document, undefined) {
 					type: 'page'
 				}
 			}));
-			return argObj.name;
+			return config.name;
 		} else {
-			window.location.href = argObj.url
+			window.location.href = config.url
 		}
 	}
 
-	function close(winName, anim, animDuration) {
+	function close(winName, config) {
 		if (!window.api) {
 			return window.history.go(-1);
 		};
-
-		if (!!winName) {
-			api.closeWin({
-				name: winName,
-				animation: {
-					type: anim || appcfg.set.windowAnimate,
-					duration: animDuration || appcfg.set.animateDuration
-				}
-			});
+		if (winName && winName.split) {
+			if(config.isFrame){
+				api.closeFrame({
+				    name: winName
+				});
+			}else{
+				api.closeWin({
+					name: winName,
+					animation: {
+						type: config.anim || appcfg.set.windowAnimate,
+						duration: config.duration || appcfg.set.animateDuration
+					}
+				});
+			}
 		} else {
 			if (api.frameName) {
 				api.closeFrame();
@@ -830,43 +836,45 @@ var apputil = (function(document, undefined) {
 		}
 	};
 
-	function popoverElement(argObj) {
+	function popoverElement(config) {
 		//id, url
-		var id = argObj["id"];
+		var id = config.id;
 		var ele = $("#" + id);
 		if (!ele.length) {
-			return console.warn('popoverElement: Error param,' + JSON.stringify(argObj));
+			return console.warn('popoverElement: Error param,' + JSON.stringify(config));
 		}
 		ele = ele[0];
 		var offset = ele.getBoundingClientRect();
-		var top = isNaN(parseInt(argObj.top, 10)) ? offset.top : parseInt(argObj.top, 10);
-		var left = isNaN(parseInt(argObj.left, 10)) ? offset.left : parseInt(argObj.left, 10);
-		var name = argObj.name ? argObj.name : 'pop-' + id + argObj.url;
-		return openPopover($.extend(argObj, {
+		var top = isNaN(parseInt(config.top, 10)) ? offset.top : parseInt(config.top, 10);
+		var left = isNaN(parseInt(config.left, 10)) ? offset.left : parseInt(config.left, 10);
+		var name = config.name ? config.name : 'pop-' + id + config.url;
+		return openPopover($.extend(config, {
 			name: name,
 			left: left,
 			top: top,
 			width: offset.width || offset.right - offset.left,
 			height: offset.height || offset.bottom - offset.top,
-			bounces: argObj["bounce"]
+			bounces: config.bounce
 		}));
 	};
 
-	function openPopover(argObj) {
+	function openPopover(config) {
 		//url必须
-		var left = argObj["left"] || 0,
-			top = argObj["top"] || 0,
-			width = argObj["width"] || 'auto',
-			height = argObj["height"] || 'auto',
-			bottomMargin = argObj["bottomMargin"] || 0;
-		if (!argObj.name) {
-			argObj.name = 'pop-' + argObj.url;
+		var left = config.left || 0,
+			top = config.top || 0,
+			width = config.width || 'auto',
+			height = config.height || 'auto',
+			bottomMargin = config.bottomMargin || 0;
+		if (!config.name) {
+			config.name = 'pop-' + config.url;
 		}
-		app.storage.val('popoverTopHash', argObj["top"] || 0);
-
+		app.storage.val('popoverTopHash', config.top || 0);
+		if(config.param){
+			app.storage.val('crossParam', config.param);
+		}
 		api.openFrame({
-			name: argObj["name"],
-			url: argObj["url"],
+			name: config.name,
+			url: config.url,
 			rect: {
 				x: left,
 				y: top,
@@ -876,11 +884,11 @@ var apputil = (function(document, undefined) {
 			},
 			customRefreshHeader: 'UIPullRefreshFlash',
 			hScrollBarEnabled: false,
-			pageParam: argObj["param"],
-			bgColor: appcfg.theme.body_bg,
-			bounces: !!argObj["bounce"]
+			pageParam: config.param,
+			bgColor: appcfg.set.bgColor,
+			bounces: !!config.bounce
 		});
-		return argObj["name"];
+		return config.name;
 	};
 
 	function animPopover(config) {
@@ -957,9 +965,9 @@ var apputil = (function(document, undefined) {
 				if (Math.abs(touchObj.y) > Math.abs(touchObj.x)) {
 					touchObj.lastMove = 'y';
 					if (touchObj.y > 0) {
-						windowEventDequeue('scrolldown');
+						windowEventDequeue('swipdown');
 					} else {
-						windowEventDequeue('scrollup');
+						windowEventDequeue('swipup');
 					}
 				} else {
 					touchObj.lastMove = 'x';
@@ -1028,9 +1036,9 @@ var apputil = (function(document, undefined) {
 				break;
 				case "swipright":
 				break;
-				case "scrollup":
+				case "swipup":
 				break;
-				case "scrolldown":
+				case "swipdown":
 				break;
 				default:
 					console.warn('不支持的window事件：' + type);
