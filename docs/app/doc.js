@@ -4,23 +4,6 @@
 define(function(require) {
 	var $ = require('jquery');
 	var base = require('base');
-	//示例app
-	$.ajax({
-		type:'get',
-		url: 'http://host.refined-x.com/get.php',
-		data: {
-			url: 'http%3A%2F%2Fwww.apicloud.com%2FgetAllUnpack%3FappId%3DA6997660453388%26startNum%3D0%26num%3D5%26type%3D1',
-			refer: 'http://www.apicloud.com/package',
-			host: 'www.apicloud.com'
-		},
-		dataType: 'json',
-		success: function(res){
-			if(res.status){
-				var url = res.body.list[0].upkApkUrl;
-				$('#apidownload').src(url);
-			}
-		}
-	});
 	/*生成目录*/
 
 	var $nav = $('#nav'),

@@ -18,7 +18,6 @@
     <meta property="og:document:page" content="1"/>
     <meta property="og:document:cost" content="免费"/>
     <link href="./css/ui.css" rel="stylesheet" />
-    <link href="./lib/highlight/styles/github.css" rel="stylesheet" />
     <link rel="icon" href="./favicon.ico">
     <!--[if lt IE 9]><script src="./lib/H5shiv.js"></script><![endif]-->
     <script>
@@ -34,44 +33,36 @@
 
 <body class="hasNav scrollbar">
     <header class="wrap">
-        <h1>HybridStart Documentation <small>(混合应用开发框架-持续更新中)</small></h1>
+        <h1>HybridStart Documentation <small>(混合应用前端开发框架)</small></h1>
     </header>
     <nav class="wrap nav scrollbar" id="nav">导航生成中...</nav>
     <section class="wrap" id="overall">
         <h2>概述</h2>
         <h3 id="overall-intro">关于</h3>
-        <p>HybridStart 是一款混合应用开发框架，提供简洁的UI、清晰的代码管理、简明开发模式，功能丰富的插件，底层基于<a href="http://www.apicloud.com/" target="_blank">APICloud</a>，致力于打造更快、更好的混合应用开发体验。</p>
-        <h4>下载</h4>
-        Github：<a href="https://github.com/tower1229/HybridStart">[HybridStart]</a>
-        <h4>示例</h4>
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAGRklEQVR4Xu2d4ZLbIBCDc+//0O0kuSSA0X5awGlzR/81tjEIraQlmbmvy+Xy5zL27+v7scfz6v/t6PS+xziP59rxabbt+O546j1qfTSP6vp1ErRwNeAGOgF1CXS782oYYhgxSjGVniPGPcZtCdB+3r6/XSdVJq2/W8Eb6COd3ga0khKagGKKYtioJLnMJW0l5lMF0bqq6z1Gb6DvW/nfAk3a5WpwVjNHNT9bgWT+4bxXMnoDXUN9mnRQqSltpbTjxk/S3GzacCvLktp3MFpJBlUAAUNAzMY6Gn/aDCmGZwGiCakFKe3t5lSadHHd7RRH+4i35WjXnCje/VigE6S43Uou/NOvp/B6x1kHHTp96vU00KkHOje7qUCZk5tnVTohz3DNmNZB6SjEcerh75FpgmR2vwZo2nE3/5IErIprVIEqVbgVReSjCsLUoQDdQNfQDQPtMi3LlNlOkSqETudc4rjSRRIYdogleKS1G+gaasKj2ugo3pHLK80jJlIFzZ57Kw2nedHpIo2LqYMORbriXnxILa0rIa4XUKkTINRIkWkSHt3396SDmEwTdYEnDc1ebzfALW3aYEpltN7b+BvoF/+IQLQh4Ub3jkmpNF23DzWr2eTyXpdB2fuI4dn87Eru7b4N9JHRWY23Yh/tYo9pbiogzSTGZ5+neGoB0qk0t4JbXCqp2UC/4Kd0pIAk0749FzUslD7IHFIaFjDJZT6ZGaUDaq3dnN0dZwOtv8CgvExErK5HQLuaNnpfWxFZEwo1sfMDGGKs8gSXySqtyRytFkzxSAFHJkU+Mdo603PZjc0Soxp/pGFxtZlKy90Yl7lZICg9ueZIGyYZnQUoyxwqRWpELJcPHNSd72lAU251JxhqlZEuiMHEIEofqyvJktQee92dJHPJxruzmXpWJU0DrdIEbQQ9RxqfdX8CMFupbsW4lfs866C8mAVmA31HoJKwjHSoDXE1MfCn1CVqhdVgoynDXXe4iA30Cx7yHFfSuoA7QFPD4br4rASlaN+5mc46poAMztcrHSnn5R4LKi1OmYQR92YBJiLQBowSrZo3tb/Xm6mk3I2xYlDnV6oKKHdDSWOzYcAdr8JlA32sFzf/K6npfn4FmnIodYTE+NSEjFM3t4KylUDpia4rD3pq9Ab6DhEBSddtoGmg2cMmpamuGdH7HRnsGatbIfT+0LRL6dhA36Ea1WgE2nXdbMxyO7HsuOr+VUSZnU+X+VHDsuqF2UOo0fd+DNCUHkjLRjVsFfOz46gzE3cd5C2yYdlA1+mDJDUNNMU76oSI6Sr2KEa17yOGETOJQNmcT3h0pc9pWGjgDXRcCYeGZdZMXOYps6MNU6WqKsBlsjsfIpyqjOc3LLMtNi2IrocTLFb38UBnNYqODaky3BxM2t7Om+53563Gbcen96dTB5W0W7ruQpU5u3l8dqPfDvSspLiSQEzJAudKjKoAVXH0eehR5cUssKu099cAvTpHu0ym07ZZqXC9x5U+Gi9ML2fk6A10Dfkz3tFOkUSQWbqt6tkmSGchZIKk6WGnG2k0bcAoc1dLghvr/jnQs7GL3HjUA1Zpp1rf6k42rdG0QJUSwhcVF10TpHmMShLNn6TSrfTqvtIMZ0/TWmBc7SZtJsCntDP4HYl6L2l5l0gb6OO336oy3UZIAu1qbPbclxg9ykTqFLOSQpVM41kVSXp5BYMAcxdOpmRNOPH7C9JSWpfScnquu3G9eDdaOrRplD7o+miczD7nxk93I273baBftKKcTRUZVlDPDJWrkkSsqgTK9eQppP30PGn20PMb6CNspwFNO0TXqaTI5NySpU6O8jalJrVOamCs9ZGBEchlKqGFqpL+NUCPaiLlS2KI69ruFxIOKcoAQEyltJKqkFKj3Ym6AG2gCwQiMySgXEZTLl0tHSSHxGTynBYXUoTbfDbQRzq9DWh6EWkm7biqBNdMSeJm8z4x1H1/pfE9Rm+gCcr4epdIZwKdPbtwTZYYR95BnqHmQfCHBN1Av+BziUEhoSuBK4Bu8yY1JpRPR5lN2p9NI1bH5/45vg30kdHUiLhhoLpvRbyjkiNNVaU4q7V0OEQMp8qjCqrWtYEmi9PfMA0Dza+s75hlDLl/aiGdybt5evQ91NFKRm+g7wi4UpcC+i9Ojxpjar5f7wAAAABJRU5ErkJggg==" alt="HybridStart示例.APK" style="vertical-align: middle;">
-        (Android)
+        <p>HybridStart是一款基于APICloud的混合应用前端开发框架，提供简洁的引擎能力封装、丰富的UI和插件、清晰的代码管理、简明开发模式，致力于打造最好的多webview混合应用开发体验。</p>
         <h4>目录结构</h4>
         <pre>
           <code class="javascript"> 
-  |-- docs/                 //文档(不需要上传打包平台)
+  |-- docs/                 //文档(开发中移除)
   |-- error/                //APP错误页
-  |-- res/                  //APP静态资源(图片、模板等)
+  |-- res/                  //APP静态资源
   |-- sdk/ 
-  |    |-- modules/             //插件模块
+  |    |-- modules/             //js插件
   |    |-- font/                //字体图标
   |    |-- core.js              //核心库
   |    |-- server.js            //业务方法
   |    |-- common.js            //页面公用代码
-  |    `-- ui.css               //公共样式
-  |-- view/                 //APP页面
-  |-- config.js             //框架配置
+  |    `-- ui.css               //默认UI
+  |-- view/                 //APP页面(内附示例，开发中移除)
+  |-- config.js             //HybridStart配置
   `-- config.xml            //APICloud配置
             </code>
         </pre>
         <h4>代码组织</h4>
-        <p>HybridStart 项目将APP代码整体分成<strong>SDK</strong> + <strong>View</strong>两部分。</p>
-        <p>SDK包含JS核心类库、插件封装、公用代码、UI。其中JS核心<code>core.js</code>集成<code>seajs</code>、<code>jQuery2</code>、<code>etpl</code>(模板引擎)、<code>xss</code>(xss防御)，以及<code>app对象</code>(对混合应用引擎的封装)；插件<code>modules/</code>内包含常用插件功能，如上传、下载、提示框等；<code>server.js</code>和<code>common.js</code>都是业务代码中提取的公用代码。<code>ui.css</code>提供一套移动端组件UI，开发中酌情修改。</p>
-        <p>View包含所有的APP页面，每个页面都体现为一个文件夹，其中至少包含<code>temp.html</code>、<code>style.css</code>、<code>script.js</code>三个文件，页面将引用SDK提供的UI和方法来简化开发，页面在<code>view/</code>中最多嵌套两层文件夹。</p>
+        <p>HybridStart 项目主要包括<strong>SDK</strong>和<strong>View</strong>两部分。</p>
+        <p>SDK包含核心库、插件、公用代码、UI；View包含所有APP页面，APP页面体现为一个至少包含<code>temp.html</code>、<code>style.css</code>、<code>script.js</code>三个文件的文件夹，页面文件夹在<code>view/</code>中最多嵌套两层，即<code>/view/[...]/page/</code>。</p>
         <h4>开发模式</h4>
-        <p>多webView机制解决了混合应用页面切换不流畅的老大难问题，使APP开发可以像web开发一样通过“链接”跳转“页面”，但这种机制在APP开发中存在一些先天缺陷，比如状态维护、参数传递；也带来了新的问题，比如多页面的内存占用，使新人往往无从下手。</p>
-        <p>HybridStart 基于引擎功能封装了<code>openView</code>方法，可以方便的跳转到指定页面，并解决传参、关闭后台等一系列问题。</p>
-        <p>HybridStart 约定APP的生命周期为 <code>`root -> index(exit) <=> page <=> page ...`</code>，启动页(view/root/temp.html)通常没有任何展示内容，只执行状态检测、插件调用、监听、数据预取等初始化操作，完成后直接跳转到首页(index)，首页与展示页之间任意跳转返回，但需要在首页拦截返回键，使APP无法返回启动页，而是退出APP，整个生命周期内启动页都在后台运行。</p>
+        <p>HybridStart 约定APP的生命周期为 <code>`root -> index(exit) <=> page <=> page ...`</code>，启动页即<code>root</code>通常没有任何可见内容，只执行APP的状态检测、插件调用、监听、数据初始化等操作，完成后直接跳转到用户可见的首页(<code>index</code>)，首页与展示页之间任意跳转返回，但要在首页拦截返回键，使(安卓)APP无法返回启动页，而是退出APP，整个生命周期内启动页都在后台运行。</p>
         <h4>交互约定</h4>
         <p>约定前后端交互数据基本格式如下：</p>
         <pre>
@@ -87,29 +78,24 @@
 
         <h3 id="getStart">快速开始</h3>
         <ol>
-            <li>在APICloud平台创建一个项目，添加以下模块：UIMultiSelector, UIActionSelector, ajpush, bMap, photoBrowser, dialogBox, push, mam</li>
-            <li>将代码检出到本地，备份config.xml并清空其他文件</li>
-            <li>将本项目除了<code>docs/</code>以外所有文件拷贝进来，修改config.xml里的appid之类的关键配置</li>
-            <li>本地打包或上传平台编译</li>
+            <li>在APICloud平台创建新项目，添加以下模块：UIPullRefreshFlash、ajpush、bMap、mam</li>
+            <li>将代码检出到本地，备份config.xml中的<code>appid</code>信息并清空所有文件</li>
+            <li>将本项目除了<code>docs/</code>以外所有文件拷贝进来，修改新config.xml里的<code>appid</code></li>
+            <li>提交代码，平台打包</li>
         </ol>
 
         <h4>配置</h4>
-        <p><code>config.js</code>将在全局挂载<code>appcfg</code>对象，包含APP开发的全部配置，也可以自行扩展其他配置，默认如下：</p>
+        <p><code>config.js</code>文件是HybridStart的全局配置，所有配置信息挂载在<code>appcfg</code>对象上，包含APP开发的全部配置，也可以自行扩展其他配置。</p>
+        <p>默认如下：</p>
         <table class="table table-bordered">
             <tr>
-                <td>appcfg.product</td>
+                <td>host</td>
                 <td>
-                    切换开发模式，用于appcfg.host转换
-                </td>
-            </tr>
-            <tr>
-                <td>appcfg.host</td>
-                <td>
-                    <p>请求域管理</p>
+                    <p>请求域名管理</p>
                     <table class="table">
                         <tr>
                             <td>control</td>
-                            <td>普通api请求</td>
+                            <td>普通api域名</td>
                         </tr>
                         <tr>
                             <td>source</td>
@@ -131,37 +117,65 @@
                         <tr>
                             <td>version</td>
                             <td>
-                                APP版本
+                                APP版本，默认<code>"0.0.1"</code>
                             </td>
                         </tr>
                         <tr>
                             <td>outime</td>
                             <td>
-                                超时时间
+                                超时时间，默认<code>10000</code>
                             </td>
                         </tr>
                         <tr>
                             <td>longtime</td>
                             <td>
-                                加长超时时间
+                                加长超时时间，默认<code>20000</code>
                             </td>
                         </tr>
                         <tr>
                             <td>windowAnimate</td>
                             <td>
-                                窗口动画
+                                <p>窗口动画，默认<code>"push"</code>，可选</p>
+                                <pre>
+                                    <code>
+none            //无动画效果
+push            //新视图将旧视图推开
+movein          //新视图移到旧视图上面
+fade            //交叉淡化过渡（不支持过渡方向）
+                                    </code>
+                                </pre>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>animateSubType</td>
+                            <td>
+                                <p>窗口动画方向，默认<code>"from_right"</code>，可选</p>
+                                <pre>
+                                    <code>
+from_right          //从右边开始动画
+from_left           //从左边开始动画
+from_top            //从顶部开始动画
+from_bottom         //从底部开始动画
+                                    </code>
+                                </pre>
                             </td>
                         </tr>
                         <tr>
                             <td>animateDuration</td>
                             <td>
-                                窗口动画效果时长
+                                窗口动画效果时长，默认<code>300</code>
                             </td>
                         </tr>
                         <tr>
                             <td>safeStorage</td>
                             <td>
-                                受保护的本地存储键，清理缓存时不会清除
+                                受保护的本地存储键，清理缓存时不会清除，多个值用半角逗号隔开，默认<code>"user,appInit,rights"</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>temporary</td>
+                            <td>
+                                临时本地存储键，退出APP自动清除，多个值用半角逗号隔开，默认<code>"templateCache,gps"</code>
                             </td>
                         </tr>
                     </table>
@@ -174,9 +188,25 @@
                     <p>ajax相关设置</p>
                     <table class="table">
                         <tr>
+                            <td>type</td>
+                            <td>
+                                请求方式，默认<code>"get"</code>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>crypto</td>
                             <td>
-                                请求加密相关设置，加密方式模式为3DES
+                                <p>请求加密相关设置，默认</p>
+                                <pre>
+                                    <code>
+{
+    enable: false,
+    key: "abc123",
+    url: ""
+}
+                                    </code>
+                                </pre>
+                                <p>默认加密算法是3DES，如果开启加密，secret值存储在<code>/res/key.xml</code>加密文件中</p>
                             </td>
                         </tr>
                     </table>
@@ -184,14 +214,26 @@
                 </td>
             </tr>
             <tr>
-                <td>log</td>
+                <td>loading</td>
                 <td>
-                    <p>调试日志相关设置</p>
+                    <p>加载动画设置</p>
                     <table class="table">
                         <tr>
-                            <td>path</td>
+                            <td>text</td>
                             <td>
-                                日志文件地址
+                                显示文字，默认<code>"正在加载"</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>title</td>
+                            <td>
+                                显示标题，默认<code>""</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>anim</td>
+                            <td>
+                                显示动画，默认<code>"fade"</code>，可选"fade/zoom"
                             </td>
                         </tr>
                     </table>
@@ -199,247 +241,119 @@
                 </td>
             </tr>
             <tr>
-                <td>defaultTheme</td>
+                <td>pull</td>
                 <td>
-                    <p>APP默认主题设置</p>
+                    <p>下拉刷新插件设置</p>
+                    <table class="table">
+                        <tr>
+                            <td>bgColor</td>
+                            <td>
+                                下拉部分背景色，默认<code>"#C0C0C0"</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>loadAnimInterval</td>
+                            <td>
+                                图片播放间隔，默认<code>200</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>isScale</td>
+                            <td>
+                                播放下拉过程中的关键帧动画时，是否同时添加等比同步缩放效果；默认<code>true</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>image</td>
+                            <td>
+                                <p>下拉刷新相关图片设置；若不传则使用默认图标，例如：</p>
+                                <pre>
+                                    <code>
+{
+    pull: [
+        "widget://res/img/refresh/dropdown0.png",
+        "widget://res/img/refresh/dropdown1.png",
+        "widget://res/img/refresh/dropdown2.png",
+        "widget://res/img/refresh/dropdown3.png",
+        "widget://res/img/refresh/dropdown4.png",
+        "widget://res/img/refresh/dropdown5.png",
+        "widget://res/img/refresh/dropdown6.png"
+    ],
+    load: [
+        "widget://res/img/refresh/loading0.png",
+        "widget://res/img/refresh/loading1.png",
+        "widget://res/img/refresh/loading2.png",
+        "widget://res/img/refresh/loading3.png",
+        "widget://res/img/refresh/loading4.png"
+    ]
+}
+                                    </code>
+                                </pre>
+                            </td>
+                        </tr>
+                    </table>
+                    <p></p>
                 </td>
             </tr>
             <tr>
                 <td>plugin</td>
                 <td>
-                    <p>APP插件相关设置</p>
+                    <p>插件相关设置，便于集中配置插件效果，默认</p>
+                    <pre>
+                        <code>
+{
+    bdmap: {
+        zoomLeval: 18
+    }
+}
+                        </code>
+                    </pre>
                 </td>
             </tr>
         </table>
-        
+        <h3 id="download">下载</h3>
+        <p>源码：<a href="https://github.com/tower1229/HybridStart">Github</a></p>
+        <p>体验APP：<a href="http://downloadpkg.apicloud.com/app/download?path=http://7xm7pq.com1.z0.glb.clouddn.com/a8498ffacf6933a95d3c519e68e5cebc_d">HybridStart(安卓)</a></p>
+
     </section>
     <section class="wrap" id="SDK">
         <h2>SDK</h2>
         <h3 id="sdk-core">Core</h3>
-        <p>core.js集成seajs、jQuery2、etpl(模板引擎)、xss(xss防御)，以及app对象(对混合应用引擎的封装)，除了seajs和app对象以外都是非必须；</p>
-        <h4>app对象</h4>
-        <p>app对象是对底层引擎功能的封装，包括：</p>
+        <p>如没有特殊说明，<code>app</code>对象上的方法均依赖runtime，且支持安卓和IOS双平台。</p>
         <nav class="modules_index" id="component_index"></nav>
         <dl class="dl modules_list" id="component_list">
-            <dt id="app(核心方法)">app</dt>
+            <dt id="app.util(工具包)">app.util</dt>
             <dd>
-                <p>app对象，挂载以下方法</p>
-                <table class="table bordered">
+                <p>内部工具包，不依赖runtime，包括选择器及其他常用方法，大部分代码来自mui，建议使用前存为变量<code>var $ = app.util;</code></p>
+                <h5>方法</h5>
+                <table class="table">
                     <tr>
-                        <td>app.getUID()</td>
+                        <td>$(selector, [context])</td>
                         <td>
-                            返回从1开始递增的数字
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.getUUID(length)</td>
-                        <td>
-                            返回一个随机字母数字组合，可选长度参数，默认6
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.isString(obj)</td>
-                        <td>
-                            判断obj是否是字符类型
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.ready(fn)</td>
-                        <td>
-                            引擎就绪回调
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.pause(fn)</td>
-                        <td>
-                            app退到后台回调
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.resume(fn)</td>
-                        <td>
-                            app回到前台回调
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.monitorKey(id, callback)</td>
-                        <td>
-                            <p>手机按键监听</p>
-                            <table class="table bordered">
+                            <p>使用css选择器获取HTML元素，返回元素对象，并支持以下扩展方法：</p>
+                            <table class="table">
                                 <tr>
-                                    <td>id</td>
+                                    <td>each</td>
                                     <td>
-                                        <p>0：返回键</p>
-                                        <p>1：菜单键</p>
+                                        <p>遍历，<code>$ele.each(callback)</code></p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>callback</td>
+                                    <td>on</td>
                                     <td>
-                                        <p>按键回调</p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <p></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.subscribe(eventName, callback)</td>
-                        <td>
-                            <p>接收名称为eventName的事件，并执行回调callback</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.publish(eventName, msg)</td>
-                        <td>
-                            <p>发布名称为eventName的事件，附带消息msg，将在接收事件回调中接收</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.exit(silent)</td>
-                        <td>
-                            app退出，silent可选，若为真值将无提示直接退出
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.openToast(config)</td>
-                        <td>
-                            <p>打开一个气泡提示</p>
-                            <table class="table bordered">
-                                <tr>
-                                    <td>config.msg</td>
-                                    <td>
-                                        <p>提示内容</p>
+                                        <p>事件绑定/委托，<code>$ele.on(eventType, [child], handle)</code></p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>config.duration</td>
+                                    <td>trigger</td>
                                     <td>
-                                        <p>显示时长，默认2000，单位ms</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.position</td>
-                                    <td>
-                                        <p>显示位置，默认"bottom"，可选参数见引擎文档</p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <p></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.log(msg)</td>
-                        <td>
-                            向指定文件输出调试信息
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.loading</td>
-                        <td>
-                            <p>模态loading提示</p>
-                            <table class="table bordered">
-                                <tr>
-                                    <td>app.loading.show([msg], [opt])</td>
-                                    <td>
-                                        <p>显示loading，默认提示文字'努力加载中.'</p>
-                                        <table class="table">
-                                            <tr>
-                                                <td>opt.msg</td>
-                                                <td>
-                                                    <p></p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>opt.title</td>
-                                                <td>
-                                                    <p></p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>opt.anim</td>
-                                                <td>
-                                                    <p></p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>opt.delay</td>
-                                                <td>
-                                                    <p></p>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>app.loading.hide()</td>
-                                    <td>
-                                        关闭loading
-                                    </td>
-                                </tr>
-                            </table>
-                            <p></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.toload(option)</td>
-                        <td>
-                            <p>通用分页加载，自动生成递增页码：</p>
-                            <pre>
-                          <code>
-{
-  "page_index" : 0,           //从0开始，每次+1
-  "page_size" : 10            //由size参数决定，默认10
-}
-                          </code>
-                        </pre>
-                            <table class="table bordered">
-                                <tr>
-                                    <td>url</td>
-                                    <td>
-                                        请求url
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>size</td>
-                                    <td>
-                                        每页请求条数，将作为<code>data.page_size</code>发送
+                                        <p>触发事件，<code>$ele.trigger(eventType, data)</code></p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>data</td>
                                     <td>
-                                        请求参数
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>dataType</td>
-                                    <td>
-                                        请求格式，默认'json'
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>reload</td>
-                                    <td>
-                                        是否重置该请求页码，默认false
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>success</td>
-                                    <td>
-                                        成功回调
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>nomore</td>
-                                    <td>
-                                        到最后一页回调
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>error</td>
-                                    <td>
-                                        错误回调
+                                        <p>设置/获取对象的dataset，<code>$ele.data(attribute, [value])</code>。取值优先取元素显性设置的"data-attribute"属性值，如果没有再获取dataset，设置值将统一设置dataset</p>
                                     </td>
                                 </tr>
                             </table>
@@ -447,256 +361,348 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>app.getScript(road, callback, option)</td>
+                        <td>$.extend(target,source...,deepCopy)</td>
                         <td>
-                            <p>加载非模块化js文件</p>
-                            <table class="table bordered">
-                                <tr>
-                                    <td>road</td>
-                                    <td>
-                                        文件路径，字符或数组
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>callback</td>
-                                    <td>
-                                        加载回调
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>option</td>
-                                    <td>
-                                        <p>option.css：[布尔/字符]是否加载同名同路径css文件，或加载指定css文件，默认<code>null</code></p>
-                                        <p>option.jquery：[布尔]所加载文件是否依赖全局jquery对象，默认<code>null</code></p>
-                                        <p>option.rely：[布尔]若road为数组，是否按数组顺序依次加载，默认<code>null</code></p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <p></p>
+                            <p>合并对象，用法同jQuery</p>
                         </td>
                     </tr>
                     <tr>
-                        <td>app.applyTheme(object)</td>
+                        <td>$.each(elements, callback, hasOwnProperty)</td>
                         <td>
-                            <p>加载主题方法，参数格式见appcfg.defaultTheme</p>
-                            <p>主题文件缓存于localStorage，除非重装app，否则将永久保存</p>
+                            <p>对象、数组遍历方法</p>
                         </td>
                     </tr>
                     <tr>
-                        <td>app.pull</td>
+                        <td>$.type(obj)</td>
                         <td>
-                            <p>下拉刷新方法</p>
-                            <table class="table bordered">
-                                <tr>
-                                    <td>app.pull.init(fn)</td>
-                                    <td>
-                                        <p>初始化下拉刷新功能，fn是触发回调，必填</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>app.pull.stop()</td>
-                                    <td>
-                                        <p>停止下拉刷新效果，恢复到正常状态</p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <p></p>
+                            <p>返回对象类型</p>
                         </td>
                     </tr>
                     <tr>
-                        <td>app.openView(param, leval1, [leval2])</td>
+                        <td>$.isArray(obj)</td>
                         <td>
-                            <p>跳转页面方法，leval1和leval2分别代表页面文件在<code>view/</code>内的文件夹路径，openView方法将打开指定路径中的<code>temp.html</code>页面，因此<code>view/</code>内最多支持两级目录。详细参数：</p>
-                            <table class="table bordered">
-                                <tr>
-                                    <td>param</td>
-                                    <td>
-                                        <p>[object/string] </p>
-                                        <p>当param为非object类型时，将作为新页面参数直接被存入<code>crossParam</code>；若为object类型可以传入更多配置，详见下文；若不需要传参数和修改任何配置，则要传入<code>null/undefined</code>。</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>param.param</td>
-                                    <td>
-                                        <p>作为页面参数存入本地存储<code>crossParam</code>中，如果是Object类型将同时使用官方传参方法，新页面中也可以通过<code>api.pageParam</code>获取。</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>param.duration</td>
-                                    <td>
-                                        <p>页面切换动画时长，默认appcfg.set.animateDuration</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>param.anim</td>
-                                    <td>
-                                        <p>页面切换动画类型，默认appcfg.set.windowAnimate</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>param.fullPath</td>
-                                    <td>
-                                        <p>默认<code>false</code>，是否将参数leval1的值作为页面完整地址访问，将忽略leval2的值。用于访问<code>view/</code>之外的页面。</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>param.pop</td>
-                                    <td>
-                                        <p>默认<code>false</code>，是否以弹层形式在当前窗口打开。</p>
-                                        <p>若为<code>true</code>，还可以传<code>param.top</code>和<code>param.height</code>，指示弹层的顶部位置和高度，默认都是0</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>param.bar</td>
-                                    <td>
-                                        <p>默认<code>false</code>，是否以带标题栏的方式打开。</p>
-                                        <p>若为<code>true</code>，还可以传<code>param.title</code>作为标题内容</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>param.closeself</td>
-                                    <td>
-                                        <p>默认<code>false</code>，是否跳转到新页面后关闭当前页面</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>param.closeback</td>
-                                    <td>
-                                        <p>默认<code>false</code>，是否跳转到新页面后关闭所有后台页面</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>leval1</td>
-                                    <td>
-                                        <p>目标页面在<code>view/</code>内的一级目录，如：</p>
-                                        <pre>
-                                    <code>
-            //将打开 "view/news/temp.html"
-            app.openView(null,'news');
-                                    </code>
-                                  </pre>
-                                        <p>当leval1是url时，将以web页面形式打开，此时将忽略leval2</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>leval2</td>
-                                    <td>
-                                        <p>目标页面在<code>view/</code>内的二级目录，如：</p>
-                                        <pre>
-                                    <code>
-            //将打开 "view/news/detail/temp.html"
-            app.openView(null,'news','detail');
-                                    </code>
-                                  </pre>
-                                    </td>
-                                </tr>
-                            </table>
-                            <p></p>
+                            <p>返回对象是否为数组格式</p>
                         </td>
                     </tr>
                     <tr>
-                        <td>app.getParam()</td>
+                        <td>$.isPlainObject(obj)</td>
                         <td>
-                            <p>获取<code>app.openView()</code>方法传递的参数，支持Object格式。</p>
+                            <p>返回对象是否为纯粹对象</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>$.isFunction(obj)</td>
+                        <td>
+                            <p>返回对象是否为函数</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>$.trim(string)</td>
+                        <td>
+                            <p>返回去除首尾空字符后的字符串</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>$.trigger(element, eventType, eventData)</td>
+                        <td>
+                            <p>触发事件</p>
                         </td>
                     </tr>
                 </table>
-                <p></p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+var $ = app.util;
+$('#view').on('touchend', '.item', function(i, e){
+    console.log($(e).data('uuid'));
+});
+                    </code>
+                </pre>
             </dd>
-            <dt id="app.crypto(加密)">app.crypto</dt>
+            <dt id="app.ready(runtime就绪)">app.ready(callback)</dt>
             <dd>
-                <p>封装CryptoJS加密库，ajax加密默认使用3DES方式，加密设置见config.js，配置说明：</p>
+                <p>原生runtime就绪回调，显然不依赖runtime。</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.ready(function(){
+    console.log(api.appId); 
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.exit(退出)">app.exit(silent)</dt>
+            <dd>
+                <p>退出APP，若<code>silent</code>为真值将没有确认信息直接退出。</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.exit();
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.subscribe(监听全局事件)">app.subscribe(eventName, callback)</dt>
+            <dd>
+                <p>接收名称为eventName的事件，并执行回调callback</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.subscribe('hello', function(msg){
+    console.log('hello ' + msg);
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.publish(发布全局事件)">app.publish(eventName, msg)</dt>
+            <dd>
+                <p>发布名称为eventName的事件，附带消息msg，将在接收事件回调中接收</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.publish('hello', 'world!');
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.on(系统事件)">app.on(event, callback)</dt>
+            <dd>
+                <p>APP系统事件监听。</p>
+                <h5>支持事件</h5>
+                <table class="table">
+                    <tr>
+                        <td>batterylow</td>
+                        <td>
+                            <p>电量低事件，返回格式</p>
+                            <pre>
+                                <code>
+{
+    level:100,            //电池电量（0-100）
+    isPlugged:true        //是否连接电源
+}
+                                </code>
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>batterystatus</td>
+                        <td>
+                            <p>电池状态变化事件，返回格式</p>
+                            <pre>
+                                <code>
+{
+    level:100,            //电池电量（0-100）
+    isPlugged:true        //是否连接电源
+}
+                                </code>
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>offline</td>
+                        <td>
+                            <p>监听设备断开网络的事件</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>online</td>
+                        <td>
+                            <p>监听设备连接到网络的事件</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>pause</td>
+                        <td>
+                            <p>应用进入后台事件</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>resume</td>
+                        <td>
+                            <p>应用从后台回到前台事件</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>shake</td>
+                        <td>
+                            <p>设备摇动事件</p>
+                        </td>
+                    </tr>
+
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.on('pause', function(){
+    console.log('app进入后台'); 
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.key(按键监听)">app.key(keyName, callback)</dt>
+            <dd>
+                <p>手机按键监听。</p>
+                <h5>支持按键</h5>
+                <table class="table">
+                    <tr>
+                        <td>keyback</td>
+                        <td>
+                            <p>返回键</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>keymenu</td>
+                        <td>
+                            <p>菜单键</p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.key('keyback', function(){
+    console.log('按下了返回键'); 
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.off(取消监听)">app.off(keyName)</dt>
+            <dd>
+                <p>取消事件监听，支持系统事件、自定义事件以及按键监听。</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.off('hello');       //取消自定义事件
+app.off('keyback');     //取消按键监听
+app.off('pause');       //取消内置事件
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.getParam(获取参数)">app.getParam()</dt>
+            <dd>
+                <p>获取页面参数，不依赖runtime，仅支持使用<code>app</code>对象方法打开的页面。</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+var pageParam = app.getParam();
+console.log(pageParam);
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.openView(打开页面)">app.openView(param, leval1, [leval2])</dt>
+            <dd>
+                <p>跳转/打开页面，leval1和leval2分别代表页面在<code>view/</code>内的两级文件夹路径，leval2选填，openView将打开路径文件夹内的<code>temp.html</code>页面，因此<code>view/</code>内最多支持两级目录。详细参数：</p>
                 <table class="table bordered">
                     <tr>
-                        <td>crypto.enable</td>
+                        <td>param</td>
                         <td>
-                            <p>是否开启加密，默认false</p>
+                            <p>当param不是对象时，将作为参数直接传递给新页面；若为对象类型可以传入更多配置，详见下文；若既不需要传参也不需要修改配置，则要传入<code>null/undefined</code>占位。</p>
                         </td>
                     </tr>
                     <tr>
-                        <td>crypto.secret</td>
+                        <td>param.param</td>
                         <td>
-                            <p>26位密钥</p>
+                            <p>将传递给新页面的参数，可以在新页面内用<code>app.getParam()</code>方法同步获取到；如果所传参数是对象类型，也可以通过<code>api.pageParam</code>获取，但需等待runtime就绪，不建议使用。</p>
                         </td>
                     </tr>
                     <tr>
-                        <td>crypto.key</td>
+                        <td>param.duration</td>
                         <td>
-                            <p>6位key</p>
+                            <p>页面切换动画时长，单位ms，默认应用全局配置<code>appcfg.set.animateDuration</code></p>
                         </td>
                     </tr>
                     <tr>
-                        <td>crypto.url</td>
+                        <td>param.anim</td>
                         <td>
-                            <p>加密请求统一发送地址</p>
+                            <p>页面切换动画类型，支持类型见<a href="#app.window.open">app.window.open()</a>，默认应用全局配置<code>appcfg.set.windowAnimate</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>param.fullPath</td>
+                        <td>
+                            <p>默认<code>false</code>，是否将参数leval1的值作为页面完整地址访问，可以用于访问<code>view/</code>之外的页面。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>param.pop</td>
+                        <td>
+                            <p>默认<code>false</code>，是否以弹窗形式打开。</p>
+                            <p>若为<code>true</code>，还可以传<code>param.top</code>和<code>param.height</code>，指示弹层的顶部位置和高度，默认都是0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>param.bar</td>
+                        <td>
+                            <p>默认<code>false</code>，是否以带标题栏的方式打开。</p>
+                            <p>若为<code>true</code>，还可以传<code>param.title</code>作为标题内容</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>param.closeself</td>
+                        <td>
+                            <p>默认<code>false</code>，是否跳转到新页面后关闭当前页面</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>param.closeback</td>
+                        <td>
+                            <p>默认<code>false</code>，是否跳转到新页面后关闭所有后台页面</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>leval1</td>
+                        <td>
+                            <p>目标页面在<code>view/</code>内的一级目录</p>
+                            <p>当leval1是url时，将以web页面形式打开，此时将忽略leval2</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>leval2</td>
+                        <td>
+                            <p>目标页面在<code>view/</code>内的二级目录，若没有二级目录可以省略
                         </td>
                     </tr>
                 </table>
-                <p></p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+
+app.openView(null,'news');              //将打开 "view/news/temp.html"
+
+app.openView(null,'news','detail');     //将打开 "view/news/detail/temp.html"
+                    </code>
+                </pre>
             </dd>
-            <dt id="app.ls(本地存储)">app.ls</dt>
+            <dt id="app.loading(等待提示)">app.loading</dt>
             <dd>
-                <p>本地存储方法</p>
+                <p>打开/关闭等待提示。</p>
+                <h5>方法</h5>
                 <table class="table bordered">
                     <tr>
-                        <td>app.ls.val(key, [value])</td>
+                        <td>show([msg], [config])</td>
                         <td>
-                            <p>设置key的值为value，若参数无value将返回key值</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.ls.remove(key)</td>
-                        <td>
-                            <p>移除本地存储key值</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.ls.leaveSpace()</td>
-                        <td>
-                            返回本地存储剩余空间，单位byte
-                        </td>
-                    </tr>
-                </table>
-                <p></p>
-            </dd>
-            
-            <dt id="app.window(窗口相关)">app.window</dt>
-            <dd>
-                <p>窗口相关方法</p>
-                <table class="table bordered">
-                    <tr>
-                        <td>app.window.open(option)</td>
-                        <td>
-                            <p>打开窗口方法，通常可以被<code>app.openView</code>取代</p>
-                            <table class="table bordered">
+                            <p>显示loading，msg为等待提示文字，默认<code>appcfg.loading.text</code>。config配置如下：</p>
+                            <table class="table">
                                 <tr>
-                                    <td>option.name</td>
+                                    <td>title</td>
                                     <td>
-                                        <p>窗口名称，必须</p>
+                                        <p>提示标题，默认<code>appcfg.loading.title</code></p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>option.url</td>
+                                    <td>anim</td>
                                     <td>
-                                        <p>页面url，必须</p>
+                                        <p>动画类型，支持"fade/zoom"，默认<code>appcfg.loading.anim</code></p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>option.param</td>
+                                    <td>modal</td>
                                     <td>
-                                        <p>新页面的pageParam</p>
+                                        <p>默认<code>true</code>，是否模态</p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>option.anim</td>
+                                    <td>delay</td>
                                     <td>
-                                        <p>打开窗口的动画效果，默认appcfg.set.windowAnimate</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>option.dura</td>
-                                    <td>
-                                        <p>打开窗口动画的时长，默认appcfg.set.animateDuration</p>
+                                        <p>延时关闭时间，单位ms，默认<code>0</code></p>
                                     </td>
                                 </tr>
                             </table>
@@ -704,477 +710,1201 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>app.window.close([winName], [anim], [animDuration])</td>
+                        <td>hide()</td>
                         <td>
-                            <p>关闭名称为<code>winName</code>的窗口</p>
-                            <p><code>winName</code>默认当前窗口名称；<code>anim</code>指定关闭效果，默认appcfg.set.windowAnimate；<code>animDuration</code>指定关闭动画时长，默认appcfg.set.animateDuration</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.window.resume(fn)</td>
-                        <td>
-                            <p>窗口回到前台回调</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.window.pause(fn)</td>
-                        <td>
-                            <p>窗口退到后台回调</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.window.popoverElement(config)</td>
-                        <td>
-                            <p>在指定元素区域打开浮动窗口</p>
-                            <table class="table bordered">
-                                <tr>
-                                    <td>config.id</td>
-                                    <td>
-                                        <p>指定元素的id，必须</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.url</td>
-                                    <td>
-                                        打开浮动窗口的url，必须
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.name</td>
-                                    <td>
-                                        打开浮动窗口的名称，默认使用config.id
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.bounce</td>
-                                    <td>
-                                        浮动窗口是否支持弹动效果，默认false
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.param</td>
-                                    <td>
-                                        传给浮动窗口的参数，默认{}
-                                    </td>
-                                </tr>
-                            </table>
-                            <p></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.window.openPopover(config)</td>
-                        <td>
-                            <p>打开浮动窗口，并在新浮动窗口扩展window.selfTop属性，指明自身距离屏幕底部距离</p>
-                            <table class="table bordered">
-                                <tr>
-                                    <td>config.name</td>
-                                    <td>
-                                        <p>新浮动窗口名称，必须</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.url</td>
-                                    <td>
-                                        <p>新浮动窗口url，必须</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.data</td>
-                                    <td>
-                                        <p>新浮动窗口pageParam，默认{}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.left</td>
-                                    <td>
-                                        <p>新浮动窗口距屏幕左边缘距离，默认0</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.top</td>
-                                    <td>
-                                        <p>新浮动窗口距屏幕上边缘距离，默认0</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.width</td>
-                                    <td>
-                                        <p>新浮动窗口宽度，默认'auto'，将横向充满屏幕</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.height</td>
-                                    <td>
-                                        <p>新浮动窗口高度，默认'auto'，将纵向充满屏幕</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.bottomMargin</td>
-                                    <td>
-                                        <p>新浮动窗口距离底部距离，默认0，不可与height同时使用</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.bounces</td>
-                                    <td>
-                                        <p>新浮动窗口是否支持弹动效果，默认false</p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <p></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.window.resizePopover(config)</td>
-                        <td>
-                            <p>修改指定窗口位置/大小</p>
-                            <table class="table bordered">
-                                <tr>
-                                    <td>config.name</td>
-                                    <td>
-                                        <p>要修改的窗口名称，必须</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.left</td>
-                                    <td>
-                                        <p>窗口距屏幕左边缘距离，默认'auto'，将横向充满</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.top</td>
-                                    <td>
-                                        <p>窗口距屏幕上边缘距离，默认'auto'，将纵向充满</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.width</td>
-                                    <td>
-                                        <p>窗口宽度，默认0</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>config.height</td>
-                                    <td>
-                                        <p>窗口高度，默认0</p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <p></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>app.window.evaluate(name, [frameName], scriptContent)</td>
-                        <td>
-                            <p>在名称为name的窗口中执行脚本scriptContent</p>
+                            <p>关闭loading</p>
                         </td>
                     </tr>
                 </table>
-                <p></p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.loading.show();
+
+setTimeout(function(){
+    app.loading.hide();
+},2000);
+                    </code>
+                </pre>
             </dd>
-            <dt id="app.ajax(网络请求)">app.ajax(option)</dt>
+            <dt id="app.pull(下拉刷新)">app.pull</dt>
             <dd>
-                <p>封装网络请求</p>
+                <p>设置/复位window或frame的下拉刷新状态。</p>
+                <h5>方法</h5>
                 <table class="table bordered">
                     <tr>
-                        <td>option.method</td>
+                        <td>init(callback)</td>
                         <td>
-                            发送方式，默认"post"
+                            <p>初始化下拉刷新功能，callback是触发回调，必填，其他配置见<code>appcfg.pull</code></p>
                         </td>
                     </tr>
                     <tr>
-                        <td>option.dataType</td>
+                        <td>stop()</td>
                         <td>
-                            请求数据格式，默认"json"
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>option.timeout</td>
-                        <td>
-                            超时时间，默认appcfg.set.outime / 1000，单位s
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>option.url</td>
-                        <td>
-                            请求url
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>option.data</td>
-                        <td>
-                            发送数据
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>option.success</td>
-                        <td>
-                            请求成功回调
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>option.error</td>
-                        <td>
-                            请求失败回调
+                            <p>停止下拉刷新效果，恢复到正常状态</p>
                         </td>
                     </tr>
                 </table>
-                <p></p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.pull.init(function(){
+    console.log('触发下拉刷新');
+
+    setTimeout(function(){
+        app.pull.stop();    //复位下拉刷新状态
+    }, 2000); 
+});
+                    </code>
+                </pre>
             </dd>
-            <dt id="extend(扩展方法)">extend</dt>
+            <dt id="app.toast(提示信息)">app.toast(msg, config)</dt>
             <dd>
-                <p>扩展方法/属性</p>
+                <p>打开一个自动关闭的提示消息</p>
+                <h5>配置</h5>
                 <table class="table bordered">
                     <tr>
-                        <td>window.platform</td>
+                        <td>global</td>
                         <td>
-                            <p>引擎就绪后在window上扩展platform属性，指明当前平台，例如"android/ios"</p>
+                            <p>默认<code>false</code>，是否是全局的toast。若为false，toast将只在当前window范围可见</p>
                         </td>
                     </tr>
                     <tr>
-                        <td>window.version</td>
+                        <td>position</td>
                         <td>
-                            <p>引擎就绪后在window上扩展version属性，指明当前平台的版本号</p>
+                            <p>显示位置，默认<code>"bottom"</code>，可选"top/middle/bottom"</p>
                         </td>
                     </tr>
                     <tr>
-                        <td>$.fn.cacheImg()</td>
+                        <td>delay</td>
                         <td>
-                            <p>图片缓存jQuery扩展，将查找DOM内具有"[data-remote]"属性的元素，将其"[data-remote]"属性作为远程图片缓存到本地并为自身赋值已缓存的地址，元素为img赋值给src，否则赋值给background-image属性性</p>
+                            <p>延时关闭时间，默认<code>2000</code>，单位ms</p>
                         </td>
                     </tr>
                     <tr>
-                        <td>图片延迟加载</td>
+                        <td>onclose</td>
                         <td>
-                            <p>页面内所有具有"[data-src]"属性的img元素将在页面打开完成后将"[data-src]"属性值赋值给src属性，从而起到延迟加载的作用</p>
+                            <p>关闭回调函数，默认<code>null</code></p>
                         </td>
                     </tr>
                 </table>
-                <p></p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.toast('hello toast!');
+                    </code>
+                </pre>
             </dd>
+            <dt id="app.alert(警告)">app.alert(msg, sureHandle, config)</dt>
+            <dd>
+                <p>弹出带一个按钮的对话框。msg是提示文字，sureHandle是点击回调，config配置如下：</p>
+                <h5>配置</h5>
+                <table class="table bordered">
+                    <tr>
+                        <td>title</td>
+                        <td>
+                            <p>对话框标题，默认无</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>buttons</td>
+                        <td>
+                            <p>按钮文字设置，默认<code>["确定"]</code></p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.alert('Are you sure?', function(){
+    console.log('点击确定的回调');
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.confirm(确认)">app.confirm(msg, sureHandle, cancelHandle, config)</dt>
+            <dd>
+                <p>弹出带两个按钮的确认对话框。msg是提示文字，sureHandle是确认回调，cancelHandle是取消回调，config配置如下：</p>
+                <h5>配置</h5>
+                <table class="table bordered">
+                    <tr>
+                        <td>title</td>
+                        <td>
+                            <p>对话框标题，默认无</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>buttons</td>
+                        <td>
+                            <p>按钮文字设置，默认<code>['确定', '取消']</code></p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.confirm('Are you sure?', function(){
+    console.log('点击确定的回调');
+}, function(){
+    console.log('点击取消的回调');
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.prompt(输入)">app.prompt(sureHandle, cancelHandle, config)</dt>
+            <dd>
+                <p>弹出一个带两个按钮的输入框，sureHandle是确认回调，cancelHandle是取消回调，回调函数将接收用户输入内容，config配置如下：</p>
+                <h5>配置</h5>
+                <table class="table bordered">
+                    <tr>
+                        <td>title</td>
+                        <td>
+                            <p>输入框标题，默认无</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td>
+                            <p>输入框提示文字，默认无</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>text</td>
+                        <td>
+                            <p>输入框默认内容，默认无</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>type</td>
+                        <td>
+                            <p>输入框文字内容，默认<code>"text"</code>，可选text、password、number、email、url</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>buttons</td>
+                        <td>
+                            <p>按钮文字设置，默认<code>['确定', '取消']</code></p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.prompt(function(text){
+    console.log('输入了：' + text);
+}, function(){
+    console.log('取消输入的回调');
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.actionSheet(选择按钮)">app.actionSheet(config, callback)</dt>
+            <dd>
+                <p>弹出系统选择按钮框，callback接收点击按钮的序号，config配置如下：</p>
+                <h5>配置</h5>
+                <table class="table bordered">
+                    <tr>
+                        <td>title</td>
+                        <td>
+                            <p>标题，默认无</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>cancelTitle</td>
+                        <td>
+                            <p>取消按钮文字，默认<code>'取消'</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>destructiveTitle</td>
+                        <td>
+                            <p>唯一一个红色按钮文字，默认无</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>buttons</td>
+                        <td>
+                            <p>按钮组，必填，例如<code>['a','b','c']</code></p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.actionSheet({
+    title: '选择头像',
+    buttons: ['拍摄', '相册选择']
+}, function(idx){
+    console.log('点击按钮：' + idx);
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.ls.val(数据存/取)">app.ls.val(key, [value])</dt>
+            <dd>
+                <p>存储/读取值，支持对象类型自动转化。</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.ls.val('test', {a:1});
+
+console.log( app.ls.val('test') )   //{a:1}
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.ls.remove(删除数据)">app.ls.remove(key)</dt>
+            <dd>
+                <p>删除本地存储key的值</p>
+            </dd>
+            <dt id="app.ls.leaveSpace(剩余存储空间)">app.ls.leaveSpace()</dt>
+            <dd>
+                <p>返回本地存储剩余空间，单位byte</p>
+            </dd>
+            <dt id="app.ls.clear(清空存储)">app.ls.clear(force)</dt>
+            <dd>
+                <p>清除本地存储，默认跳过<code>appcfg.set.safeStorage</code>中设置的key，除非<code>force</code>为真值。</p>
+            </dd>
+            <dt id="app.window.open(打开窗口)">app.window.open(config)</dt>
+            <dd>
+                <p>跳转/打开窗口。</p>
+                <h5>配置</h5>
+                <table class="table">
+                    <tr>
+                        <td>name</td>
+                        <td>
+                            <p>窗口名称，不传将自动生成</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>url</td>
+                        <td>
+                            <p>页面url，必须</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>param</td>
+                        <td>
+                            <p>传递给新页面的参数，可以使用<code>app.getparam()</code>方法获取</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>anim</td>
+                        <td>
+                            <p>打开窗口的动画效果，默认<code>appcfg.set.windowAnimate</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>duration</td>
+                        <td>
+                            <p>打开窗口动画的时长，单位ms，默认<code>appcfg.set.animateDuration</code></p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.window.open({
+    url: '../view/index/temp.html'
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.window.close(关闭窗口)">app.window.close([winName], [config])</dt>
+            <dd>
+                <p>关闭名称为<code>winName</code>的窗口，若不传winName将关闭当前window或frame。config配置如下：</p>
+                <table class="table">
+                    <tr>
+                        <td>anim</td>
+                        <td>
+                            <p>关闭窗口的动画效果，默认<code>appcfg.set.windowAnimate</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>duration</td>
+                        <td>
+                            <p>关闭窗口动画的时长，单位ms，默认<code>appcfg.set.animateDuration</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>isFrame</td>
+                        <td>
+                            <p>如果winName是frame的名称，需要设置为真值，默认<code>false</code></p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.window.close();     //关闭当前window或Frame
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.window.on(窗口事件)">app.window.on(event, callback)</dt>
+            <dd>
+                <p>窗口事件监听。</p>
+                <h5>支持事件</h5>
+                <table class="table">
+                    <tr>
+                        <td>pause</td>
+                        <td>
+                            <p>页面退到后台事件。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>resume</td>
+                        <td>
+                            <p>页面回到前台或初次显示事件。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>scrolltobottom</td>
+                        <td>
+                            <p>页面滚动到底部事件。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>swipleft</td>
+                        <td>
+                            <p>从左向右滑动事件。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>swipright</td>
+                        <td>
+                            <p>从右向左滑动事件。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>swipup</td>
+                        <td>
+                            <p>从上向下滑动事件。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>swipdown</td>
+                        <td>
+                            <p>从下往上滑动事件。</p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.window.on('resume', function(){
+    console.log('页面正在前台'); 
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.window.evaluate(跨页面脚本执行)">app.window.evaluate(name, [frameName], scriptContent)</dt>
+            <dd>
+                <p>在名称为name的窗口，或name窗口内名称为frameName的浮动窗口中，执行脚本scriptContent。</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.window.evaluate('member_index', 'app.window.close()');
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.window.openPopover(打开Frame)">app.window.openPopover(config)</dt>
+            <dd>
+                <p>打开Frame窗口，Frame窗口的window对象上将扩展selfTop属性，值为自身距离屏幕底部距离。</p>
+                <h5>配置</h5>
+                <table class="table bordered">
+                    <tr>
+                        <td>name</td>
+                        <td>
+                            <p>Frame窗口名称，不传将自动生成</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>url</td>
+                        <td>
+                            <p>Frame窗口url，必须</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>param</td>
+                        <td>
+                            <p>传给Frame窗口的参数，可以使用<code>app.getparam()</code>方法获取，如果是对象类型也可以通过<code>api.pageParam</code>获取，但该方法需要等待runtime就绪。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>left</td>
+                        <td>
+                            <p>Frame窗口距屏幕左边缘距离，默认<code>0</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>top</td>
+                        <td>
+                            <p>Frame窗口距屏幕上边缘距离，默认<code>0</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>width</td>
+                        <td>
+                            <p>Frame窗口宽度，默认<code>'auto'</code>，将横向充满屏幕</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>height</td>
+                        <td>
+                            <p>Frame窗口高度，默认<code>'auto'</code>，将纵向充满屏幕</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>bottomMargin</td>
+                        <td>
+                            <p>Frame窗口距离底部距离，默认<code>0</code>，不可与height同时使用</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>bounce</td>
+                        <td>
+                            <p>Frame窗口是否支持弹动效果，默认<code>false</code></p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.window.openPopover({
+ url: './content.html',
+ top: 40
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.window.popoverElement(指定区域Frame)">app.window.popoverElement(config)</dt>
+            <dd>
+                <p>在指定元素区域打开浮动窗口。</p>
+                <h5>配置</h5>
+                <table class="table bordered">
+                    <tr>
+                        <td>id</td>
+                        <td>
+                            <p>指定元素的id，必须</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>url</td>
+                        <td>
+                            <p>打开浮动窗口的url，必须</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>
+                            <p>打开浮动窗口的名称，不传将自动生成</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>bounce</td>
+                        <td>
+                            <p>浮动窗口是否支持弹动效果，默认<code>false</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>param</td>
+                        <td>
+                            <p>传给浮动窗口的参数，可以使用<code>app.getparam()</code>方法获取。</p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.window.popoverElement({
+    id: 'view',
+    url: './content.html'
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.window.setPopover(修改Frame属性)">app.window.setPopover(config)</dt>
+            <dd>
+                <p>设置指定浮动窗口的属性。</p>
+                <h5>配置</h5>
+                <table class="table bordered">
+                    <tr>
+                        <td>name</td>
+                        <td>
+                            <p>要修改的Frame窗口名称，必须</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>bounces</td>
+                        <td>
+                            <p>Frame窗口是否有弹动效果</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>hidden</td>
+                        <td>
+                            <p>Frame窗口是否隐藏</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>bgColor</td>
+                        <td>
+                            <p>Frame窗口背景色</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>vScrollBarEnabled</td>
+                        <td>
+                            <p>Frame窗口是否显示垂直滚动条</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>hScrollBarEnabled</td>
+                        <td>
+                            <p>Frame窗口是否显示水平滚动条</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>scaleEnabled</td>
+                        <td>
+                            <p>Frame窗口是否可以缩放</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>rect</td>
+                        <td>
+                            <p>Frame窗口位置及尺寸，格式</p>
+                            <pre>
+                                <code>
+{
+    x:0,                 //左上角x坐标
+    y:0,                 //左上角y坐标
+    w:320,               //宽度，若传'auto'，页面从x位置开始自动充满父页面宽度
+    h:480                //高度，若传'auto'，页面从y位置开始自动充满父页面高度
+}
+                                </code>
+                            </pre>
+                        </td>
+                    </tr>
+                    
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.window.setPopover({
+   name: 'pop_detail',
+   hidden: true 
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.window.animPopover(移动Frame)">app.window.animPopover(config)</dt>
+            <dd>
+                <p>frame窗口动画。</p>
+                <h5>配置</h5>
+                <table class="table">
+                    <tr>
+                        <td>delay</td>
+                        <td>
+                            <p>动画执行延迟时间，单位ms，默认<code>0</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>duration</td>
+                        <td>
+                            <p>动画时长，单位ms，默认<code>appcfg.set.animateDuration</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>curve</td>
+                        <td>
+                            <p>动画曲线类型，默认<code>'ease_in_out</code>，可选</p>
+                            <pre>
+                                <code>
+ease_in_out        //开始和结束时慢
+ease_in            //开始时慢
+ease_out           //结束时慢
+linear            //整个动画过程速率一样
+                                </code>
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>repeatCount</td>
+                        <td>
+                            <p>动画重复次数，默认<code>0</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>translation</td>
+                        <td>
+                            <p>位置平移参数，格式</p>
+                            <pre>
+                                <code>
+ {
+    x: 0,
+    y: 0,
+    z: 0
+}
+                                </code>
+                            </pre>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.window.animPopover({
+    name: 'news_detail',
+    translation: {
+        x: 320
+    }
+});
+                    </code>
+                </pre>
+            </dd>
+
+            <dt id="app.ajax(异步请求)">app.ajax(option)</dt>
+            <dd>
+                <p>跨域异步请求。</p>
+                <h5>配置</h5>
+                <table class="table bordered">
+                    <tr>
+                        <td>method</td>
+                        <td>
+                            <p>请求方式，默认<code>appcfg.ajax.type</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>dataType</td>
+                        <td>
+                            <p>请求数据格式，默认<code>"json"</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>checkData</td>
+                        <td>
+                            <p>是否检查约定数据格式，仅当dataType为"json"时有效，默认<code>true</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>timeout</td>
+                        <td>
+                            <p>超时时间，默认<code>appcfg.set.outime / 1000</code>，单位s</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>snapshoot</td>
+                        <td>
+                            <p>是否开启快照缓存，默认<code>false</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>url</td>
+                        <td>
+                            <p>请求url</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td>
+                            <p>发送数据</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>success</td>
+                        <td>
+                            <p>请求成功回调，接受返回数据</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>error</td>
+                        <td>
+                            <p>请求失败回调，接收错误信息对象，若不传将使用默认错误提示</p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>返回方法</h5>
+                <table class="table">
+                    <tr>
+                        <td>abort()</td>
+                        <td>
+                            <p>中止本次请求。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>clearSnapshoot()</td>
+                        <td>
+                            <p>清除本请求地址的快照缓存。</p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.ajax({
+    url: appcfg.host.control + '/login',
+    data: {
+        ...
+    },
+    success: function(res){
+        //
+    }
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.device.os(系统信息)">app.device.os()</dt>
+            <dd>
+                <p>获取设备系统信息。返回数据格式：</p>
+                <pre>
+                    <code>
+{
+    name: "android",    //系统名称
+    version: "6.1"      //系统版本
+}
+                    </code>
+                </pre>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+var os = app.device.os();
+console.log(os);
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.device.screen(屏幕信息)">app.device.screen()</dt>
+            <dd>
+                <p>获取设备屏幕信息。返回数据格式：</p>
+                <pre>
+                    <code>
+{
+    resolutionHeight: "1080",   //设备高度物理像素数
+    resolutionWidth: "640",     //设备宽度物理像素数
+    width:"320",                //设备宽度像素数
+    height:"540"                //设备高度像素数
+}
+                    </code>
+                </pre>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+var screen = app.device.screen();
+console.log(screen);
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.device.uuid(设备唯一标识)">app.device.uuid()</dt>
+            <dd>
+                <p>返回设备唯一标识，字符串类型。</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+var uuid = app.device.uuid();
+console.log(uuid);
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.device.model(设备型号)">app.device.model()</dt>
+            <dd>
+                <p>返回设备型号，字符串类型。</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+var model = app.device.model();
+console.log(model);
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.device.connect(网络连接类型)">app.device.connect()</dt>
+            <dd>
+                <p>返回当前网络连接类型。支持以下类型：</p>
+                <pre>
+                    <code>
+unknown            //未知
+ethernet        //以太网
+wifi            //wifi
+2g                //2G网络
+3g                //3G网络
+4g                //4G网络
+none            //无网络
+                    </code>
+                </pre>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+var connect = app.device.connect();
+console.log(connect);
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.device.call(拨打电话)">app.device.call(number, [propt])</dt>
+            <dd>
+                <p>拨打电话，默认直接拨打，propt为真值将弹出一个确认提示。</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.device.call('10086');
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.device.setWakeLock(休眠状态)">app.device.setWakeLock([keepOn])</dt>
+            <dd>
+                <p>设置设备休眠状态，keepOn为真值设备将保持常亮。</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.device.setWakeLock(true);
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.device.setBadge(设置角标)">app.device.setBadge(number)</dt>
+            <dd>
+                <p>设置应用角标数字。</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+app.device.setBadge(1);
+                    </code>
+                </pre>
+            </dd>
+            <dt id="app.device.install(安装应用)">app.device.install(appUri)</dt>
+            <dd>
+                <p>安装应用。</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+var os = app.device.os();
+var appUri = (os.name==='android' ? 'file://xxx.apk' : 'https://list.kuaiapp.cn/list/KuaiAppZv7.1.plist');
+app.device.install(appUri);
+                    </code>
+                </pre>
+            </dd>
+
         </dl>
 
         <h3 id="sdk-modules">Modules</h3>
-        <p>常用插件的模块化封装：</p>
+        <p>内置模块化插件列表，部分插件间存在依赖关系。</p>
         <nav class="modules_index" id="modules_index"></nav>
         <dl class="dl modules_list" id="modules_list">
+            <dt id="jQuery">jQuery</dt>
+            <dd>
+                <p>内置jQuery 3.x模块化封装。</p>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+var $ = require('jquery');
+console.log( $ );
+                    </code>
+                </pre>
+            </dd>
             <dt id="validform(表单验证)">validform</dt>
             <dd>
-                <p>API同<a href="http://refined-x.com/Flow-UI/docs/#Validform(%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81)" target="_blank">Flow-UI Validform</a>，只是请求方法用<code>app.ajax()</code>代替。</p>
-                <p></p>
+                <p>表单验证插件，依赖jQuery插件。来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，请求方法用<code>app.ajax()</code>代替，API及示例参考<a href="http://refined-x.com/Flow-UI/docs/#Validform(%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81)" target="_blank">Flow-UI Validform</a>。</p>
             </dd>
-            <dt id="actionSheet(动作菜单)">actionSheet</dt>
+            <dt id="album(大图播放)">album</dt>
             <dd>
-                <p>返回actionSheet方法，语法<code>actionSheet(option)</code></p>
-                <table class="table bordered">
-                    <tr>
-                        <td>option.titleText</td>
-                        <td>
-                            <p>菜单标题，默认''，将不显示标题</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>option.buttons</td>
-                        <td>
-                            <p>按钮文字数组</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>option.destructiveText</td>
-                        <td>
-                            <p>额外的危险操作按钮文字，如"删除"，默认""</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>option.cancelText</td>
-                        <td>
-                            <p>额外的取消按钮文字，如"取消"，默认""</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>buttonClicked</td>
-                        <td>
-                            点击按钮回调，接收按钮序号为参数
-                        </td>
-                    </tr>
-                </table>
-                <p>示例</p>
-                <pre>
-                <code>
-require.async('actionSheet', function(actionSheet) {
-  actionSheet({
-    titleText: '选择图片',
-    buttons: ['拍摄','选择图片'],
-    cancelText: '取消',
-    buttonClicked: function(index) {
-      switch (index) {
-        case 1:
-          
-          break;
-        case 2:
-          
-          break;
-      }
-    }
-  });
-});
-                </code>
-              </pre>
+                <p>大图全屏播放插件，依赖slide\jQuery插件。来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，针对移动端微调，API及示例参考<a href="http://refined-x.com/Flow-UI/docs/#Album(%E7%9B%B8%E5%86%8C)" target="_blank">Flow-UI Album</a>。</p>
             </dd>
-            <dt id="box(弹窗)">弹窗插件</dt>
+            <dt id="datepicker(日期选择器)">datepicker</dt>
             <dd>
-                <p>封装多种形态弹窗方法</p>
-                <table class="table bordered">
-                    <tr>
-                        <td>box.alert(msg, sure, config)</td>
-                        <td>
-                            <p>弹出msg，带有title和一个按钮，点击按钮回调sure，返回弹窗name</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>box.confirm(msg, sure, cancel, config)</td>
-                        <td>
-                            <p>弹出msg，带有title和两个按钮，第一个按钮回调sure，第二个按钮回调cancel，返回弹窗name</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>box.msg(msg, config)</td>
-                        <td>
-                            <p>以气泡形式弹出msg，返回弹窗name</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>box.amount(num, cb, config)</td>
-                        <td>
-                            <p>弹出一个加减计数器，默认数值num，确定回调cb，返回弹窗name</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>box.input(placeholder, cb, config)</td>
-                        <td>
-                            <p>弹出一个输入框，提示语为placeholder，确定回调cb，返回弹窗name</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>box.hide(name)</td>
-                        <td>
-                            <p>关闭指定name的弹窗</p>
-                        </td>
-                    </tr>
-                </table>
-                <p>通用配置如下：</p>
-                <table class="table bordered">
-                    <tr>
-                        <td>config.bg</td>
-                        <td>
-                            <p>背景色，默认'#fff'</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>config.title</td>
-                        <td>
-                            <p>标题文字，默认'提示'</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>config.oktext</td>
-                        <td>
-                            <p>确认按钮文字，默认'确认'</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>config.canceltext</td>
-                        <td>
-                            <p>取消按钮文字，默认'取消'</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>config.bgclose</td>
-                        <td>
-                            <p>点击空白处是否关闭弹窗，默认true</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>config.width</td>
-                        <td>
-                            <p>弹窗宽度，默认300</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>config.delay</td>
-                        <td>
-                            <p>显示时长，默认2000，单位ms，仅用于box.msg</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>config.toastPosi</td>
-                        <td>
-                            <p>显示位置，默认'middle'，仅用于box.msg</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>config.onclose</td>
-                        <td>
-                            <p>关闭回掉，仅用于box.msg</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>config.btnbg</td>
-                        <td>
-                            <p>按钮背景色，默认'#fff'</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>config.corner</td>
-                        <td>
-                            <p>圆角大小，默认4</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>config.btncolor</td>
-                        <td>
-                            <p>按钮文字颜色，默认'#000'</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>config.btnWidth</td>
-                        <td>
-                            <p>按钮宽度，默认130</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>config.btnHeight</td>
-                        <td>
-                            <p>按钮高度，默认40</p>
-                        </td>
-                    </tr>
-
-                </table>
-                <p></p>
+                <p>日期选择器插件，封装<a href="https://github.com/AppianZ/multi-picker/tree/master/DateSelector" target="_blank">AppianZ/DateSelector</a>。</p>
             </dd>
             <dt id="download(下载)">download</dt>
             <dd>
-                待补充
+                <p>下载插件，返回下载方法。</p>
+                <h5>配置</h5>
+                <table class="table">
+                    <tr>
+                        <td>path</td>
+                        <td>
+                            <p>下载地址，默认<code>"fs://Download/"</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>
+                            <p>存储名称，默认无。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>onCreate()</td>
+                        <td>
+                            <p>创建下载成功回调，默认<code>app.toast('正在下载');</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>onCreateError(err)</td>
+                        <td>
+                            <p>创建下载失败回调，默认<code>app.toast('创建下载失败：' + err.msg);</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>onStatus(percent)</td>
+                        <td>
+                            <p>下载进度变化回掉，默认<code>app.toast('正在下载:' + percent + '%');</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>success(savePath, fileSize)</td>
+                        <td>
+                            <p>下载完成回调，默认无</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>error(status)</td>
+                        <td>
+                            <p>下载失败回调，默认</p>
+                            <pre>
+                                <code>
+if (status === 2) {
+    app.toast('下载失败');
+} else {
+    app.toast('下载异常，status:' + status);
+}
+                                </code>
+                            </pre>
+                        </td>
+                    </tr>
+                </table>
+                <h5>返回对象</h5>
+                <table class="table">
+                    <tr>
+                        <td>abort()</td>
+                        <td>
+                            <p>中止该下载任务。</p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+var download = require('download');
+download("http://static-zt.oss-cn-qingdao.aliyuncs.com/mock/notice2.zip", {
+    name: 'download-test.zip',
+    success: function(savePath, fileSize) {
+        app.toast('下载完成：' + savePath);
+    }
+});
+                    </code>
+                </pre>
             </dd>
             <dt id="echarts(图表)">echarts</dt>
             <dd>
-                <p>封装百度echarts插件。</p>
+                <p>图表插件，封装<a href="http://echarts.baidu.com/index.html" target="_blank">百度Echarts</a>。</p>
             </dd>
-            <dt id="optionList(左划菜单列表)">optionList</dt>
+            <dt id="etpl(模板引擎)">etpl</dt>
             <dd>
-                待补充
+                <p>前端模板引擎，封装<a href="https://github.com/ecomfe/etpl" target="_blank">百度Etpl</a>。</p>
             </dd>
-            <dt id="scrollload(滚动加载)">scrollload</dt>
+            <dt id="input-number(数字输入)">input-number</dt>
             <dd>
-                待补充
+                <p>数字输入插件，依赖jQuery\input插件。来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，API及示例参考<a href="http://refined-x.com/Flow-UI/docs/#Input-Number(%E6%95%B0%E5%AD%97%E8%BE%93%E5%85%A5%E6%A1%86)" target="_blank">Flow-UI inputNumber</a>。</p>
             </dd>
-            <dt id="tip(提示语)">tip</dt>
+            <dt id="input(输入框)">input</dt>
             <dd>
-                待补充
+                <p>输入框插件，依赖jQuery插件。来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，API及示例参考<a href="http://refined-x.com/Flow-UI/docs/#Input(%E8%BE%93%E5%85%A5%E6%A1%86)" target="_blank">Flow-UI input</a>。</p>
+            </dd>
+            <dt id="lazyload(图片懒加载)">lazyload</dt>
+            <dd>
+                <p>图片懒加载jQuery插件。来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，API及示例参考<a href="http://refined-x.com/Flow-UI/docs/#Lazyload(%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD)" target="_blank">Flow-UI lazyload</a>。</p>
+            </dd>
+            <dt id="multi-picker(选择器)">multi-picker</dt>
+            <dd>
+                <p>选择器插件，封装<a href="https://github.com/AppianZ/multi-picker/tree/master/MultiPicker" target="_blank">AppianZ/MultiPicker</a>。</p>
+            </dd>
+            <dt id="option-list(左划菜单列表)">option-list</dt>
+            <dd>
+                <p>带左划菜单的列表插件，依赖jQuery\etpl插件以及默认UI。</p>
+                <h5>配置</h5>
+                <table class="table">
+                    <tr>
+                        <td>selector</td>
+                        <td>
+                            <p>列表生成容器的选择器，默认<code>"body"</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>multiShow</td>
+                        <td>
+                            <p>允许多个列表项同时显示菜单，默认<code>false</code></p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>duration</td>
+                        <td>
+                            <p>回弹时长，字符串格式，默认<code>"300ms"</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>touchClass</td>
+                        <td>
+                            <p>触摸操作时添加的class，默认<code>"active"</code></p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>返回对象</h5>
+                <table class="table">
+                    <tr>
+                        <td>data</td>
+                        <td>
+                            <p>返回实例数据。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>add(newData, dir)</td>
+                        <td>
+                            <p>向列表中添加元素。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>set(data)</td>
+                        <td>
+                            <p>重新设置列表数据。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>delete(itemIndex)</td>
+                        <td>
+                            <p>删除列表项</p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+var $ = app.util;
+var listData = [{
+        item: '左滑操作列表0',
+        className: 'first'
+    }, {
+        item: '左滑操作列表1'
+    }, {
+        item: '左滑操作列表2'
+    }];
+//侧滑操作列表
+require.async('option-list', function(optionList) {
+    var demo = optionList({
+        selector: '#controlList',
+        data: listData,
+        buttons: [{
+            text: '编辑'
+        }, {
+            text: '添加'
+        }, {
+            className: 'btn-danger',
+            text: '删除'
+        }],
+        onClick: function(button, itemIndex, itemLength) {
+            var optionIndex = $(button).data('index');
+            switch(optionIndex){
+                case "0":
+                    app.toast(demo.data[itemIndex].item);
+                    break;
+                case "1":
+                    demo.add({
+                        item: '左滑操作列表' + demo.data.length
+                    });
+                    break;
+                case "2":
+                    demo.delete(itemIndex);
+                    break;
+                default:
+                    console.log('optionlist:error');
+            }
+            
+        }
+    });
+});
+                    </code>
+                </pre>
+            </dd>
+            <dt id="paging-load(分页加载)">paging-load</dt>
+            <dd>
+                <p>分页加载插件，来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，API及示例参考<a href="http://refined-x.com/Flow-UI/docs/#PagingLoad(%E5%88%86%E9%A1%B5%E5%8A%A0%E8%BD%BD)" target="_blank">Flow-UI pagingLoad</a>。</p>
+            </dd>
+            <dt id="render(单向绑定渲染)">render</dt>
+            <dd>
+                <p>单向绑定渲染器，依赖jQuery\etpl插件。来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，API及示例参考<a href="http://refined-x.com/Flow-UI/docs/#Render(%E6%B8%B2%E6%9F%93%E5%99%A8)" target="_blank">Flow-UI render</a>。</p>
+            </dd>
+            <dt id="scroll-load(滚动加载)">scroll-load</dt>
+            <dd>
+                <p>滚动加载插件，依赖jQuery\base插件。来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，API及示例参考<a href="http://refined-x.com/Flow-UI/docs/#Scroll-load(%E6%BB%9A%E5%8A%A8%E5%8A%A0%E8%BD%BD)" target="_blank">Flow-UI scrollLoad</a>。</p>
+            </dd>
+            <dt id="slide(图片轮显)">slide</dt>
+            <dd>
+                <p>图片轮显插件，，依赖jQuery\base插件。来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，API及示例参考<a href="http://refined-x.com/Flow-UI/docs/#Slide(%E5%B9%BB%E7%81%AF%E7%89%87)" target="_blank">Flow-UI slide</a>。</p>
             </dd>
             <dt id="upload(上传)">upload</dt>
             <dd>
-                待补充
+                <p>上传插件，返回上传方法。依赖base插件。语法<code>upload(localImgPath, option)</code></p>
+                <h5>配置</h5>
+                <table class="table">
+                    <tr>
+                        <td>url</td>
+                        <td>
+                            <p>上传地址，默认无</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>headers</td>
+                        <td>
+                            <p>请求头，对象格式，默认<code>{}</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>onCreate(upId)</td>
+                        <td>
+                            <p>创建上传成功回调，默认<code>app.toast('正在上传...');</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>onCreateError()</td>
+                        <td>
+                            <p>创建上传失败回调，默认<code>app.toast('创建上传失败');</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>onStatus(percent)</td>
+                        <td>
+                            <p>上传进度变化回调，默认<code>app.toast('正在上传:' + percent + '%');</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>success(remoteUrl)</td>
+                        <td>
+                            <p>上传成功回调，默认无。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>error</td>
+                        <td>
+                            <p>上传失败回调，默认<code>app.toast('上传失败');</code></p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>返回对象</h5>
+                <table class="table">
+                    <tr>
+                        <td>abort()</td>
+                        <td>
+                            <p>中止该上传任务。</p>
+                        </td>
+                    </tr>
+                </table>
+                <h5>示例</h5>
+                <pre>
+                    <code>
+require.async('upload', function(uploader) {
+    uploader('widget://res/img/avat.jpg', {
+        url: "http://host.refined-x.com/test/fileupload.php",
+        success: function(newAvat) {
+            console.log('上传成功：' + newAvat);
+        }
+    });
+});
+                    </code>
+                </pre>
             </dd>
         </dl>
         <h3 id="sdk-server">Server</h3>
