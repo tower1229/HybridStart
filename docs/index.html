@@ -940,27 +940,27 @@ app.actionSheet({
                     </code>
                 </pre>
             </dd>
-            <dt id="app.ls.val(数据存/取)">app.ls.val(key, [value])</dt>
+            <dt id="app.storage.val(数据存/取)">app.storage.val(key, [value])</dt>
             <dd>
                 <p>存储/读取值，支持对象类型自动转化。</p>
                 <h5>示例</h5>
                 <pre>
                     <code>
-app.ls.val('test', {a:1});
+app.storage.val('test', {a:1});
 
-console.log( app.ls.val('test') )   //{a:1}
+console.log( app.storage.val('test') )   //{a:1}
                     </code>
                 </pre>
             </dd>
-            <dt id="app.ls.remove(删除数据)">app.ls.remove(key)</dt>
+            <dt id="app.storage.remove(删除数据)">app.storage.remove(key)</dt>
             <dd>
                 <p>删除本地存储key的值</p>
             </dd>
-            <dt id="app.ls.leaveSpace(剩余存储空间)">app.ls.leaveSpace()</dt>
+            <dt id="app.storage.leaveSpace(剩余存储空间)">app.storage.leaveSpace()</dt>
             <dd>
                 <p>返回本地存储剩余空间，单位byte</p>
             </dd>
-            <dt id="app.ls.clear(清空存储)">app.ls.clear(force)</dt>
+            <dt id="app.storage.clear(清空存储)">app.storage.clear(force)</dt>
             <dd>
                 <p>清除本地存储，默认跳过<code>appcfg.set.safeStorage</code>中设置的key，除非<code>force</code>为真值。</p>
             </dd>
