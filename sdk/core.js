@@ -695,7 +695,7 @@ var apputil = (function(document, undefined) {
 		//delay,onclose,position
 		var opt = $.extend({
 			msg: msg,
-			duration: 2000,
+			duration: 1500,
 			location: 'bottom',
 			global: true
 		}, config || {});
