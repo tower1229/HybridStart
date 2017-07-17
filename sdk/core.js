@@ -952,7 +952,7 @@ var apputil = (function(document, undefined) {
 		if (e.touches && !touchObj.timer) {
 			touchObj.timer = setTimeout(function() {
 				touchObj.timer = clearTimeout(touchObj.timer);
-			}, 150);
+			}, 100);
 			touchObj.x = e.touches[0].clientX;
 			touchObj.y = e.touches[0].clientY;
 		}

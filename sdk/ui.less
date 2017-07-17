@@ -236,6 +236,7 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
     -webkit-transform: scaleY(.5);
     transform: scaleY(.5);
     background-color: @border;
+    z-index: 99;
   }
 }
 .item.item-lite{padding: 0.8 * @space-sm;}
@@ -287,8 +288,8 @@ input.item-note{text-align: right;}
 .item-avatar-right{ min-height: 5em; padding-right: 5em;}
 .item-avatar-right >img:first-child, .item-avatar-right .item-image {	position: absolute; top: 50%; right: 1em; width: 4em; height: 4em;
  border-radius: 50%;overflow: hidden;margin-top: -2em;box-shadow: 1px 1px 2px rgba(0,0,0,.3)}
-.item-thumbnail-left { min-height: 5em; padding-top: .5em;padding-bottom: .5em; padding-left: 6em;}
-.item-thumbnail-left >img:first-child, .item-thumbnail-left .item-image {	position: absolute; top: .5em; left: .5em; width: 5em; height: 3.75em;}
+.item-thumbnail { min-height: 5em; padding-top: .5em;padding-bottom: .5em; padding-left: 6em;}
+.item-thumbnail >img:first-child, .item-thumbnail .item-image {	position: absolute; top: .5em; left: .5em; width: 5em; height: 3.75em;}
 .item-thumbnail-right { min-height: 8em; padding-top: .6em; padding-right: 8em;}
 .item-thumbnail-right >img:first-child, .item-thumbnail-right .item-image{ position: absolute; top: .5em; right: .5em; width: 5em; height: 3.75em;}
 .item-image { padding: 0; text-align: center;}
@@ -321,10 +322,7 @@ input.item-note{text-align: right;}
 .item-input input:last-child,.item-input textarea:last-child{margin-right: 0;}
 .item-input .btn .ion {font-size: 1.3em; position: static; display: inline-block; height: auto; text-align: center;  -webkit-box-flex: 0; 
 	-webkit-flex: 0 0 2em; -moz-flex: 0 0 2em; -ms-flex: 0 0 2em; flex: 0 0 2em;}
-.item-input .btn-bar { border-radius: 0; -webkit-box-flex: 1; -webkit-flex: 1 0 10em; -moz-flex: 1 0 10em; -ms-flex: 1 0 10em; 
-	flex: 1 0 10em; -webkit-appearance: none; -moz-appearance: none; appearance: none;}
 .item-input .ion { min-width: 1em;}
-.input-label { display: table; margin-right:.5em;max-width: 50%; }
 .item-input .input, textarea {display: block; padding-top: 2px; padding-left: 0; vertical-align: middle; color: inherit;box-sizing:border-box;}
 
 textarea { padding: 0;width:100%;}
@@ -334,6 +332,7 @@ input[type='radio'], input[type='checkbox'] {line-height: normal;  margin: 0;}
 input[type='file'] { line-height: 2em;}
 input[disabled], select[disabled], textarea[disabled], input[readonly]:not(.cloned-text-input), textarea[readonly]:not(.cloned-text-input), select[readonly] {cursor: not-allowed; color: @placeholder;}
 input[type='radio'][disabled], input[type='checkbox'][disabled], input[type='radio'][readonly], input[type='checkbox'][readonly] { background-color: transparent;}
+.input-label { display: table; margin-right:.5em;max-width: 50%; }
 .item-stacked-label { display: block; box-shadow: none;padding: @space-sm;}
 .item-stacked-label .input-label, .item-stacked-label .ion { display: inline-block; padding: .3em 0 0 0; vertical-align: middle;}
 .item-stacked-label input, .item-stacked-label textarea {padding: 0 .5em; border: 0;  -webkit-border-radius: .1em; border-radius: .1em;
@@ -500,16 +499,17 @@ pointer-events: none; border: solid 2px @border; border-radius: 1.2em; backgroun
 .range input::-ms-fill-upper { height: 2px; background: #ccc;}
 .range { display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flexbox; display: flex; padding: 2px 1em; -webkit-box-align: center; -ms-flex-align: center; -webkit-align-items: center; -moz-align-items: center; align-items: center;}
 .range .ion {font-size: 1.8em; display: block;text-align: center;  -webkit-box-flex: 0; -webkit-flex: 0; -moz-flex: 0; -ms-flex: 0; flex: 0;}
-.range-label {display: block; white-space: nowrap;  -webkit-box-flex: 0; -webkit-flex: 0 0 auto; -moz-flex: 0 0 auto; -ms-flex: 0 0 auto; flex: 0 0 auto;}
+.range-label {display: block; white-space: nowrap;  -webkit-box-flex: 0; -webkit-flex: 0 0 auto; -moz-flex: 0 0 auto; -ms-flex: 0 0 auto; 
+  flex: 0 0 auto;}
 .range-label:first-child { padding-left: .4em;}
 .range input +.range-label { padding-right: .4em; padding-left: 0;}
-.platform-windowsphone .range input { height: auto;}
+
 /*
  * Select
  */
 .item-select{position:relative}
 .item-select select{-webkit-appearance:none;-moz-appearance:none;appearance:none;position:absolute;top:0;bottom:0;right:0;
-	padding:0 2.4em 0 .8em;max-width:65%;border:0;background:@light;color:@gray-dark;text-indent:.01px;text-overflow:'';
+	padding:0 2.4em 0 .8em;max-width:65%;border:0;background:none;color:@gray-dark;text-indent:.01px;text-overflow:'';
 	white-space:nowrap;font-size:1.1em;cursor:pointer;direction:rtl}
 .item-select select:first-child{position: relative;max-width: none;padding: 0;float: right;}
 .item-select select::-ms-expand{display:none}
