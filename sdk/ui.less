@@ -79,7 +79,7 @@ input, select, button, a, textarea{ outline: 0;margin:0;font-size:100%;border:0;
 table { border-spacing: 0; border-collapse: collapse; background-color: transparent;}
 td, th { padding: 0;}
 /*
- * grid 12
+ * grid
  */
 .row {display: block; width: 100% + @gridGutter; transition: 0.2s width ease; *zoom: 1;}
 .row:before, .row:after { display: table; clear: both; content: '';}
@@ -260,8 +260,7 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
 .item.item-lite p{margin-bottom: 0;}
 .item h1:last-child, .item h2:last-child, .item h3:last-child, .item h4:last-child, .item h5:last-child, .item h6:last-child, .item p:last-child { margin-bottom: 0;}
 .item.active{ background-color: @active-bg;}
-.item h1, .item h2, .item h3, .item h4, .item h5, .item h6, .item p { 
-  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.item h1, .item h2, .item h3, .item h4, .item h5, .item h6, .item p { overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
 .item.item-divider { font-weight: 500; padding-top: .6em; padding-bottom: .6em; margin:0;color: @gray-darker; background-color: @gray-lighter;}
 .item-note {float: right; color: @gray-light;font-size:.9em;}
 input.item-note{text-align: right;}
