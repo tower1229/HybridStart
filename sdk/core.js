@@ -1085,19 +1085,19 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 	window.catchAjaxError = function(code, status) {
 		switch (code) {
 			case 0:
-				app.toast('网络错误，请检查网络连接！' + status, 2500);
+				app.toast('网络错误，请检查网络连接！' + status);
 				break;
 			case 1:
-				app.toast('请求超时！', 2500);
+				app.toast('请求超时！');
 				break;
 			case 2:
-				app.toast('授权错误！', 2500);
+				app.toast('授权错误！');
 				break;
 			case 3:
-				app.toast('服务端数据异常！', 2500);
+				app.toast('服务端数据异常！');
 				break;
 			default:
-				app.toast('服务端错误(' + status + ') code:' + code, 2500);
+				app.toast('服务端错误(' + status + ') code:' + code);
 				break;
 		}
 	};
@@ -1156,25 +1156,27 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 				mode: CryptoJS.mode.ECB,
 				padding: CryptoJS.pad.Pkcs7
 			};
-			var keyHex = CryptoJS.enc.Utf8.parse(api.loadSecureValue({
+			var secretKey = api.loadSecureValue({
 			    sync: true,
 			    key: 'secret'
-			}));
+			});
+			if(!secretKey){
+				return console.warn('3DES密码未配置！');
+			}
+			var keyHex = CryptoJS.enc.Utf8.parse(secretKey);
 			//加密参数
-			var paramData = $.extend({}, opt.data);
-			opt.data = {
-				data: paramData,
-				url: opt.url
-			};
 			opt.url = appcfg.ajax.crypto.url;
-			var dataStr = JSON.stringify(opt.data);
+			var paramDataStr = JSON.stringify({
+				data: opt.data,
+				url: opt.url
+			});
 			//签名
-			var sign = CryptoJS.MD5(dataStr + appcfg.ajax.crypto.key).toString();
-			var secureData = CryptoJS.TripleDES.encrypt(dataStr, keyHex, cryptocfg);
-			var secureStr = secureData.ciphertext.toString();
+			var sign = CryptoJS.MD5(paramDataStr + secretKey).toString();
+			var secureData = CryptoJS.TripleDES.encrypt(paramDataStr, keyHex, cryptocfg);
+			var secureDataStr = secureData.ciphertext.toString();
 			opt.data = {
-				"data": secureStr,
-				"sign": sign
+				data: secureDataStr,
+				sign: sign
 			};
 			//解密数据
 			opt.dataType = 'text';

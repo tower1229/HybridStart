@@ -38,6 +38,7 @@ define(function(require) {
 
 	createNavfromTable($('#component_index'), $('#component_list'));
 	createNavfromTable($('#modules_index'), $('#modules_list'));
+	createNavfromTable($('#widgets_index'), $('#widgets_list'));
 
 	/*代码着色*/
 	require('copy');

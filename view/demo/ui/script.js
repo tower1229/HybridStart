@@ -32,10 +32,10 @@ define(function(require) {
 		});
 	});
 	$('.prompt')[0].addEventListener('touchend', function(){
-		app.prompt({
-			title: '写点什么'
-		}, function(text){
+		app.prompt( function(text){
 			app.toast('你写的是 ' + text);
+		}, null, {
+			title: '写点什么'
 		});
 	});
 

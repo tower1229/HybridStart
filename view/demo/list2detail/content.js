@@ -51,7 +51,10 @@ define(function(require) {
 	});
 
 	var open_detail = function(guid, title, author, cover) {
-		app.loading.show();
+		if(openLock){
+			return null;
+		}
+		openLock = true;
 		app.publish('detail_open', {
 			guid: guid,
 			title: title,
@@ -118,17 +121,17 @@ define(function(require) {
 		});
 		//详细页加载完成
 		app.subscribe('detail_done', function() {
-			openLock = false;
+			
 			app.window.animPopover({
 				name: 'page_detail',
 				translation: {
 					x: -window.innerWidth
 				},
 				callback: function() {
+					openLock = false;
 					app.window.evaluate({
 						script: 'detailIsOpen = true'
 					});
-					app.loading.hide();
 				}
 			});
 		});

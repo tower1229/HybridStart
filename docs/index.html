@@ -1752,15 +1752,15 @@ download("http://static-zt.oss-cn-qingdao.aliyuncs.com/mock/notice2.zip", {
                         </td>
                     </tr>
                     <tr>
-                        <td>add(newData, dir)</td>
+                        <td>add(newData, prepend)</td>
                         <td>
-                            <p>向列表中添加元素。</p>
+                            <p>向列表末尾追加元素，newData为对象格式，prepend为真值将向列表头部添加元素。</p>
                         </td>
                     </tr>
                     <tr>
                         <td>set(data)</td>
                         <td>
-                            <p>重新设置列表数据。</p>
+                            <p>重新设置列表数据，data为对象数组，格式见示例。</p>
                         </td>
                     </tr>
                     <tr>
@@ -1774,6 +1774,7 @@ download("http://static-zt.oss-cn-qingdao.aliyuncs.com/mock/notice2.zip", {
                 <pre>
                     <code>
 var $ = app.util;
+//列表数据格式
 var listData = [{
         item: '左滑操作列表0',
         className: 'first'
@@ -1907,23 +1908,591 @@ require.async('upload', function(uploader) {
                 </pre>
             </dd>
         </dl>
-        <h3 id="sdk-server">Server</h3>
-        <p>待整理</p>
-        <h3 id="sdk-common">Common</h3>
-        <p>待整理</p>
         <h3 id="sdk-ui">UI</h3>
-        <p>待整理</p>
+        <h4>定制主题</h4>
+        <p>基于less实现主题定制，less文件与<code>ui.css</code>同目录。</p>
+        <h4>组件列表</h4>
+        <p>UI组件示例见演示app。</p>
+        <nav class="modules_index" id="widgets_index"></nav>
+        <dl class="dl modules_list" id="widgets_list">
+            <dt id="grid(栅格系统)">grid</td>
+            <dd>
+                <p>12列栅格组件，来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，api及示例参见<a href="http://refined-x.com/Flow-UI/docs/#grid(%E6%A0%85%E6%A0%BC%E7%B3%BB%E7%BB%9F)" target="_blank">Flow-UI grid</a>。</p>        
+            </dd>
+            <dt id="button(按钮)">button</dt>
+            <dd>
+                <p>按钮组件，来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，样式微调，api及示例参见<a href="http://refined-x.com/Flow-UI/docs/#btn(%E6%8C%89%E9%92%AE)" target="_blank">Flow-UI button</a>。</p> 
+            </dd>
+            <dt id="color(色彩)">color</dt>
+            <dd>
+                <p>色彩组件，来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，去掉了辅助色(auxiliary)，api及示例参见<a href="http://refined-x.com/Flow-UI/docs/#color(%E8%89%B2%E5%BD%A9)" target="_blank">Flow-UI color</a>。</p> 
+            </dd>
+            <dt id="badge(徽标)">badge</dt>
+            <dd>
+                <p>徽标组件</p>
+                <table class="table">
+                    <tr>
+                        <td>.badge</td>
+                        <td>
+                            <p>定义一个徽标元素</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.badge-primary</td>
+                        <td>
+                            <p>叠加在.badge上以显示为主色调(另："success", "info", "warning", "danger")</p>
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+            <dt id="list(列表)">list</dt>
+            <dd>
+                <p>列表组件。</p> 
+                <table class="table">
+                    <tr>
+                        <td>.list</td>
+                        <td>
+                            <p>定义一个列表元素，默认内部H标签和p标签将单行显示，超出隐藏。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item</td>
+                        <td>
+                            <p>在.list元素内定义一个列表项。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-lite</td>
+                        <td>
+                            <p>叠加在.item上使成为一个紧凑列表项。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.active</td>
+                        <td>
+                            <p>叠加在.item上显示为点击状态。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-text-wrap</td>
+                        <td>
+                            <p>叠加在.item上使文字可换行</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-divider</td>
+                        <td>
+                            <p>叠加在.item上使成为带背景的分隔项。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-note</td>
+                        <td>
+                            <p>在.item内定义一个右侧备注元素。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-icon-left</td>
+                        <td>
+                            <p>叠加在.item上为左侧图标预留空间。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-icon-right</td>
+                        <td>
+                            <p>叠加在.item上为右侧图标预留空间。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-button-left</td>
+                        <td>
+                            <p>叠加在.item上为左侧按钮预留空间。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-button-right</td>
+                        <td>
+                            <p>叠加在.item上为右侧按钮预留空间。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-image</td>
+                        <td>
+                            <p>在.item内定义一个图片包裹元素，内部图片将100%填充。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-avatar</td>
+                        <td>
+                            <p>叠加在.item上为左侧头像图片预留空间。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-avatar-right</td>
+                        <td>
+                            <p>叠加在.item上为右侧头像图片预留空间。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-thumbnail</td>
+                        <td>
+                            <p>叠加在.item上为左侧缩略图片预留空间。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-thumbnail-right</td>
+                        <td>
+                            <p>叠加在.item上为右侧缩略图片预留空间。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-body</td>
+                        <td>
+                            <p>在.item内定义一个内容块，文字可以换行显示。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-badge</td>
+                        <td>
+                            <p>叠加在.item上为.badge元素在右侧预留空间。</p>
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+            <dt id="card(卡片)">card</dt>
+            <dd>
+                <p>卡片组件。</p> 
+                <table class="table">
+                    <tr>
+                        <td>.card</td>
+                        <td>
+                            <p>定义一个卡片元素，或叠加在.list上成为卡片式列表。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>card-head</td>
+                        <td>
+                            <p>定义一个卡片头部。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>card-title</td>
+                        <td>
+                            <p>在卡片头部内定义一个标题。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>card-foot</td>
+                        <td>
+                            <p>定义一个卡片底部。</p>
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+            <dt id="form(表单)">form</dt>
+            <dd>
+                <p>表单组件。基于.item扩展。</p> 
+                <table class="table">
+                    <tr>
+                        <td>.item-input</td>
+                        <td>
+                            <p>叠加在.item上定义一个输入项，内部input/textarea标签将自动应用样式。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-stacked-label</td>
+                        <td>
+                            <p>叠加在.item-input上使成为一个带提示文字的输入项。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.input-label</td>
+                        <td>
+                            <p>在.item-stacked-label定义一个提示文字元素。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-checkbox</td>
+                        <td>
+                            <p>叠加在.item上定义一个多选元素项。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.checkbox</td>
+                        <td>
+                            <p>在.item-checkbox内定义一个多选状态指示符。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.checkbox-primary</td>
+                        <td>
+                            <p>叠加在.checkbox上使指示符应用主色调，可选颜色组件中的所有颜色。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-radio</td>
+                        <td>
+                            <p>叠加在.item上定义一个单选元素项。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.radio-primary</td>
+                        <td>
+                            <p>叠加在.radio上使指示符应用主色调，可选颜色组件中的所有颜色。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-select</td>
+                        <td>
+                            <p>叠加在.item上定义一个选择项，内部select元素将自动应用样式。</p>
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+            <dt id="toggle(开关)">toggle</dt>
+            <dd>
+                <p>开关组件。基于.item扩展。</p> 
+                <table class="table">
+                    <tr>
+                        <td>.item-toggle</td>
+                        <td>
+                            <p>叠加在.item上定义一个开关项。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.toggle</td>
+                        <td>
+                            <p>在.item-toggle内定义一个开关。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.toggle-primary</td>
+                        <td>
+                            <p>叠加在.toggle上使指示符应用主色调，可选颜色组件中的所有颜色。</p>
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+            <dt id="range(滑块)">range</dt>
+            <dd>
+                <p>滑块组件。基于.item扩展。</p> 
+                <table class="table">
+                    <tr>
+                        <td>.range</td>
+                        <td>
+                            <p>叠加在.item上定义一个滑块容器，内部input[type="range"]将自动应用样式。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.range-label</td>
+                        <td>
+                            <p>在.range内定义一个内容指示器。</p>
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+            <dt id="flex-grid(Flex栅格)">flex-grid</dt>
+            <dd>
+                <p>Flex栅格组件，来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，样式微调，api及示例参见<a href="http://refined-x.com/Flow-UI/docs/#flex(flex%E6%A0%85%E6%A0%BC)" target="_blank">Flow-UI flex</a>。</p> 
+            </dd>
+            <dt id="rect(比例矩形)">rect</dt>
+            <dd>
+                <p>比例矩形组件，来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，样式微调，api及示例参见<a href="http://refined-x.com/Flow-UI/docs/#rect(%E7%AD%89%E6%AF%94%E5%A1%AB%E5%85%85)" target="_blank">Flow-UI rect</a>。</p> 
+            </dd>
+            <dt id="space(间距)">space</dt>
+            <dd>
+                <p>间距组件，来自<a href="http://refined-x.com/Flow-UI/" target="_blank">Flow-UI</a>，样式微调，api及示例参见<a href="http://refined-x.com/Flow-UI/docs/#space(%E9%97%B4%E8%B7%9D)" target="_blank">Flow-UI space</a>。</p> 
+            </dd>
+            <dt id="tools(工具)">tools</dt>
+            <dd>
+                <p>工具类。</p>
+                <table class="table">
+                    <tr>
+                        <td>.fix</td>
+                        <td>
+                            <p>清除浮动。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.oh</td>
+                        <td>
+                            <p>超出隐藏。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.l/.r</td>
+                        <td>
+                            <p>左/右浮动。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.pr/.pa</td>
+                        <td>
+                            <p>相对/绝对定位。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.tc/.tl/.tr</td>
+                        <td>
+                            <p>中/左/右对齐。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.el</td>
+                        <td>
+                            <p>单行文字，超出显示...</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.hide</td>
+                        <td>
+                            <p>隐藏元素。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.hidetext</td>
+                        <td>
+                            <p>隐藏内部文字。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.opc0</td>
+                        <td>
+                            <p>透明元素。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.big</td>
+                        <td>
+                            <p>大字号。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.small</td>
+                        <td>
+                            <p>小字号。</p>
+                        </td>
+                    </tr>
+                </table> 
+            </dd>
+            <dt id="head(头部)">head</dt>
+            <dd>
+                <p>头部组件。</p>
+                <table class="table">
+                    <tr>
+                        <td>.head</td>
+                        <td>
+                            <p>定义一个头部元素。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.title</td>
+                        <td>
+                            <p>定义一个标题。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.btn</td>
+                        <td>
+                            <p>.head内.btn:first和.btn:last元素分别显示在头部左侧和右侧。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.item-input-inset</td>
+                        <td>
+                            <p>定义一个头部输入框。</p>
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+            <dt id="foot(底部导航)">foot</dt>
+            <dd>
+                <p>底部导航组件。</p>
+                <table class="table">
+                    <tr>
+                        <td>.foot</td>
+                        <td>
+                            <p>定义一个底部导航容器。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.tabs</td>
+                        <td>
+                            <p>在.foot内定义一个导航组件。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.tabs-ion-top</td>
+                        <td>
+                            <p>叠加在.tabs上显示为带图标的导航。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.tabs-text</td>
+                        <td>
+                            <p>叠加在.tabs上显示为纯文字导航。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.tab-item</td>
+                        <td>
+                            <p>在.tabs内定义一个菜单项，自适应宽度。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.cur</td>
+                        <td>
+                            <p>叠加在.tab-item上显示为当前状态。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.active</td>
+                        <td>
+                            <p>叠加在.tab-item上显示为触摸状态。</p>
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+            <dt id="listPlaceholder(暂无内容)">listPlaceholder</dt>
+            <dd>
+                <p>暂无内容组件。</p>
+                <table class="table">
+                    <tr>
+                        <td>.listPlaceholder</td>
+                        <td>
+                            <p>定义一个暂无内容元素。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>._container</td>
+                        <td>
+                            <p>在.listPlaceholder内定义一个容器元素。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>._icon</td>
+                        <td>
+                            <p>在._container内定义一个图片区域。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>._text</td>
+                        <td>
+                            <p>在._container内定义一个文字区域。</p>
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+            <dt id="picControl(图片上传组件)">picControl</dt>
+            <dd>
+                <p>图片上传组件，参考示例APP中的图片上传示例。</p>
+                <table class="table">
+                    <tr>
+                        <td>.picControl</td>
+                        <td>
+                            <p>定义一个图片上传队列组件。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.bordered</td>
+                        <td>
+                            <p>叠加在.picControl上显示为带边框组件。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>._adder</td>
+                        <td>
+                            <p>在.picControl内定义一个添加图片按钮。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>._pic</td>
+                        <td>
+                            <p>在.picControl内定义一个图片元素，内部需包含img元素。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>._del</td>
+                        <td>
+                            <p>在._pic元素内定义一个删除按钮，内部需包含.ion图标。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>._state</td>
+                        <td>
+                            <p>在._pic元素内定义一个上传进度元素。</p>
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+            <dt id="other(辅助类)">other</dt>
+            <dd>
+                <p>辅助类。</p>
+                <table class="table">
+                    <tr>
+                        <td>img[data-src]</td>
+                        <td>
+                            <p>懒加载图片默认占位。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>img[data-remote]</td>
+                        <td>
+                            <p>待缓存图片默认占位，该功能在<code>sdk/server.js</code>中。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.onKeyboard</td>
+                        <td>
+                            <p>打开键盘时body自动添加该类，该功能在<code>sdk/common.js</code>中。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>.block-holder</td>
+                        <td>
+                            <p>将元素/图片修饰为占位元素。</p>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </dd>
+        </dl>
+
     </section>
-    <section class="wrap" id="view">
-        <h2>View</h2>
-        <h3 id="view-root">初始化</h3>
-        <p>root</p>
-        <h3 id="view-page">页面组织</h3>
-        <p>层级</p>
-        <p>公用元素</p>
-        <p>常见场景</p>
-        <h3 id="view-demo">应用示例</h3>
+    <section class="wrap" id="solution">
+        <h2>解决方案</h2>
+        <h3 id="solution-crypto">请求加密</h3>
+        <p>开启请求加密，需要将配置文件中的<code>appcfg.ajax.crypto.enable</code>设置为true，并填写加密接口<code>appcfg.ajax.crypto.url</code>，默认使用3DES加密算法，加密密码保存在<code>res/key.xml</code>中，打包后自动加密，使用apicloud专用api获取。</p>
+        <h4>发送请求</h4>
+        <p>加密请求将集中发送到加密接口，请求数据格式为：</p>
+        <pre>
+            <code>
+{
+    data: secureDataStr,    //加密数据
+    sign: sign              //签名
+};
+            </code>
+        </pre>
+        <p>加密数据<code>secureDataStr</code>的生成过程为：先将原请求按如下格式组织：</p>
+        <pre>
+            <code>
+{
+    data: opt.data,
+    url: opt.url
+}  
+            </code>
+        </pre>
+        <p>再经<code>JSON.stringify</code>得到原请求数据字符串，然后用3DES方式加密得到加密数据。</p>
+        <p>签名的生成过程为：将原请求数据字符串与加密密码拼接，取MD5值。</p>
+        <h4>解密数据</h4>
+        <p>加密接口需要返回3DES加密后的数据字符串，客户端将使用3DES算法解密，并经<code>JSON.parse</code>解析为json格式，返回给回调函数。</p>
+        
+        <h3 id="solution-catch">图片缓存</h3>
         <p>待补充</p>
+
+        <h3 id="solution-preget">数据预取</h3>
+        <p>待补充</p>
+
     </section>
     <footer class="wrap oh tc">
         <div class="row ">
