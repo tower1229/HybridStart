@@ -22,9 +22,21 @@ define(function(require) {
 		app.alert(paramDataStr + '=>3DES：' + secureDataStr);
 	});
 
-
-	app.ready(function() {
-
-
+	$('#openblank')[0].addEventListener('touchend', function(){
+		var now = new Date().getTime();
+		app.window.open({
+			url:'./blank/temp.html',
+			param: now
+		});
 	});
+	$('#openblanknojs')[0].addEventListener('touchend', function(){
+		var now = new Date().getTime();
+		app.window.open({
+			url:'./blank-nojs/temp.html',
+			param: now
+		});
+	});
+	
+	$('#devicePixelRatio')[0].innerText = window.devicePixelRatio;
+	
 });

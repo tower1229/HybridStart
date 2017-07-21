@@ -80,33 +80,31 @@ define(function(require) {
 	});
 
 
-	app.ready(function() {
-		//返回拦截
-		app.key('keyback', function() {
-			if ($('#home')[0].className.indexOf('cur') === -1) {
-				return $('#home').trigger('touchstart', {
-					from_back: true
-				});
-			}
-			app.exit();
-		});
-		
-		//frame预加载
-		$.each(channelSet, function(name, obj) {
-			if (name !== 'home') {
-				app.window.popoverElement({
-					id: 'view',
-					url: obj.url
-				});
-			}
-		});
-		//打开首页
-		app.window.popoverElement({
-			id: 'view',
-			url: './content.html',
-			bounce: true
-		});
-
-
+	//返回拦截
+	app.key('keyback', function() {
+		if ($('#home')[0].className.indexOf('cur') === -1) {
+			return $('#home').trigger('touchstart', {
+				from_back: true
+			});
+		}
+		app.exit();
 	});
+	
+	//frame预加载
+	$.each(channelSet, function(name, obj) {
+		if (name !== 'home') {
+			app.window.popoverElement({
+				id: 'view',
+				url: obj.url
+			});
+		}
+	});
+	//打开首页
+	app.window.popoverElement({
+		id: 'view',
+		url: './content.html',
+		bounce: true
+	});
+
+
 });

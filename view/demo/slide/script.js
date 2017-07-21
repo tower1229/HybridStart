@@ -18,8 +18,5 @@ define(function(require) {
 		}]
 	});
 
-	app.ready(function() {
-
-
-	});
+	
 });

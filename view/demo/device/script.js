@@ -18,9 +18,6 @@ define(function(require) {
 		app.device.call('10010');
 	});
 
-	app.ready(function() {
-		
-
-	});
+	
 	
 });

@@ -177,10 +177,10 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
  */
 .card { overflow: hidden; margin: @space @space-sm; border-radius: @radius * 2; background-color: @light;border:1px solid @border;}
 .card .item { margin-right: 0; margin-left: 0;}
-.card .item:first-child {border-top:0; border-top-left-radius: @radius * 2; border-top-right-radius: @radius * 2;}
-.card .item:last-child {border-bottom-right-radius: @radius * 2; border-bottom-left-radius: @radius * 2;}
+.card .item:first-child {border-top:0 !important; }
+.card .item:last-child {border-bottom: 0 !important;}
 @media screen and (-webkit-min-device-pixel-ratio: 2) { 
-  .card .item:last-child:before,.list.card .item:first-child:after { height: 0; }
+  .card .item:last-child:before, .card .item:first-child:after { display: none !important; }
 }
 .card-head{
     position: relative;
@@ -221,8 +221,8 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
  * Items
  * --------------------------------------------------
  */
-.item { position: relative; z-index: 2; display: block; box-sizing: border-box; line-height: @line-height; padding: @space-sm;
-	border-bottom: 1px solid @border; background: @light;overflow: hidden;}
+.item { position: relative; z-index: 2; display: block; box-sizing: border-box; line-height: @line-height; 
+  padding: @space-sm;	border-bottom: 1px solid @border; background: @light;overflow: hidden;}
 .list .item:first-child{border-top: 1px solid @border;}
 @media screen and (-webkit-min-device-pixel-ratio: 2) { 
   .item{border-bottom:0; }

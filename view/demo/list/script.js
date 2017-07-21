@@ -6,8 +6,5 @@ define(function(require) {
 	var $ = app.util;
 
 
-	app.ready(function() {
-
-
-	});
+	
 });

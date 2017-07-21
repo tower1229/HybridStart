@@ -481,7 +481,7 @@ define(function(require, exports, module) {
 		var etplEngine = new etpl.Engine();
 		var template = api.readFile({
 			sync: true,
-			path: seajs.root + '/res/temp/template.html'
+			path: 'widget://res/temp/template.html'
 		});
 		etplEngine.compile(template);
 		var Render = etplEngine.getRenderer(tempName);
@@ -527,6 +527,7 @@ define(function(require, exports, module) {
 		});
 		return remoteEle;
 	};
+	
 	module.exports = {
 		logout: _logout,
 		initUser: _initUser,

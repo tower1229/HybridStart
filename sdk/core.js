@@ -9,7 +9,30 @@ date：2017-07-05
 /* Seajs.style.js */
 !function(){var a,b=/\W/g,c=document,d=document.getElementsByTagName("head")[0]||document.documentElement;seajs.importStyle=function(e,f){if(!f||(f=f.replace(b,"-"),!c.getElementById(f))){var g;if(!a||f?(g=c.createElement("style"),f&&(g.id=f),d.appendChild(g)):g=a,void 0!==g.styleSheet){if(c.getElementsByTagName("style").length>31)throw new Error("Exceed the maximal count of style tags in IE");g.styleSheet.cssText+=e}else g.appendChild(c.createTextNode(e));f||(a=g)}},define("seajs/seajs-style/1.0.2/seajs-style",[],{})}();
 /*! root路径内部依赖 */
-seajs.root = seajs.data.base.replace(/\/sdk\/$/,'');
+(function(){
+	var selfPath = window.location.href;
+	var widgetPath = "../";
+	var pathMatch = selfPath.match(/\/view(.+)$/);
+	if(pathMatch && pathMatch[1]){
+		selfPath = pathMatch[1];
+		var index = -1;
+		var pathDeep = 0;
+		do {
+			index = selfPath.indexOf("/", index + 1);
+			if (index != -1) { 
+				pathDeep++;
+			}
+		} while (index != -1);
+		if(pathDeep){
+			widgetPath  ="";
+			for(var deepStart = 0;deepStart<pathDeep;deepStart++){
+				widgetPath += "../";
+			}
+		}
+	}
+	seajs.root = widgetPath.substring(0, widgetPath.length-1);
+})();
+//console.log(seajs.root)
 /*! seajs设置 */
 seajs.config({
 	base: seajs.root + "/sdk/modules",
@@ -784,16 +807,14 @@ var apputil = (function(document, undefined) {
 			anim = config.anim || appcfg.set.windowAnimate,
 			subType = config.subType || appcfg.set.animateSubType,
 			dura = config.duration || appcfg.set.animateDuration;
-		if (!$.isPlainObject(param)) {
-			param = {};
-		}
+
 		if (!config.name) {
 			config.name = 'win-' + config.url;
 		}
 		if (window.api) {
-			app.storage.val('crossParam', param);
+			param!==void 0 && app.storage.val('crossParam', param);
 			api.openWin($.extend(config, {
-				pageParam: param,
+				pageParam: $.isPlainObject(param) ? param : {},
 				animation: {
 					type: anim,
 					subType: subType,

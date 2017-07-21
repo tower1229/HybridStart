@@ -14,8 +14,5 @@ define(function(require) {
 		rangeVal.innerText = range.value;
 	});
 
-	app.ready(function() {
-
-
-	});
+	
 });

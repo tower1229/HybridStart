@@ -8,7 +8,6 @@
 define(function(require, exports, module) {
 	"use strict";
 	var $ = app.util;
-
 	var $body = $('body');
 	//页面关闭按钮
 	$body.on('touchstart', '#goBack', function(e) {
@@ -19,6 +18,7 @@ define(function(require, exports, module) {
 			map.close();
 		}
 	});
+
 	//按钮效果
 	$body.on('touchstart', '.btn', function(e) {
 		$(e.target)[0].classList.add('active');

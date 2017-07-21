@@ -14,8 +14,6 @@ define(function(require) {
 			}
 		}, 'shell');
 	});
-
-	app.ready(function() {
-		
-	});
+	
+	
 });
