@@ -31,7 +31,7 @@
 - [mam](http://docs.apicloud.com/Client-API/Cloud-Service/mam)版本管理必备
 
 ## 资源
-[Apk 安装包](http://downloadpkg.apicloud.com/app/download?path=http://7xm7pq.com1.z0.glb.clouddn.com/02048e6a98fed5d4045c3803dd68b73e_d)
+[Apk 安装包](http://downloadpkg.apicloud.com/app/download?path=http://7xm7pq.com1.z0.glb.clouddn.com/51aaa239cc4279fc74a70b1a351da199_d)
 
 [Github](https://github.com/tower1229/HybridStart)
 
