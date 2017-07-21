@@ -32,20 +32,45 @@ define(function(require, exports, module) {
 	//批量绑定active
 	$body.on('touchstart', '[active]', function(e) {
 		var target = e.target;
-		$(target)[0].classList.add('active');
+		target.classList.remove('active');
+		var activeHandle = document.createElement('div');
+		activeHandle.classList.add('active-handle');
+		var targetOffset = e.touches;
+		var eleOffset = target.getBoundingClientRect();
+		if(targetOffset && eleOffset){
+			activeHandle.style.left = targetOffset.clientX - eleOffset.left - 200 + 'px';
+			activeHandle.style.top = targetOffset.clientY - eleOffset.top - 200 + 'px';
+			target.normalize();
+			var lastNode = target.lastChild;
+			if(lastNode.nodeName==='#text' && !lastNode.nodeValue.trim()){
+				lastNode = lastNode.previousSibling;
+			}
+			target.insertBefore(activeHandle, lastNode);
+			setTimeout(function(){
+				target.classList.add('active');
+			},0);
+		}
+		
 		target.setAttribute('data-touch', 1);
+		
 	}).on('touchcancel', '[active]', function(e) {
 		var target = e.target;
-		$(target)[0].classList.remove('active');
+		target.classList.remove('active');
 		target.removeAttribute('data-touch');
 	}).on('touchmove', '[active]', function(e) {
 		var target = e.target;
-		$(target)[0].classList.remove('active');
+		target.classList.remove('active');
 		target.removeAttribute('data-touch');
 	}).on('touchend', '[active]', function(e) {
 		var target = e.target;
 		var v = target.getAttribute('active');
-		$(target)[0].classList.remove('active');
+		setTimeout(function(){
+			var oldNode = target.querySelector('.active-handle');
+			if(oldNode){
+				target.removeChild(oldNode);
+			}
+			target = v = null;
+		}, appcfg.set.animateDuration * 2);
 		if (v) {
 			v = v.split(',');
 			if (target.getAttribute('data-touch')) {
@@ -53,7 +78,6 @@ define(function(require, exports, module) {
 				app.openView({
 					anim: ['none', 'push', 'movein', 'fade', 'reveal'][v[0]]
 				}, v[1], v[2]);
-				target = v = null;
 			}
 		}
 	});

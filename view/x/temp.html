@@ -16,66 +16,22 @@
 		</div>
 		<div class="flex-1 scroll_cont">
 			<div class="list">
+				<div active class="item item-icon-left item-icon-right">
+                    <i class="ion">&#xe641;</i>我的收藏
+                    <i class="ion">&#xe610;</i>
+                </div>
+				<div class="item" active>active 测试</div>
 				<div class="item" active="1,common">打开error页面</div>
-				<div class="item" id="test">加密测试</div>
-				<div class="item" id="openblank">打开空页面</div>
-				<div class="item" id="openblanknojs">打开没有js的空页面</div>
-				<div class="item" id="devicePixelRatio"></div>
+				<div class="item" active id="test">加密测试</div>
+				<div class="item" active id="openblank">打开空页面</div>
+				<div class="item" active id="openblanknojs">打开没有js的空页面</div>
+				<div class="item" active id="devicePixelRatio"></div>
 			</div>
 
 		</div>
 	</body>
-	<script type="text/javascript">
-    var headNode = document.getElementsByTagName('head')[0];
-    var confNode = document.createElement('script');
-    var coreNode = document.createElement('script');
-    var selfPath = window.location.href;
-    var widgetPath = "widget://";
-    var pathMatch = selfPath.match(/\/view(.+)$/);
-    if(pathMatch[1]){
-    	selfPath = pathMatch[1];
-    	var index = -1;
-		var pathDeep = 0;
-		do {
-			index = selfPath.indexOf("/", index + 1);
-			if (index != -1) { 
-				pathDeep++;
-			}
-		} while (index != -1);
-		if(pathDeep){
-			widgetPath  ="";
-			for(var deepStart = 0;deepStart<pathDeep;deepStart++){
-				widgetPath += "../";
-			}
-		}
-    }
-	
-    confNode.type = "text/javascript";
-    confNode.src = widgetPath + "config.js";
-    coreNode.type = "text/javascript";
-    
-    if (coreNode.addEventListener) {
-      coreNode.addEventListener("load", scriptOnload, false);
-    } else if (coreNode.readyState) {
-      coreNode.onreadystatechange = function() {
-        if (coreNode.readyState == "loaded" || coreNode.readyState == "complete") {
-          coreNode.onreadystatechange = null;
-          scriptOnload();
-        }
-      };
-    } else {
-      coreNode.onload = scriptOnload;
-    }
-    coreNode.src = widgetPath + "sdk/core.js";
-    coreNode.onerror = function(e){
-    	console.log(JSON.stringify(e));
-    };
-    apiready = function() {
-      headNode.appendChild(confNode);
-      headNode.appendChild(coreNode);
-    };
-    function scriptOnload(){
-      seajs.use("./script");
-    }
+	<script src="../../config.js"></script><script src="../../sdk/core.js" id="seajsnode" ></script>
+  <script>
+  seajs.use('./script');
   </script>
 </html>

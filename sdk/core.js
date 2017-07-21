@@ -289,7 +289,13 @@ var apputil = (function(document, undefined) {
 								if (ele === target) {
 									handle.call(target, {
 										target: target,
-										detail: event.detail
+										detail: event.detail,
+										touches: event.touches && event.touches[0] ? {
+											clientX: event.touches[0].clientX,
+											clientY: event.touches[0].clientY,
+											screenX: event.touches[0].screenX,
+											screenY: event.touches[0].screenY,
+										} : null
 									});
 									return isHand = true;
 								}
@@ -1350,7 +1356,7 @@ app.ready(function() {
 				break;
 			case "closeback": //关闭后台页面
 				setTimeout(function() {
-					if (!!window.isBack && platform === 'android') {
+					if (!!window.isBack && api.systemType === 'android') {
 						//console.log('closeback:' + api.winName);
 						api.closeWin({
 							name: api.winName,
