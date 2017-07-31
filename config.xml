@@ -6,7 +6,7 @@
   <content src="view/root/temp.html"/>  
   <preference name="pageBounce" value="false"/>  
   <preference name="appBackground" value="rgba(0,0,0,0.0)"/>  
-  <preference name="windowBackground" value="rgb(255,255,255)"/>  
+  <preference name="windowBackground" value="rgba(0,0,0,0.0)"/>  
   <preference name="frameBackgroundColor" value="rgba(0,0,0,0.0)"/>  
   <preference name="hScrollBarEnabled" value="true"/>  
   <preference name="vScrollBarEnabled" value="false"/>  

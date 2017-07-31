@@ -73,7 +73,6 @@ define(function(require) {
 		app.on('resume', function() {
 			ajpush.onResume();
 			comm.getLocation();
-			comm.collection();
 		});
 
 		app.on('pause', function() {

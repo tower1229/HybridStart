@@ -22,7 +22,7 @@
 @text-color: 		@gray-dark;
 @link-color: 		inherit;
 @active-bg:			#efefef;
-@border: 			  #e0e0e0;
+@border: 			  #dadada;
 @placeholder:		#aaa;
 //情景色
 @primary: 			#1d6fb8;
@@ -31,7 +31,7 @@
 @info-dark: 		darken(@info, 20%);
 @success: 			#25ae88;
 @success-dark: 		darken(@success, 20%);
-@warning: 			#fec14c;
+@warning: 			#f97d22;
 @warning-dark: 		darken(@warning, 20%);
 @danger: 			#fd7b6d;
 @danger-dark: 		darken(@danger, 20%);
@@ -40,15 +40,15 @@
 @space-sm: 			1 * @font-size;
 @space-lg: 			2.4 * @font-size;
 //版式
-@radius: 			.04rem;
+@radius: 			.1rem;
 @line-height:		1.7;
 //grid.less
 @gridColumns: 		12;
 @gridGutter: 		2%;
 //form.less
-@form-base-height: 3 * @font-size;
+@form-base-height: 2.5 * @font-size;
 @form-sm-height: 2 * @font-size-sm;
-@form-lg-height: 3 * @font-size-lg;
+@form-lg-height: 2.5 * @font-size-lg;
 //btn.less
 @btn-base-height: @form-base-height;
 @btn-sm-height: @form-sm-height;
@@ -63,7 +63,7 @@ html {-webkit-user-select:none; user-select:none;
 	font-family:sans-serif;-webkit-text-size-adjust:100%;	-webkit-text-size-adjust:100%;-webkit-user-drag:none;-webkit-tap-highlight-color:transparent;}
 html, body { height: 100%;}
 html { font-size: 15.625vw;}
-body {line-height: @line-height; font-size: @font-size; position: relative;background:#f5f5f5;
+body {width:100%; line-height: @line-height; font-size: @font-size; position: relative;background:#f5f5f5;
 	 overflow-x: hidden; overflow-y: auto;color:@text-color;}
 body, h1, h2, h3, h4, p, ul, ol, dd, dl, form { margin: 0;}
 img { max-width: 100%; height: auto; vertical-align: top; border: 0 ;}
@@ -130,23 +130,23 @@ td, th { padding: 0;}
 .btn-default.disabled, .btn-default[disabled], fieldset[disabled] .btn-default, .btn-default.disabled:active, .btn-default[disabled]:active, fieldset[disabled] .btn-default:active, .btn-default.disabled.active, .btn-default[disabled].active, fieldset[disabled] .btn-default.active { border-color: @border; background-color:  @light;}
 
 .btn-primary { color:  @light; background-color: @primary;}
-.btn-primary:active, .btn-primary.active{ color:  @light; border-color: @primary-dark; background-color: @primary-dark;}
+.btn-primary:active, .btn-primary.active{ color:  @light !important; border-color: @primary-dark; background-color: @primary-dark;}
 .btn-primary.disabled, .btn-primary[disabled], fieldset[disabled] .btn-primary, .btn-primary.disabled:active, .btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active, .btn-primary.disabled.active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary.active { border-color: @primary; background-color: @primary;}
 
 .btn-success { color:  @light; background-color: @success;}
-.btn-success:active, .btn-success.active { color:  @light; border-color: @success-dark; background-color: @success-dark;}
+.btn-success:active, .btn-success.active { color:  @light !important; border-color: @success-dark; background-color: @success-dark;}
 .btn-success.disabled, .btn-success[disabled], fieldset[disabled] .btn-success,  .btn-success.disabled:active, .btn-success[disabled]:active, fieldset[disabled] .btn-success:active, .btn-success.disabled.active, .btn-success[disabled].active, fieldset[disabled] .btn-success.active { border-color: @success; background-color: @success;}
 
 .btn-info { color:  @light; background-color: @info;}
-.btn-info:active, .btn-info.active { color:  @light; border-color: @info-dark; background-color: @info-dark;}
+.btn-info:active, .btn-info.active { color:  @light !important; border-color: @info-dark; background-color: @info-dark;}
 .btn-info.disabled, .btn-info[disabled], fieldset[disabled] .btn-info, .btn-info.disabled:active, .btn-info[disabled]:active, fieldset[disabled] .btn-info:active, .btn-info.disabled.active, .btn-info[disabled].active, fieldset[disabled] .btn-info.active { border-color: @info; background-color: @info;}
 
 .btn-warning { color:  @light; background-color: @warning;}
-.btn-warning:active, .btn-warning.active { color:  @light; border-color: @warning-dark; background-color: @warning-dark;}
+.btn-warning:active, .btn-warning.active { color:  @light !important; border-color: @warning-dark; background-color: @warning-dark;}
 .btn-warning.disabled, .btn-warning[disabled], fieldset[disabled] .btn-warning,  .btn-warning.disabled:active, .btn-warning[disabled]:active, fieldset[disabled] .btn-warning:active, .btn-warning.disabled.active, .btn-warning[disabled].active, fieldset[disabled] .btn-warning.active { border-color: @border; background-color: @warning;}
 
 .btn-danger { color:  @light; background-color: @danger;}
-.btn-danger:active, .btn-danger.active { color:  @light; border-color: @danger-dark; background-color: @danger-dark;}
+.btn-danger:active, .btn-danger.active { color:  @light !important; border-color: @danger-dark; background-color: @danger-dark;}
 .btn-danger.disabled, .btn-danger[disabled], fieldset[disabled] .btn-danger,  .btn-danger.disabled:active, .btn-danger[disabled]:active, fieldset[disabled] .btn-danger:active, .btn-danger.disabled.active, .btn-danger[disabled].active, fieldset[disabled] .btn-danger.active { border-color: @danger; background-color: @danger;}
 
 .btn-link {background-color: transparent; font-weight: normal; color: @primary; padding:0;white-space: normal;}
@@ -226,7 +226,7 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
  * --------------------------------------------------
  */
 .item { position: relative; z-index: 2; display: block; box-sizing: border-box; line-height: 1; 
-  padding: @space-sm;	border-bottom: 1px solid @border; overflow: hidden;}
+  padding: @space-sm * 1.2;	border-bottom: 1px solid @border; overflow: hidden;}
 .list .item:last-child{border-bottom: 0;}
 /* active handle */
 .active-handle{
@@ -238,7 +238,7 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
   z-index: 0;
   transform:scale(0);
   opacity: .5;
-  transition:all ease-out .3s;
+  transition:all ease-out .5s;
 }
 .active .active-handle{transform:scale(1);opacity: 0;}
 @media screen and (-webkit-min-device-pixel-ratio: 2) { 
@@ -259,16 +259,16 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
 }
 .item.item-lite{padding: 0.8 * @space-sm;}
 .item:empty{display: none;}
-.item h2 {line-height: @line-height; font-size: 1.2em; font-weight: normal; margin: 0 0 .3em 0;}
-.item h3 {line-height: @line-height; font-size: 1.1em; font-weight: normal; margin: 0 0 .3em 0;}
-.item p { margin-bottom: .3em; opacity: .9;color:@gray;}
+.item h2 {line-height: @line-height; font-size: 1.2em; font-weight: normal; margin: 0 0 .3em 0;color:@gray-dark;}
+.item h3 {line-height: @line-height; font-size: 1.1em; font-weight: normal; margin: 0 0 .3em 0;color:@gray-dark;}
+.item p { margin-bottom: .3em; opacity: .9;}
 .item.item-lite p{margin-bottom: 0;}
 .item h1:last-child, .item h2:last-child, .item h3:last-child, .item h4:last-child, .item h5:last-child, .item h6:last-child, .item p:last-child { margin-bottom: 0;}
 .item h1, .item h2, .item h3, .item h4, .item h5, .item h6, .item p { overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
 .item-divider { font-weight: 500; margin:-1px 0 0 !important; color: @gray-darker; background-color: @gray-lighter;}
-.item-note {position: absolute;right: @space-sm;top:0; color: @gray-light;font-size:.9em;height: 100%;
+.item-note {position: absolute;right: 0;top:0; color: @gray-light;font-size:.9em;height: 100%;padding-right: @space-sm;
 display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center;}
-input.item-note{text-align: right;}
+input.item-note, input.item-note[readonly]{text-align: right;color:@gray;}
 /**
  * Item Icons
  * --------------------------------------------------
@@ -298,9 +298,9 @@ input.item-note{text-align: right;}
  * Item Other
  * --------------------------------------------------
  */
-.item-avatar{ min-height: 5.5em; padding-left: 5.5em;}
+.item-avatar{ min-height: 5.5em; padding-left: 6em;}
 .item-avatar >img:first-child, .item-avatar .item-image{	position: absolute; top: 50%; left: 1em; width: 4em; height: 4em; border-radius: 50%;
-  overflow: hidden;margin-top: -2em;box-shadow: 1px 1px 2px rgba(0,0,0,.3)}
+  overflow: hidden;margin-top: -2em;box-shadow: 0 0 2px rgba(0,0,0,.3)}
 .item-avatar-right{ min-height: 5em; padding-right: 5em;}
 .item-avatar-right >img:first-child, .item-avatar-right .item-image {	position: absolute; top: 50%; right: 1em; width: 4em; height: 4em;
  border-radius: 50%;overflow: hidden;margin-top: -2em;box-shadow: 1px 1px 2px rgba(0,0,0,.3)}
@@ -339,7 +339,7 @@ textarea { padding: 0;width:100%;}
 input[type='radio'], input[type='checkbox'] {line-height: normal;  margin: 0;}
 .item-input input[type='file'], .item-input input[type='image'], .item-input input[type='submit'], .item-input input[type='reset'], .item-input input[type='button'], .item-input input[type='radio'], .item-input input[type='checkbox'] { width: auto;}
 input[type='file'] { line-height: 2em;}
-input[disabled], select[disabled], textarea[disabled], input[readonly]:not(.cloned-text-input), textarea[readonly]:not(.cloned-text-input), select[readonly] {cursor: not-allowed; color: @placeholder;}
+input[disabled], select[disabled], textarea[disabled], input[readonly], textarea[readonly], select[readonly] {cursor: not-allowed; color: @placeholder;}
 input[type='radio'][disabled], input[type='checkbox'][disabled], input[type='radio'][readonly], input[type='checkbox'][readonly] { background-color: transparent;}
 .input-label { display: table; margin-right:.5em;max-width: 50%; }
 .item-stacked-label { display: block; box-shadow: none;padding: @space-sm;}

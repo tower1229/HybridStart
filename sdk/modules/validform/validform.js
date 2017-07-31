@@ -419,10 +419,10 @@ define('validform',function(require, exports, module) {
 				return;
 			}
 			if (type == 1) {
-				app.toast(msg, {
-					delay: 2e3,
-					color: color
-				});
+				if(o.type===1 || o.type===2){
+					return null;
+				}
+				app.toast(msg);
 			} else {
 				o.obj.siblings(".Validform_checktip").html(msg);
 				Validform.util.cssctl(o.obj.siblings(".Validform_checktip"));

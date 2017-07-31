@@ -1,8 +1,8 @@
 /*
  * name: scroll-load
- * version: 1.0.1
- * updata: loadingTemplate允许为空
- * data: 2017-04-27
+ * version: 1.0.2
+ * updata: 不合法调用返回null
+ * data: 2017-07-26
  */
 define('scroll-load', function(require, exports, module) {
     "use strict";
@@ -35,6 +35,7 @@ define('scroll-load', function(require, exports, module) {
                 $loading, 
                 destory;
             if (!$wrap.length) {
+                console.warn(opt.el + '不存在');
                 return null;
             }
             loadingId = $wrap.data('scroll-load-id') || base.getUUID();
@@ -60,10 +61,10 @@ define('scroll-load', function(require, exports, module) {
             if (!opt.force) {
                 if (window.nomore) {
                     destory();
-                    return $wrap;
+                    return null;
                 }
                 if ($wrap.data('scroll-load-id')) {
-                    return $wrap;
+                    return null;
                 }
             }
             destory = function() {
