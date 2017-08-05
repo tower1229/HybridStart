@@ -1,12 +1,13 @@
 /*
  * name: slide.js
- * version: v4.3.0
- * update: bug fix
- * date: 2017-07-04
+ * version: v4.5.0
+ * update: add data.attribute
+ * date: 2017-08-01
  */
 define('slide', function(require, exports, module) {
     "use strict";
     seajs.importStyle('.slide{position:relative;overflow:hidden;}\
+        .slide img[slide-src]{opacity:0}\
         .slide_wrap{position:relative;width:100%}\
         .slide_wrap img{max-width: none;}\
         .slide_c{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;display:none}\
@@ -19,14 +20,14 @@ define('slide', function(require, exports, module) {
         .slide_nav .on{background:#999;}\
         .slide .arrs{position:absolute;cursor:pointer;z-index:9;-webkit-user-select:none;user-select:none}\
         .arrs.unable{cursor:default}', module.uri);
-    require('base');
-    var $ = require('jquery'),
+    var $ = window.$ || require('jquery'),
+        base = require('base'),
         def = {
             el: null,
             data: null,
             wrap: 'ul',
             cell: 'li',
-            effect: 'slide', //切换 slide | fade | toggle
+            effect: 'slide', //切换 slide | fade 
             direction: 'x', //slide方向
             animate: 'ease',
             duration: 300,
@@ -40,42 +41,41 @@ define('slide', function(require, exports, module) {
             prev: null,
             next: null,
             navs: null,
-            imgattr: 'slide-src',
+            lazyload: true,
             handletouch: false,
             onSlide: null,
             onReady: null
         },
-        getPrev = function(number, _step, count) {
+        getPrev = function(number, _step, slideLength) {
             _step = _step || 1;
-            number = number <= 0 ? count - _step : number - _step;
+            number = number <= 0 ? slideLength - _step : number - _step;
             return number;
         },
-        getNext = function(number, _step, count) {
+        getNext = function(number, _step, slideLength) {
             _step = _step || 1;
-            number = number >= count - _step ? 0 : number + _step;
+            number = number >= slideLength - _step ? 0 : number + _step;
             return number;
         },
-        setNavs = function($navs, count, current, step) {
-            var _step = step || 1,
-                _prev = getPrev(current, _step, count),
-                _next = getNext(current, _step, count);
+        setNavs = function($navs, slideLength, current, step) {
+            var _prev = getPrev(current, step, slideLength),
+                _next = getNext(current, step, slideLength);
 
             $navs.removeClass('on nav_prev nav_next')
                 .eq(current).addClass('on')
                 .end().eq(_prev).addClass("nav_prev")
                 .end().eq(_next).addClass("nav_next");
         };
-    
+
     var Slide = function(config) {
         var opt = $.extend({}, def, config || {}),
             $this = $(opt.el),
             $wrap,
-            $cell,
-            count,
+            $slides,
+            slideLength,
             timer,
             $navs,
             $arrs,
-            origin = 0,
+            originIndex = 0,
             width = 0,
             H,
             efftct,
@@ -90,29 +90,39 @@ define('slide', function(require, exports, module) {
             H = parseInt($this.outerHeight());
         }
         //应用数据
+        var slideNode;
         if($.isArray(opt.data)){
             $.extend(opt, {
                 wrap: 'ul',
                 cell: 'li'
             });
-            var slideNode = '<ul>';
+            slideNode = '<ul>';
             $.each(opt.data, function(i, e){
-                slideNode += ('<li><a href="'+ (e.link || 'javascript:;') +'"><img src="' + (e.src || '') + '" alt="'+ (e.alt || '') +'"></a></li>')
+                var attribute = '';
+                if($.isPlainObject(e.attribute)){
+                    var attrName;
+                    for(attrName in e.attribute){
+                        if(e.attribute.hasOwnProperty(attrName)){
+                            attribute += (' ' + attrName + '="' + e.attribute[attrName] + '"');
+                        }
+                    }
+                }
+                slideNode += ('<li'+attribute+'><a href="'+ (e.link || 'javascript:;') +'"><img ' + (opt.lazyload ? 'slide-src="' : 'src="') + (e.src || '') + '" alt="'+ (e.alt || '') +'"></a></li>')
             });
             slideNode += '</ul>';
-            $this.prepend(slideNode);
         }
+        $this.prepend(slideNode);
         //运行条件检测
         $wrap = $this.find(opt.wrap).eq(0);
-        $cell = $wrap.find(opt.cell);
-        count = $cell.length;
-        if (count <= 1) {
+        $slides = $wrap.find(opt.cell);
+        slideLength = $slides.length;
+        if (slideLength <= 1) {
             $this.addClass('unable');
             $wrap.css({
                 'height': H
             }).addClass('slide_wrap');
-            $cell.unbind().addClass('slide_c')._loadimg(opt.imgattr).show();
-            typeof(opt.onReady) === 'function' && opt.onReady($this, $cell, count);
+            $slides.unbind().addClass('slide_c')._loadimg('slide-src').show();
+            typeof(opt.onReady) === 'function' && opt.onReady($this, $slides, slideLength);
             return $this;
         }
 
@@ -138,9 +148,9 @@ define('slide', function(require, exports, module) {
                             }
                             if (Math.abs(_distance) > _Distance / 4 || (_touchAction && _touchAction.split)) {
                                 if (_distance < 0 || _touchAction == 'next') {
-                                    efftct(getNext(origin, 1, count), 1);
+                                    efftct(getNext(originIndex, 1, slideLength), 1);
                                 } else if (_distance > 0 || _touchAction == 'prev') {
-                                    efftct(getPrev(origin, 0, count), 0);
+                                    efftct(getPrev(originIndex, 0, slideLength), 0);
                                 }
                                 _touchAction = null;
                             } else {
@@ -151,6 +161,7 @@ define('slide', function(require, exports, module) {
                             }
                         },
                         _wrapcss = {};
+
                     if (opt.direction === 'y') {
                         _Target = 'height';
                         _Direction = 'top';
@@ -166,7 +177,7 @@ define('slide', function(require, exports, module) {
                     }
                     _wrapcss.height = H;
                     _wrapcss[_Target] = _Distance * 3 + 'px';
-                    $cell.css(_Target, _Distance + 'px').addClass('slide_c');
+                    $slides.css(_Target, _Distance + 'px').addClass('slide_c');
                     $wrap._css(_Direction, -_Distance + 'px')
                         .css(_wrapcss)
                         .addClass('slide_wrap')
@@ -211,10 +222,10 @@ define('slide', function(require, exports, module) {
                                 }
                                 $wrap._css(_Direction, -_Distance + _distance + 'px');
                                 if (_distance < 0) {
-                                    $cell.eq(getNext(origin, 1, count))._loadimg(opt.imgattr);
+                                    $slides.eq(getNext(originIndex, 1, slideLength))._loadimg('slide-src');
                                 }
                                 if (_distance > 0) {
-                                    $cell.eq(getPrev(origin, 1, count))._loadimg(opt.imgattr);
+                                    $slides.eq(getPrev(originIndex, 1, slideLength))._loadimg('slide-src');
                                 }
                             },
                             'touchend': moveEnd,
@@ -224,46 +235,53 @@ define('slide', function(require, exports, module) {
                     $wrap.css({
                         'height': H
                     }).addClass('slide_wrap');
-                    $cell.addClass('slide_c');
+                    $slides.addClass('slide_c');
                 }
             };
             //核心方法
             efftct = function(current, direct, step, isInit) {
-                var _step = step ? step : 1,
-                    _prev = getPrev(current, _step, count),
-                    _next = getNext(current, _step, count),
-                    toggleCellClass = function() {
-                        $cell.removeClass('active slide_prev slide_next').eq(current)._loadimg(opt.imgattr).addClass('active');
-                        $cell.eq(_prev).addClass('slide_prev');
-                        $cell.eq(_next).addClass('slide_next');
-                    };
+                var toggleCellClass = function(current, direct, step) {
+                    var _prev = getPrev(current, step, slideLength),
+                        _next = getNext(current, step, slideLength);
+                    
+                    $slides.filter('.active').removeClass('active').end()
+                    .filter('.slide_prev').removeClass('slide_prev').end()
+                    .filter('.slide_next').removeClass('slide_next').end()
+                    .eq(_prev).addClass('slide_prev').end()
+                    .eq(_next).addClass('slide_next').end()
+                    .eq(current)._loadimg('slide-src').addClass('active');
+                };
                 windowLock = true;
-                setNavs($navs, count, current, step);
+                setNavs($navs, slideLength, current, step);
                 switch (opt.effect) {
                     case 'fade':
-                        toggleCellClass();
+                        toggleCellClass(current);
                         if (isInit) {
-                            $cell.eq(current)._loadimg(opt.imgattr).addClass('active').show();
+                            $slides.eq(current)._loadimg('slide-src').addClass('active').show();
                         } else {
-                            $cell.fadeOut(opt.duration)
-                                .eq(current)._loadimg(opt.imgattr).fadeIn(opt.duration * 1.5, function() {
+                            $slides.fadeOut(opt.duration)
+                                .eq(current)._loadimg('slide-src').fadeIn(opt.duration * 1.5, function() {
                                     $(this).addClass('active');
                                 });
                         }
-                        break;
-                    case 'toggle':
-                        toggleCellClass();
                         break;
                     case 'slide':
                         direct == void(0) && (direct = true);
                         var wrap_move = direct ? -_Distance * 2 : 0;
                         if (isInit) {
-                            toggleCellClass();
+                            toggleCellClass(current);
                         } else {
+                            if(step>1){
+                                if(!direct || (current===0 && step === slideLength-1)){
+                                    $slides.filter('.slide_prev').removeClass('slide_prev').end().eq(current).removeClass('slide_next').addClass('slide_prev');
+                                }else{
+                                    $slides.filter('.slide_next').removeClass('slide_next').end().eq(current).removeClass('slide_prev').addClass('slide_next');
+                                }
+                            }
                             $wrap.css('transition', 'all ' + opt.duration + 'ms ' + opt.animate)._css(_Direction, wrap_move + 'px');
                             setTimeout(function() {
                                 $wrap.css('transition', 'all 0s')._css(_Direction, -_Distance + 'px');
-                                toggleCellClass();
+                                toggleCellClass(current, direct, 1);
                             }, opt.duration);
                         }
                         break;
@@ -271,10 +289,10 @@ define('slide', function(require, exports, module) {
                         console.warn('slide()：effect参数不合法！');
                         break;
                 }
-                origin = current;
-                $this.data('play', origin);
+                originIndex = current;
+                $this.data('play', originIndex);
                 setTimeout(function() {
-                    typeof(opt.onSlide) === 'function' && opt.onSlide($this, $cell, origin);
+                    typeof(opt.onSlide) === 'function' && opt.onSlide($this, $slides, originIndex);
                     windowLock = false;
                 }, opt.duration);
             };
@@ -283,14 +301,15 @@ define('slide', function(require, exports, module) {
         //添加导航
         (function() {
             var appendNav = function() {
-                    var _links = '';
-                    for (var i = 0; i < count; i++) {
+                    var _links = '',
+                        i = 0;
+                    for (; i < slideLength; i++) {
                         _links += ("<a>" + (i + 1) + "</a>");
                     }
                     $navs.empty().append(_links);
                 },
                 navIllegal = function() {
-                    if ($navs.children('a').length !== count) {
+                    if ($navs.children('a').length !== slideLength) {
                         console.log('指定的"slide_navs"数量不匹配,将自动生成"slide_navs".');
                         return true;
                     } else {
@@ -335,7 +354,7 @@ define('slide', function(require, exports, module) {
             $arrs.filter('.arr_next').html(opt.nextHtml);
         }
         //初始化导航
-        setNavs($navs, count, opt.start);
+        setNavs($navs, slideLength, opt.start);
         //事件绑定
         if ($navs.length) {
             $navs.on(opt.act, function(e) {
@@ -343,18 +362,19 @@ define('slide', function(require, exports, module) {
                 e.stopPropagation();
                 var index = $(this).index(),
                     _dir, _step;
-                if (windowLock || $this.hasClass('ontouch') || index >= count || $(this).hasClass("on")) {
+                if (windowLock || $this.hasClass('ontouch') || index >= slideLength || $(this).hasClass("on")) {
                     return null;
                 }
                 //初始加载
-                if (index === origin) {
-                    origin = count - 1;
+                if (index === originIndex) {
+                    originIndex = slideLength - 1;
                     _dir = 1;
                     efftct(index, _dir);
                     return null;
                 }
-                _dir = index > origin ? true : false;
-                efftct(index, _dir);
+                _step = index - originIndex;
+                _dir = _step > 0 ? true : false;
+                efftct(index, _dir, Math.abs(_step));
             });
         }
         if ($arrs.length) {
@@ -364,17 +384,17 @@ define('slide', function(require, exports, module) {
                     return null;
                 }
                 if ($(this).hasClass('arr_prev')) {
-                    efftct(getPrev(origin, 0, count), 0);
+                    efftct(getPrev(originIndex, 0, slideLength), 0);
                 }
                 if ($(this).hasClass('arr_next')) {
-                    efftct(getNext(origin, 1, count), 1);
+                    efftct(getNext(originIndex, 1, slideLength), 1);
                 }
             });
         }
         //自动 & 暂停
         if (opt.auto) {
             timer = setInterval(function() {
-                efftct(getNext(origin, 1, count), 1);
+                efftct(getNext(originIndex, 1, slideLength), 1);
             }, opt.interval);
             if (opt.pause === true) {
                 $this.on({
@@ -384,7 +404,7 @@ define('slide', function(require, exports, module) {
                     'mouseleave': function() {
                         clearInterval(timer);
                         timer = setInterval(function() {
-                            efftct(getNext(origin, 1, count), 1);
+                            efftct(getNext(originIndex, 1, slideLength), 1);
                         }, opt.interval);
                     }
                 });
@@ -396,7 +416,7 @@ define('slide', function(require, exports, module) {
                         $(this).removeClass('pause');
                         clearInterval(timer);
                         timer = setInterval(function() {
-                            efftct(getNext(origin, 1, count), 1);
+                            efftct(getNext(originIndex, 1, slideLength), 1);
                         }, opt.interval);
                     } else {
                         $this.data('slidepause', true);
@@ -431,7 +451,7 @@ define('slide', function(require, exports, module) {
                 windowLock = false;
             }, 0);
         });
-        typeof(opt.onReady) === 'function' && opt.onReady($this, $cell, count);
+        typeof(opt.onReady) === 'function' && opt.onReady($this, $slides, slideLength);
     };
 
     $.fn.slide = function(config) {

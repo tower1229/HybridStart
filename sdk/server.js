@@ -358,11 +358,11 @@ define(function(require, exports, module) {
 	//公用模板
 	var _commonTemp = function(tempName, data) {
 		var templateCache = app.storage.val('templateCache') || {};
-		if (!data) {
+		if (!$.isPlainObject(data)) {
 			data = {};
 		}
-		if(templateCache[tempName]){
-			return templateCache[tempName];
+		if(templateCache[tempName+JSON.stringify(data)]){
+			return templateCache[tempName+JSON.stringify(data)];
 		}
 		var etplEngine = new etpl.Engine();
 		var template = api.readFile({
@@ -373,7 +373,7 @@ define(function(require, exports, module) {
 		var Render = etplEngine.getRenderer(tempName);
 		if(Render){
 			var html = Render(data);
-			templateCache[tempName] = html;
+			templateCache[tempName+JSON.stringify(data)] = html;
 			app.storage.val('templateCache', templateCache);
 			return html;
 		} else {
