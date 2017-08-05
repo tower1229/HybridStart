@@ -4,8 +4,6 @@
 
 基于[apicloud](http://www.apicloud.com/)的混合应用开发框架，可能是开发这一类混合应用的最佳实践。
 
-1.0版本正在紧锣密鼓开发中，从这里看[进展](https://github.com/tower1229/HybridStart/projects)。
-
 [![GitHub release](https://img.shields.io/github/release/tower1229/HybridStart.svg)]() [![license](https://img.shields.io/github/license/tower1229/HybridStart.svg)]()
 
 ## 提供
