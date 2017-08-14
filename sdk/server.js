@@ -248,7 +248,7 @@ define(function(require, exports, module) {
 			if (ret) {
 				var result = ret.result;
 				if (result.update === true && result.closed === false) {
-					app.confirm(ret.updateTip, function() {
+					app.confirm(result.updateTip, function() {
 						if (platform == 'ios') {
 							api.installApp({
 								appUri: result.source
