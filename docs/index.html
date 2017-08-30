@@ -190,7 +190,7 @@ from_bottom         //从底部开始动画
                         <tr>
                             <td>method</td>
                             <td>
-                                请求方式，默认<code>"get"</code>,支持常规get,post,put,delete,head,options,trace,patch,额外增加payload
+                                默认请求方式，默认<code>"get"</code>
                             </td>
                         </tr>
                         <tr>
@@ -1371,7 +1371,7 @@ app.window.animPopover({
                     <tr>
                         <td>method</td>
                         <td>
-                            <p>请求方式，默认<code>appcfg.ajax.type</code></p>
+                            <p>请求方式，默认<code>appcfg.ajax.type</code>，支持常规get,post,put,delete,head,options,trace,patch,额外增加payload</p>
                         </td>
                     </tr>
                     <tr>
@@ -2499,15 +2499,58 @@ require.async('upload', function(uploader) {
         <h4>解密数据</h4>
         <p>加密接口需要返回3DES加密后的数据字符串，客户端将使用3DES算法解密，并经<code>JSON.parse</code>解析为json格式，返回给回调函数。</p>
         
-        <h3 id="solution-ajaxcatch">数据缓存</h3>
-        <p>待补充</p>
-
+        <h3 id="solution-ajaxcatch">快照缓存</h3>
+        <p>为app.ajax配置<code>snapshoot:true</code>即可开启快照缓存，即把每一次成功返回的ajax结果保存为快照，下次发起相同请求（判断依据是url和参数相同）时第一时间将快照取出返回给回调函数，待真实数据返回后校验与快照是否相同（需要数据为json格式），若相同则缓存命中，不同则再次调用回调函数并传入真实数据，为了使业务中能够区分出快照，会为快照数据添加一个'snapshoot'属性值为'true'。</p>
+        <h4>示例</h4>
+        <pre>
+            <code>
+app.ajax({
+    url: appcfg.host.control + '/login',
+    data: {
+        ...
+    },
+    snapshoot: true,
+    success: function(res){
+        //
+    }
+});
+            </code>
+        </pre>
         <h3 id="solution-catch">图片缓存</h3>
-        <p>待补充</p>
-
+        <p>默认<code>server.js</code>中封装了<code>cacheImg()</code>方法，用于实现图片本地缓存：</p>
+        <pre>
+            <code>
+/*
+* cacheImg(element, callback)
+* @element: 目标元素，将自身或子元素的"data-remote"属性值作为图片地址进行缓存，并自动应用到图片的src属性或普通元素的background-image样式。
+* @callback: 全部缓存结束后的回调函数
+*/
+var $ = app.util;
+var server = require('sdk/server');
+server.cacheImg($('#view'), function() {
+    console.log('缓存成功！');
+});
+            </code>
+        </pre>
         <h3 id="solution-preget">数据预取</h3>
-        <p>待补充</p>
-
+        <p>数据预取通常用来在APP启动时预先获取初始化数据，当需要预取多个数据时候，就需要类似<code>Promise.all()</code>的功能，但原生的请求方法不支持返回Promise，因此<code>server.js</code>中封装了一个<code>preGet()</code>方法，用于获取多个异步数据并回调，预取的数据将存贮在LocalStorage。预取数据需要在<code>server.js</code>中自行添加。</p>
+        <pre>
+            <code>
+//在server.js中配置预取请求，数组形式
+preGet.prototype.preGetList = [{
+    key: 'websiteConfig',   //预取数据存储key
+    url: appcfg.host.control + '/websiteConfig',    //预取数据地址
+    data: {}    //预取数据参数
+}];
+            </code>
+            <code>
+//数据预取
+var server = require('sdk/server');
+server.preGet(function(){
+    console.log('数据预取完成');
+});
+            </code>
+        </pre>
     </section>
     <footer class="wrap oh tc">
         <div class="row ">

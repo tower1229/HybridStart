@@ -187,9 +187,9 @@ define(function(require, exports, module) {
 	};
 	
 	//数据预取
-	var _preGet = function(cb) {
+	var preGet = function(cb) {
 		var got = 0,
-			preGetList = _preGet.prototype.preGetList,
+			preGetList = preGet.prototype.preGetList,
 			getOne = function() {
 				got++;
 				if (got >= preGetList.length && typeof(cb) === 'function') {
@@ -219,21 +219,20 @@ define(function(require, exports, module) {
 			});
 		});
 	};
-	_preGet.prototype.preGetList = [];
 	//预取配置信息
-	_preGet.prototype.preGetList.push({
+	preGet.prototype.preGetList = [{
 		key: 'websiteConfig',
 		url: appcfg.host.control + '/websiteConfig',
 		data: {}
-	});
-
+	}];
+	
 	//预取数据
-	var _checkPreget = function() {
-		var preGetList = _preGet.prototype.preGetList,
+	var checkPreget = function() {
+		var preGetList = preGet.prototype.preGetList,
 			isDone = true;
 		$.each(preGetList, function(i, e) {
 			if (!app.storage.val(e.key)) {
-				_preGet();
+				preGet();
 				isDone = false;
 				return false;
 			}
@@ -419,8 +418,8 @@ define(function(require, exports, module) {
 		initUser: _initUser,
 		getUser: _getUser,
 		push: _push,
-		preGet: _preGet,
-		checkPreget: _checkPreget,
+		preGet: preGet,
+		checkPreget: checkPreget,
 		source: _source,
 		getDate: _getDate,
 		checkUpdate: _checkUpdate,
