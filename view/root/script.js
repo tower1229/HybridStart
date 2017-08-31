@@ -66,9 +66,6 @@ define(function(require) {
 		//预取数据
 		comm.checkPreget();
 
-		//检查更新
-		comm.checkUpdate(api.systemType, true);
-
 		//app启动&恢复事件
 		app.on('resume', function() {
 			ajpush.onResume();

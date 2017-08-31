@@ -187,9 +187,9 @@ define(function(require, exports, module) {
 	};
 	
 	//数据预取
-	var preGet = function(cb) {
+	var _preGet = function(cb) {
 		var got = 0,
-			preGetList = preGet.prototype.preGetList,
+			preGetList = _preGet.prototype.preGetList,
 			getOne = function() {
 				got++;
 				if (got >= preGetList.length && typeof(cb) === 'function') {
@@ -220,19 +220,19 @@ define(function(require, exports, module) {
 		});
 	};
 	//预取配置信息
-	preGet.prototype.preGetList = [{
+	_preGet.prototype.preGetList = [{
 		key: 'websiteConfig',
 		url: appcfg.host.control + '/websiteConfig',
 		data: {}
 	}];
 	
 	//预取数据
-	var checkPreget = function() {
-		var preGetList = preGet.prototype.preGetList,
+	var _checkPreget = function() {
+		var preGetList = _preGet.prototype.preGetList,
 			isDone = true;
 		$.each(preGetList, function(i, e) {
 			if (!app.storage.val(e.key)) {
-				preGet();
+				_preGet();
 				isDone = false;
 				return false;
 			}
@@ -240,9 +240,9 @@ define(function(require, exports, module) {
 		return isDone;
 	};
 	//检查升级
-	var _checkUpdate = function(platform, silence) {
+	var _checkUpdate = function(silence) {
 		var mam = api.require('mam');
-		
+		var platform = api.systemType;
 		mam.checkUpdate(function(ret, err) {
 			if (ret) {
 				var result = ret.result;
@@ -253,14 +253,13 @@ define(function(require, exports, module) {
 								appUri: result.source
 							});
 						} else if (platform == 'android') {
+							app.loading.show('正在下载');
 							api.download({
 								url: result.source,
 								report: true
 							}, function(ret, err) {
-								if (ret && 0 === ret.state) { /* 下载进度 */
-									app.toast("正在下载:" + ret.percent + "%", 1000);
-								}
 								if (ret && 1 === ret.state) { /* 下载完成 */
+									app.loading.hide();
 									var savePath = ret.savePath;
 									api.installApp({
 										appUri: savePath
@@ -418,8 +417,8 @@ define(function(require, exports, module) {
 		initUser: _initUser,
 		getUser: _getUser,
 		push: _push,
-		preGet: preGet,
-		checkPreget: checkPreget,
+		preGet: _preGet,
+		checkPreget: _checkPreget,
 		source: _source,
 		getDate: _getDate,
 		checkUpdate: _checkUpdate,

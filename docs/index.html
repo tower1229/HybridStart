@@ -85,6 +85,14 @@
         </ol>
 
         <h4>配置</h4>
+        
+        <p>config.xml包含原生层面的所有配置，详情参考<a href="http://docs.apicloud.com/Dev-Guide/app-config-manual" target="_blank">config.xml应用配置说明</a>，另外如果需要应用内升级，请一定记得修改config.xml里的scheme值，否则IOS9以上系统无法升级</p>
+        <pre>
+            <code>
+    &lt;preference name=&quot;urlScheme&quot; value=&quot;hybridstart&quot; /&gt;
+    &lt;preference name=&quot;querySchemes&quot; value=&quot;hybridstart&quot; /&gt;
+            </code>
+        </pre>
         <p><code>config.js</code>文件是HybridStart的全局配置，所有配置信息挂载在<code>appcfg</code>对象上，包含APP开发的全部配置，也可以自行扩展其他配置。</p>
         <p>默认如下：</p>
         <table class="table table-bordered">
@@ -2551,6 +2559,17 @@ server.preGet(function(){
 });
             </code>
         </pre>
+        <h3 id="solution-update">自动更新</h3>
+        <p>借助平台的版本管理机制实现APP自动更新，config.xml默认已配置autoUpdate，APP启动时将自动检测新版本并提示，另外server.js中封装了一个checkUpdate()方法，用于应用内手动检测更新。</p>
+        <pre>
+            <code>
+var comm = require('sdk/server');
+comm.checkUpdate();
+            </code>
+        </pre>
+        <h3 id="solution-push">消息推送</h3>
+        <p>框架内置基于极光推送实现的推送机制，root页面默认包含推送初始化代码，config.xml中的极光app_key需要自己申请并替换，server.js中封装了push对象，包含open()和close()两个方法，用于实现推送开关，具体实现参见<code>view/member/set/script.js</code>。</p>
+        
     </section>
     <footer class="wrap oh tc">
         <div class="row ">

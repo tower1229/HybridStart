@@ -7,7 +7,7 @@ define(function(require) {
 	var $ = app.util;
 	var globalTimeout;
 
-	$("#ver")[0].innerText = (appcfg.set.version || '0.0.1');
+	$("#ver")[0].innerText = (appcfg.set.version || api.appVersion);
 	
 	//接收推送
 	var pushable = app.storage.val('pushable');
@@ -56,6 +56,9 @@ define(function(require) {
 					app.toast('操作超时！');
 					lst = null;
 				}, appcfg.set.outime);
+				break;
+			case "upload":
+				comm.checkUpdate();
 				break;
 			case "exit":
 				comm.logout();
