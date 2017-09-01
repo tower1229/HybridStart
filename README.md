@@ -19,7 +19,7 @@
 - 提交代码，平台打包安装
 
 ## 文档 
-[HybridStart Documention（未完成）](http://refined-x.com/HybridStart/docs/)
+[HybridStart Documention](http://refined-x.com/HybridStart/docs/)
 
 ## 默认集成插件
 - [UIPullRefreshFlash](http://docs.apicloud.com/Client-API/UI-Layout/UIPullRefreshFlash)自定义下拉刷新
