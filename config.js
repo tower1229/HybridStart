@@ -12,7 +12,7 @@ window.appcfg = {
 		upload: proEnv ? "" : "http://app.xxx.com/upload/"
 	},
 	set: {
-		version: "0.0.1",
+		version: "",
 		outime: 10000,
 		longtime: 20000,
 		windowAnimate: "push",
