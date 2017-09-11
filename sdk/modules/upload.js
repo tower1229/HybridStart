@@ -1,8 +1,8 @@
 /*
  * name: upload.js
- * version: v0.4.1
- * update: add headers config
- * date: 2017-07-04
+ * version: v0.5.0
+ * update: add data config
+ * date: 2017-09-11
  */
 define('upload', function(require, exports, module) {
 	'use strict';
@@ -10,6 +10,7 @@ define('upload', function(require, exports, module) {
 		base = require('base');
 	var def = {
 		url: '',
+		data: {},
 		onCreate: function(opCode) {
 			app.toast('正在上传...');
 		},
@@ -27,7 +28,7 @@ define('upload', function(require, exports, module) {
 		}
 	};
 	var Upload = function(localImgPath, option) {
-		var opt = $.extend(def, option || {}),
+		var opt = $.extend({}, def, option || {}),
 			uploadHost = opt.url,
 			randOpId = base.getUUID();
 		if (!uploadHost) {
@@ -41,6 +42,7 @@ define('upload', function(require, exports, module) {
 			method: 'post',
 			timeout: appcfg.set.longtime / 1000, //s
 			data: {
+				values: opt.data,
 				files: {
 					file: localImgPath
 				}
