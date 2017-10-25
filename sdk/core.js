@@ -392,12 +392,11 @@ var apputil = (function(document, undefined) {
 	}
 	
 	function events(type, cb) {
-		var appEventDequeueCb = function(ret, err){        
-		   if (ret) {
-		        appEventDequeue(type, ret);
-		    } else if(err){
-		        console.log(JSON.stringify(err));
-		    }
+		var appEventDequeueCb = function(ret, err){
+			if(err){
+		        return console.log(JSON.stringify(err));
+		    }  
+		    appEventDequeue(type, ret);
 		};
 		if (!type || !type.split) {
 			return null;
@@ -1028,11 +1027,10 @@ var apputil = (function(document, undefined) {
 	//窗口事件
 	function events(type, cb) {
 		var windowEventDequeueCb = function(ret, err){
-			if(ret !== void 0){
-		    	windowEventDequeue(type, ret);
-		    }else if(err){
-		    	console.log(JSON.stringify(err));
+			if(err){
+		    	return console.log(JSON.stringify(err));
 		    }
+			windowEventDequeue(type, ret);
 		}
 		if (!type || !type.split) {
 			return null;
