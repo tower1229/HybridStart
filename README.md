@@ -31,11 +31,11 @@
 - [mam](http://docs.apicloud.com/Client-API/Cloud-Service/mam)版本管理必备
 
 ## 资源
-[Apk 安装包](http://app.mi.com/details?id=com.apicloud.A6997660453388)
+[体验APP](http://app.mi.com/details?id=com.apicloud.A6997660453388)
 
-[Github](https://github.com/tower1229/HybridStart)
+[代码仓库](https://github.com/tower1229/HybridStart)
 
-[Download](https://github.com/tower1229/HybridStart/archive/master.zip)
+[源码下载](https://github.com/tower1229/HybridStart/archive/master.zip)
 
 ## 更多
 > [前端路上](http://refined-x.com)
