@@ -106,5 +106,11 @@ define(function(require) {
 			cons.log("hello, u");
 		}
 	}
-
+	//广告
+	var imgBox = $.box.img('https://github.com/tower1229/tower1229.github.io/raw/master/asset/HybridStart-gitchat.jpg',{
+		onshow:function($this){
+	          $this.on('click',function(){
+	            $.box.hide(imgBox);
+	          });
+	      });
 });
