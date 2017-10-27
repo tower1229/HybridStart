@@ -50,9 +50,9 @@ define(function(require) {
 		padding: '3px 14px',
 		top: '-999px',
 		zIndex: 999,
-		color:'#61ce3c',
-		border:'1px solid #61ce3c',
-		borderRadius:'2px'
+		color: '#61ce3c',
+		border: '1px solid #61ce3c',
+		borderRadius: '2px'
 	});
 	var showCopyBtn = function(e) {
 		var pre = $(e.target).is('pre') ? $(e.target) : $(e.target).parents('pre');
@@ -93,7 +93,7 @@ define(function(require) {
 				$('body').on('mouseenter', 'pre', showCopyBtn);
 			});
 		}
-	}else{
+	} else {
 		//移动端
 		$('pre code').css('display', 'block');
 		$('body').addClass('Mobile');
@@ -107,10 +107,11 @@ define(function(require) {
 		}
 	}
 	//广告
-	var imgBox = $.box.img('https://github.com/tower1229/tower1229.github.io/raw/master/asset/HybridStart-gitchat.jpg',{
-		onshow:function($this){
-	          $this.on('click',function(){
-	            $.box.hide(imgBox);
-	          });
-	      });
+	var imgBox = $.box.img('https://github.com/tower1229/tower1229.github.io/raw/master/asset/HybridStart-gitchat.jpg', {
+			onshow: function($this) {
+				$this.on('click', function() {
+					$.box.hide(imgBox);
+				});
+			});
+	});
 });
