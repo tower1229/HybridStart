@@ -112,6 +112,6 @@ define(function(require) {
 				$this.on('click', function() {
 					$.box.hide(imgBox);
 				});
-			});
+			}
 	});
 });
