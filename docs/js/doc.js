@@ -29,8 +29,19 @@ define(function(require) {
 			_mod;
 		_mod = '<ul class="full-row">';
 		$modItems.find('dt[id]').each(function(i, e) {
-			var _modName = $(e).attr('id');
+			var _modName = $(e).attr('id'),
+				_cont = $(e).next('dd');
 			_mod += '<li class="span-4 smal-6"><a href="#' + encodeURI(_modName) + '" class="el">' + _modName + '</a></li>';
+			//代码预览
+			if (_cont.length && _cont.find('pre').length > 1) {
+				_cont.append('<p><a href="javascript:;" target="_blank" class="LiveDemo"><i class="ion">&#xe668;</i> LiveDemo </a></p>');
+			}
+		}).end().on('click', '.LiveDemo', function(e) {
+			e.preventDefault();
+			window.DemoTitle = $(this).parents('dd').prev('dt[id]').text();
+			window.DemoHtml = $(this).parents('dd').find('pre').eq(-2).text();
+			window.DemoJs = $(this).parents('dd').find('pre').eq(-1).text();
+			window.open('run.html?page=' + window.DemoTitle);
 		});
 		_mod += '</ul>';
 		$modMenu.html(_mod);
@@ -38,7 +49,6 @@ define(function(require) {
 
 	createNavfromTable($('#component_index'), $('#component_list'));
 	createNavfromTable($('#modules_index'), $('#modules_list'));
-	createNavfromTable($('#widgets_index'), $('#widgets_list'));
 
 	/*代码着色*/
 	require('copy');
@@ -50,9 +60,9 @@ define(function(require) {
 		padding: '3px 14px',
 		top: '-999px',
 		zIndex: 999,
-		color: '#61ce3c',
-		border: '1px solid #61ce3c',
-		borderRadius: '2px'
+		color:'#61ce3c',
+		border:'1px solid #61ce3c',
+		borderRadius:'2px'
 	});
 	var showCopyBtn = function(e) {
 		var pre = $(e.target).is('pre') ? $(e.target) : $(e.target).parents('pre');
@@ -93,7 +103,7 @@ define(function(require) {
 				$('body').on('mouseenter', 'pre', showCopyBtn);
 			});
 		}
-	} else {
+	}else{
 		//移动端
 		$('pre code').css('display', 'block');
 		$('body').addClass('Mobile');
@@ -106,12 +116,5 @@ define(function(require) {
 			cons.log("hello, u");
 		}
 	}
-	//广告
-	// var imgBox = $.box.img('https://github.com/tower1229/tower1229.github.io/raw/master/asset/HybridStart-gitchat.jpg', {
-	// 		onshow: function($this) {
-	// 			$this.on('click', function() {
-	// 				$.box.hide(imgBox);
-	// 			});
-	// 		}
-	// });
+
 });
