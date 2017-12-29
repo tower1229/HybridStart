@@ -7,10 +7,11 @@
 [![GitHub release](https://img.shields.io/github/release/tower1229/HybridStart.svg)]() [![license](https://img.shields.io/github/license/tower1229/HybridStart.svg)]()
 
 ## 提供
-- 一套说得过去的UI，完全独立可剥离
+- 完全独立可剥离的UI，便于风格定制
 - 清晰的开发模式，做APP从未这么简单
 - 井然有序的代码组织，页面再多也不乱
 - 熟悉的模块化开发体验，用了就回不去了
+- 丰富的示例，助你快速上手
 
 ## 快速开始 
 - 在apicloud平台创建项目，将代码检出到本地，然后清空所有文件
@@ -29,6 +30,7 @@
 - [bMap](http://docs.apicloud.com/Client-API/Open-SDK/bMap)百度地图
 - [push](http://docs.apicloud.com/Client-API/Cloud-Service/push)推送必备
 - [mam](http://docs.apicloud.com/Client-API/Cloud-Service/mam)版本管理必备
+- [zip](https://docs.apicloud.com/Client-API/Func-Ext/zip)扩展插件解压
 
 ## 资源
 [体验APP](http://app.mi.com/details?id=com.apicloud.A6997660453388)
