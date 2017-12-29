@@ -79,7 +79,7 @@ var apputil = (function(document, undefined) {
 	};
 	var wrap = function(dom, selector) {
 		dom = dom || [];
-		Object.setPrototypeOf(dom, $.fn);
+		dom.__proto__ = $.fn;
 		dom.selector = selector || '';
 		return dom;
 	};
@@ -720,7 +720,7 @@ var apputil = (function(document, undefined) {
 		//delay,onclose,position
 		var opt = {
 			msg: msg,
-			duration: 1000,
+			duration: 700,
 			location: 'bottom',
 			global: true
 		};

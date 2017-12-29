@@ -5,9 +5,9 @@
   <author email="tower1229@gmail.com" href="https://github.com/tower1229">tower1229</author>  
   <content src="view/root/temp.html"/>  
   <preference name="pageBounce" value="false"/>  
-  <preference name="appBackground" value="rgba(0,0,0,0.0)"/>  
-  <preference name="windowBackground" value="rgba(0,0,0,0.0)"/>  
-  <preference name="frameBackgroundColor" value="rgba(0,0,0,0.0)"/>  
+  <preference name="appBackground" value="rgba(255,255,255,1)"/>  
+  <preference name="windowBackground" value="rgba(255,255,255,1)"/>  
+  <preference name="frameBackgroundColor" value="rgba(255,255,255,1)"/>  
   <preference name="hScrollBarEnabled" value="true"/>  
   <preference name="vScrollBarEnabled" value="false"/>  
   <preference name="autoLaunch" value="true"/>  

@@ -77,6 +77,6 @@ define(function(require) {
 		});
 
 		startApp();
-
+		
 	});
 });

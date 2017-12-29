@@ -1,10 +1,11 @@
 /*
  */
 define(function(require) {
+	var comm = require('sdk/server');
 	require('sdk/common');
 	var $ = app.util;
 	var wwid = window.innerWidth;
-	//导航事件
+	
 	var $head = $('#head')[0];
 	var $title = $('#title')[0];
 	var channelSet = {
@@ -36,6 +37,7 @@ define(function(require) {
 			}
 		}
 	};
+	//首页Frame切换
 	$('.foot').on('touchstart', '[active]', function(e) {
 		var target = e.target;
 		var tid = target.getAttribute('id');
@@ -61,7 +63,7 @@ define(function(require) {
 		});
 	});
 
-	//头部按钮
+	//头部按钮事件绑定
 	$('#head').on('touchstart', '.btn', function(e) {
 		var btn = e.target;
 		switch (btn.getAttribute('id')) {
@@ -106,5 +108,6 @@ define(function(require) {
 		bounce: true
 	});
 
-
+	//静默检查更新
+	comm.checkUpdate(true);
 });

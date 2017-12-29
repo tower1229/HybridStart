@@ -1,8 +1,8 @@
 /*
  * name: download.js
- * version: v0.1.0
- * update: build
- * date: 2017-06-26
+ * version: v0.2.0
+ * update: 主持所有apicloud配置项
+ * date: 2017-12-28
  */
 define('download', function(require, exports, module) {
 	'use strict';
@@ -11,18 +11,20 @@ define('download', function(require, exports, module) {
 			path: "fs://Download/",
 			name: "",
 			onCreate: function() {
-				app.toast('正在下载');
+				app.loading.show('正在下载');
 			},
 			onCreateError: function(err) {
+				app.loading.hide();
 				app.toast('创建下载失败：' + err.msg);
 			},
 			onStatus: function(percent) {
-				app.toast('正在下载:' + percent + '%');
+				app.loading.show('正在下载:' + percent + '%');
 			},
 			success: function(savePath, fileSize) {
-
+				app.loading.hide();
 			},
 			error: function(status) {
+				app.loading.hide();
 				if (status === 2) {
 					app.toast('下载失败');
 				} else {
@@ -33,9 +35,10 @@ define('download', function(require, exports, module) {
 
 	var download = function(remotePath, option) {
 		var randOpId = Math.floor(Math.random() * (1000 + 1)),
-			opt = $.extend(def, option || {}),
+			opt = $.extend({}, def, option || {}),
 			filePath,
 			cancel = function(){
+				app.loading.hide();
 				api.cancelDownload({
 					url: remotePath
 				});
@@ -56,9 +59,9 @@ define('download', function(require, exports, module) {
 		api.download({
 			url: remotePath,
 			savePath: filePath,
-			report: true,
-			cache: true,
-			allowResume: true
+			report: opt.report || true,
+			cache: opt.cache || true,
+			allowResume: opt.allowResume || true
 		}, function(ret, err) {
 			if (ret) {
 				switch (ret.state) {
