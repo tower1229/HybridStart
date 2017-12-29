@@ -16,16 +16,16 @@ define(function(require) {
 			}
 		},
 		product: {
-			url: '../../product/index/temp.html',
+			url: '../../blank/temp.html',
 			set: function(){
-				$title.innerText = '产品';
+				$title.innerText = '空白栏目';
 				$head.classList.add('product-head');
 			}
 		},
 		discover: {
-			url: '../../discover/index/temp.html',
+			url: '../../blank/temp.html',
 			set: function(){
-				$title.innerText = '发现';
+				$title.innerText = '空白栏目';
 				$head.classList.add('discover-head');
 			}
 		},
