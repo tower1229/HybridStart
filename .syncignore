@@ -1,0 +1,1 @@
+{**/*.js.map,**/node_modules/**,src/**,_component/**,_docs/**,docs/**,lib/**,public/**}

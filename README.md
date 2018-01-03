@@ -24,6 +24,15 @@
 
 [HybridStart专题文章](http://refined-x.com/tags/HybridStart/)
 
+## 下载
+
+项目主页：http://refined-x.com/HybridStart/
+
+git：`git clone https://github.com/tower1229/HybridStart.git`
+
+npm：`npm i HybridStart`
+
+
 ## 默认集成插件
 - [UIPullRefreshFlash](http://docs.apicloud.com/Client-API/UI-Layout/UIPullRefreshFlash)自定义下拉刷新
 - [ajpush](http://docs.apicloud.com/Client-API/Open-SDK/ajpush)极光推送

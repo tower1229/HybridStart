@@ -1,0 +1,33 @@
+{
+  "name": "HybridStart",
+  "version": "1.0.0",
+  "description": "A hybrid application development framework",
+  "main": "lib/index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "init": "apicloud wifiStart --port 8686",
+    "sync": "apicloud wifiSync --project ./ --updateAll false --port 8686",
+    "stop": "apicloud wifiStop --port 8686"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tower1229/HybridStart.git"
+  },
+  "keywords": [
+    "hybridstart",
+    "hybridapp",
+    "apicloud",
+    "hybridstart-cli"
+  ],
+  "author": "tower1229@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tower1229/HybridStart/issues"
+  },
+  "homepage": "https://github.com/tower1229/HybridStart#readme",
+  "dependencies": {
+    "apicloud-cli": "^0.2.0"
+  }
+}
