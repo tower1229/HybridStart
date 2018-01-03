@@ -20,19 +20,19 @@ define(function(require) {
 		pushable = app.storage.val('pushable') === '1';
 		if (ajpush) {
 			var catchPush = function(json) {
-				alert(JSON.stringify(json));
 				var id = json.id;
-				var title = json.title;
 				var content = json.content;
 				var extras = json.extras ? json.extras : {};
+				alert(`推送内容:${content}`);
 			};
 			var pushFunc = function() {
-				//前台接收通知
+				//app内拦截自定义消息
 				ajpush.setListener(function(ret) {
 					catchPush(ret);
 				});
-				//点击消息
-				if (window.platform === 'android') {
+				//点击标题栏消息
+				var platform = api.systemType;
+				if (platform === 'android') {
 					api.addEventListener({
 						name: 'appintent'
 					}, function(ret, err) {
@@ -59,6 +59,8 @@ define(function(require) {
 			ajpush.init(function(ret) {
 				if (ret && ret.status) {
 					pushFunc();
+				}else{
+					console.log(JSON.stringify(ret));
 				}
 			});
 		}

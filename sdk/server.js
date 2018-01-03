@@ -80,7 +80,6 @@ define(function(require, exports, module) {
 			return app.toast('初始化用户信息失败');
 		}
 		userData.photo = _source($.trim(userData.photo));
-		// userData.nowScore = $.trim(userData.nowScore) || 0;
 		userData.realName = $.trim(userData.realName);
 		app.storage.val('user', userData);
 		//app初始化
@@ -91,9 +90,11 @@ define(function(require, exports, module) {
 			ajpush.bindAliasAndTags({
 				alias: "user_" + userData.id,
 				tags: userData.tag.split(',')
-			}, function(ret) {
-				if (ret.statusCode) {
+			}, function(ret, err) {
+				if (ret) {
 					console.log("user_" + userData.id + "成功注册推送");
+				}else{
+					console.log(JSON.stringify(err));
 				}
 			});
 		}
@@ -127,15 +128,6 @@ define(function(require, exports, module) {
 	};
 	//获取用户信息
 	var _getUser = function(hold) {
-		//测试数据
-		return {
-			id: "0001",
-			headImg: seajs.root + '/res/img/avat.jpg',
-			nickName: '珊珊',
-			realName: '伐木累',
-			nowScore: 99,
-			mobile: '15067589521'
-		};
 		var _user = app.storage.val('user');
 		if (!$.isPlainObject(_user) && !hold) {
 			app.ready(function() {
