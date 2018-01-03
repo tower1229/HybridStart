@@ -30,7 +30,7 @@
 
 git：`git clone https://github.com/tower1229/HybridStart.git`
 
-npm：`npm i HybridStart`
+npm：`npm i hybridstart`
 
 
 ## 默认集成插件
