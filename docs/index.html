@@ -327,8 +327,17 @@ from_bottom         //从底部开始动画
             </tr>
         </table>
         <h3 id="download">下载</h3>
-        <p>源码：<a href="https://github.com/tower1229/HybridStart">Github</a></p>
-        <p>体验APP：<a href="http://app.mi.com/details?id=com.apicloud.A6997660453388" target="_blank">小米应用商店</a>、<a href="http://m.pp.cn/detail.html?appid=7657247&ch_src=pp_dev&ch=default" target="_blank">PP助手</a></p>
+        <h4>Github</h4>
+        直接下载：<a href="https://github.com/tower1229/HybridStart/archive/master.zip" class="btn btn-ghost btn-success">master.zip</a>
+        <h4>NPM</h4>
+        <p><code>npm i hybridstart</code></p>
+        <p>npm包依赖<a href="https://github.com/apicloudcom/apicloud-cli" target="_blank">apicloud-cli</a>，并集成最常用的WiFi同步功能：</p>
+        <p><code>npm i</code>安装依赖</p>
+        <p><code>npm run init</code>开启WiFi调试，默认端口<code>8686</code></p>
+        <p><code>npm run sync</code>增量同步，注意：<code>init</code>命令将持续占用命令行窗口，此时需要另开一个命令行窗口执行同步操作</p>
+        <p><code>npm run stop</code>关闭WiFi调试</p>
+        <h4>体验APP</h4>
+        体验APP只提供安卓版本：<a href="http://app.mi.com/details?id=com.apicloud.A6997660453388" class="btn btn-ghost btn-success">小米应用商店</a> <a href="http://m.pp.cn/detail.html?appid=7657247&ch_src=pp_dev&ch=default" class="btn btn-ghost btn-success">PP助手</a>
 
     </section>
     <section class="wrap" id="SDK">
@@ -793,7 +802,7 @@ app.pull.init(function(){
                     <tr>
                         <td>delay</td>
                         <td>
-                            <p>延时关闭时间，默认<code>2000</code>，单位ms</p>
+                            <p>延时关闭时间，默认<code>700</code>，单位ms</p>
                         </td>
                     </tr>
                     <tr>
@@ -802,6 +811,7 @@ app.pull.init(function(){
                             <p>关闭回调函数，默认<code>null</code></p>
                         </td>
                     </tr>
+
                 </table>
                 <h5>示例</h5>
                 <pre>
