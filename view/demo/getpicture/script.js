@@ -9,7 +9,7 @@ define(function(require) {
     //上传图片
     var maxPicLen = 5;
     var uploadingImg = false;
-    var $picStore = $('picStor');
+    var $picStore = $('#picStor');
     $picStore.text(maxPicLen);
     var gotPicter = function(avatsrc) {
         if (!avatsrc) {
