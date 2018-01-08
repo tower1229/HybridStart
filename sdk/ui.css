@@ -621,6 +621,9 @@ input[type='button'].btn-block {
 .card .item:last-child {
   border-bottom: 0 !important;
 }
+.card .item-body {
+  margin-top: 0;
+}
 @media screen and (-webkit-min-device-pixel-ratio: 2) {
   .card .item:last-child:before {
     display: none !important;
