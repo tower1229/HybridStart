@@ -36,7 +36,6 @@ npm：`npm i hybridstart`
 - [UIPullRefreshFlash](http://docs.apicloud.com/Client-API/UI-Layout/UIPullRefreshFlash)自定义下拉刷新
 - [ajpush](http://docs.apicloud.com/Client-API/Open-SDK/ajpush)极光推送
 - [bMap](http://docs.apicloud.com/Client-API/Open-SDK/bMap)百度地图
-- [push](http://docs.apicloud.com/Client-API/Cloud-Service/push)推送必备
 - [mam](http://docs.apicloud.com/Client-API/Cloud-Service/mam)版本管理必备
 - [zip](https://docs.apicloud.com/Client-API/Func-Ext/zip)扩展插件解压
 
