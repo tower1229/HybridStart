@@ -357,7 +357,7 @@ define(function(require, exports, module) {
 		var etplEngine = new etpl.Engine();
 		var template = api.readFile({
 			sync: true,
-			path: 'widget://res/temp/template.html'
+			path: 'widget://res/temp/template.txt'
 		});
 		etplEngine.compile(template);
 		var Render = etplEngine.getRenderer(tempName);
