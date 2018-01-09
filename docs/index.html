@@ -90,9 +90,15 @@
             <li>提交代码，平台打包</li>
         </ol>
         <p>详细过程参见<a href="http://jingyan.baidu.com/article/eb9f7b6d60e18f869264e847.html" target="_blank">如何快速开发一款混合应用？</a>。</p>
+        
+        <h4>命令行工具</h4>
+        <p><code>npm i</code>安装依赖</p>
+        <p><code>npm run init</code>开启WiFi调试，默认端口<code>8686</code></p>
+        <p><code>npm run sync</code>增量同步，注意：<code>init</code>命令将持续占用命令行窗口，此时需要另开一个命令行窗口执行同步操作</p>
+        <p><code>npm run stop</code>关闭WiFi调试</p>
+        <p><code>npm run build</code>编译sdk/ui.less到sdk/ui.css</p>
 
         <h4>配置</h4>
-        
         <p>config.xml包含原生层面的所有配置，详情参考<a href="http://docs.apicloud.com/Dev-Guide/app-config-manual" target="_blank">config.xml应用配置说明</a>，另外如果需要应用内升级，请一定记得修改config.xml里的scheme值，否则IOS9以上系统无法升级</p>
         <pre>
             <code>
@@ -331,11 +337,7 @@ from_bottom         //从底部开始动画
         直接下载：<a href="https://github.com/tower1229/HybridStart/archive/master.zip" class="btn btn-ghost btn-success">master.zip</a>
         <h4>NPM</h4>
         <p><code>npm i hybridstart</code></p>
-        <p>npm包依赖<a href="https://github.com/apicloudcom/apicloud-cli" target="_blank">apicloud-cli</a>，并集成最常用的WiFi同步功能：</p>
-        <p><code>npm i</code>安装依赖</p>
-        <p><code>npm run init</code>开启WiFi调试，默认端口<code>8686</code></p>
-        <p><code>npm run sync</code>增量同步，注意：<code>init</code>命令将持续占用命令行窗口，此时需要另开一个命令行窗口执行同步操作</p>
-        <p><code>npm run stop</code>关闭WiFi调试</p>
+
         <h4>体验APP</h4>
         体验APP只提供安卓版本：<a href="http://app.mi.com/details?id=com.apicloud.A6997660453388" class="btn btn-ghost btn-success">小米应用商店</a> <a href="http://m.pp.cn/detail.html?appid=7657247&ch_src=pp_dev&ch=default" class="btn btn-ghost btn-success">PP助手</a>
 
