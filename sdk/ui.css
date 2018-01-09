@@ -356,6 +356,8 @@ th {
  * --------------------------------------------------
  */
 .btn {
+  position: relative;
+  overflow: hidden;
   font-size: 0.26rem;
   font-weight: normal;
   line-height: 0.65rem;
