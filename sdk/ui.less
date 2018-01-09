@@ -742,12 +742,11 @@ a.bg-warning:hover{
 a.bg-danger:hover{
     background-color: @danger-dark;
 }
-
 /* 头部 */
 .head { position: relative; height: .8rem;line-height: .8rem; color: @light; background: @primary;z-index: 99;}
-.head .title { font-size: 1.2em; width:100%; overflow: hidden;text-align: center;box-sizing: border-box;padding:0 13%;
-	 white-space: nowrap; text-overflow: ellipsis;}
-.head .btn { position: absolute; left:0;bottom: 0; height: .8rem;line-height: inherit; z-index: 1; min-width: initial; padding: 0 .5em;
+.head .title { position: absolute; z-index: 0;bottom: 0; left: 0; width:100%; overflow: hidden;font-size: 1.2em; 
+  text-align: center; white-space: nowrap; text-overflow: ellipsis;box-sizing: border-box;padding:0 13%;}
+.head .btn { position: relative; z-index: 1; height: .8rem;line-height: inherit; min-width: initial; padding: 0 .5em;
 border:0;background: none;box-shadow: none; vertical-align: top;color:inherit; }
 .head .ion {font-size:1.3em; margin:0;vertical-align: middle;}
 .head .ion img{width:1.3em;vertical-align: middle;}
