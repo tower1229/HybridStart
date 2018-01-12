@@ -170,6 +170,7 @@ define('input', function(require, exports, module) {
             if ($this.data('input-init')) {
                 return null;
             }
+            opt.disable = $this.prop('disabled');
             $.extend(opt, $.isPlainObject($this.data('options')) ? $this.data('options') : {});
             $this.data('input-init', true);
             //数据准备
