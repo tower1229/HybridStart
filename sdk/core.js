@@ -1158,7 +1158,7 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 			if (res) {
 				if (opt.dataType === 'json' && opt.checkData && res['status'] === void(0)) {
 					handleError(null, {
-						msg: '数据格式错误!',
+						code: '数据格式错误!',
 						statusCode: 200
 					});
 				} else {
