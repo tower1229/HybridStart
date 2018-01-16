@@ -1,8 +1,8 @@
 /*
  * name: input-number.js
- * version: v0.1.4
- * update: 自动初始化元素前缀改为.flow-ui
- * date: 2017-05-03
+ * version: v0.1.5
+ * update: 默认使用input初始值
+ * date: 2018-01-16
  */
 define("input-number", function(require, exports, module) {
 	"use strict";
@@ -19,16 +19,14 @@ define("input-number", function(require, exports, module) {
 		.counter_default .pro_counter_add{top:0;border-bottom:0;border-top-right-radius:4px;}', module.uri);
 	require('input');
 	var $ = window.$ || require('jquery'),
-		tap = ('ontouchstart' in document) ? 'touchend' : 'click',
 		def = {
-			el: null,
-			val: 1,
+			val: null,
 			countstep: 1,
 			min: 0,
 			max: Number.POSITIVE_INFINITY,
 			style: 'default'
 		},
-		syncButtonStatus = function(_val, _opt, _reduce, _plus) {
+		syncButtonStatus = function(_val, _opt, _reduce, _plus){
 			if (_val < (_opt.min + _opt.countstep)) {
 				_reduce.addClass('disabled');
 			} else {
@@ -94,7 +92,7 @@ define("input-number", function(require, exports, module) {
 				_input.trigger('change');
 			}
 			//更新按钮状态
-			if (_input) {
+			if(_input){
 				_val = parseFloat(_input.val());
 				syncButtonStatus(_val, _opt, _reduce, _plus);
 			}
@@ -132,15 +130,14 @@ define("input-number", function(require, exports, module) {
 			syncButtonStatus(_val, _opt, _reduce, _plus);
 		};
 
-	var inputNumber = function(config) {
-		var opt = $.extend({}, def, config || {}),
-			$this = $(opt.el),
+	$.fn.inputNumber = function(config) {
+		var $this = $(this),
+			opt = $.extend({}, def, config || {}, $.isPlainObject($this.data('options')) ? $this.data('options') : {}),
 			template,
 			inputObject;
 		if (!$this.length) {
 			return null;
 		}
-		$.extend(opt, $.isPlainObject($this.data('options')) ? $this.data('options') : {});
 		switch ($.trim(opt.style)) {
 			case "inline":
 				template = '<${wrapTag} data-input-init="true" class="counter_wrap counter_inline input-group${color}<!-- if: ${className} --> ${className}<!-- /if -->"<!-- if: ${width} --> style="width:${width}px"<!-- /if -->>\
@@ -159,7 +156,7 @@ define("input-number", function(require, exports, module) {
 		inputObject = $this.input(opt);
 		setTimeout(function() {
 			$.each(inputObject.renderDom, function(i, e) {
-				$(e).on(tap, catchClickEvent);
+				$(e).on('click', catchClickEvent);
 
 			});
 			$.each(inputObject.shadowInput, function(i, e) {
@@ -168,13 +165,6 @@ define("input-number", function(require, exports, module) {
 		}, 0);
 		return inputObject;
 	};
-
-	$.fn.inputNumber = function(config) {
-		return inputNumber({
-			el: this
-		}, config || {});
-	};
 	//自动初始化
-	$('.flow-ui-input-number').inputNumber();
-	module.exports = inputNumber;
+	return $('.flow-ui-input-number').inputNumber();
 });
