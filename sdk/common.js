@@ -42,10 +42,14 @@ define(function(require, exports, module) {
 			activeHandle.style.top = targetOffset.clientY - eleOffset.top - 200 + 'px';
 			target.normalize();
 			var lastNode = target.lastChild;
-			if(lastNode.nodeName==='#text' && !lastNode.nodeValue.trim()){
-				lastNode = lastNode.previousSibling;
+			if(lastNode){
+				if(lastNode.nodeName==='#text' && !lastNode.nodeValue.trim()){
+					lastNode = lastNode.previousSibling;
+				}
+				target.insertBefore(activeHandle, lastNode);
+			}else{
+				target.appendChild(activeHandle);
 			}
-			target.insertBefore(activeHandle, lastNode);
 			setTimeout(function(){
 				target.classList.add('active');
 			},0);
