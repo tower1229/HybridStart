@@ -1,8 +1,8 @@
 /*
  * name: render
- * version: 0.0.1
- * update: build
- * date: 2017-06-30
+ * version: 0.2.0
+ * update: callback param change
+ * date: 2017-09-30
  */
 define('render', function(require, exports, module) {
 	'use strict';
@@ -14,7 +14,8 @@ define('render', function(require, exports, module) {
 		template: '',
 		data: null,
 		reload: true,
-		callback: null
+		callback: null,
+		etplConfig: null
 	};
 
 	module.exports = function(config) {
@@ -22,6 +23,10 @@ define('render', function(require, exports, module) {
 		var $el = $(opt.el);
 		if (!$el.length) {
 			return console.warn('Render: ${config.el} is necessary!');
+		}
+		//etpl config
+		if($.isPlainObject(opt.etplConfig)){
+			etpl.config(opt.etplConfig);
 		}
 		var template = opt.template;
 		if (!template) {
@@ -46,7 +51,7 @@ define('render', function(require, exports, module) {
 			}
 			$el.find('.block-holder').removeClass('block-holder');
 			if (typeof opt.callback === 'function') {
-				opt.callback($el.get(0), tHtml);
+				opt.callback($el.get(0), userData);
 			}
 		};
 		//init
@@ -80,7 +85,11 @@ define('render', function(require, exports, module) {
 			},
 			destroy: function() {
 				$el.remove();
-				$el = opt = template = data = tRender = tHtml = null;
+				$el = opt = template = data = tRender = null;
+				delete this.set;
+				delete this.data;
+				delete this.push;
+				delete this.destroy;
 			}
 		};
 	};
