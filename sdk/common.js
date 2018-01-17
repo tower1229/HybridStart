@@ -42,14 +42,10 @@ define(function(require, exports, module) {
 			activeHandle.style.top = targetOffset.clientY - eleOffset.top - 200 + 'px';
 			target.normalize();
 			var lastNode = target.lastChild;
-			if(lastNode){
-				if(lastNode.nodeName==='#text' && !lastNode.nodeValue.trim()){
-					lastNode = lastNode.previousSibling;
-				}
-				target.insertBefore(activeHandle, lastNode);
-			}else{
-				target.appendChild(activeHandle);
+			if(lastNode.nodeName==='#text' && !lastNode.nodeValue.trim()){
+				lastNode = lastNode.previousSibling;
 			}
+			target.insertBefore(activeHandle, lastNode);
 			setTimeout(function(){
 				target.classList.add('active');
 			},0);
@@ -76,12 +72,15 @@ define(function(require, exports, module) {
 			target = v = null;
 		}, appcfg.set.animateDuration * 2);
 		if (v) {
-			v = v.split(',');
 			if (target.getAttribute('data-touch')) {
 				target.removeAttribute('data-touch');
-				app.openView({
-					anim: ['none', 'push', 'movein', 'fade', 'reveal'][v[0]]
-				}, v[1], v[2]);
+				var openParam = v.split(',');
+				try{
+					openParam[0] = JSON.parse(openParam[0]);
+				}catch(e){
+					throw e;
+				}
+				app.openView.apply(app, openParam);
 			}
 		}
 	});

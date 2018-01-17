@@ -356,7 +356,7 @@ from_bottom         //从底部开始动画
                     <tr>
                         <td>$(selector, [context])</td>
                         <td>
-                            <p>使用css选择器获取HTML元素，返回元素对象，并支持以下扩展方法：</p>
+                            <p>元素选择器，<code>selector</code>参数支持css选择器和原生DOM元素，用于获取DOM元素并返回元素对象，并支持以下扩展方法：</p>
                             <table class="table">
                                 <tr>
                                     <td>each</td>
@@ -368,6 +368,12 @@ from_bottom         //从底部开始动画
                                     <td>on</td>
                                     <td>
                                         <p>事件绑定/委托，<code>$ele.on(eventType, [child], handle)</code></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>tap</td>
+                                    <td>
+                                        <p>点击事件，<code>$ele.tap([child], handle)</code></p>
                                     </td>
                                 </tr>
                                 <tr>

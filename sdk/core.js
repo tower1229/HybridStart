@@ -1,8 +1,8 @@
 /*
 app JS SDK
-Version：2.2.4
-update: slidBackEnabled默认false
-date：2017-08-30
+Version：2.3.0
+update: 增加$.tap()
+date：2018-01-17
 
 *
 /*! Sea.js 2.2.1 | seajs.org/LICENSE.md */
@@ -308,6 +308,28 @@ var apputil = (function(document, undefined) {
 						}
 					}
 				});
+			});
+			return this;
+		},
+		tap: function(child, handle) {
+			[].every.call(this, function(el, idx) {
+				var target;
+				$(el).on('touchstart', child, function(e) {
+					target = $.isFunction(child) ? el : e.target;
+					target.setAttribute('data-touch', 1);
+				}).on('touchcancel', child, function(e) {
+					target = $.isFunction(child) ? el : e.target;
+					target.removeAttribute('data-touch');
+				}).on('touchmove', child, function(e) {
+					target = $.isFunction(child) ? el : e.target;
+					target.removeAttribute('data-touch');
+				}).on('touchend', child, function(e) {
+					target = $.isFunction(child) ? el : e.target;
+					if (target.getAttribute('data-touch')) {
+						target.removeAttribute('data-touch');
+						handle.call(target, e);
+					}
+				});	
 			});
 			return this;
 		},
