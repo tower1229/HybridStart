@@ -1,8 +1,8 @@
 /*
  * name: input.js
- * version: v0.1.5
- * update: 默认使用原始值
- * date: 2018-01-16
+ * version: v0.1.6
+ * update: bug fix
+ * date: 2018-01-18
  */
 define('input', function(require, exports, module) {
     "use strict";
@@ -172,9 +172,9 @@ define('input', function(require, exports, module) {
             }
             //默认使用原始值
             if(opt.val===null){
-                opt.val = $this.val();
+                opt.val = $this.val() || 0;
             }
-            //沿用
+            //沿用禁用状态
             if(opt.disable===null){
                 opt.disable = $this.prop('disabled');
             }

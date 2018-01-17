@@ -1,8 +1,8 @@
 /*
  * name: input-number.js
- * version: v0.1.5
- * update: 默认使用input初始值
- * date: 2018-01-16
+ * version: v0.2.0
+ * update: 输出inputNumber方法
+ * date: 2018-01-17
  */
 define("input-number", function(require, exports, module) {
 	"use strict";
@@ -20,6 +20,7 @@ define("input-number", function(require, exports, module) {
 	require('input');
 	var $ = window.$ || require('jquery'),
 		def = {
+			el: null,
 			val: null,
 			countstep: 1,
 			min: 0,
@@ -128,43 +129,51 @@ define("input-number", function(require, exports, module) {
 				}, 0);
 			}
 			syncButtonStatus(_val, _opt, _reduce, _plus);
+		},
+		inputNumber = function(config) {
+			var opt = $.extend({}, def, config || {}),
+				template,
+				inputObject,
+				$this = $(opt.el);
+			if (!$this.length) {
+				return null;
+			}
+			$.extend(opt, $.isPlainObject($this.data('options')) ? $this.data('options') : {});
+			switch ($.trim(opt.style)) {
+				case "inline":
+					template = '<${wrapTag} data-input-init="true" class="counter_wrap counter_inline input-group${color}<!-- if: ${className} --> ${className}<!-- /if -->"<!-- if: ${width} --> style="width:${width}px"<!-- /if -->>\
+	    <div class="pro_counter_btn pro_counter_reduce input-group-addon">-</div>\
+	    <input type="${type}" id="${id}" placeholder="${holder}" value="${val}" class="form-control pro_counter_val"<!-- if: ${disable} --> disabled<!-- /if --><!-- if: ${readonly} --> readonly<!-- /if -->><div class="pro_counter_btn pro_counter_add input-group-addon">+</div>\
+	</${wrapTag}>';
+					break;
+				default:
+					template = '<${wrapTag} data-input-init="true" class="counter_wrap counter_default${color}<!-- if: ${className} --> ${className}<!-- /if -->"<!-- if: ${width} --> style="width:${width}px"<!-- /if -->>\
+	    <div class="pro_counter_btn pro_counter_reduce">-</div>\
+	    <input type="${type}" id="${id}" placeholder="${holder}" value="${val}" class="form-control pro_counter_val"<!-- if: ${disable} --> disabled<!-- /if --><!-- if: ${readonly} --> readonly<!-- /if -->><div class="pro_counter_btn pro_counter_add">+</div>\
+	</${wrapTag}>';
+			}
+			opt.template = template;
+
+			inputObject = $this.input(opt);
+			setTimeout(function() {
+				$.each(inputObject.renderDom, function(i, e) {
+					$(e).on('click', catchClickEvent);
+
+				});
+				$.each(inputObject.shadowInput, function(i, e) {
+					$(e).on('blur', catchBlurEvent);
+				});
+			}, 0);
+			return inputObject;
 		};
 
 	$.fn.inputNumber = function(config) {
-		var $this = $(this),
-			opt = $.extend({}, def, config || {}, $.isPlainObject($this.data('options')) ? $this.data('options') : {}),
-			template,
-			inputObject;
-		if (!$this.length) {
-			return null;
-		}
-		switch ($.trim(opt.style)) {
-			case "inline":
-				template = '<${wrapTag} data-input-init="true" class="counter_wrap counter_inline input-group${color}<!-- if: ${className} --> ${className}<!-- /if -->"<!-- if: ${width} --> style="width:${width}px"<!-- /if -->>\
-    <div class="pro_counter_btn pro_counter_reduce input-group-addon">-</div>\
-    <input type="${type}" id="${id}" placeholder="${holder}" value="${val}" class="form-control pro_counter_val"<!-- if: ${disable} --> disabled<!-- /if --><!-- if: ${readonly} --> readonly<!-- /if -->><div class="pro_counter_btn pro_counter_add input-group-addon">+</div>\
-</${wrapTag}>';
-				break;
-			default:
-				template = '<${wrapTag} data-input-init="true" class="counter_wrap counter_default${color}<!-- if: ${className} --> ${className}<!-- /if -->"<!-- if: ${width} --> style="width:${width}px"<!-- /if -->>\
-    <div class="pro_counter_btn pro_counter_reduce">-</div>\
-    <input type="${type}" id="${id}" placeholder="${holder}" value="${val}" class="form-control pro_counter_val"<!-- if: ${disable} --> disabled<!-- /if --><!-- if: ${readonly} --> readonly<!-- /if -->><div class="pro_counter_btn pro_counter_add">+</div>\
-</${wrapTag}>';
-		}
-		opt.template = template;
+        return inputNumber($.extend({
+            el: this
+        }, config || {}));
+    };
 
-		inputObject = $this.input(opt);
-		setTimeout(function() {
-			$.each(inputObject.renderDom, function(i, e) {
-				$(e).on('click', catchClickEvent);
-
-			});
-			$.each(inputObject.shadowInput, function(i, e) {
-				$(e).on('blur', catchBlurEvent);
-			});
-		}, 0);
-		return inputObject;
-	};
 	//自动初始化
-	return $('.flow-ui-input-number').inputNumber();
+	$('.flow-ui-input-number').inputNumber();
+	module.exports = inputNumber;
 });
