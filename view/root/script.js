@@ -5,13 +5,18 @@ define(function(require) {
 	var comm = require('sdk/server');
 	
 	var startApp = function() {
-		app.openView({
-			anim: 'none'
-		}, 'demo', 'index');
+		app.loading.show();
+		//预取数据
+		comm.preGet(function(){
+			app.loading.hide();
+			app.openView({
+				anim: 'none'
+			}, 'demo', 'index');
+		});
 	};
 
 	app.ready(function() {
-		//推送
+		//极光推送
 		var ajpush = api.require('ajpush');
 		var pushable;
 		if (app.storage.val('pushable') === null) {
@@ -64,9 +69,6 @@ define(function(require) {
 				}
 			});
 		}
-
-		//预取数据
-		comm.checkPreget();
 
 		//app启动&恢复事件
 		app.on('resume', function() {

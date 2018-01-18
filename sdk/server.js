@@ -191,7 +191,9 @@ define(function(require, exports, module) {
 					preGetList = null;
 				}
 			};
-
+		if(_checkPreget()){
+			return cb();
+		}
 		//开始加载
 		$.each(preGetList, function(i, e) {
 			app.ajax({
@@ -201,10 +203,12 @@ define(function(require, exports, module) {
 					getOne();
 					if (res.status === 'Y') {
 						var data = res.data;
-						if (data.split) {
-							data = JSON.parse(data);
+						if(data){
+							if (data.split) {
+								data = JSON.parse(data);
+							}
+							app.storage.val(e.key, data);
 						}
-						app.storage.val(e.key, data);
 					}
 				},
 				error: function() {}
@@ -213,8 +217,8 @@ define(function(require, exports, module) {
 	};
 	//预取配置信息
 	_preGet.prototype.preGetList = [{
-		key: 'websiteConfig',
-		url: appcfg.host.control + '/websiteConfig',
+		key: 'test',
+		url: 'http://rap2api.taobao.org/app/mock/3567/GET/return/Yes',
 		data: {}
 	}];
 	
@@ -224,7 +228,6 @@ define(function(require, exports, module) {
 			isDone = true;
 		$.each(preGetList, function(i, e) {
 			if (!app.storage.val(e.key)) {
-				_preGet();
 				isDone = false;
 				return false;
 			}
@@ -410,7 +413,6 @@ define(function(require, exports, module) {
 		getUser: _getUser,
 		push: _push,
 		preGet: _preGet,
-		checkPreget: _checkPreget,
 		source: _source,
 		getDate: _getDate,
 		checkUpdate: _checkUpdate,
