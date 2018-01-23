@@ -897,7 +897,7 @@ var apputil = (function(document, undefined) {
 		var offset = ele.getBoundingClientRect();
 		var top = isNaN(parseInt(config.top, 10)) ? offset.top : parseInt(config.top, 10);
 		var left = isNaN(parseInt(config.left, 10)) ? offset.left : parseInt(config.left, 10);
-		var name = config.name ? config.name : 'pop-' + id + config.url;
+		var name = config.name ? config.name : id;
 		return openPopover($.extend(config, {
 			name: name,
 			left: left,
