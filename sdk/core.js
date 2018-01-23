@@ -983,7 +983,7 @@ var apputil = (function(document, undefined) {
 			script = paramObj.script || '';
 		}
 		api.execScript({
-			name: name,
+			name: name || api.winName,
 			frameName: frameName,
 			script: script
 		});
