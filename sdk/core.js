@@ -858,7 +858,8 @@ var apputil = (function(document, undefined) {
 				progress: {
 					type: 'page'
 				},
-				slidBackEnabled:false
+				slidBackEnabled:false,
+				overScrollMode: 'scrolls'
 			}));
 			return config.name;
 		} else {
@@ -944,7 +945,8 @@ var apputil = (function(document, undefined) {
 			hScrollBarEnabled: false,
 			pageParam: $.isPlainObject(config.param) ? config.param : {},
 			bgColor: appcfg.set.bgColor,
-			bounces: !!config.bounce
+			bounces: !!config.bounce,
+			overScrollMode: 'scrolls'
 		});
 		return config.name;
 	};
