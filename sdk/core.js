@@ -1271,9 +1271,11 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 		//增加payload方式
 		if(opt.method==='payload'){
 			opt.method = 'post';
-			opt.headers = $.extend(opt.headers || {}, {
-				'Content-Type':'application/json; charset=utf-8'
-			});
+			if(opt.dataType==='json'){
+				opt.headers = $.extend(opt.headers || {}, {
+					'Content-Type':'application/json; charset=utf-8'
+				});
+			}
 			opt.data = {
 				body: opt.data
 			};
