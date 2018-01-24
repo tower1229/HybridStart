@@ -6,7 +6,7 @@ define(function(require) {
 	var $ = app.util;
 
 	//demo打开网页
-	$('#openWeb')[0].addEventListener('touchend', function(event) {
+	$('body').tap('#openWeb', function(event) {
 		app.openView({
 			param: {
 				url: 'http://m.baidu.com/',
