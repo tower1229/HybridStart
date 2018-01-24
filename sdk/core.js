@@ -280,6 +280,9 @@ var apputil = (function(document, undefined) {
 				if ($.isFunction(child)) {
 					return el.addEventListener(eventType, child);
 				}
+				if(!child && $.isFunction(handle)){
+					return el.addEventListener(eventType, handle);
+				}
 				el.addEventListener(eventType, function(event) {
 					var childNode = el.querySelectorAll(child);
 					if (childNode.length) {
@@ -312,6 +315,10 @@ var apputil = (function(document, undefined) {
 			return this;
 		},
 		tap: function(child, handle) {
+			if($.isFunction(child)){
+				handle = child;
+				child = null;
+			}
 			[].every.call(this, function(el, idx) {
 				var target;
 				$(el).on('touchstart', child, function(e) {
