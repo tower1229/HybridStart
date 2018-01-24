@@ -79,8 +79,6 @@ define(function(require, exports, module) {
 		if (!userData) {
 			return app.toast('初始化用户信息失败');
 		}
-		userData.photo = _source($.trim(userData.photo));
-		userData.realName = $.trim(userData.realName);
 		app.storage.val('user', userData);
 		//app初始化
 		app.storage.val('appInit', 1);
@@ -137,7 +135,7 @@ define(function(require, exports, module) {
 					bgclose: false
 				});
 			});
-			return {};
+			return null;
 		}
 		return _user;
 	};

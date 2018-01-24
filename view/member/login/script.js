@@ -31,6 +31,13 @@ define(function(require) {
 			app.loading.hide();
 			if (res.status === 'Y') {
 				//初始化用户数据
+				comm.initUser({
+					tag:'tag1',
+					id: 123,
+					nowScore: 100,
+					nickName: '斑斑',
+					headImg: "../index/head.jpg"
+				});
 				setTimeout(function() {
 					app.openView({
 						closeself: true
