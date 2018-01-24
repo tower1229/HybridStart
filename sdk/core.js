@@ -320,21 +320,16 @@ var apputil = (function(document, undefined) {
 				child = null;
 			}
 			[].every.call(this, function(el, idx) {
-				var target;
 				$(el).on('touchstart', child, function(e) {
-					target = $.isFunction(child) ? el : e.target;
-					target.setAttribute('data-touch', 1);
+					e.target.setAttribute('data-touch', 1);
 				}).on('touchcancel', child, function(e) {
-					target = $.isFunction(child) ? el : e.target;
-					target.removeAttribute('data-touch');
+					e.target.removeAttribute('data-touch');
 				}).on('touchmove', child, function(e) {
-					target = $.isFunction(child) ? el : e.target;
-					target.removeAttribute('data-touch');
+					e.target.removeAttribute('data-touch');
 				}).on('touchend', child, function(e) {
-					target = $.isFunction(child) ? el : e.target;
-					if (target.getAttribute('data-touch')) {
-						target.removeAttribute('data-touch');
-						handle.call(target, e);
+					if (e.target.getAttribute('data-touch')) {
+						e.target.removeAttribute('data-touch');
+						handle.call(e.target, e);
 					}
 				});	
 			});
