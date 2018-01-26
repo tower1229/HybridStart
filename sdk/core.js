@@ -853,6 +853,7 @@ var apputil = (function(document, undefined) {
 				progress: {
 					type: 'page'
 				},
+				useWKWebView: true,
 				slidBackEnabled:false,
 				overScrollMode: 'scrolls'
 			}));
@@ -937,6 +938,7 @@ var apputil = (function(document, undefined) {
 				marginBottom: bottomMargin
 			},
 			customRefreshHeader: 'UIPullRefreshFlash',
+			useWKWebView: true,
 			hScrollBarEnabled: false,
 			pageParam: $.isPlainObject(config.param) ? config.param : {},
 			bgColor: appcfg.set.bgColor,
