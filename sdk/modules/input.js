@@ -1,8 +1,8 @@
 /*
  * name: input.js
- * version: v0.1.6
+ * version: v0.1.7
  * update: bug fix
- * date: 2018-01-18
+ * date: 2018-01-29
  */
 define('input', function(require, exports, module) {
     "use strict";
@@ -156,14 +156,15 @@ define('input', function(require, exports, module) {
                     }
                 }
             },
-            opt = $.extend({}, def, config || {}),
-            $el = $(opt.el);
+            commonOpt = $.extend({}, def, config || {}),
+            $el = $(commonOpt.el);
 
         if (!$el.length) {
             return null;
         }
         $el.each(function(i, e) {
             var $this = $(e),
+                opt = $.extend({}, commonOpt, $this.data('config') || {}),
                 render,
                 tagname = $this.get(0).tagName.toLowerCase(),
                 template = opt.template || ''; //接受自定义模板
