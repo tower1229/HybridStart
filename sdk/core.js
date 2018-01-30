@@ -1,8 +1,8 @@
 /*
 app JS SDK
-Version：2.3.0
-update: 增加$.tap()
-date：2018-01-17
+Version：2.3.1
+update: app.loading() bug fix
+date：2018-01-30
 
 *
 /*! Sea.js 2.2.1 | seajs.org/LICENSE.md */
@@ -599,23 +599,23 @@ var apputil = (function(document, undefined) {
 				return api.hideProgress();
 			}),
 			show: app.readyEval(function(msg, opt) {
-				var that = this,
-					DEFAULT = {
-						text: '',
-						title: appcfg.loading.title,
-						anim: appcfg.loading.anim,
-						delay: 0
-					};
-				opt = $.extend(DEFAULT, opt || {});
+				var that = this;
 				if ($.isPlainObject(msg)) {
 					opt = msg;
 					msg = opt.text || appcfg.loading.text
 				}
+				opt = $.extend({
+					text: msg || appcfg.loading.text,
+					title: appcfg.loading.title,
+					anim: appcfg.loading.anim,
+					delay: 0
+				}, opt || {});
+				
 				var doShow = function() {
 					return api.showProgress({
 						animationType: opt.anim,
 						title: opt.title,
-						text: msg
+						text: opt.text
 					});
 				}
 				if (opt.delay > 0) {

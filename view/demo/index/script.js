@@ -59,6 +59,7 @@ define(function(require) {
 		//打开对应frame
 		app.window.popoverElement({
 			id: 'view',
+			name: tid,
 			url: channelSet[tid].url
 		});
 	});
@@ -97,6 +98,7 @@ define(function(require) {
 		if (name !== 'home') {
 			app.window.popoverElement({
 				id: 'view',
+				name: name,
 				url: obj.url
 			});
 		}
@@ -104,8 +106,8 @@ define(function(require) {
 	//打开首页
 	app.window.popoverElement({
 		id: 'view',
-		url: './content.html',
-		bounce: true
+		name: 'home',
+		url: './content.html'
 	});
 
 	//静默检查更新
