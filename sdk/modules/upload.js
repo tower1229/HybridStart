@@ -1,8 +1,8 @@
 /*
  * name: upload.js
- * version: v0.5.0
- * update: add data config
- * date: 2017-09-11
+ * version: v0.5.1
+ * update: add headers
+ * date: 2018-02-01
  */
 define('upload', function(require, exports, module) {
 	'use strict';
@@ -31,8 +31,8 @@ define('upload', function(require, exports, module) {
 		var opt = $.extend({}, def, option || {}),
 			uploadHost = opt.url,
 			randOpId = base.getUUID();
-		if (!uploadHost) {
-			return null;
+		if (!localImgPath || !uploadHost) {
+			return console.log('参数异常');
 		}
 		opt.onCreate(randOpId);
 
@@ -48,7 +48,7 @@ define('upload', function(require, exports, module) {
 				}
 			},
 			report: true,
-			headers: $.extend({}, option.headers || {})
+			headers: opt.headers
 		}, function(ret, err) {
 			if (ret) {
 				switch (ret.status) {

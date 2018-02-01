@@ -29,6 +29,9 @@ define(function(require) {
         require.async('upload', function(uploader) {
             uploader(avatsrc, {
                 url: "http://host.refined-x.com/test/fileupload.php",
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                },
                 onCreate: function(upId) {
                     newImg.data('upid', upId).append('<div class="_state"></div>');
                 },
