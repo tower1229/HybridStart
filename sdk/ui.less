@@ -547,7 +547,7 @@ select[multiple],select[size]{height:auto}
 .border-t {border-top: 1px solid @border;}
 .border-b { border-bottom: 1px solid @border;}
 
-@media screen and (-webkit-min-device-pixel-ratio: 2) { 
+@media (-webkit-min-device-pixel-ratio:2),(min-device-pixel-ratio:2) { 
   .border-t,.border-b{position: relative;border:0;}
   .border-t:before,.border-b:after{
     position: absolute;
