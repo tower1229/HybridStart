@@ -741,7 +741,7 @@ var apputil = (function(document, undefined) {
 		})
 	}
 	function _openToast(msg, config) {
-		//delay,onclose,position
+		//delay,onclose,location,duration
 		var opt = {
 			msg: msg,
 			duration: 700,
