@@ -745,8 +745,7 @@ var apputil = (function(document, undefined) {
 		var opt = {
 			msg: msg,
 			duration: 700,
-			location: 'bottom',
-			global: true
+			location: 'bottom'
 		};
 		if($.isPlainObject(config)){
 			$.extend(opt, config);
