@@ -1,8 +1,8 @@
 /*
  * name: scroll-load
- * version: 1.0.2
- * updata: 不合法调用返回null
- * data: 2017-07-26
+ * version: 1.0.4
+ * updata: destory => destroy
+ * data: 2018-02-10
  */
 define('scroll-load', function(require, exports, module) {
     "use strict";
@@ -33,7 +33,7 @@ define('scroll-load', function(require, exports, module) {
                 scrollCB, 
                 running, 
                 $loading, 
-                destory;
+                destroy;
             if (!$wrap.length) {
                 console.warn(opt.el + '不存在');
                 return null;
@@ -58,19 +58,21 @@ define('scroll-load', function(require, exports, module) {
             } else if (opt.loadingTemplate && opt.loadingTemplate.split) {
                 $loading = $(opt.loadingTemplate).attr('id', loadingId).css('display','none');
             }
-            if (!opt.force) {
+            destroy = function() {
+                $wrap.data('scroll-load-id', null);
+                scrollDom.unbind('scroll', scrollCB);
+                return null;
+            };
+            if (opt.force) {
+                destroy();
+            } else {
                 if (window.nomore) {
-                    destory();
-                    return null;
+                    return destroy();
                 }
                 if ($wrap.data('scroll-load-id')) {
                     return null;
                 }
             }
-            destory = function() {
-                $wrap.data('scroll-load-id', null);
-                scrollDom.unbind('scroll', scrollCB);
-            };
             viewH = function() {
                 return scrollDom.height();
             };
@@ -102,7 +104,7 @@ define('scroll-load', function(require, exports, module) {
                 scrollDom.on('scroll', scrollCB);
             }
             return {
-                destory: destory
+                destroy: destroy
             };
         };
 

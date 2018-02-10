@@ -117,7 +117,7 @@ define(function(require) {
 				        myRender.data({
 							data: localPluginsData
 						});
-						app.toast('下载完成');
+						app.toast('插件下载完成，可以使用了');
 				    } else {
 				        alert(JSON.stringify(err));
 				    }

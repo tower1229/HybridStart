@@ -1,0 +1,7 @@
+.label-tab-head{text-align: center;background: #fff;}
+.label-tab-head .flex-1:after{content: "";position: absolute;left: 0;bottom:0;
+width: 100%;height: 1px;background: #dadada;}
+.label-tab-head .flex-1{position: relative;height: 3em;line-height: 3em;}
+.label-tab-head .flex-1.cur{color:#fe6a11;}
+.label-tab-head .flex-1.cur:after{height: 2px;background: #fe6a11;}
+
