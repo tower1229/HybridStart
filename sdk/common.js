@@ -82,7 +82,7 @@ define(function(require, exports, module) {
 				try{
 					openParam[0] = JSON.parse(openParam[0]);
 				}catch(e){
-					throw e;
+					
 				}
 				app.openView.apply(app, openParam);
 			}
