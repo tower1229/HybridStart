@@ -49,6 +49,9 @@ define(function(require) {
 	scrollLoadHandle = scrollLoad({
 		el: $('body')[0],
 		callback: function(stopFn) {
+			myRender.set({
+				reload: false
+			});
 			pageLoadObj.load(stopFn);
 		}
 	});
