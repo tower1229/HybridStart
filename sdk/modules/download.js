@@ -1,8 +1,8 @@
 /*
  * name: download.js
- * version: v0.2.0
- * update: 主持所有apicloud配置项
- * date: 2017-12-28
+ * version: v0.2.1
+ * update: bug fix
+ * date: 2018-04-07
  */
 define('download', function(require, exports, module) {
 	'use strict';
@@ -10,6 +10,9 @@ define('download', function(require, exports, module) {
 		def = {
 			path: "fs://Download/",
 			name: "",
+			report: true,
+			cache: true,
+			allowResume: true,
 			onCreate: function() {
 				app.loading.show('正在下载');
 			},
@@ -34,8 +37,7 @@ define('download', function(require, exports, module) {
 		};
 
 	var download = function(remotePath, option) {
-		var randOpId = Math.floor(Math.random() * (1000 + 1)),
-			opt = $.extend({}, def, option || {}),
+		var opt = $.extend({}, def, option || {}),
 			filePath,
 			cancel = function(){
 				app.loading.hide();
@@ -50,18 +52,16 @@ define('download', function(require, exports, module) {
 		if (!remotePath || !remotePath.split) {
 			return;
 		}
-		if (!opt.name) {
-			opt.name = randOpId;
-		}
-		filePath = opt.path + opt.name;
+		
+		filePath = opt.path + opt.name || Math.floor(Math.random() * (1000 + 1));
 		opt.onCreate();
 
 		api.download({
 			url: remotePath,
 			savePath: filePath,
-			report: opt.report || true,
-			cache: opt.cache || true,
-			allowResume: opt.allowResume || true
+			report: opt.report,
+			cache: opt.cache,
+			allowResume: opt.allowResume
 		}, function(ret, err) {
 			if (ret) {
 				switch (ret.state) {
