@@ -37,18 +37,14 @@ define(function(require) {
 			case "clearCache":
 				app.loading.show('正在清理...');
 				//ls cache
-				var lst;
-				for (lst in window.localStorage) {
-					if (appcfg.set.safeStorage.indexOf(lst) === -1) {
-						localStorage.removeItem(lst);
-					}
-				}
+				app.storage.clear();
 				//sys cache
 				api.clearCache(function() {
 					clearTimeout(globalTimeout);
 					app.loading.hide();
 					app.toast('缓存清除成功！');
 					lst = null;
+					$('#cacheSize')[0].innerText = '0.00M';
 				});
 
 				globalTimeout = setTimeout(function() {

@@ -19,7 +19,7 @@ window.appcfg = {
 		animateSubType: "from_right",
 		animateDuration: 300,
 		bgColor: "#f0f0f0",
-		safeStorage: "user,appInit,rights",
+		safeStorage: "user,appInit",
 		temporary: "templateCache,gps"
 	},
 	ajax: {

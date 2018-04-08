@@ -536,9 +536,7 @@ var apputil = (function(document, undefined) {
 })(this);
 /* 本地存储模块 */
 (function(app) {
-	var $ = apputil,
-		i = 0,
-		len = 0;
+	var $ = apputil;
 
 	function remove(key) {
 		if (key && key.split) {
@@ -569,15 +567,14 @@ var apputil = (function(document, undefined) {
 
 	function clear(force){
 		if(force){
-			return localStorage.clear();
+			localStorage.clear();
 		}else{
-			var targetStor = appcfg.set.safeStorage.split(',');
-        	for (var lskey in window.localStorage){
-        		targetStor.forEach(function(name){
-        			if(name===lskey){
-            			localStorage.removeItem(lskey);
-            		}
-        		});
+			var safeKey = appcfg.set.safeStorage ? appcfg.set.safeStorage.split(',') : [],
+				lskey;
+        	for (lskey in window.localStorage){
+        		if(safeKey.indexOf(lskey)===-1){
+        			localStorage.removeItem(lskey);
+        		}
         	}
 		}
 	}
