@@ -163,7 +163,7 @@ var apputil = (function(document, undefined) {
 				}
 			}
 		}
-		return this;
+		return elements;
 	};
 	/**
 	 * slice(array)

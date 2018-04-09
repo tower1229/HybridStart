@@ -177,29 +177,37 @@ define(function(require, exports, module) {
 	};
 	
 	//数据预取
-	var _preGet = function(cb) {
+	var _preGet = function(callback) {
 		var got = 0,
 			preGetList = _preGet.prototype.preGetList,
-			getOne = function() {
+			resolved = function() {
 				got++;
-				if (got >= preGetList.length && typeof(cb) === 'function') {
-					cb();
+				if (got >= preGetList.length && typeof(callback) === 'function') {
+					callback();
 					got = null;
-					getOne = null;
+					resolved = null;
 					preGetList = null;
 				}
+			}, 
+			checkPreget = function() {
+				var hasResolved = true;
+				$.each(preGetList, function(i, e) {
+					if (!app.storage.val(e.key)) {
+						return hasResolved = false;
+					}
+				});
+				return hasResolved;
 			};
-		if(_checkPreget()){
-			return cb();
+		if(checkPreget()){
+			return callback();
 		}
-		//开始加载
 		$.each(preGetList, function(i, e) {
 			app.ajax({
 				url: e.url,
 				data: e.data,
 				success: function(res) {
-					getOne();
-					if (res.status === 'Y') {
+					resolved();
+					if (res.data) {
 						var data = res.data;
 						if(data){
 							if (data.split) {
@@ -213,25 +221,13 @@ define(function(require, exports, module) {
 			});
 		});
 	};
-	//预取配置信息
+	//预取队列
 	_preGet.prototype.preGetList = [{
-		key: 'test',
+		key: 'preget-test',
 		url: 'http://rap2api.taobao.org/app/mock/3567/GET/return/Yes',
 		data: {}
 	}];
 	
-	//预取数据
-	var _checkPreget = function() {
-		var preGetList = _preGet.prototype.preGetList,
-			isDone = true;
-		$.each(preGetList, function(i, e) {
-			if (!app.storage.val(e.key)) {
-				isDone = false;
-				return false;
-			}
-		});
-		return isDone;
-	};
 	//检查升级
 	var _checkUpdate = function(silence) {
 		var mam = api.require('mam');
