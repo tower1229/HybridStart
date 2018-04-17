@@ -1,8 +1,8 @@
 /*
  * name: scroll-load
- * version: 1.0.4
- * updata: destory => destroy
- * data: 2018-02-10
+ * version: 1.0.5
+ * updata: bug fix
+ * data: 2018-04-17
  */
 define('scroll-load', function(require, exports, module) {
     "use strict";
@@ -60,6 +60,7 @@ define('scroll-load', function(require, exports, module) {
             }
             destroy = function() {
                 $wrap.data('scroll-load-id', null);
+                $('#' + loadingId).remove();
                 scrollDom.unbind('scroll', scrollCB);
                 return null;
             };
