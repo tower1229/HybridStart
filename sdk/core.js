@@ -1160,7 +1160,7 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 			method: appcfg.ajax.type,
 			dataType: 'json',
 			checkData: true,
-			timeout: appcfg.set.outime, // 1000,
+			timeout: appcfg.set.outime / 1000,
 			snapshoot: null 		//添加为快照
 		}, config);
 		var urlkey = opt.url + JSON.stringify(opt.param);
