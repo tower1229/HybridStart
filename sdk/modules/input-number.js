@@ -1,8 +1,8 @@
 /*
  * name: input-number.js
- * version: v0.2.0
- * update: 输出inputNumber方法
- * date: 2018-01-17
+ * version: v0.2.1
+ * update: countstep传入字符串容错
+ * date: 2018-04-23
  */
 define("input-number", function(require, exports, module) {
 	"use strict";
@@ -139,6 +139,8 @@ define("input-number", function(require, exports, module) {
 				return null;
 			}
 			$.extend(opt, $.isPlainObject($this.data('options')) ? $this.data('options') : {});
+			//countstep传入字符串容错
+			opt.countstep = parseFloat(opt.countstep);
 			switch ($.trim(opt.style)) {
 				case "inline":
 					template = '<${wrapTag} data-input-init="true" class="counter_wrap counter_inline input-group${color}<!-- if: ${className} --> ${className}<!-- /if -->"<!-- if: ${width} --> style="width:${width}px"<!-- /if -->>\

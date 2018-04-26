@@ -8,7 +8,7 @@
 define(function(require, exports, module) {
 	"use strict";
 	var $ = app.util;
-	var $body = $('body');
+	var $body = $('#body').length ? $('#body') : $('body');
 	//页面关闭按钮
 	$body.on('touchstart', '#goBack', function(e) {
 		app.window.close();

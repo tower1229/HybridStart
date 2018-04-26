@@ -224,7 +224,7 @@ define(function(require, exports, module) {
 	//预取队列
 	_preGet.prototype.preGetList = [{
 		key: 'preget-test',
-		url: 'http://rap2api.taobao.org/app/mock/3567/GET/return/Yes',
+		url: 'http://rap2api.taobao.org/app/mock/3567/return/Yes',
 		data: {}
 	}];
 	
