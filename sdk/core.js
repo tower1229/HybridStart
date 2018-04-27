@@ -1,8 +1,8 @@
 /*
 app JS SDK
-Version：2.3.1
-update: app.loading() bug fix
-date：2018-01-30
+Version：2.4.0
+update: 移除app.ajax错误检查
+date：2018-04-27
 
 *
 /*! Sea.js 2.2.1 | seajs.org/LICENSE.md */
@@ -1159,7 +1159,6 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 			tag: 'ajax-tag' + (++ajaxTag),
 			method: appcfg.ajax.type,
 			dataType: 'json',
-			checkData: true,
 			timeout: appcfg.set.outime / 1000,
 			snapshoot: null 		//添加为快照
 		}, config);
@@ -1180,23 +1179,19 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 		}
 		var handleRes = function(res, fromSnap) {
 			if (res) {
-				if (opt.dataType === 'json' && opt.checkData && res['status'] === void(0)) {
-					handleError(null, {
-						code: '数据格式错误!',
-						statusCode: 200
-					});
-				} else {
-					if (res['data'] && res.data.split) {
-						try {
-							res.data = JSON.parse(res.data);
-						} catch (e) {}
-					};
-					//存储快照
-					if(opt.snapshoot && !fromSnap){
-						app.storage.val(urlkey, res);
+				//json格式异常处理
+				if(opt.dataType==="json" && res.data && res.data.split){
+					try{
+						res.data = JSON.parse(res.data);
+					}catch(e){
+						console.log(e.msg)
 					}
-					tempSucc(res);
 				}
+				//存储快照
+				if(opt.snapshoot && !fromSnap){
+					app.storage.val(urlkey, res);
+				}
+				tempSucc(res);
 			}
 		}
 		delete opt.success;
@@ -1279,6 +1274,7 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 				values: opt.data
 			};
 		}
+		//console.log(JSON.stringify(opt))
 		api.ajax(opt, function(res, err) {
 			handleRes(res);
 			handleError(res, err);

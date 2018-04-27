@@ -5,7 +5,7 @@ define(function(require) {
 	var comm = require('sdk/server');
 	require('sdk/common');
 	var $ = app.util;
-	var userData = comm.getUser();
+	//var userData = comm.getUser();
 	//拉取个人信息
 	var showUser = function(reload) {
 		if (reload) {
@@ -24,7 +24,7 @@ define(function(require) {
 		app.openView(null,'member','setPersonal');
 	});
 	
-	showUser();
+	//showUser();
 	
 	
 });

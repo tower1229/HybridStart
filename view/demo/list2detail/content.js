@@ -68,6 +68,7 @@ define(function(require) {
 			reqData.lastId = lastId;
 			reqData.time = new Date().getTime() + "";
 		}
+
 		//请求顶部banner信息
 		app.ajax({
 			type: 'get',
@@ -87,6 +88,7 @@ define(function(require) {
 				app.pull.stop();
 			}
 		});
+
 		//请求列表信息流
 		app.ajax({
 			type: 'get',
@@ -107,12 +109,14 @@ define(function(require) {
 			}
 		});
 	};
-
+	
 	app.ready(function() {
 		app.pull.init(loadData);
+
 		//加载初始数据
 		loadData();
 		//预加载详细页
+
 		app.window.openPopover({
 			name: 'page_detail',
 			url: './detail.html',

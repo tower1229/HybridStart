@@ -10,7 +10,6 @@ define(function(require) {
 
 	//登录验证
 	var vf = Validform('#logForm', {
-		type:'get',
 		url: "http://rapapi.org/mockjsdata/9195/common/getYes/",
 		ajaxPost: true,
 		beforeCheck: function() {
@@ -32,7 +31,7 @@ define(function(require) {
 			if (res.status === 'Y') {
 				//初始化用户数据
 				comm.initUser({
-					tag:'tag1',
+					tag: 'tag1',
 					id: 123,
 					nowScore: 100,
 					nickName: '斑斑',
@@ -61,6 +60,7 @@ define(function(require) {
 				app.exit();
 			}, 0);
 		});
+
 
 	});
 });

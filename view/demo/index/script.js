@@ -112,4 +112,5 @@ define(function(require) {
 
 	//静默检查更新
 	comm.checkUpdate(true);
+	
 });

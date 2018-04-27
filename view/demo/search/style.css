@@ -1,8 +1,0 @@
-.item-stacked-label.item-icon-right .item-note .ion{transition:all ease .3s;}
-.item-stacked-label.item-icon-right .item-body{display: none;}
-.item-stacked-label.item-icon-right.actived .item-note .ion{-webkit-transform: rotateZ(180deg); transform: rotateZ(180deg);}
-.item-stacked-label.item-icon-right.actived .item-body{display: block;}
-.search_tip{font-size:.8em;color:#777;}
-.catList .btn{margin-top: .5em;}
-.clean-div {text-align: center; vertical-align: middle; width:100%;font-weight:bold;}
-.clean-div .clean-btn{color:#d33835;}

@@ -1,10 +1,10 @@
 /*
 * name: validform.js
-* version: v2.5.3
-* update: 修复弹窗颜色bug
-* data: 2017-06-25
+* version: v2.5.11
+* update: ajaxPost默认true
+* data: 2018-04-26
 */
-define('validform',function(require, exports, module) {
+define('validform', function(require, exports, module) {
 	"use strict";
 	
 	seajs.importStyle('.Validform_right{color:#71b83d}.Validform_wrong{color:red;white-space:nowrap}.Validform_loading{padding-left:20px}.Validform_error{background-color:#ffe7e7}.passwordStrength{display:block;height:18px;line-height:16px;clear:both;overflow:hidden;margin-bottom:5px}.passwordStrength b{font-weight:normal}.passwordStrength b,.passwordStrength span{display:inline-block;vertical-align:middle;line-height:16px;height:16px}.passwordStrength span{width:63px;text-align:center;background-color:#d0d0d0;border-right:1px solid #fff}.passwordStrength .last{border-right:0;width:61px}.passwordStrength .bgStrength{color:#fff;background-color:#71b83d}'
@@ -46,7 +46,7 @@ define('validform',function(require, exports, module) {
 			tipSweep: true,
 			showAllError: false,
 			postonce: false,
-			ajaxPost: false,
+			ajaxPost: true,
 			checkTime: 100 //验证延时
 		};
 	var Validform = function(forms, settings, inited) {
@@ -653,14 +653,16 @@ define('validform',function(require, exports, module) {
 				curform.find(".Validform_error:first").focus();
 			}
 			if (flag) {
-				var beforeSubmit;
-				try{
-					beforeSubmit = !settings.beforeSubmit || ($.isFunction(settings.beforeSubmit) && settings.beforeSubmit(curform));
-				}catch(e){
-					alert(e.message);
-				}
-				if (!beforeSubmit) {
-					return false;
+				if(!flg){
+					var beforeSubmit;
+					try{
+						beforeSubmit = !settings.beforeSubmit || ($.isFunction(settings.beforeSubmit) && settings.beforeSubmit(curform));
+					}catch(e){
+						alert(e.message);
+					}
+					if (!beforeSubmit) {
+						return false;
+					}
 				}
 				curform[0].validform_status = "posting";
 				
@@ -700,16 +702,15 @@ define('validform',function(require, exports, module) {
 						};
 					}
 					var _sendData = {},
-						_cloneForm,
-						_formData;
-					if(settings.allable){
-						_cloneForm = curform.clone();
-						_cloneForm.find(':disabled').each(function(i,e){
-							$(e).prop('disabled',false);
-						});
-						_formData = _cloneForm.serializeArray();
-					}else{
 						_formData = curform.serializeArray();
+					if(settings.allable){
+						curform.find(':disabled').each(function(i,e){
+							$(e).prop('disabled',false);
+							_formData.push({
+								name: $(e).attr('name'),
+								value: $(e).val()
+							});
+						});
 					}
 					$.each(_formData, function(i,e){
 						if(_sendData[e.name] === void 0){
@@ -728,8 +729,12 @@ define('validform',function(require, exports, module) {
 						dynamicAjaxData=settings.ajaxData||{};
 					}
 					$.extend(_sendData,  dynamicAjaxData);
+
 					var localconfig = {
+						type: "POST",
+						async: true,
 						data: _sendData, //$.extend(_sendData, settings.ajaxData || {}),
+						dataType: settings.dataType || 'json',
 						success: function(data) {
 							if (data) {
 								curform[0].validform_status = "posted";
@@ -745,7 +750,7 @@ define('validform',function(require, exports, module) {
 							curform[0].validform_ajax = null;
 						},
 						error: function(err) {
-							console.warn('validform提交失败！');
+							console.warn(err.msg);
 							curform[0].validform_status = "normal";
 							curform[0].validform_ajax = null;
 						}

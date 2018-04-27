@@ -10,7 +10,7 @@ define(function(require, exports, module) {
 	var $ = app.util;
 	var etpl = require('etpl');
 	//资源路径处理
-	var _source = function(source, host) {
+	var source = function(source, host) {
 		if (!$.trim(source)) {
 			return "";
 		}
@@ -24,10 +24,10 @@ define(function(require, exports, module) {
 	};
 	//图片域名处理
 	etpl.addFilter('source', function(source, host) {
-		return _source(source, host);
+		return source(source, host);
 	});
 	//时间格式处理
-	var _getDate = function(source, ignore_minute, logfunction) {
+	var getDate = function(source, ignore_minute, logfunction) {
 		var myDate;
 		var separate = '-';
 		var minute = '';
@@ -56,7 +56,7 @@ define(function(require, exports, module) {
 	};
 
 	//退出登录
-	var _logout = function() {
+	var logout = function() {
 		app.storage.remove('user');
 		//注销推送
 		var ajpush = api.require('ajpush');
@@ -75,7 +75,7 @@ define(function(require, exports, module) {
 	};
 
 	//存储用户信息
-	var _initUser = function(userData) {
+	var initUser = function(userData) {
 		if (!userData) {
 			return app.toast('初始化用户信息失败');
 		}
@@ -98,7 +98,7 @@ define(function(require, exports, module) {
 		}
 	};
 	//推送开关
-	var _push = {
+	var push = {
 		open: function(cb) {
 			var ajpush = api.require('ajpush');
 			if (ajpush) {
@@ -125,22 +125,20 @@ define(function(require, exports, module) {
 		}
 	};
 	//获取用户信息
-	var _getUser = function(hold) {
+	var getUser = function(hold) {
 		var _user = app.storage.val('user');
 		if (!$.isPlainObject(_user) && !hold) {
-			app.ready(function() {
-				app.alert('请先登录！', function() {
+			app.alert('请先登录！', function() {
 					app.openView(null, 'member', 'login');
 				}, {
 					bgclose: false
 				});
-			});
 			return null;
 		}
 		return _user;
 	};
 	//坐标反查
-	var _getAddrByLoc = function(lat, lng, config) {
+	var getAddrByLoc = function(lat, lng, config) {
 		var def = {
 			callback: null,
 			silent: false
@@ -177,9 +175,9 @@ define(function(require, exports, module) {
 	};
 	
 	//数据预取
-	var _preGet = function(callback) {
+	var preGet = function(callback) {
 		var got = 0,
-			preGetList = _preGet.prototype.preGetList,
+			preGetList = preGet.prototype.preGetList,
 			resolved = function() {
 				got++;
 				if (got >= preGetList.length && typeof(callback) === 'function') {
@@ -222,14 +220,14 @@ define(function(require, exports, module) {
 		});
 	};
 	//预取队列
-	_preGet.prototype.preGetList = [{
+	preGet.prototype.preGetList = [{
 		key: 'preget-test',
 		url: 'http://rap2api.taobao.org/app/mock/3567/return/Yes',
 		data: {}
 	}];
 	
 	//检查升级
-	var _checkUpdate = function(silence) {
+	var checkUpdate = function(silence) {
 		var mam = api.require('mam');
 		var platform = api.systemType;
 		mam.checkUpdate(function(ret, err) {
@@ -269,7 +267,7 @@ define(function(require, exports, module) {
 		});
 	};
 	//获取地理位置
-	var _getLocation = function(callback, errcb) {
+	var getLocation = function(callback, errcb) {
 		var bMap = api.require('bMap');
 		var chaoshi = setTimeout(function() {
 			app.loading.hide();
@@ -318,7 +316,7 @@ define(function(require, exports, module) {
 		});
 	};
 	//指定DOM打开地图
-	var _openBaiduMap = function(dom, data, refresh) {
+	var openBaiduMap = function(dom, data, refresh) {
 		if (!$.isPlainObject(data) || !data.longitude || !data.latitude) {
 			return app.toast('参数缺失，无法打开地图');
 		}
@@ -343,7 +341,7 @@ define(function(require, exports, module) {
 		}
 	};
 	//公用模板
-	var _commonTemp = function(tempName, data) {
+	var commonTemp = function(tempName, data) {
 		var templateCache = app.storage.val('templateCache') || {};
 		if (!$.isPlainObject(data)) {
 			data = {};
@@ -402,18 +400,18 @@ define(function(require, exports, module) {
 	};
 	
 	module.exports = {
-		logout: _logout,
-		initUser: _initUser,
-		getUser: _getUser,
-		push: _push,
-		preGet: _preGet,
-		source: _source,
-		getDate: _getDate,
-		checkUpdate: _checkUpdate,
-		openBaiduMap: _openBaiduMap,
-		commonTemp: _commonTemp,
-		getAddrByLoc: _getAddrByLoc,
-		getLocation: _getLocation,
+		logout: logout,
+		initUser: initUser,
+		getUser: getUser,
+		push: push,
+		preGet: preGet,
+		source: source,
+		getDate: getDate,
+		checkUpdate: checkUpdate,
+		openBaiduMap: openBaiduMap,
+		commonTemp: commonTemp,
+		getAddrByLoc: getAddrByLoc,
+		getLocation: getLocation,
 		cacheImg: cacheImg
 	};
 });

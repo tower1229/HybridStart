@@ -9,7 +9,7 @@ define(function(require) {
 	var zip = api.require('zip');
 
 	//配置
-	var otaPath = "/HybridStartOTA/";
+	var otaPath = api.systemType === "android" ? "/HybridStartOTA/" : "fs://Download/";
 	var pluginCommonParam = {
 		root: api.wgtRootDir
 	};

@@ -17,7 +17,6 @@ define(function(require) {
 				addr += (e.value + ' ');
 			});
 			$('#multiPickerInput')[0].value = addr;
-			console.log(arr);
 		}
 	});
 

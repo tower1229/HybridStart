@@ -1,6 +1,0 @@
-#icons { font-size: 1px; margin: auto;transition: opacity 0.2s ease-in-out; }
-#icons li { font-size: 24px; font-weight: normal; position: relative; position: relative;z-index: 0; display: inline-block; 
-	padding: 30px; list-style: none; cursor: pointer; text-align: center; border-radius: 4px;}
-#icons li:hover { color: #f39800;}
-#icons li.active { color: #f39800;}
-#icons li .ion{margin:0;}

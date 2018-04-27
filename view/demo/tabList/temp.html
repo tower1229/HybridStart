@@ -1,77 +1,60 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <link href="../../../sdk/ui.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet"></head>
-<body class="flex-col">
-    <div class="head myhead">
-        <div class="btn" id="goBack">
-            <i class="ion">&#xe651;</i>
+    <style>
+    .label-tab-head {
+        text-align: center;
+        background: #fff;
+    }
+
+    .label-tab-head .flex-1:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background: #dadada;
+    }
+
+    .label-tab-head .flex-1 {
+        position: relative;
+        height: 3em;
+        line-height: 3em;
+    }
+
+    .label-tab-head .flex-1.cur {
+        color: #fe6a11;
+    }
+
+    .label-tab-head .flex-1.cur:after {
+        height: 2px;
+        background: #fe6a11;
+    }
+    </style>
+
+    <body class="flex-col">
+        <div class="head myhead">
+            <div class="btn" id="goBack">
+                <i class="ion">&#xe651;</i>
+            </div>
+            <div class="title" id="headTitle">多标签列表</div>
         </div>
-        <div class="title" id="headTitle">多标签列表</div>
-    </div>
-    <div class="label-tab-head flex-row">
-        <div class="flex-1 cur" data-status='1'>处理中</div>
-        <div class="flex-1" data-status='2'>已完成</div>
-        <div class="flex-1" data-status='3'>未通过</div>
-    </div>
-    <div class="flex-1 scroll_cont" id="view">
-        <!-- main -->
-    </div>
-</body>
-    <script type="text/javascript">
-    var headNode = document.getElementsByTagName('head')[0];
-    var confNode = document.createElement('script');
-    var coreNode = document.createElement('script');
-    var selfPath = window.location.href;
-    var widgetPath = "widget://";
-    var pathMatch = selfPath.match(/\/view(.+)$/);
-    if(pathMatch[1]){
-        selfPath = pathMatch[1];
-        var index = -1;
-        var pathDeep = 0;
-        do {
-            index = selfPath.indexOf("/", index + 1);
-            if (index != -1) {
-                pathDeep++;
-            }
-        } while (index != -1);
-        if(pathDeep){
-            widgetPath  ="";
-            for(var deepStart = 0;deepStart<pathDeep;deepStart++){
-                widgetPath += "../";
-            }
-        }
-    }
+        <div class="label-tab-head flex-row">
+            <div class="flex-1 cur" data-status='1'>处理中</div>
+            <div class="flex-1" data-status='2'>已完成</div>
+            <div class="flex-1" data-status='3'>未通过</div>
+        </div>
+        <div class="flex-1 scroll_cont" id="view">
+            <!-- main -->
+        </div>
+    </body>
+    <script src="../../../sdk/loader.js" data-script="script">
+    </script>
 
-    confNode.type = "text/javascript";
-    confNode.src = widgetPath + "config.js";
-    coreNode.type = "text/javascript";
-
-    if (coreNode.addEventListener) {
-      coreNode.addEventListener("load", scriptOnload, false);
-    } else if (coreNode.readyState) {
-      coreNode.onreadystatechange = function() {
-        if (coreNode.readyState == "loaded" || coreNode.readyState == "complete") {
-          coreNode.onreadystatechange = null;
-          scriptOnload();
-        }
-      };
-    } else {
-      coreNode.onload = scriptOnload;
-    }
-    coreNode.src = widgetPath + "sdk/core.js";
-    coreNode.onerror = function(e){
-        console.log(JSON.stringify(e));
-    };
-    apiready = function() {
-      headNode.appendChild(confNode);
-      headNode.appendChild(coreNode);
-    };
-    function scriptOnload(){
-      seajs.use("./script");
-    }
-  </script></html>
+</html>

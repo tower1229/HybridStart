@@ -1,14 +1,14 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <link href="../../../sdk/ui.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    
-  </head>
-  <body class="flex-col">
+</head>
+
+<body class="flex-col">
     <div class="head myhead">
         <div class="btn" id="goBack">
             <i class="ion">&#xe651;</i>
@@ -16,77 +16,16 @@
         <div class="title" id="headTitle">插件管理</div>
     </div>
     <div class="flex-1 scroll_cont" id="view">
-      <textarea class="hide" template>
-        <div class="list">
-          <!-- for: ${data} as ${plugin} -->
-          <div class="item" data-remote="${plugin.remote}" data-path="${plugin.path}" data-index="${plugin.index}" data-name="${plugin.name}">
-            ${plugin.showName}
-          </div>
-          <!-- /for -->
-        </div>
-      </textarea>      
+        <textarea class="hide" template>
+            <div class="list">
+                <!-- for: ${data} as ${plugin} -->
+                <div class="item" data-remote="${plugin.remote}" data-path="${plugin.path}" data-index="${plugin.index}" data-name="${plugin.name}">
+                    ${plugin.showName}
+                </div>
+                <!-- /for -->
+            </div>
+        </textarea>
     </div>
-  </body>
-  <script type="text/javascript">
-    var headNode = document.getElementsByTagName('head')[0];
-    var confNode = document.createElement('script');
-    var coreNode = document.createElement('script');
-    var selfPath = window.location.href;
-    var widgetPath = "widget://";
-    var pathMatch = selfPath.match(/\/view(.+)$/);
-    if(pathMatch[1]){
-    	selfPath = pathMatch[1];
-    	var index = -1;
-		var pathDeep = 0;
-		do {
-			index = selfPath.indexOf("/", index + 1);
-			if (index != -1) { 
-				pathDeep++;
-			}
-		} while (index != -1);
-		if(pathDeep){
-			widgetPath  ="";
-			for(var deepStart = 0;deepStart<pathDeep;deepStart++){
-				widgetPath += "../";
-			}
-		}
-    }
-	
-    confNode.type = "text/javascript";
-    confNode.src = widgetPath + "config.js";
-    coreNode.type = "text/javascript";
-    
-    if (coreNode.addEventListener) {
-      coreNode.addEventListener("load", scriptOnload, false);
-    } else if (coreNode.readyState) {
-      coreNode.onreadystatechange = function() {
-        if (coreNode.readyState == "loaded" || coreNode.readyState == "complete") {
-          coreNode.onreadystatechange = null;
-          scriptOnload();
-        }
-      };
-    } else {
-      coreNode.onload = scriptOnload;
-    }
-    coreNode.src = widgetPath + "sdk/core.js";
-    coreNode.onerror = function(e){
-    	console.log(JSON.stringify(e));
-    };
-    apiready = function() {
-      headNode.appendChild(confNode);
-      headNode.appendChild(coreNode);
-    };
-    function scriptOnload(){
-      seajs.use("./script");
-      app.window.on('resume', function(){
-        if (start) {
-          var now = new Date().getTime();
-          console.log('js:' + (now - parseInt(start)));
-        }
-      });
-    };
-    //定时
-    var start = localStorage.getItem('crossParam');
-    //TODO:优化结果可用
-  </script>
+</body>
+<script src="../../../sdk/loader.js" data-script="script"> </script>
 </html>

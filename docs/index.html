@@ -69,19 +69,7 @@
         <p>SDK包含核心库、插件、公用代码、UI；View包含所有APP页面，APP页面体现为一个至少包含<code>temp.html</code>、<code>style.css</code>、<code>script.js</code>三个文件的文件夹，页面文件夹在<code>view/</code>中最多嵌套两层，即<code>/view/[...]/page/</code>。</p>
         <h4>开发模式</h4>
         <p>HybridStart 约定APP的生命周期为 <code>`root -> index(exit) <=> page <=> page ...`</code>，启动页即<code>root</code>通常没有任何可见内容，只执行APP的状态检测、插件调用、监听、数据初始化等操作，完成后直接跳转到用户可见的首页(<code>index</code>)，首页与展示页之间任意跳转返回，但要在首页拦截返回键，使(安卓)APP无法返回启动页，而是退出APP，整个生命周期内启动页都在后台运行。</p>
-        <h4>交互约定</h4>
-        <p>约定前后端交互数据基本格式如下：</p>
-        <pre>
-          <code>
-{
-    "status": "Y",      //请求的状态 "Y"/"N"，也可以根据情况扩展其他
-    "data": [{...}],    //请求的数据 数组或对象
-    "msg": "",          //【可选】服务端提示信息
-    "count": [number]   //【可选】当获取列表数据时，需附加count数据指明列表总数，用于前段判断是否还有更多
-}
-          </code>
-        </pre>
-
+        
         <h3 id="getStart">快速开始</h3>
         <ol>
             <li>在APICloud平台创建新项目，添加以下模块：UIPullRefreshFlash、ajpush、bMap、mam</li>
@@ -1412,12 +1400,6 @@ app.window.animPopover({
                         <td>dataType</td>
                         <td>
                             <p>请求数据格式，默认<code>"json"</code></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>checkData</td>
-                        <td>
-                            <p>是否检查约定数据格式，仅当dataType为"json"时有效，默认<code>true</code></p>
                         </td>
                     </tr>
                     <tr>

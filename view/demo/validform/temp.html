@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <link href="../../../sdk/ui.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
 
 </head>
 
@@ -19,10 +18,10 @@
     </div>
     <div class="flex-1 flex-col scroll_cont">
 
-        <form class="list" id="reg_form">
+        <form class="list" id="form">
             <label class="item item-input">
                 <label>用户名：</label>
-                <input type="text" class="inp" name="username" datatype="/^[A-Za-z0-9\u9fa5@\u9fa5.]{2,20}$/" sucmsg="用户名验证通过！" nullmsg="请输入用户名！" errormsg="用户名非法!">
+                <input type="text" class="inp" name="username" datatype="*" nullmsg="请输入用户名！" >
             </label>
             <label class="item item-input">
                 <label>密 码：</label>
@@ -33,12 +32,8 @@
                 <input type="password" name="userpassword2" datatype="*" recheck="userpassword" errormsg="您两次输入的密码不一致！">
             </label>
             <label class="item item-input">
-                <label>邮箱：</label>
-                <input type="text" class="inp" name="email" datatype="e" errormsg="请输入正确的邮箱!" ignore="ignore">
-            </label>
-            <label class="item item-input">
                 <label>验证码：</label>
-                <input type="text" class="inp" name="validnum" datatype="*" ajaxurl="http://host.refined-x.com/test/validRand.php" sucmsg="验证码正确！" nullmsg="请输入验证码！" errormsg="验证码错误!">
+                <input type="text" class="inp" name="validnum" datatype="*" nullmsg="请输入验证码！" >
                 <img src="http://temp.im/80x20/?text=8888" id="rand">看不清？<a href="###" id="">换一张</a>
             </label>
             <div class="p">
@@ -49,58 +44,6 @@
 
     </div>
 </body>
-<script type="text/javascript">
-    var headNode = document.getElementsByTagName('head')[0];
-    var confNode = document.createElement('script');
-    var coreNode = document.createElement('script');
-    var selfPath = window.location.href;
-    var widgetPath = "widget://";
-    var pathMatch = selfPath.match(/\/view(.+)$/);
-    if(pathMatch[1]){
-    	selfPath = pathMatch[1];
-    	var index = -1;
-		var pathDeep = 0;
-		do {
-			index = selfPath.indexOf("/", index + 1);
-			if (index != -1) { 
-				pathDeep++;
-			}
-		} while (index != -1);
-		if(pathDeep){
-			widgetPath  ="";
-			for(var deepStart = 0;deepStart<pathDeep;deepStart++){
-				widgetPath += "../";
-			}
-		}
-    }
-	
-    confNode.type = "text/javascript";
-    confNode.src = widgetPath + "config.js";
-    coreNode.type = "text/javascript";
-    
-    if (coreNode.addEventListener) {
-      coreNode.addEventListener("load", scriptOnload, false);
-    } else if (coreNode.readyState) {
-      coreNode.onreadystatechange = function() {
-        if (coreNode.readyState == "loaded" || coreNode.readyState == "complete") {
-          coreNode.onreadystatechange = null;
-          scriptOnload();
-        }
-      };
-    } else {
-      coreNode.onload = scriptOnload;
-    }
-    coreNode.src = widgetPath + "sdk/core.js";
-    coreNode.onerror = function(e){
-    	console.log(JSON.stringify(e));
-    };
-    apiready = function() {
-      headNode.appendChild(confNode);
-      headNode.appendChild(coreNode);
-    };
-    function scriptOnload(){
-      seajs.use("./script");
-    }
-  </script>
+<script src="../../../sdk/loader.js" data-script="script"> </script>
 
 </html>

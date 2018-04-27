@@ -5,7 +5,110 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<meta name="format-detection" content="telephone=no">
 		<link href="../../../sdk/ui.css" rel="stylesheet">
-		<link href="style.css" rel="stylesheet">
+		<style>
+.item .form-control {
+  line-height: 32px;
+  height: 32px;
+  padding: 0 8px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  vertical-align: middle;
+  transition: border-color ease-in-out 0.1s;
+  color: #555555;
+  border: 1px solid #e8e9eb;
+  background: #fff;
+  border-radius: 4px;
+}
+.input-group {
+  display: table;
+  position: relative;
+  overflow: hidden;
+  border-collapse: separate;
+  vertical-align: top;
+}
+.input-group[class*='col-'] {
+  float: none;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.input-group-addon {
+  border-radius: .25em;
+  font-size: 1.1em;
+  font-weight: normal;
+  text-align: center;
+  background-color: #eeeeee;
+  color: #555555;
+  border: 1px solid #e8e9eb;
+  border-left-width: 0;
+  border-right-width: 0;
+  width: 32px;
+  box-sizing: content-box;
+  height: 30px;
+  line-height: 30px;
+  border-right-width: 1px\9;
+}
+.input-group-addon.noborder {
+  border: 0;
+}
+.input-group-lg > .input-group-addon.noborder {
+  padding: 0;
+}
+.input-group-addon,
+.input-group-btn,
+.input-group .form-control {
+  display: table-cell;
+}
+.input-group-addon:not(:first-child):not(:last-child),
+.input-group-btn > .btn:not(:first-child):not(:last-child),
+.input-group .form-control:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+.input-group-addon .btn {
+  vertical-align: top;
+}
+.input-group-addon,
+.input-group-btn {
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.input-group-addon.input-sm {
+  font-size: 12px;
+  padding: 5px 8px;
+}
+.input-group-addon.input-lg {
+  font-size: 16px;
+  padding: 8px;
+}
+.input-group-addon input[type='radio'],
+.input-group-addon input[type='checkbox'] {
+  margin-top: 0;
+}
+.input-group .form-control:first-child,
+.input-group-addon:first-child,
+.input-group-btn > .btn:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.input-group-addon:first-child {
+  border-left-width: 1px;
+}
+.input-group .form-control:last-child,
+.input-group-addon:last-child,
+.input-group-btn > .btn:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.input-group-addon:last-child {
+  border-right-width: 1px;
+}
+.input-group-addon:last-child .btn {
+  border-radius: 0 4px 4px 0;
+}
+
+
+		</style>
 		
 	</head>
 	<body class="flex-col">
@@ -29,57 +132,5 @@
             <div class="p" id="log"></div>
 		</div>
 	</body>
-	<script type="text/javascript">
-    var headNode = document.getElementsByTagName('head')[0];
-    var confNode = document.createElement('script');
-    var coreNode = document.createElement('script');
-    var selfPath = window.location.href;
-    var widgetPath = "widget://";
-    var pathMatch = selfPath.match(/\/view(.+)$/);
-    if(pathMatch[1]){
-    	selfPath = pathMatch[1];
-    	var index = -1;
-		var pathDeep = 0;
-		do {
-			index = selfPath.indexOf("/", index + 1);
-			if (index != -1) { 
-				pathDeep++;
-			}
-		} while (index != -1);
-		if(pathDeep){
-			widgetPath  ="";
-			for(var deepStart = 0;deepStart<pathDeep;deepStart++){
-				widgetPath += "../";
-			}
-		}
-    }
-	
-    confNode.type = "text/javascript";
-    confNode.src = widgetPath + "config.js";
-    coreNode.type = "text/javascript";
-    
-    if (coreNode.addEventListener) {
-      coreNode.addEventListener("load", scriptOnload, false);
-    } else if (coreNode.readyState) {
-      coreNode.onreadystatechange = function() {
-        if (coreNode.readyState == "loaded" || coreNode.readyState == "complete") {
-          coreNode.onreadystatechange = null;
-          scriptOnload();
-        }
-      };
-    } else {
-      coreNode.onload = scriptOnload;
-    }
-    coreNode.src = widgetPath + "sdk/core.js";
-    coreNode.onerror = function(e){
-    	console.log(JSON.stringify(e));
-    };
-    apiready = function() {
-      headNode.appendChild(confNode);
-      headNode.appendChild(coreNode);
-    };
-    function scriptOnload(){
-      seajs.use("./script");
-    }
-  </script>
+	<script src="../../../sdk/loader.js" data-script="script"> </script>
 </html>
