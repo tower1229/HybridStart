@@ -58,6 +58,7 @@
   |    |-- core.js              //核心库
   |    |-- server.js            //业务方法
   |    |-- common.js            //页面公用代码
+       |-- loader.js            //异步脚本加载器
   |    `-- ui.css               //默认UI
   |-- view/                 //APP页面(内附示例，开发中移除)
   |-- config.js             //HybridStart配置
@@ -2495,6 +2496,24 @@ require.async('upload', function(uploader) {
     </section>
     <section class="wrap" id="solution">
         <h2>解决方案</h2>
+        <h3 id="solution-speed">进场动画提速</h3>
+        <p>框架使用seajs作为脚本加载器，按照约定页面文件和脚本文件位于同目录下，因此页面加载js正常应该在底部这样写：</p>
+        <pre>
+            <code>
+&lt;script src=&quot;../../config.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../sdk/core.js&quot; id=&quot;seajsnode&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+seajs.use('./script');
+&lt;/script&gt;
+            </code>
+        </pre>
+        <p>但实测发现APICloud引擎有一套页面加载优化机制，打开新窗口时会等待页面脚本执行完毕才启动进场动画，如果页面包含异步数据渲染还需要等待异步内容渲染完毕，以保证页面进场时是完整且稳定的，这套机制带来的问题是打开页面前会有不规则的等待时间，严重时会有卡顿的感觉。</p>
+        <p>想要绕过这套机制，可以在<code>apiready</code>回调中动态拼装脚本标签并插入页面，此时页面进场动画已经开始，脚本的执行就不会阻塞进场动画了。框架内置的<code>sdk/loader.js</code>专门用来实现该功能，只要页面底部引入loader.js就可以非阻塞的加载同目录下指定名称的脚本，例如：</p>
+        <pre>
+            <code>
+&lt;script src=&quot;../../../sdk/loader.js&quot; data-script=&quot;script&quot;&gt;&lt;/script&gt;
+            </code>
+        </pre>
         <h3 id="solution-crypto">请求加密</h3>
         <p>开启请求加密，需要将配置文件中的<code>appcfg.ajax.crypto.enable</code>设置为true，并填写加密接口<code>appcfg.ajax.crypto.url</code>，默认使用3DES加密算法，加密密码保存在<code>res/key.xml</code>中，打包后自动加密，使用apicloud专用api获取。</p>
         <h4>发送请求</h4>
