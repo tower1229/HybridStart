@@ -2514,6 +2514,28 @@ seajs.use('./script');
 &lt;script src=&quot;../../../sdk/loader.js&quot; data-script=&quot;script&quot;&gt;&lt;/script&gt;
             </code>
         </pre>
+        <p>使用异步脚本加载器加载的脚本可以直接调用引擎方法，不需要在<code>app.ready()</code>回调中执行。</p>
+        <h4>调试方法</h4>
+        <p>因为异步加载时机是`apiready`，导致只有在真机上脚本才能运行，给js调试带来不小的麻烦，推荐大家使用官方IDE开启WiFi调试，这样js中的console信息可以在IDE的console面板中输出，需要注意的是这种方式不支持输出对象类型，当需要输出对象时需要先用<code>JSON.stringify()</code>将对象转成字符串。</p>
+        <p>除了js运行中的调试信息外，异步数据的返回结果我们最常需要输出的，我们可以找到框架封装的<code>app.ajax()</code>方法，在其中处理返回数据处插入一个输出语句，就可以在IDE中输出所有异步请求的返回结果了。</p>
+        <pre>
+            <code>
+    //在sdk/core.js 的大约1277行
+    ...
+    }else{
+        opt.data = {
+            values: opt.data
+        };
+    }
+    console.log(JSON.stringify(opt))        //输出请求参数
+    api.ajax(opt, function(res, err) {
+        console.log(JSON.stringify(res))    //输出请求结果
+        handleRes(res);
+        handleError(res, err);
+    });
+    ...
+            </code>
+        </pre>
         <h3 id="solution-crypto">请求加密</h3>
         <p>开启请求加密，需要将配置文件中的<code>appcfg.ajax.crypto.enable</code>设置为true，并填写加密接口<code>appcfg.ajax.crypto.url</code>，默认使用3DES加密算法，加密密码保存在<code>res/key.xml</code>中，打包后自动加密，使用apicloud专用api获取。</p>
         <h4>发送请求</h4>
