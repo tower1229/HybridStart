@@ -13,10 +13,17 @@
 - 丰富的示例，助你快速上手
 
 ## 快速开始 
-- 在apicloud平台创建项目，将代码检出到本地，然后清空所有文件
-- 将[Hybrid Start项目](https://github.com/tower1229/HybridStart.git)除"/docs"以外文件拷贝进项目文件夹
-- 修改`config.xml`中appid
-- 提交代码，平台打包安装
+- 在在APICloud平台创建新项目，添加[默认集成插件](#默认集成插件)
+- 将代码检出到本地，备份config.xml中的`appid`信息并清空所有文件
+- 将[Hybrid Start项目](https://github.com/tower1229/HybridStart.git)除"/docs"以外文件拷贝进项目文件夹，修改新config.xml里的`appid`
+- 提交代码，平台打包
+
+## 默认集成插件
+- [UIPullRefreshFlash](http://docs.apicloud.com/Client-API/UI-Layout/UIPullRefreshFlash)自定义下拉刷新
+- [ajpush](http://docs.apicloud.com/Client-API/Open-SDK/ajpush)极光推送
+- [bMap](http://docs.apicloud.com/Client-API/Open-SDK/bMap)百度地图
+- [mam](http://docs.apicloud.com/Client-API/Cloud-Service/mam)版本管理必备
+- [zip](https://docs.apicloud.com/Client-API/Func-Ext/zip)扩展插件解压
 
 ## 文档 
 [HybridStart Documention](http://refined-x.com/HybridStart/docs/)
@@ -30,14 +37,6 @@
 git：`git clone https://github.com/tower1229/HybridStart.git`
 
 npm：`npm i hybridstart`
-
-
-## 默认集成插件
-- [UIPullRefreshFlash](http://docs.apicloud.com/Client-API/UI-Layout/UIPullRefreshFlash)自定义下拉刷新
-- [ajpush](http://docs.apicloud.com/Client-API/Open-SDK/ajpush)极光推送
-- [bMap](http://docs.apicloud.com/Client-API/Open-SDK/bMap)百度地图
-- [mam](http://docs.apicloud.com/Client-API/Cloud-Service/mam)版本管理必备
-- [zip](https://docs.apicloud.com/Client-API/Func-Ext/zip)扩展插件解压
 
 ## 资源
 [体验APP](http://app.mi.com/details?id=com.apicloud.A6997660453388)
