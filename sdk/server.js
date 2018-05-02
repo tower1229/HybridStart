@@ -59,15 +59,19 @@ define(function(require, exports, module) {
 	var logout = function() {
 		app.storage.remove('user');
 		//注销推送
-		var ajpush = api.require('ajpush');
-		ajpush.bindAliasAndTags({
-			alias: '',
-			tags: []
-		}, function(ret) {
-			if (ret.statusCode) {
-				console.log('推送已注销');
-			}
-		});
+		try {
+			var ajpush = api.require('ajpush');
+			ajpush.bindAliasAndTags({
+				alias: '',
+				tags: []
+			}, function(ret) {
+				if (ret.statusCode) {
+					console.log('推送已注销');
+				}
+			});
+		} catch (e) {
+			console.log(e.message)
+		}
 		app.openView({
 			closeback: true
 		}, 'member', 'login');
@@ -91,7 +95,7 @@ define(function(require, exports, module) {
 			}, function(ret, err) {
 				if (ret) {
 					console.log("user_" + userData.id + "成功注册推送");
-				}else{
+				} else {
 					console.log(JSON.stringify(err));
 				}
 			});
@@ -129,10 +133,12 @@ define(function(require, exports, module) {
 		var _user = app.storage.val('user');
 		if (!$.isPlainObject(_user) && !hold) {
 			app.alert('请先登录！', function() {
-					app.openView(null, 'member', 'login');
-				}, {
-					bgclose: false
-				});
+				app.openView({
+					closeback: true
+				}, 'member', 'login');
+			}, {
+				bgclose: false
+			});
 			return null;
 		}
 		return _user;
@@ -173,7 +179,7 @@ define(function(require, exports, module) {
 			}
 		});
 	};
-	
+
 	//数据预取
 	var preGet = function(callback) {
 		var got = 0,
@@ -186,7 +192,7 @@ define(function(require, exports, module) {
 					resolved = null;
 					preGetList = null;
 				}
-			}, 
+			},
 			checkPreget = function() {
 				var hasResolved = true;
 				$.each(preGetList, function(i, e) {
@@ -196,7 +202,7 @@ define(function(require, exports, module) {
 				});
 				return hasResolved;
 			};
-		if(checkPreget()){
+		if (checkPreget()) {
 			return callback();
 		}
 		$.each(preGetList, function(i, e) {
@@ -207,7 +213,7 @@ define(function(require, exports, module) {
 					resolved();
 					if (res.data) {
 						var data = res.data;
-						if(data){
+						if (data) {
 							if (data.split) {
 								data = JSON.parse(data);
 							}
@@ -225,7 +231,7 @@ define(function(require, exports, module) {
 		url: 'http://rap2api.taobao.org/app/mock/3567/return/Yes',
 		data: {}
 	}];
-	
+
 	//检查升级
 	var checkUpdate = function(silence) {
 		var mam = api.require('mam');
@@ -294,12 +300,12 @@ define(function(require, exports, module) {
 			app.loading.hide();
 			if (ret && ret.status) {
 				chaoshi = clearTimeout(chaoshi);
-				if(ret.lat && ret.lon){
+				if (ret.lat && ret.lon) {
 					app.storage.val('gps', {
 						lat: ret.lat,
 						lng: ret.lon
 					});
-				}else{
+				} else {
 					console.log('bMap.getLocation定位异常');
 				}
 				bMap.stopLocation();
@@ -310,7 +316,7 @@ define(function(require, exports, module) {
 				if (typeof(errcb) === 'function') {
 					errcb();
 				} else {
-					app.toast('GPS定位失败：' + JSON.stringify(err) );
+					app.toast('GPS定位失败：' + JSON.stringify(err));
 				}
 			}
 		});
@@ -346,8 +352,8 @@ define(function(require, exports, module) {
 		if (!$.isPlainObject(data)) {
 			data = {};
 		}
-		if(templateCache[tempName+JSON.stringify(data)]){
-			return templateCache[tempName+JSON.stringify(data)];
+		if (templateCache[tempName + JSON.stringify(data)]) {
+			return templateCache[tempName + JSON.stringify(data)];
 		}
 		var etplEngine = new etpl.Engine();
 		var template = api.readFile({
@@ -356,9 +362,9 @@ define(function(require, exports, module) {
 		});
 		etplEngine.compile(template);
 		var Render = etplEngine.getRenderer(tempName);
-		if(Render){
+		if (Render) {
 			var html = Render(data);
-			templateCache[tempName+JSON.stringify(data)] = html;
+			templateCache[tempName + JSON.stringify(data)] = html;
 			app.storage.val('templateCache', templateCache);
 			return html;
 		} else {
@@ -390,7 +396,7 @@ define(function(require, exports, module) {
 					}
 					ele.removeAttribute('data-remote');
 					cacheCount++;
-					if(cacheCount===remoteEle.length){
+					if (cacheCount === remoteEle.length) {
 						typeof callback === 'function' && callback();
 					}
 				});
@@ -398,7 +404,7 @@ define(function(require, exports, module) {
 		});
 		return remoteEle;
 	};
-	
+
 	module.exports = {
 		logout: logout,
 		initUser: initUser,

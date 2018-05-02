@@ -14,7 +14,7 @@ define(function(require) {
 			}, 'demo', 'index');
 		});
 	};
-
+	
 	app.ready(function() {
 		//极光推送
 		var ajpush = api.require('ajpush');

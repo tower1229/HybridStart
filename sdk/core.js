@@ -64,7 +64,7 @@ var apputil = (function(document, undefined) {
 				return wrap([selector], null);
 			}
 		if (typeof selector === 'function')
-			return $.ready(selector);
+			return selector();
 		if (typeof selector === 'string') {
 			try {
 				selector = selector.trim();
@@ -1153,14 +1153,14 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 				break;
 		}
 	};
-	var ajaxTag = 0;
+	var ajaxTag = parseInt(Math.random()*1e6);
 	var requestAjax = function(config) {
 		var opt = $.extend({
-			tag: 'ajax-tag' + (++ajaxTag),
+			tag: 'ajax-tag-' + ajaxTag,
 			method: appcfg.ajax.type,
 			dataType: 'json',
 			timeout: appcfg.set.outime / 1000,
-			snapshoot: null 		//添加为快照
+			snapshoot: false 		//添加为快照
 		}, config);
 		var urlkey = opt.url + JSON.stringify(opt.param);
 
@@ -1194,8 +1194,14 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 				tempSucc(res);
 			}
 		}
+		//清理数据
 		delete opt.success;
 		delete opt.type;
+		delete opt.tiptype;
+		delete opt.tipSweep;
+		delete opt.postonce;
+		delete opt.ajaxPost;
+		delete opt.checkTime;
 		//请求加密
 		if (appcfg.ajax.crypto.enable && $.isPlainObject(opt['data'])) {
 			var CryptoJS = app.crypto;
@@ -1388,17 +1394,19 @@ app.ready(function() {
 				}
 				break;
 			case "closeback": //关闭后台页面
-				setTimeout(function() {
-					if (!!window.isBack && api.systemType === 'android') {
-						//console.log('closeback:' + api.winName);
-						api.closeWin({
-							name: api.winName,
-							animation:{
-								type:"none"
-							}
-						});
-					}
-				}, appcfg.set.animateDuration + 300)
+				if(api.systemType === 'android'){
+					setTimeout(function() {
+						if (!!window.isBack) {
+							//console.log('closeback:' + api.winName);
+							api.closeWin({
+								name: api.winName,
+								animation:{
+									type:"none"
+								}
+							});
+						}
+					}, appcfg.set.animateDuration + 300)
+				}
 				break;
 			default:
 				console.log(msg)
@@ -1406,10 +1414,11 @@ app.ready(function() {
 	});
 	//发布关闭指令
 	var currentWinCloseCondition = app.storage.val('winCloseCondition');
-	if (currentWinCloseCondition) {
+	if (currentWinCloseCondition && api.systemType === 'android') {
+		//ios会报错，仅用于安卓
 		app.publish('closeback', currentWinCloseCondition);
 		setTimeout(function() {
 			app.storage.remove('winCloseCondition');
-		}, 100)
+		}, 200)
 	}
 });

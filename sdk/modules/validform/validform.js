@@ -44,7 +44,6 @@ define('validform', function(require, exports, module) {
 		defaults = {
 			tiptype: 1,
 			tipSweep: true,
-			showAllError: false,
 			postonce: false,
 			ajaxPost: true,
 			checkTime: 100 //验证延时
@@ -83,7 +82,8 @@ define('validform', function(require, exports, module) {
 						Validform.util.check.call(that, $this, subpost);
 					}, curform.settings.checkTime);
 				})
-				.on('submit',function(){
+				.on('submit',function(event){
+					event.preventDefault();
 					var subflag = Validform.util.submitForm.call($this, curform.settings);
 					subflag === undef && (subflag = true);
 					return subflag;
@@ -649,9 +649,7 @@ define('validform', function(require, exports, module) {
 				_this.removeClass("Validform_error");
 				errorobj = null;
 			});
-			if (settings.showAllError) {
-				curform.find(".Validform_error:first").focus();
-			}
+
 			if (flag) {
 				if(!flg){
 					var beforeSubmit;
@@ -665,7 +663,6 @@ define('validform', function(require, exports, module) {
 					}
 				}
 				curform[0].validform_status = "posting";
-				
 				if (settings.ajaxPost || ajaxPost === "ajaxPost") {
 					var ajaxsetup = $.extend(true, {}, settings);
 					ajaxsetup.url = url || ajaxsetup.url || settings.url || curform.attr("action");
@@ -674,11 +671,7 @@ define('validform', function(require, exports, module) {
 						type: 1,
 						sweep: settings.tipSweep
 					}, "byajax");
-					if (sync) {
-						ajaxsetup.async = false;
-					} else if (sync === false) {
-						ajaxsetup.async = true;
-					}
+
 					if (ajaxsetup.success) {
 						var temp_suc = ajaxsetup.success;
 						ajaxsetup.success = function(data) {
@@ -732,7 +725,6 @@ define('validform', function(require, exports, module) {
 
 					var localconfig = {
 						type: "POST",
-						async: true,
 						data: _sendData, //$.extend(_sendData, settings.ajaxData || {}),
 						dataType: settings.dataType || 'json',
 						success: function(data) {
@@ -756,7 +748,15 @@ define('validform', function(require, exports, module) {
 						}
 					};
 					ajaxsetup = $.extend({}, localconfig, ajaxsetup);
-					curform[0].validform_ajax = ajaxRequest(ajaxsetup);
+					setTimeout(function(){
+						try{
+							curform[0].validform_ajax = ajaxRequest(ajaxsetup);
+						}catch(e){
+							//ios报错兼容
+							curform[0].validform_ajax = {abort:null};
+						}
+					},100)
+					return null;
 				} else {
 					if (!settings.postonce) {
 						curform[0].validform_status = "normal";

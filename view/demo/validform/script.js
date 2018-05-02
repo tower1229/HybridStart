@@ -3,6 +3,7 @@
  */
 define(function(require) {
 	require('sdk/common');
+	var $ = app.util;
 	//js
 	var Validform = require('validform');
 	var loginForm = Validform('#form', {
@@ -13,5 +14,5 @@ define(function(require) {
 		}
 	});
 
-	
+
 });

@@ -9,6 +9,7 @@
 .loginWrap{height:100%; box-sizing:border-box;padding-top: 20%; background:#fff;}
 .wLogo{width:6.6em;height:7.2em;margin:0 auto 1em;background: #eee;
 background-size: 100% auto;}
+.wLogo img{width: 100%;}
 .loginForm{padding:0 1.2em; }
 .loginForm .item{ height: 4em; border:0;border-bottom: 1px solid #ccc;margin:0;}
 .loginForm .input-label{width:1.5em; }
@@ -27,7 +28,9 @@ background-size: 100% auto;}
     </head>
     <body>
         <div class="loginWrap">
-            <div class="wLogo"></div>
+            <div class="wLogo">
+                <img src="logo.png" alt="">
+            </div>
             <form class="list loginForm" id="logForm">
                 <label class="item item-input">
                     <span class="input-label"><i class="ion">&#xe698;</i></span>
@@ -38,11 +41,11 @@ background-size: 100% auto;}
                     <input type="password" datatype="*6-16" name="password" id="password" placeholder="请输入密码">
                 </div>
                 <div class="item tr" style="border-bottom:0">
-                    <span class="btn btn-link btn-sm" id="forgetPw">忘记密码</span>
+                    <span class="btn btn-link btn-sm">忘记密码</span>
                 </div>
-                <button type="submit" class="btn btn-block btn-primary _sub">登录</button>
+                <button type="submit" class="btn btn-block btn-primary mysub">登录</button>
                 <div class="item _quick tr" style="border-bottom:0">
-                    <span class="btn btn-link btn-sm" id="toReg">立即注册</span>
+                    <span class="btn btn-link btn-sm">立即注册</span>
                 </div>
             </form>
         </div>
