@@ -91,7 +91,6 @@ define(function(require) {
 	};
 
 	app.ready(function() {
-
 		app.window.popoverElement({
 			id: 'View',
 			name: 'pageView',
