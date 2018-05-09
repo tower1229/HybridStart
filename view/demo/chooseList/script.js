@@ -74,7 +74,10 @@ define(function(require) {
 			}
 		}, 'common', 'chooseList');
 	});
-
+	//接收返回事件
+	app.subscribe('choosenItem',function(choosenItem){
+		console.log(choosenItem)
+	});
 
 	
 });

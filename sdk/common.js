@@ -132,17 +132,7 @@ define(function(require, exports, module) {
 				});
 			}
 		}
-		if (platform === 'ios') {
-			if (parseFloat(version) >= 9) {
-				$body.on('click', '.item-radio', function() {
-					var $view = $(this).parent();
-					$view.css('visibility', 'hidden');
-					setTimeout(function() {
-						$view.css('visibility', 'visible');
-					}, 0);
-				});
-			}
-		}
+		
 		//自动加载data-src
 		app.window.on('resume', function(){
 			$.each($('[data-src]'), function(i, ele){

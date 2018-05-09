@@ -96,5 +96,9 @@ define(function(require) {
 		});
 		pageLoadObj.reload();
 	});
-	
+	//通知父页面
+	app.window.evaluate({
+		script: "childrenInit()"
+	});
+
 });

@@ -12,8 +12,9 @@ define(function(require) {
 		bounce: true,
 	});
 
-
-	var setData = function(status) {
+	
+	window.childrenInit = function() {
+		var status = $('.label-tab-head .flex-1')[0].dataset.status;
 		app.window.evaluate(null, 'view', 'getData("'+status+'")');
 	};
 
@@ -24,13 +25,9 @@ define(function(require) {
 		}
 		$('.label-tab-head .cur')[0].classList.remove('cur');
 		e.target.classList.add('cur');
-		setData(e.target.dataset.status);
+		var status = e.target.dataset.status;
+		app.window.evaluate(null, 'view', 'getData("'+status+'")');
 	});
-
-
-	setTimeout(function() {
-		setData("1");
-	}, 300);
 
 
 });

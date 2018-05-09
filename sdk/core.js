@@ -957,8 +957,11 @@ var apputil = (function(document, undefined) {
 				z: 0
 			}
 		}, config || {});
+		//IOS不允许传递包含function的对象
+		var cbTemp = opt.callback;
+		delete opt.callback;
 		api.animation(opt, function(ret, err) {
-			typeof opt.callback === 'function' && opt.callback(ret, err);
+			typeof cbTemp === 'function' && cbTemp(ret, err);
 		});
 		return opt.name;
 	}
@@ -1166,10 +1169,11 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 
 		//返回结果处理
 		var tempSucc = opt.success;
+		var tempErr = opt.error;
 		var handleError = function(res, err) {
 			if (!res) {
-				if (typeof(opt['error']) === 'function') {
-					opt['error'](err);
+				if (typeof(tempErr) === 'function') {
+					tempErr(err);
 				} else {
 					app.loading.hide();
 					catchAjaxError(err.code, err.statusCode);
@@ -1191,11 +1195,15 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 				if(opt.snapshoot && !fromSnap){
 					app.storage.val(urlkey, res);
 				}
-				tempSucc(res);
+				typeof(tempSucc)==='function' && tempSucc(res);
 			}
 		}
 		//清理数据
 		delete opt.success;
+		delete opt.error;
+		delete opt.callback;
+		delete opt.beforeCheck;
+		delete opt.beforeSubmit;
 		delete opt.type;
 		delete opt.tiptype;
 		delete opt.tipSweep;
@@ -1280,8 +1288,13 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 				values: opt.data
 			};
 		}
-		//console.log(JSON.stringify(opt))
+		// var aaaaalist = [];
+		// for(var x in opt){
+		// 	aaaaalist.push(x)
+		// }
+		// console.log(aaaaalist.join(' '))
 		api.ajax(opt, function(res, err) {
+			//console.log(JSON.stringify(res))
 			handleRes(res);
 			handleError(res, err);
 		});

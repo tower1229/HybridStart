@@ -19,7 +19,9 @@ define(function(require) {
     var doRend = render({
         el: '#storeList',
         callback: function(){
-            app.loading.hide()
+            app.window.evaluate({
+                script: 'app.loading.hide()'
+            });
         }
     });
 
@@ -44,7 +46,9 @@ define(function(require) {
                 if (res.status === 'Y') {
                     dataRender(res, getMore);
                 } else {
-                	app.loading.hide();
+                	app.window.evaluate({
+                        script: 'app.loading.hide()'
+                    });
                     $('#storeList')[0].innerHTML = '';
                     app.toast(res.msg, {
                         color: 'danger',
@@ -96,9 +100,6 @@ define(function(require) {
             var thisObj = getListById($(this).data('id'), extParam.data);
             $.extend(choosenItem, thisObj);
             app.storage.val('choosenItem',JSON.stringify(choosenItem));
-            app.window.evaluate({
-                script: 'submitChoose()'
-            });
         }
     }).on('touchstart','.chooseListHookMulti',function(){
         //多选
@@ -109,28 +110,22 @@ define(function(require) {
         $(this).data('acting',false);
     }).on('touchend', '.chooseListHookMulti',function(){
         if($(this).data('acting')){
-            if(this.className.indexOf(' active')!==-1){
-                var _catchData = choosenItem.data, _catchId = $(this).data('id');
-                var cacheClass = this.className;
-                this.className = cacheClass.replace(/\s*active/g, '');
+            if(this.querySelector('input:checked')){
+                var _catchData = choosenItem.data, 
+                    _catchId = $(this).data('id');
                 $.each(_catchData,function(i,e){
                     if(e.id==_catchId){
                         _catchData.splice(i,1);
                         return false;
                     }
                 });
+                choosenItem.data = _catchData;
             }else{
-                this.className = (this.className + ' active');
                 choosenItem.data.push({
-                    part_id:$(this).data('id'),
-                    name:$(this).data('name'),
-                    code:$(this).data('code'),
-                    spec:$(this).data('spec'),
-                    units:$(this).data('units'),
-                    part_flag:$(this).data('flag'),
-                    img:$(this).data('img')
+                    id:$(this).data('id')
                 });
             }
+            
             app.storage.val('choosenItem',JSON.stringify(choosenItem));
         }
     }).on('click','.item-icon-right',function(){

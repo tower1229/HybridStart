@@ -10,9 +10,6 @@ define(function(require) {
     var $ = app.util;
     var extParam = app.getParam();
 
-    if(extParam && extParam.multi){
-        $('#ok')[0].style.display = 'block';
-    }
     var submitChoose = function(){
         var choosenItem = app.storage.val('choosenItem');
         setTimeout(function(){
@@ -24,10 +21,10 @@ define(function(require) {
         },0);
     };
     //选好了
-    $('#ok').on('click',function(){
+    $('#ok').on('click', function(){
         submitChoose();
     });
-    window.submitChoose = submitChoose;
+    
     //loading
     app.loading.show();
     

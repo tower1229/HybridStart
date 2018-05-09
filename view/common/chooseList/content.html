@@ -15,17 +15,20 @@
         <!-- for: ${data} as ${store} -->
         <!-- if: ${store.hasSub} != 1 -->
             <!-- if: ${store.multi} -->
-            <label class="item item-radio radio-primary chooseListHookMulti" data-id="${store.id}">
-                <input type="radio">
+            <div class="item item-checkbox radio-primary chooseListHookMulti" data-id="${store.id}">
+                <label class="checkbox checkbox-primary">
+                    <input type="checkbox" name="checkbox">
+                </label>
                 ${store.name}
-            </label>
-            <!-- else -->
-            <div class="item chooseListHook" data-id="${store.id}">
-            ${store.name}
-            <!-- if: ${store.note} -->
-            <div class="item-note">${store.note}</div>
-            <!-- /if -->
             </div>
+            <!-- else -->
+            <label class="item item-radio radio-primary chooseListHook" data-id="${store.id}">
+                <input type="radio" name="radio">
+                ${store.name}
+                <!-- if: ${store.note} -->
+                <div class="item-note">${store.note}</div>
+                <!-- /if -->
+            </label>
             <!-- /if -->
         <!-- else -->
         <label class="item item-icon-right" data-id="${store.id}">

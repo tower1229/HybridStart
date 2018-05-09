@@ -24,7 +24,6 @@ define(function(require) {
 			case "cache":
 				app.ajax({
 					url: "http://spider.dcloud.net.cn/api/banner/36kr",
-					checkData: false,
 					cache: true,
 					success: function(res) {
 						app.loading.hide();

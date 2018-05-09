@@ -542,8 +542,8 @@ define('validform', function(require, exports, module) {
 						return true;
 					}
 				};
-				if (ajaxsetup.success) {
-					var temp_suc = ajaxsetup.success;
+				if (ajaxsetup.callback) {
+					var temp_suc = ajaxsetup.callback;
 					ajaxsetup.success = function(data) {
 						localconfig.success(data);
 						temp_suc(data, inputobj);
@@ -672,8 +672,8 @@ define('validform', function(require, exports, module) {
 						sweep: settings.tipSweep
 					}, "byajax");
 
-					if (ajaxsetup.success) {
-						var temp_suc = ajaxsetup.success;
+					if (ajaxsetup.callback) {
+						var temp_suc = ajaxsetup.callback;
 						ajaxsetup.success = function(data) {
 							settings.callback && settings.callback(data);
 							curform[0].validform_ajax = null;
@@ -748,14 +748,13 @@ define('validform', function(require, exports, module) {
 						}
 					};
 					ajaxsetup = $.extend({}, localconfig, ajaxsetup);
-					setTimeout(function(){
-						try{
-							curform[0].validform_ajax = ajaxRequest(ajaxsetup);
-						}catch(e){
-							//ios报错兼容
-							curform[0].validform_ajax = {abort:null};
-						}
-					},100)
+					try{
+						curform[0].validform_ajax = ajaxRequest(ajaxsetup);
+					}catch(e){
+						//ios报错兼容
+						console.log('validform.js:' + e.message);
+						curform[0].validform_ajax = {abort:null};
+					}
 					return null;
 				} else {
 					if (!settings.postonce) {
