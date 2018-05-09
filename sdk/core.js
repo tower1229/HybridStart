@@ -1396,7 +1396,7 @@ app.ready(function() {
 			case "closeByNew":
 				if (window.closeByNew) {
 					setTimeout(function() {
-						//console.log('closeByNew:' + api.winName);
+						console.log('closeByNew:' + api.winName);
 						api.closeWin({
 							name: api.winName,
 							animation:{
@@ -1410,7 +1410,7 @@ app.ready(function() {
 				if(api.systemType === 'android'){
 					setTimeout(function() {
 						if (!!window.isBack) {
-							//console.log('closeback:' + api.winName);
+							console.log('closeback:' + api.winName);
 							api.closeWin({
 								name: api.winName,
 								animation:{
