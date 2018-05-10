@@ -42,7 +42,10 @@ define(function(require) {
 		openLock = true;
 	}).on('touchend', '[data-guid]', function() {
 		if (openLock) {
-			return console.log('openLock');
+			console.log('openLock');
+			return setTimeout(function(){
+				openLock = false;
+			},200);
 		}
 		var guid = $(this).data('guid');
 		var title = this.querySelector(".title").innerHTML.trim();
