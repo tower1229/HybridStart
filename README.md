@@ -1,9 +1,9 @@
+
 # HybridStart
 
 基于[apicloud](http://www.apicloud.com/)的混合应用开发框架，可能是开发这一类混合应用的最佳实践。
 
-[![npm](https://img.shields.io/npm/v/hybridstart.svg)](https://www.npmjs.com/package/hybridstart/) [![GitHub release](https://img.shields.io/github/release/tower1229/HybridStart.svg)][![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftower1229%2FHybridStart.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftower1229%2FHybridStart?ref=badge_shield)
-() [![license](https://img.shields.io/github/license/tower1229/HybridStart.svg)]()
+[![npm](https://img.shields.io/npm/v/hybridstart.svg)](https://www.npmjs.com/package/hybridstart/) [![GitHub release](https://img.shields.io/github/release/tower1229/HybridStart.svg)]() [![license](https://img.shields.io/github/license/tower1229/HybridStart.svg)]()
 
 ## 提供
 - 完全独立可剥离的UI，便于风格定制
@@ -49,7 +49,3 @@ npm：`npm i hybridstart`
 > [前端路上](http://refined-x.com)
 
 <br /><br />
-
-
-## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftower1229%2FHybridStart.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftower1229%2FHybridStart?ref=badge_large)
