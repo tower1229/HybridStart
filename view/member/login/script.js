@@ -10,7 +10,7 @@ define(function(require) {
 	//登录验证
 	var Validform = require('validform');
 	var vf = Validform('#logForm', {
-		url: "http://rapapi.org/mockjsdata/9195/common/getYes/",
+		url: "http://rap2api.taobao.org/app/mock/3567/return/Yes",
 		ajaxPost: true,
 		beforeCheck: function() {
 			if ($('#usern')[0].value == "9527") {
@@ -37,11 +37,9 @@ define(function(require) {
 					nickName: '斑斑',
 					headImg: "../../../res/img/avat.jpg"
 				});
-				setTimeout(function() {
-					app.openView({
-						closeself: true
-					}, 'demo', 'index');
-				}, 0);
+				app.openView({
+					closeself: true
+				}, 'demo', 'index');
 			} else {
 				app.toast(res.msg || '登录失败');
 			}

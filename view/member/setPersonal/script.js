@@ -9,7 +9,7 @@ define(function(require) {
 	var Validform = require('validform');
 
 	var vf = Validform('#setPersForm', {
-		url: "http://rapapi.org/mockjsdata/9195/common/getYes/",
+		url: "http://rap2api.taobao.org/app/mock/3567/return/Yes",
 		ajaxPost: true,
 		ajaxData: {
 			"method": "modifyUserInfo",

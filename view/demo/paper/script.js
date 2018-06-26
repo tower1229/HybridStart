@@ -35,7 +35,7 @@ define(function(require) {
 		callback: function($form) {
 			app.loading.hide();
 			Validform($form, {
-				url: 'http://rapapi.org/mockjsdata/9195/common/getYes/',
+				url: 'http://rap2api.taobao.org/app/mock/3567/return/Yes',
 				ajaxPost: true,
 				callback: function(res) {
 					if (res.status === 'Y') {

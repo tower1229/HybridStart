@@ -13,7 +13,7 @@ define(function(require) {
 		switch(btn.getAttribute('id')){
 			case "default":
 				app.ajax({
-					url: "http://rapapi.org/mockjsdata/9195/common/getYes/",
+					url: "http://rap2api.taobao.org/app/mock/3567/return/Yes",
 					success: function(res){
 						app.loading.hide();
 						app.toast('数据请求成功');

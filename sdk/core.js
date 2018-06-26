@@ -408,11 +408,14 @@ var apputil = (function(document, undefined) {
 	};
 	var appEventQueue = {};
 	var appEventDequeue = function(type, param) {
-		appEventQueue[type] && appEventQueue[type].forEach(function(e, i) {
-			if (typeof e === 'function') {
-				e(param);
-			}
-		});
+		if(appEventQueue[type]){
+			appEventQueue[type].forEach(function(e, i) {
+				if (typeof e === 'function') {
+					e(param);
+				}
+			});
+			delete appEventQueue[type];
+		}
 	}
 	
 	function events(type, cb) {
@@ -708,8 +711,7 @@ var apputil = (function(document, undefined) {
 				app.storage.val('winCloseCondition', 'closeback');
 			}
 			if (param.closeself) {
-				window.closeByNew = true;
-				app.storage.val('winCloseCondition', 'closeByNew');
+				app.storage.val('winCloseCondition', api.winName);
 			}
 			app.window.open($.extend($.isPlainObject(param) ? param : {}, {
 				name: viewName,
@@ -1288,11 +1290,7 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 				values: opt.data
 			};
 		}
-		// var aaaaalist = [];
-		// for(var x in opt){
-		// 	aaaaalist.push(x)
-		// }
-		// console.log(aaaaalist.join(' '))
+		
 		api.ajax(opt, function(res, err) {
 			//console.log(JSON.stringify(res))
 			handleRes(res);
@@ -1392,46 +1390,44 @@ app.ready(function() {
 	//响应关闭指令
 	app.subscribe('closeback', function(msg) {
 		if (api.winName === 'root') return null;
-		switch (msg) {
-			case "closeByNew":
-				if (window.closeByNew) {
-					setTimeout(function() {
-						console.log('closeByNew:' + api.winName);
-						api.closeWin({
-							name: api.winName,
-							animation:{
-								type:"none"
-							}
-						});
-					}, appcfg.set.animateDuration + 300)
-				}
-				break;
-			case "closeback": //关闭后台页面
-				if(api.systemType === 'android'){
-					setTimeout(function() {
-						if (!!window.isBack) {
-							console.log('closeback:' + api.winName);
-							api.closeWin({
-								name: api.winName,
-								animation:{
-									type:"none"
-								}
-							});
+		if(msg==="closeback"){
+			//关闭后台页面
+			setTimeout(function() {
+				if (!!window.isBack) {
+					console.log('closeback:' + api.winName);
+					api.closeWin({
+						name: api.winName,
+						animation:{
+							type:"none"
 						}
-					}, appcfg.set.animateDuration + 300)
+					});
 				}
-				break;
-			default:
-				console.log(msg)
+			}, appcfg.set.animateDuration + 300)
+		}else{
+			//关闭指定页面
+			if(api.winName===msg){
+				setTimeout(function() {
+					console.log('closeByNew:' + msg);
+					api.closeWin({
+						name: msg,
+						animation:{
+							type:"none"
+						}
+					});
+				}, appcfg.set.animateDuration + 300)
+			}
 		}
 	});
 	//发布关闭指令
 	var currentWinCloseCondition = app.storage.val('winCloseCondition');
-	if (currentWinCloseCondition && api.systemType === 'android') {
-		//ios会报错，仅用于安卓
+	if (currentWinCloseCondition) {
+		//ios不需要关闭后台
+		if(currentWinCloseCondition==='closeback' && api.systemType==='ios'){
+			return null;
+		}
 		app.publish('closeback', currentWinCloseCondition);
 		setTimeout(function() {
 			app.storage.remove('winCloseCondition');
-		}, 200)
+		}, 300)
 	}
 });
