@@ -1414,7 +1414,7 @@ app.ready(function() {
 							type:"none"
 						}
 					});
-				}, appcfg.set.animateDuration + 300)
+				}, appcfg.set.animateDuration + 1000)
 			}
 		}
 	});

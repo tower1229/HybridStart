@@ -18,14 +18,14 @@ define(function(require) {
 		product: {
 			url: '../../blank/temp.html',
 			set: function(){
-				$title.innerText = '空白栏目';
+				$title.innerText = '空白栏目1';
 				$head.classList.add('product-head');
 			}
 		},
 		discover: {
 			url: '../../blank/temp.html',
 			set: function(){
-				$title.innerText = '空白栏目';
+				$title.innerText = '空白栏目2';
 				$head.classList.add('discover-head');
 			}
 		},

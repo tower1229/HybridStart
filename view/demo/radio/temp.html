@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <link href="../../../sdk/ui.css" rel="stylesheet">
-    
+    <style>
+    .labels{position: relative; overflow:hidden;}
+    .labels label{margin-right: .5em;}
+    .labels input{position: absolute; visibility: hidden;}
+    .labels input:checked + .btn{border-color: #1f9af8;color:#1f9af8;}
+    .labels .btn-default{border-color:#ccc;}
+    </style>
 </head>
 
 <body class="flex-col">
@@ -30,6 +36,29 @@
                 <input type="radio" name="key">
                 赤木刚宪
             </label>
+        </div>
+        <div class="list">
+            <div class="item">
+                <h2>ABO血型</h2>
+                <div class="labels">
+                    <label>
+                        <input type="radio" name="bloodType" value="A" datatype="*" nullmsg="请选择ABO血型">
+                        <div class="btn btn-ghost btn-default">A型</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="bloodType" value="B" datatype="*" nullmsg="请选择ABO血型">
+                        <div class="btn btn-ghost btn-default">B型</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="bloodType" value="O" datatype="*" nullmsg="请选择ABO血型">
+                        <div class="btn btn-ghost btn-default">O型</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="bloodType" value="AB" datatype="*" nullmsg="请选择ABO血型">
+                        <div class="btn btn-ghost btn-default">AB型</div>
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
 </body>
