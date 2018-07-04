@@ -1158,6 +1158,46 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 				break;
 		}
 	};
+	var isEqual = function(o, x) {
+		if (!o || !x) {
+			return false;
+		}
+		var p;
+		for (p in o) {
+			if (typeof(x[p]) == 'undefined') {
+				return false;
+			}
+		}
+		for (p in o) {
+			if (o[p]) {
+				switch (typeof(o[p])) {
+					case 'object':
+						if (!isEqual(o[p], x[p])) {
+							return false;
+						}
+						break;
+					case 'function':
+						if (typeof(x[p]) == 'undefined' ||
+							(p != 'equals' && o[p].toString() != x[p].toString()))
+							return false;
+						break;
+					default:
+						if (o[p] != x[p]) {
+							return false;
+						}
+				}
+			} else {
+				if (x[p])
+					return false;
+			}
+		}
+		for (p in x) {
+			if (typeof(o[p]) == 'undefined') {
+				return false;
+			}
+		}
+		return true;
+	};
 	var ajaxTag = parseInt(Math.random()*1e6);
 	var requestAjax = function(config) {
 		var opt = $.extend({
@@ -1186,17 +1226,21 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 		var handleRes = function(res, fromSnap) {
 			if (res) {
 				//json格式异常处理
-				if(opt.dataType==="json" && res.data && res.data.split){
+				if(opt.dataType==="json" && res.split){
 					try{
-						res.data = JSON.parse(res.data);
+						res = JSON.parse(res);
 					}catch(e){
 						console.log(e.msg)
 					}
+					//快照处理
+					if(opt.snapshoot && !fromSnap){
+						if(isEqual(res, app.storage.val(urlkey))){
+							res.snapshootEqual = true;
+						}
+						app.storage.val(urlkey, res);
+					}
 				}
 				//存储快照
-				if(opt.snapshoot && !fromSnap){
-					app.storage.val(urlkey, res);
-				}
 				typeof(tempSucc)==='function' && tempSucc(res);
 			}
 		}
