@@ -375,6 +375,13 @@ define(function(require, exports, module) {
 	var cacheImg = function(element, callback) {
 		var placeholderPic = seajs.root + '/res/img/placeholder.jpg';
 		var remoteEle;
+		var setImg = function(ele, url){
+			if (ele.tagName.toLowerCase() === 'img') {
+				ele.setAttribute('src', url);
+			} else {
+				ele.style.backgroundImage = "url(" + url + ")";
+			}
+		};
 		if ($(element)[0].getAttribute('data-remote')) {
 			remoteEle = $(element);
 		} else {
@@ -383,23 +390,23 @@ define(function(require, exports, module) {
 		app.ready(function() {
 			var cacheCount = 0;
 			$.each(remoteEle, function(i, ele) {
-				var remote = ele.getAttribute('data-remote') || placeholderPic;
-				api.imageCache({
-					url: remote,
-					policy: "cache_else_network"
-				}, function(ret, err) {
-					var url = ret.url;
-					if (ele.tagName.toLowerCase() === 'img') {
-						ele.setAttribute('src', url);
-					} else {
-						ele.style.backgroundImage = "url(" + url + ")";
-					}
-					ele.removeAttribute('data-remote');
-					cacheCount++;
-					if (cacheCount === remoteEle.length) {
-						typeof callback === 'function' && callback();
-					}
-				});
+				var remote = ele.getAttribute('data-remote');
+				if(remote){
+					api.imageCache({
+						url: remote,
+						policy: "cache_else_network"
+					}, function(ret, err) {
+						var url = ret.url;
+						setImg(ele, url);
+						ele.removeAttribute('data-remote');
+						cacheCount++;
+						if (cacheCount === remoteEle.length) {
+							typeof callback === 'function' && callback();
+						}
+					});
+				}else{
+					setImg(ele, placeholderPic);
+				}
 			});
 		});
 		return remoteEle;
