@@ -180,17 +180,21 @@ define(function(require, exports, module) {
 		});
 	};
 
+	//预取队列
+	var preGetList = [{
+		key: 'preget-test',
+		url: 'http://rap2api.taobao.org/app/mock/3567/return/Yes',
+		data: {}
+	}];
 	//数据预取
 	var preGet = function(callback) {
 		var got = 0,
-			preGetList = preGet.prototype.preGetList,
 			resolved = function() {
 				got++;
 				if (got >= preGetList.length && typeof(callback) === 'function') {
 					callback();
 					got = null;
 					resolved = null;
-					preGetList = null;
 				}
 			},
 			checkPreget = function() {
@@ -225,12 +229,7 @@ define(function(require, exports, module) {
 			});
 		});
 	};
-	//预取队列
-	preGet.prototype.preGetList = [{
-		key: 'preget-test',
-		url: 'http://rap2api.taobao.org/app/mock/3567/return/Yes',
-		data: {}
-	}];
+	
 
 	//检查升级
 	var checkUpdate = function(silence) {
