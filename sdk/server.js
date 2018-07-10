@@ -373,13 +373,18 @@ define(function(require, exports, module) {
 	};
 
 	var cacheImg = function(element, callback) {
-		var placeholderPic = seajs.root + '/res/img/placeholder.jpg';
 		var remoteEle;
+		var cacheCount = 0;
 		var setImg = function(ele, url){
 			if (ele.tagName.toLowerCase() === 'img') {
 				ele.setAttribute('src', url);
 			} else {
 				ele.style.backgroundImage = "url(" + url + ")";
+			}
+			ele.removeAttribute('data-remote');
+			cacheCount++;
+			if (cacheCount === remoteEle.length) {
+				typeof callback === 'function' && callback();
 			}
 		};
 		if ($(element)[0].getAttribute('data-remote')) {
@@ -388,24 +393,16 @@ define(function(require, exports, module) {
 			remoteEle = $(element)[0].querySelectorAll('[data-remote]');
 		}
 		app.ready(function() {
-			var cacheCount = 0;
 			$.each(remoteEle, function(i, ele) {
 				var remote = ele.getAttribute('data-remote');
 				if(remote){
 					api.imageCache({
-						url: remote,
-						policy: "cache_else_network"
+						url: remote
 					}, function(ret, err) {
-						var url = ret.url;
-						setImg(ele, url);
-						ele.removeAttribute('data-remote');
-						cacheCount++;
-						if (cacheCount === remoteEle.length) {
-							typeof callback === 'function' && callback();
-						}
+						setImg(ele, ret.url);
 					});
 				}else{
-					setImg(ele, placeholderPic);
+					setImg(ele, remote);
 				}
 			});
 		});
