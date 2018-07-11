@@ -414,7 +414,6 @@ var apputil = (function(document, undefined) {
 					e(param);
 				}
 			});
-			delete appEventQueue[type];
 		}
 	}
 	

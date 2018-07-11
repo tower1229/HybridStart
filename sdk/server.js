@@ -191,10 +191,12 @@ define(function(require, exports, module) {
 		var got = 0,
 			resolved = function() {
 				got++;
-				if (got >= preGetList.length && typeof(callback) === 'function') {
-					callback();
+				if (got >= preGetList.length) {
 					got = null;
 					resolved = null;
+					if(typeof(callback) === 'function'){
+						callback();
+					}
 				}
 			},
 			checkPreget = function() {
@@ -206,7 +208,7 @@ define(function(require, exports, module) {
 				});
 				return hasResolved;
 			};
-		if (checkPreget()) {
+		if (typeof(callback) === 'function' && checkPreget()) {
 			return callback();
 		}
 		$.each(preGetList, function(i, e) {
@@ -215,14 +217,8 @@ define(function(require, exports, module) {
 				data: e.data,
 				success: function(res) {
 					resolved();
-					if (res.data) {
-						var data = res.data;
-						if (data) {
-							if (data.split) {
-								data = JSON.parse(data);
-							}
-							app.storage.val(e.key, data);
-						}
+					if (res) {
+						app.storage.val(e.key, res);
 					}
 				},
 				error: function() {}
