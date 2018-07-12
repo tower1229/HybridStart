@@ -1333,7 +1333,7 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 				values: opt.data
 			};
 		}
-		
+		//console.log(JSON.stringify(opt))
 		api.ajax(opt, function(res, err) {
 			//console.log(JSON.stringify(res))
 			handleRes(res);

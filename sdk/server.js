@@ -208,22 +208,25 @@ define(function(require, exports, module) {
 				});
 				return hasResolved;
 			};
-		if (typeof(callback) === 'function' && checkPreget()) {
-			return callback();
-		}
-		$.each(preGetList, function(i, e) {
-			app.ajax({
-				url: e.url,
-				data: e.data,
-				success: function(res) {
-					resolved();
-					if (res) {
-						app.storage.val(e.key, res);
-					}
-				},
-				error: function() {}
-			});
-		});
+		if(checkPreget()){
+	        if (typeof(callback) === 'function') {
+	    	    return callback();
+	    	} 
+	    }else{
+	        $.each(preGetList, function(i, e) {
+	    		app.ajax({
+	    			url: e.url,
+	    			data: e.data,
+	    			success: function(res) {
+	    				resolved();
+	    				if (res) {
+	    					app.storage.val(e.key, res);
+	    				}
+	    			},
+	    			error: function() {}
+	    		});
+	    	});
+	    }
 	};
 	
 
