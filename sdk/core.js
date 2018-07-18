@@ -1206,8 +1206,7 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 			timeout: appcfg.set.outime / 1000,
 			snapshoot: false 		//添加为快照
 		}, config);
-		var urlkey = opt.url + JSON.stringify(opt.param);
-
+		var urlkey = opt.url + (opt.data ? JSON.stringify(opt.data) : '');
 		//返回结果处理
 		var tempSucc = opt.success;
 		var tempErr = opt.error;
