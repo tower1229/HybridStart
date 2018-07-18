@@ -737,7 +737,7 @@ var apputil = (function(document, undefined) {
 			api.refreshHeaderLoadDone();
 			this.timer && (this.timer = clearTimeout(this.timer));
 		})
-	}
+	};
 	function _openToast(msg, config) {
 		//delay,onclose,location,duration
 		var opt = {
@@ -1231,15 +1231,15 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 					}catch(e){
 						console.log(e.msg)
 					}
-					//快照处理
-					if(opt.snapshoot && !fromSnap){
-						if(isEqual(res, app.storage.val(urlkey))){
-							res.snapshootEqual = true;
-						}
-						app.storage.val(urlkey, res);
-					}
 				}
-				//存储快照
+				//快照处理
+				if(opt.snapshoot){
+					if(!fromSnap && isEqual(res, app.storage.val(urlkey))){
+						res.snapshootEqual = true;
+					}
+					//存储快照
+					app.storage.val(urlkey, res);
+				}
 				typeof(tempSucc)==='function' && tempSucc(res);
 			}
 		}
