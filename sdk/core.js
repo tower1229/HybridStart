@@ -1235,9 +1235,10 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 					//快照处理
 					if(opt.snapshoot){
 						if(!fromSnap){
-							app.storage.val(urlkey, res);
 							if(isEqual(res, app.storage.val(urlkey))){
 								res.snapshootEqual = true;
+							}else{
+								app.storage.val(urlkey, res);
 							}
 						}
 					}
