@@ -1225,19 +1225,23 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 		var handleRes = function(res, fromSnap) {
 			if (res) {
 				//json格式异常处理
-				if(opt.dataType==="json" && res.split){
-					try{
-						res = JSON.parse(res);
-					}catch(e){
-						console.log(e.msg)
+				if(opt.dataType==="json"){
+					if(res.split){
+						try{
+							res = JSON.parse(res);
+						}catch(e){
+							console.log(e.msg)
+						}
+					}
+					//快照处理
+					if(opt.snapshoot){
+						if(!fromSnap && isEqual(res, app.storage.val(urlkey))){
+							res.snapshootEqual = true;
+						}
 					}
 				}
-				//快照处理
+				//存储快照
 				if(opt.snapshoot){
-					if(!fromSnap && isEqual(res, app.storage.val(urlkey))){
-						res.snapshootEqual = true;
-					}
-					//存储快照
 					app.storage.val(urlkey, res);
 				}
 				typeof(tempSucc)==='function' && tempSucc(res);
