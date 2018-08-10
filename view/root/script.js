@@ -28,7 +28,7 @@ define(function(require) {
 				var id = json.id;
 				var content = json.content;
 				var extras = json.extras ? json.extras : {};
-				alert(`推送内容:${content}`);
+				alert("推送内容:"+content);
 			};
 			var pushFunc = function() {
 				//app内拦截自定义消息

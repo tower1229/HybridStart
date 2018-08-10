@@ -238,10 +238,12 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
   background: @gray-light;
   z-index: 0;
   transform:scale(0);
+  -webkit-transform:scale(0);
   opacity: .5;
   transition:all ease-out .5s;
+  -webkit-transition:all ease-out .5s;
 }
-.active .active-handle{transform:scale(1);opacity: 0;}
+.active .active-handle{transform:scale(1);-webkit-transform:scale(1);opacity: 0;}
 @media screen and (-webkit-min-device-pixel-ratio: 2) { 
   .item{border-bottom:0; }
   .item:before{
