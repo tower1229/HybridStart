@@ -89,29 +89,14 @@ define(function(require, exports, module) {
 		}
 	});
 	
+	// 键盘状态
 	$.each($('input'), function(i, ele) {
 		ele.addEventListener('focus', function() {
 			//输入状态
-			$body.className = ($body.className + ' onKeyboard');
-			var kh = $('.keyboardHide');
-			if (kh.length) {
-				$.each(kh, function(i, ele) {
-					ele.setAttribute('displayName', ele.style.display);
-					ele.style.display = 'none';
-				});
-			}
-
+			$body[0].classList.add("onKeyboard");
 		});
 		ele.addEventListener('blur', function() {
-			var cacheClass = $body.className;
-			$body.className = (cacheClass.replace(/\s*onKeyboard/g, ' '));
-			var kh = $('.keyboardHide');
-			if (kh.length) {
-				$.each(kh, function(i, ele) {
-					var displayName = ele.getAttribute('displayName') || 'block';
-					ele.style.display = displayName;
-				});
-			}
+			$body[0].classList.remove("onKeyboard");
 		});
 	});
 	
