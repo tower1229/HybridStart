@@ -26,7 +26,7 @@ define(function(require) {
 		nomore: function() {
 			//返回数据需要有count字段，否则永远不会触发nomore回调
 			app.toast('没有更多了');
-			scrollLoadHandle && scrollLoadHandle.destory();
+			scrollLoadHandle && scrollLoadHandle.destroy();
 		}
 	});
 
