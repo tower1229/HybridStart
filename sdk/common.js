@@ -13,9 +13,11 @@ define(function(require, exports, module) {
 	$body.on('touchstart', '#goBack', function(e) {
 		app.window.close();
 		//销毁百度地图实例
-		if(window.api){
+		try{
 			var map = api.require('bMap');
 			map.close();
+		}catch(e){
+			console.log(e.message)
 		}
 	});
 
