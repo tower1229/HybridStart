@@ -742,7 +742,7 @@ var apputil = (function(document, undefined) {
 		//delay,onclose,location,duration
 		var opt = {
 			msg: msg,
-			duration: 700,
+			duration: 1000,
 			location: 'bottom'
 		};
 		if($.isPlainObject(config)){
