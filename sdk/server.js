@@ -218,10 +218,10 @@ define(function(require, exports, module) {
 	    			url: e.url,
 	    			data: e.data,
 	    			success: function(res) {
-	    				resolved();
 	    				if (res) {
 	    					app.storage.val(e.key, res);
 	    				}
+	    				resolved();
 	    			},
 	    			error: function() {}
 	    		});
