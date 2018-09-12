@@ -13,14 +13,20 @@
         <div class="btn" id="goBack">
             <i class="ion">&#xe651;</i>
         </div>
-        <div class="title" id="headTitle">插件管理</div>
+        <div class="title" id="headTitle">扩展插件</div>
     </div>
     <div class="flex-1 scroll_cont" id="view">
         <textarea class="hide" template>
             <div class="list">
                 <!-- for: ${data} as ${plugin} -->
-                <div class="item" data-remote="${plugin.remote}" data-path="${plugin.path}" data-index="${plugin.index}" data-name="${plugin.name}">
+                <!-- var: str = JSON.stringify(${plugin}) -->
+                <div class="item item-icon-right" data-str="${str}">
                     ${plugin.showName}
+                    <!-- if: ${plugin.path} -->
+                    <i class="ion">&#xe610;</i>
+                    <!-- else -->
+                    <i class="ion">&#xe60b;</i>
+                    <!-- /if -->
                 </div>
                 <!-- /for -->
             </div>

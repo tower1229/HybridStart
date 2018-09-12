@@ -8,52 +8,43 @@ define(function(require) {
 	var download = require('download');
 	var zip = api.require('zip');
 
-	//配置
-	var otaPath = api.systemType === "android" ? "/HybridStartOTA/" : "fs://Download/";
-	var pluginCommonParam = {
-		root: api.wgtRootDir
-	};
+	//下载配置
+	var otaPath = api.systemType === "android" ? "/Download/" : "fs://Download/";
+
 	//本地数据
-	var localPluginsData = app.storage.val('ota-plugins') || [];
+	var localPluginsData = app.storage.val('plugins-data') || [];
+	
 	//渲染列表
 	var myRender = render({
 		el: '#view',
-		data: {},
-		callback: function() {
+		callback: function(ele, data) {
+			app.storage.val('plugins-data', data.data)
 			app.loading.hide();
 		}
 	});
+
 	//获取插件数据
 	var getData = function() {
 		app.loading.show();
 		app.ajax({
 			url: 'http://static-zt.oss-cn-qingdao.aliyuncs.com/mock/plugins.json',
 			type: 'get',
-			data: {},
 			success: function(res) {
 				if (Array.isArray(res.data)) {
-					//合并本地数据
-					var moreArray = [];
-					res.data.forEach(function(remote){
-						var isIn = false;
-						localPluginsData.forEach(function(local){
-							if(local.name===remote.name){
-								isIn = true;
-								$.extend(local,remote);
+					res.data.forEach(function(e){
+						localPluginsData.forEach(function(l){
+							if(e.name===l.name){
+								$.extend(e,l)
 							}
-						});
-						if(!isIn){
-							moreArray.push(remote);
-						}
-					});
-					localPluginsData = localPluginsData.concat(moreArray);
-					app.storage.val('ota-plugins', localPluginsData);
+						})
+					})
+					localPluginsData = res.data;
 					myRender.data({
 						data: localPluginsData
 					});
-				} else if (res.msg) {
+				} else {
 					app.loading.hide();
-					app.toast(res.msg);
+					app.toast("插件数据异常");
 				}
 			}
 		});
@@ -62,46 +53,41 @@ define(function(require) {
 	getData();
 
 	var openPlugin = function(item) {
-		var remote = $(item).data('remote');
-		var path = $(item).data('path');
-		var index = $(item).data('index');
-		var name = $(item).data('name');
-		var pagePath = path + name + index;
+		var pagePath = item.path + item.name + item.index;
 		//检测文件存在
 		api.readFile({
 		    path: pagePath
 		}, function(ret, err) {
 		    if (ret.status) {
 		        app.window.open({
-					url: pagePath,
-					param: pluginCommonParam
+					url: pagePath
 				});
 		    } else {
 		    	localPluginsData.forEach(function(local){
-		    		if(local.name===name){
+		    		if(local.name===item.name){
 		    			delete local.path;
 		    		}
 		    	});
-		    	app.storage.val('ota-plugins', localPluginsData);
+		    	myRender.data({
+					data: localPluginsData
+				});
 		    	app.toast('开始下载');
 		        downloadPlugin(item, true);
 		    }
 		});
 	};
 	var downloadPlugin = function(item, open){
-		var remote = $(item).data('remote');
-		var name = $(item).data('name');
-		if(!remote || !name){
+		if(!item.remote || !item.name){
 			return app.toast("该插件暂不可用");
 		}
 		app.loading.show();
-		download(remote,{
+		download(item.remote,{
 			path: otaPath,
-			name: name + ".zip",
+			name: item.name + ".zip",
 			cache: false,
 			success: function(path){
 				app.loading.hide();
-				var downPath = path.replace(name + ".zip","");
+				var downPath = path.replace(item.name + ".zip","");
 				zip.unarchive({
 				    file: path,
 				    toPath: downPath
@@ -109,11 +95,10 @@ define(function(require) {
 					app.loading.hide();
 				    if (ret.status) {
 				    	localPluginsData.forEach(function(local){
-				    		if(local.name===name){
+				    		if(local.name===item.name){
 				    			local.path = downPath;
 				    		}
 				    	});
-				    	app.storage.val('ota-plugins', localPluginsData);
 				        myRender.data({
 							data: localPluginsData
 						});
@@ -126,9 +111,12 @@ define(function(require) {
 		});
 	};
 	//事件绑定
-	$('#view').on('touchend', '.item', function(e) {
-		var item = e.target;
-		openPlugin(item);
+	$('#view').tap('.item', function(e) {
+		var itemData = $(e.target).data('str');
+		if(itemData){
+			openPlugin(JSON.parse(itemData))
+		}
+		
 	});
 
 
