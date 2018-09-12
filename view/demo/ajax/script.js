@@ -13,7 +13,7 @@ define(function(require) {
 		switch(btn.getAttribute('id')){
 			case "default":
 				app.ajax({
-					url: "http://rap2api.taobao.org/app/mock/3567/return/Yes",
+					url: appcfg.host.control + "/return/Yes",
 					success: function(res){
 						app.loading.hide();
 						app.toast('数据请求成功');
@@ -34,7 +34,7 @@ define(function(require) {
 				break;
 			case "snapshoot":
 				app.ajax({
-					url: "http://rapapi.org/mockjsdata/9195/common/getRandom",
+					url: appcfg.host.control + "/return/timestamp",
 					snapshoot: true,
 					success: function(res){
 						if(res.snapshoot){
