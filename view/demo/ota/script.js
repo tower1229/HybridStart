@@ -53,7 +53,7 @@ define(function(require) {
 	getData();
 
 	var openPlugin = function(item) {
-		var pagePath = item.path + item.name + item.index;
+		var pagePath = item.path + item.name + item.homepage;
 		//检测文件存在
 		api.readFile({
 		    path: pagePath
