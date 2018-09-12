@@ -20,9 +20,9 @@
             <div class="list">
                 <!-- for: ${data} as ${plugin} -->
                 <!-- var: str = JSON.stringify(${plugin}) -->
-                <div class="item item-icon-right" data-str="${str}">
+                <div class="item item-icon-right" data-str="${str}" active>
                     ${plugin.showName}
-                    <!-- if: ${plugin.path} -->
+                    <!-- if: ${plugin.isDone} -->
                     <i class="ion">&#xe610;</i>
                     <!-- else -->
                     <i class="ion">&#xe60b;</i>

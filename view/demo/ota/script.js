@@ -9,21 +9,34 @@ define(function(require) {
 	var zip = api.require('zip');
 
 	//下载配置
-	var otaPath = api.systemType === "android" ? "/Download/" : "fs://Download/";
+	var otaPath = "fs://Download/";
 
-	//本地数据
-	var localPluginsData = app.storage.val('plugins-data') || [];
+	/*
+	* 插件列表数据
+	* 格式：
+		[{
+			"remote": "http://static-zt.oss-cn-qingdao.aliyuncs.com/mock/plugin-test.zip",
+			"homepage": "/view/index/temp.html",
+			"name": "plugin-test",
+			"showName": "测试插件"
+		}, {
+			"remote": "http://static-zt.oss-cn-qingdao.aliyuncs.com/mock/plugin-refined-x.zip",
+			"homepage": "/view/index/temp.html",
+			"name": "plugin-refined-x",
+			"showName": "下载失败测试"
+		}]
+	*/
+	var localPluginsData = [];
 	
 	//渲染列表
 	var myRender = render({
 		el: '#view',
 		callback: function(ele, data) {
-			app.storage.val('plugins-data', data.data)
 			app.loading.hide();
 		}
 	});
 
-	//获取插件数据
+	//获取插件列表
 	var getData = function() {
 		app.loading.show();
 		app.ajax({
@@ -32,12 +45,11 @@ define(function(require) {
 			success: function(res) {
 				if (Array.isArray(res.data)) {
 					res.data.forEach(function(e){
-						localPluginsData.forEach(function(l){
-							if(e.name===l.name){
-								$.extend(e,l)
-							}
-						})
+						if(checkPlugin(e)){
+							e.isDone = true
+						}
 					})
+					
 					localPluginsData = res.data;
 					myRender.data({
 						data: localPluginsData
@@ -52,31 +64,42 @@ define(function(require) {
 
 	getData();
 
-	var openPlugin = function(item) {
-		var pagePath = item.path + item.name + item.homepage;
-		//检测文件存在
-		api.readFile({
+	/*
+	* 检查插件文件
+	*/
+	var checkPlugin = function(item) {
+		var pagePath = otaPath + item.name + item.homepage;
+		//检测本地文件是否存在
+		item.isDone = api.readFile({
+			sync: true,
 		    path: pagePath
-		}, function(ret, err) {
-		    if (ret.status) {
-		        app.window.open({
-					url: pagePath
-				});
-		    } else {
-		    	localPluginsData.forEach(function(local){
-		    		if(local.name===item.name){
-		    			delete local.path;
-		    		}
-		    	});
-		    	myRender.data({
-					data: localPluginsData
-				});
-		    	app.toast('开始下载');
-		        downloadPlugin(item, true);
-		    }
 		});
+		if(item.isDone){
+			return pagePath
+		}else{
+			return false
+		};
 	};
-	var downloadPlugin = function(item, open){
+
+	/*
+	* 打开插件
+	*/
+	var openPlugin = function(item) {
+		var pagePath = checkPlugin(item);
+		if (pagePath) {
+	        app.window.open({
+				url: pagePath
+			});
+	    } else {
+	    	app.toast('正在下载');
+	        downloadPlugin(item);
+	    }
+	};
+
+	/*
+	* 下载插件
+	*/
+	var downloadPlugin = function(item){
 		if(!item.remote || !item.name){
 			return app.toast("该插件暂不可用");
 		}
@@ -96,13 +119,13 @@ define(function(require) {
 				    if (ret.status) {
 				    	localPluginsData.forEach(function(local){
 				    		if(local.name===item.name){
-				    			local.path = downPath;
+				    			local.isDone = true;
 				    		}
 				    	});
 				        myRender.data({
 							data: localPluginsData
 						});
-						app.toast('插件下载完成，可以使用了');
+						app.toast('插件下载完成');
 				    } else {
 				        alert(JSON.stringify(err));
 				    }
@@ -110,14 +133,13 @@ define(function(require) {
 			}
 		});
 	};
+
 	//事件绑定
 	$('#view').tap('.item', function(e) {
 		var itemData = $(e.target).data('str');
 		if(itemData){
 			openPlugin(JSON.parse(itemData))
 		}
-		
 	});
-
 
 });
