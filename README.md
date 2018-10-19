@@ -30,6 +30,10 @@
 
 [HybridStart专题文章](http://refined-x.com/tags/HybridStart/)
 
+## 课程
+
+[《Hybrid App 开发快速指南》](https://gitbook.cn/gitchat/column/5b679a1d201ffa4ab88e7d5d)
+
 ## 下载
 
 项目主页：http://refined-x.com/HybridStart/
