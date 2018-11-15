@@ -34,6 +34,9 @@ define(function(require) {
 			set: function(){
 				$title.innerText = '会员中心';
 				$head.classList.add('member-head');
+				setTimeout(function(){
+					app.window.evaluate('', 'member', 'update()')
+				},0)
 			}
 		}
 	};

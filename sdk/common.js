@@ -132,7 +132,11 @@ define(function(require, exports, module) {
 				ele.removeAttribute('data-remote');
 			});
 		});
-
+		//沉浸式状态栏
+		let safeTop = api.safeArea.top;
+		if(safeTop && safeTop>24){
+			document.querySelector('.head').style.paddingTop = safeTop + 'px'
+		}
 
 	});
 });

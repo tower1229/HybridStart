@@ -84,7 +84,7 @@ td, th { padding: 0;}
 .row > [class*="span-"] {float: left; margin-right: @gridGutter; *margin-right: @gridGutter - 0.11%;}
 .generate-row(@gridColumns);
 .generate-row(@n, @i: 1) when (@i =< @n) {
-  .row > .span-@{i} { 
+  .row > .span-@{i} {
 	width: (@i * 100% / @n) - @gridGutter;
   }
   .generate-row(@n, (@i + 1));
@@ -96,7 +96,7 @@ td, th { padding: 0;}
 .full-row > [class*='span'] {float: left; }
 .generate-full-row(@gridColumns);
 .generate-full-row(@n, @i: 1) when (@i =< @n) {
-  .full-row > .span-@{i} { 
+  .full-row > .span-@{i} {
 	width: @i * 100% / @n; *width: @i * 100% / @n - 0.11%;
   }
   .generate-full-row(@n, (@i + 1));
@@ -119,8 +119,8 @@ td, th { padding: 0;}
  * Button
  * --------------------------------------------------
  */
-.btn { position: relative;overflow:hidden;font-size: @font-size; font-weight: normal; line-height: @btn-base-height;height: @btn-base-height; display: inline-block; 
-    margin-bottom: 0; cursor: pointer; box-sizing: border-box;touch-action: manipulation;min-width: 4em;border-radius: @radius; 
+.btn { position: relative;overflow:hidden;font-size: @font-size; font-weight: normal; line-height: @btn-base-height;height: @btn-base-height; display: inline-block;
+    margin-bottom: 0; cursor: pointer; box-sizing: border-box;touch-action: manipulation;min-width: 4em;border-radius: @radius;
     user-select: none; text-align: center; vertical-align: middle; white-space: nowrap; border: 0; padding: 0 1em; }
 .btn > .ion{vertical-align: middle;font-size: 1.1em;}
 .btn:active, .btn.active { outline: 0;  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);}
@@ -177,7 +177,7 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
 .card .item { padding-right: @space-sm; padding-left: @space-sm;}
 .card .item:last-child {border-bottom: 0 !important;}
 .card .item-body{margin-top: 0;}
-@media screen and (-webkit-min-device-pixel-ratio: 2) { 
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
   .card .item:last-child:before { display: none !important; }
 }
 .card-head{
@@ -226,7 +226,7 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
  * Items
  * --------------------------------------------------
  */
-.item { position: relative; z-index: 2; display: block; box-sizing: border-box; line-height: 1; 
+.item { position: relative; z-index: 2; display: block; box-sizing: border-box; line-height: 1;
   padding: @space-sm * 1.2;	border-bottom: 1px solid @border; overflow: hidden;}
 .list .item:last-child{border-bottom: 0;}
 /* active handle */
@@ -244,7 +244,7 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
   -webkit-transition:all ease-out .5s;
 }
 .active .active-handle{transform:scale(1);-webkit-transform:scale(1);opacity: 0;}
-@media screen and (-webkit-min-device-pixel-ratio: 2) { 
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
   .item{border-bottom:0; }
   .item:before{
     position: absolute;
@@ -332,7 +332,7 @@ input.item-note, input.item-note[readonly]{text-align: right;color:@gray;}
 	-webkit-box-flex: 1; -webkit-flex: 1; flex: 1; width: 100%;
 	-webkit-appearance: none; appearance: none;background-color:transparent;}
 .item-input input:last-child,.item-input textarea:last-child{margin-right: 0;}
-.item-input .btn .ion {font-size: 1.3em; position: static; display: inline-block; height: auto; text-align: center;  -webkit-box-flex: 0; 
+.item-input .btn .ion {font-size: 1.3em; position: static; display: inline-block; height: auto; text-align: center;  -webkit-box-flex: 0;
 	-webkit-flex: 0 0 2em;  flex: 0 0 2em;}
 .item-input .ion { min-width: 1em;}
 .item-input .input, textarea {display: block; padding-top: 2px; padding-left: 0; vertical-align: middle; color: inherit;box-sizing:border-box;}
@@ -359,7 +359,7 @@ input[type='radio'][disabled], input[type='checkbox'][disabled], input[type='rad
 .checkbox input:before{border-color: #ccc;box-sizing:border-box; display: table; width: 100%; height: 100%; content: ' ';
 -webkit-transition: background-color 20ms ease-in-out; transition: background-color 20ms ease-in-out; border-width: 1px; border-style: solid; border-radius: 1.2em; background: @light;}
 .checkbox input:after{position: absolute; top: 26%; left: 25%; display: table; width: .7em; height: .4em; content: ' ';
--webkit-transition: opacity 0.05s ease-in-out; transition: opacity 0.05s ease-in-out; -webkit-transform: rotate(-45deg); 
+-webkit-transition: opacity 0.05s ease-in-out; transition: opacity 0.05s ease-in-out; -webkit-transform: rotate(-45deg);
 transform: rotate(-45deg); opacity: 0; border: 1px solid @light; border-top: 0; border-right: 0;}
 .checkbox input:checked:before{ border-width: 2px;border-color: #ddd;  background: #ddd;}
 .checkbox input:disabled:before { border-color: #ddd;}
@@ -400,7 +400,7 @@ transform: rotate(-45deg); opacity: 0; border: 1px solid @light; border-top: 0; 
  * Radio Button Inputs
  * --------------------------------------------------
  */
-.item-radio input {position: relative; display: inline-block; width: 1.5em; height: 1.5em;  border: 0; background: transparent; 
+.item-radio input {position: relative; display: inline-block; width: 1.5em; height: 1.5em;  border: 0; background: transparent;
 	-webkit-appearance: none;vertical-align: middle;}
 .item-radio input:before{ border-color: #ccc;box-sizing:border-box; display: block; width: 100%; height: 100%; content: ' ';
 -webkit-transition: background-color 20ms ease-in-out; transition: background-color 20ms ease-in-out; border-width: 1px;
@@ -549,7 +549,7 @@ select[multiple],select[size]{height:auto}
 .border-t {border-top: 1px solid @border;}
 .border-b { border-bottom: 1px solid @border;}
 
-@media (-webkit-min-device-pixel-ratio:2),(min-device-pixel-ratio:2) { 
+@media (-webkit-min-device-pixel-ratio:2),(min-device-pixel-ratio:2) {
   .border-t,.border-b{position: relative;border:0;}
   .border-t:before,.border-b:after{
     position: absolute;
@@ -582,7 +582,7 @@ select[multiple],select[size]{height:auto}
 .opc0 { opacity: 0 ; filter: alpha(opacity=0);}
 .big{font-size:1.2em;}
 .small{font-size:.8em;}
-/* 
+/*
  * Rect
  */
 *[class*="rect-"]{position: relative;display: block; width: 100%;height: 0;overflow: hidden;}
@@ -745,8 +745,8 @@ a.bg-danger:hover{
     background-color: @danger-dark;
 }
 /* 头部 */
-.head { position: relative; height: .8rem;line-height: .8rem; color: @light; background: @primary;z-index: 99;}
-.head .title { position: absolute; z-index: 0;bottom: 0; left: 0; width:100%; overflow: hidden;font-size: 1.2em; 
+.head { position: relative; height: .8rem;line-height: .8rem; color: @light; background: @primary;z-index: 99;padding-top:24px;}
+.head .title { position: absolute; z-index: 0;bottom: 0; left: 0; width:100%; overflow: hidden;font-size: 1.2em;
   text-align: center; white-space: nowrap; text-overflow: ellipsis;box-sizing: border-box;padding:0 13%;}
 .head .btn { position: relative; z-index: 1; height: .8rem;line-height: inherit; min-width: initial; padding: 0 .5em;
 border:0;background: none;box-shadow: none; vertical-align: top;color:inherit; }
@@ -757,7 +757,7 @@ border:0;background: none;box-shadow: none; vertical-align: top;color:inherit; }
 .head .item-input-inset .btn:last-child {margin:0;padding:0 .7em;z-index: 9;}
 /* 底部 */
 .foot { position: relative; background:@light;overflow:hidden;z-index: 9; font-size: 0.9em; }
-.tabs {overflow: visible; display: -webkit-box; display: -webkit-flex; display: flex; 
+.tabs {overflow: visible; display: -webkit-box; display: -webkit-flex; display: flex;
 	-webkit-box-orient: horizontal; }
 .tabs .tab-item {position: relative; font-weight: 400; text-align: center; white-space: nowrap; text-decoration: none; text-overflow: ellipsis;
  color: inherit;color:@gray-light;box-sizing:border-box;padding:.5em 0;-webkit-box-flex: 1; -webkit-flex: 1; flex: 1;overflow: hidden;}

@@ -915,8 +915,7 @@ var apputil = (function(document, undefined) {
 		var left = config.left || 0,
 			top = config.top || 0,
 			width = config.width || 'auto',
-			height = config.height || 'auto',
-			bottomMargin = config.bottomMargin || 0;
+			height = config.height || 'auto';
 		if (!config.name) {
 			config.name = 'pop-' + config.url;
 		}
@@ -932,7 +931,10 @@ var apputil = (function(document, undefined) {
 				y: top,
 				w: width,
 				h: height,
-				marginBottom: bottomMargin
+				marginLeft: config.marginLeft,
+				marginTop: config.marginTop,
+				marginBottom: config.marginBottom,
+				marginRight: config.marginRight
 			},
 			customRefreshHeader: 'UIPullRefreshFlash',
 			useWKWebView: true,
@@ -1154,7 +1156,6 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 				break;
 			default:
 				app.toast('服务端错误(' + status + ') code:' + code);
-				break;
 		}
 	};
 	var isEqual = function(o, x) {
