@@ -34,7 +34,7 @@ define(function(require) {
 		pageLoadObj && pageLoadObj.destroy();
 		$('body')[0].scrollTop = 0;
 		pageLoadObj = pageLoad({
-			url: 'http://rapapi.org/mockjsdata/1201/page-data-mock/',
+			url: appcfg.host.control + '/page-data-mock',
 			data: {
 				status: status
 			},

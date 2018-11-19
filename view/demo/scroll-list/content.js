@@ -30,7 +30,7 @@ define(function(require) {
 	var scrollLoadHandle;
 
 	var pageLoadObj = pageLoad({
-		url: 'http://rapapi.org/mockjsdata/1201/page-data-mock/',
+		url: appcfg.host.control + '/page-data-mock',
 		data: {},
 		success: function(res) {
 			if(res.status==='Y'){

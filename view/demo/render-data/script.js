@@ -12,11 +12,12 @@ define(function(require) {
 			app.loading.hide();
 		}
 	});
-
+	
 	var getData = function() {
 		app.loading.show();
+		
 		app.ajax({
-			url: 'http://rapapi.org/mockjsdata/1201/other/render-data-mock/',
+			url: appcfg.host.control + '/render-data-mock',
 			type: 'get',
 			data: {},
 			success: function(res) {

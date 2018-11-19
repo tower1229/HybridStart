@@ -8,31 +8,26 @@
     <link href="../../../sdk/ui.css" rel="stylesheet">
 </head>
 
-<body class="flex-col scroll_cont list">
-    <div class="item">item1</div>
-    <div class="item">item2</div>
-    <div class="item">item3</div>
-    <div class="item">item4</div>
-    <div class="item">item5</div>
-    <div class="item">item6</div>
-    <div class="item">item7</div>
-    <div class="item">item8</div>
-    <div class="item">item9</div>
-    <div class="item">item10</div>
-    <div class="item">item11</div>
-    <div class="item">item12</div>
-    <div class="item">item1</div>
-    <div class="item">item2</div>
-    <div class="item">item3</div>
-    <div class="item">item4</div>
-    <div class="item">item5</div>
-    <div class="item">item6</div>
-    <div class="item">item7</div>
-    <div class="item">item8</div>
-    <div class="item">item9</div>
-    <div class="item">item10</div>
-    <div class="item">item11</div>
-    <div class="item">item12</div>
+<body class="flex-col scroll_cont">
+    <div id="view">
+        <textarea class="hide" template>
+            <!--for: ${data} as ${el}-->
+            <div class="card">
+                <div class="card-head">
+                    <div class="card-title">
+                        ${el.name}
+                        <div class="item-note">
+                        ${el.number}
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-body">
+                    This is a basic Card which contains an item that has wrapping text.
+                </div>
+            </div>     
+            <!--/for-->
+        </textarea>
+    </div>
 </body>
 <script src="../../../sdk/loader.js" data-script="content"> </script>
 

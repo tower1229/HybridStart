@@ -10,7 +10,7 @@ define(function(require) {
 	var getData = function() {
 		app.loading.show('正在加载问卷');
 		app.ajax({
-			url: 'http://rapapi.org/mockjsdata/1201/member/getPaper',
+			url: appcfg.host.control + '/getPaper',
 			data: {
 				paper_id: '1',
 				member_id: '0000'

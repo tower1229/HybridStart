@@ -4,12 +4,12 @@
  * rebuild
  * 2017-07-12
  */
-var proEnv = true;
+var isDev = true;
 window.appcfg = {
 	host: {
-		control: proEnv ? "" : "http://app.xxx.com",
-		source: proEnv ? "" : "http://source.xxx.com",
-		upload: proEnv ? "" : "http://app.xxx.com/upload/"
+		control: isDev ? "http://rap2api.taobao.org/app/mock/3567" : "",
+		source: isDev ? "http://source.xxx.com" : "",
+		upload: isDev ? "http://app.xxx.com/upload/" : ""
 	},
 	set: {
 		version: "",
