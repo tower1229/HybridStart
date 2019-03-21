@@ -1,8 +1,8 @@
 /*
 app JS SDK
-Version：2.4.0
-update: 移除app.ajax错误检查
-date：2018-04-27
+Version：2.4.1
+update: openPopover支持bgColor设置
+date：2019-03-21
 
 *
 /*! Sea.js 2.2.1 | seajs.org/LICENSE.md */
@@ -940,7 +940,7 @@ var apputil = (function(document, undefined) {
 			useWKWebView: true,
 			hScrollBarEnabled: false,
 			pageParam: $.isPlainObject(config.param) ? config.param : {},
-			bgColor: appcfg.set.bgColor,
+			bgColor: config.bgColor || appcfg.set.bgColor,
 			bounces: !!config.bounce,
 			overScrollMode: 'scrolls'
 		});

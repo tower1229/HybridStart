@@ -1,8 +1,8 @@
 /*
  * name: upload.js
- * version: v0.5.1
- * update: add headers
- * date: 2018-02-01
+ * version: v0.5.2
+ * update: success接收服务端数据；error接收异常信息
+ * date: 2019-03-21
  */
 define('upload', function(require, exports, module) {
 	'use strict';
@@ -57,16 +57,16 @@ define('upload', function(require, exports, module) {
 						break;
 					case 1:
 						try {
-							opt.success(ret.body.path);
+							opt.success(ret.body);
 						} catch (e) {
 							console.log(JSON.stringify(ret.body));
 						}
 						break;
 					case 2:
-						opt.error();
+						opt.error(ret);
 						break;
 					default:
-						opt.onCreateError();
+						opt.onCreateError(ret, err);
 						break;
 				}
 			} else if (err) {
