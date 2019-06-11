@@ -1,8 +1,8 @@
 /*
 app JS SDK
-Version：2.4.1
-update: openPopover支持bgColor设置
-date：2019-03-21
+Version：2.4.2
+update: ios closeback bug
+date：2019-05-29
 
 *
 /*! Sea.js 2.2.1 | seajs.org/LICENSE.md */
@@ -708,6 +708,13 @@ var apputil = (function(document, undefined) {
 			if (param.closeback) {
 				window.isBack = true;
 				app.storage.val('winCloseCondition', 'closeback');
+
+				if(api.systemType==='ios'){
+					console.log('ios closeToWin:'+viewName)
+					return api.closeToWin({
+					    name: viewName
+					});
+				}
 			}
 			if (param.closeself) {
 				app.storage.val('winCloseCondition', api.winName);
@@ -1233,6 +1240,17 @@ var gh=((((ga*ga)>>>17)+ga*gb)>>>15)+gb*gb;var gl=(((gx&4294901760)*gx)|0)+(((gx
 							console.log(e.msg)
 						}
 					}
+					//登陆失效
+					if(res.status==401){
+						return app.toast(res.statusCode || '未授权访问', {
+							onclose: function(){
+								app.storage.remove('user');
+								app.openView({
+									closeback: true
+								}, 'member', 'login');
+							}
+						})						
+					}
 					//快照处理
 					if(opt.snapshoot){
 						if(!fromSnap){
@@ -1471,12 +1489,15 @@ app.ready(function() {
 	var currentWinCloseCondition = app.storage.val('winCloseCondition');
 	if (currentWinCloseCondition) {
 		//ios不需要关闭后台
-		if(currentWinCloseCondition==='closeback' && api.systemType==='ios'){
-			return null;
+		if(api.systemType==='ios'){
+			if(currentWinCloseCondition==='closeback'){
+				app.storage.remove('winCloseCondition');
+			}
+		}else{
+			app.publish('closeback', currentWinCloseCondition);
+			setTimeout(function() {
+				app.storage.remove('winCloseCondition');
+			}, 300)
 		}
-		app.publish('closeback', currentWinCloseCondition);
-		setTimeout(function() {
-			app.storage.remove('winCloseCondition');
-		}, 300)
 	}
 });
