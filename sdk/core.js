@@ -1,8 +1,8 @@
 /*
 app JS SDK
-Version：2.4.2
-update: ios closeback bug
-date：2019-05-29
+Version：2.4.3
+update: app.window.evaluate()兼容两个参数的情况
+date：2019-07-15
 
 *
 /*! Sea.js 2.2.1 | seajs.org/LICENSE.md */
@@ -997,6 +997,13 @@ var apputil = (function(document, undefined) {
 			frameName = paramObj.frameName || '';
 			script = paramObj.script || '';
 		}
+
+		//兼容两个参数的情况
+		if((script === void(0)) && frameName){
+			script = frameName;
+			frameName = '';
+		}
+
 		api.execScript({
 			name: name || api.winName,
 			frameName: frameName,
